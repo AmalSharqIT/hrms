@@ -185,7 +185,7 @@ def get_custom_fields():
 				"ignore_user_permissions": 1,
 				"label": _("Employment Type"),
 				"options": "Employment Type",
-				"insert_after": "department",
+				"insert_after": "branch",
 			},
 			{
 				"fieldname": "job_applicant",
@@ -200,6 +200,8 @@ def get_custom_fields():
 				"label": _("Grade"),
 				"options": "Employee Grade",
 				"insert_after": "branch",
+				"hidden": 1,
+				"is_virtual": 1,
 			},
 			{
 				"fieldname": "default_shift",
@@ -260,6 +262,8 @@ def get_custom_fields():
 				"label": _("Shift Request Approver"),
 				"options": "User",
 				"insert_after": "column_break_45",
+				"hidden": 1,
+				"is_virtual": 1,
 			},
 			{
 				"fieldname": "salary_cb",
