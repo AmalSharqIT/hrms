@@ -20,6 +20,8 @@
   "column_break_hyec",
   "sender",
   "sender_email",
+  "advance_setting_section",
+  "advance_limit_percent_of_salary",
   "leave_and_expense_claim_settings",
   "send_leave_notification",
   "leave_approval_notification_template",
@@ -336,13 +338,23 @@
    "fieldname": "prevent_self_leave_approval",
    "fieldtype": "Check",
    "label": "Prevent self approval for leaves even if user has permissions"
+  },
+  {
+   "fieldname": "advance_setting_section",
+   "fieldtype": "Section Break",
+   "label": "Advance Setting"
+  },
+  {
+   "fieldname": "advance_limit_percent_of_salary",
+   "fieldtype": "Percent",
+   "label": "Advance Limit (% Of Salary)"
   }
  ],
  "icon": "fa fa-cog",
  "idx": 1,
  "issingle": 1,
  "links": [],
- "modified": "2025-01-30 12:41:22.594071",
+ "modified": "2025-07-12 19:43:44.117114",
  "modified_by": "Administrator",
  "module": "HR",
  "name": "HR Settings",
@@ -377,6 +389,7 @@
    "role": "Employee"
   }
  ],
+ "row_format": "Dynamic",
  "sort_field": "modified",
  "sort_order": "ASC",
  "states": [],

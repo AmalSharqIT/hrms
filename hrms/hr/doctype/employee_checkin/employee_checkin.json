@@ -15,6 +15,13 @@
   "device_id",
   "skip_auto_attendance",
   "attendance",
+  "section_break_data",
+  "status",
+  "device_time_difference",
+  "invalid_reason",
+  "column_break_data",
+  "attendance_id",
+  "attendance_serial",
   "location_section",
   "latitude",
   "column_break_yqpi",
@@ -37,6 +44,7 @@
    "in_standard_filter": 1,
    "label": "Employee",
    "options": "Employee",
+   "read_only_depends_on": "attendance",
    "reqd": 1,
    "search_index": 1
   },
@@ -51,14 +59,18 @@
   {
    "fieldname": "log_type",
    "fieldtype": "Select",
-   "in_list_view": 1,
+   "hidden": 1,
+   "is_virtual": 1,
    "label": "Log Type",
    "options": "\nIN\nOUT"
   },
   {
    "fieldname": "shift",
    "fieldtype": "Link",
+   "in_list_view": 1,
+   "in_standard_filter": 1,
    "label": "Shift",
+   "no_copy": 1,
    "options": "Shift Type",
    "read_only": 1,
    "search_index": 1
@@ -74,24 +86,27 @@
    "in_list_view": 1,
    "label": "Time",
    "permlevel": 1,
-   "read_only_depends_on": "eval:doc.attendance;",
    "reqd": 1
   },
   {
    "fieldname": "device_id",
    "fieldtype": "Data",
-   "label": "Location / Device ID"
+   "label": "Device Name",
+   "read_only": 1
   },
   {
    "default": "0",
+   "depends_on": "skip_auto_attendance",
    "fieldname": "skip_auto_attendance",
    "fieldtype": "Check",
-   "label": "Skip Auto Attendance"
+   "label": "Skip Mark Attendance",
+   "read_only": 1
   },
   {
    "fieldname": "attendance",
    "fieldtype": "Link",
    "label": "Attendance Marked",
+   "no_copy": 1,
    "options": "Attendance",
    "read_only": 1
   },
@@ -99,25 +114,31 @@
    "fieldname": "shift_start",
    "fieldtype": "Datetime",
    "hidden": 1,
-   "label": "Shift Start"
+   "in_list_view": 1,
+   "label": "Shift Start",
+   "no_copy": 1
   },
   {
    "fieldname": "shift_end",
    "fieldtype": "Datetime",
    "hidden": 1,
-   "label": "Shift End"
+   "in_list_view": 1,
+   "label": "Shift End",
+   "no_copy": 1
   },
   {
    "fieldname": "shift_actual_start",
    "fieldtype": "Datetime",
    "hidden": 1,
-   "label": "Shift Actual Start"
+   "label": "Shift Actual Start",
+   "no_copy": 1
   },
   {
    "fieldname": "shift_actual_end",
    "fieldtype": "Datetime",
    "hidden": 1,
-   "label": "Shift Actual End"
+   "label": "Shift Actual End",
+   "no_copy": 1
   },
   {
    "fieldname": "location_section",
@@ -174,10 +195,58 @@
    "hidden": 1,
    "label": "Off-shift",
    "read_only": 1
+  },
+  {
+   "default": "Manual",
+   "fieldname": "status",
+   "fieldtype": "Select",
+   "in_standard_filter": 1,
+   "label": "Status",
+   "no_copy": 1,
+   "options": "\nValid\nInvalid\nManual\nCorrected",
+   "read_only": 1
+  },
+  {
+   "fieldname": "device_time_difference",
+   "fieldtype": "Duration",
+   "label": "Device Time Difference",
+   "no_copy": 1,
+   "read_only": 1
+  },
+  {
+   "fieldname": "invalid_reason",
+   "fieldtype": "Int",
+   "hidden": 1,
+   "label": "Invalid Reason",
+   "no_copy": 1,
+   "read_only": 1
+  },
+  {
+   "fieldname": "column_break_data",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "attendance_id",
+   "fieldtype": "Data",
+   "label": "Attendance ID",
+   "no_copy": 1,
+   "read_only": 1
+  },
+  {
+   "depends_on": "eval:doc.attendance_serial!=0",
+   "fieldname": "attendance_serial",
+   "fieldtype": "Int",
+   "label": "Attendance Serial (Beta)",
+   "no_copy": 1,
+   "read_only": 1
+  },
+  {
+   "fieldname": "section_break_data",
+   "fieldtype": "Section Break"
   }
  ],
  "links": [],
- "modified": "2025-03-05 15:36:10.014354",
+ "modified": "2025-07-12 19:29:14.021633",
  "modified_by": "Administrator",
  "module": "HR",
  "name": "Employee Checkin",
@@ -272,6 +341,7 @@
    "role": "Employee"
   }
  ],
+ "row_format": "Dynamic",
  "sort_field": "modified",
  "sort_order": "ASC",
  "states": [],

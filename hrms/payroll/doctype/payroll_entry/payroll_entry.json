@@ -121,6 +121,8 @@
    "default": "0",
    "fieldname": "salary_slip_based_on_timesheet",
    "fieldtype": "Check",
+   "hidden": 1,
+   "is_virtual": 1,
    "label": "Salary Slip Based on Timesheet"
   },
   {
@@ -144,12 +146,16 @@
    "default": "0",
    "fieldname": "deduct_tax_for_unclaimed_employee_benefits",
    "fieldtype": "Check",
+   "hidden": 1,
+   "is_virtual": 1,
    "label": "Deduct Tax For Unclaimed Employee Benefits"
   },
   {
    "default": "0",
    "fieldname": "deduct_tax_for_unsubmitted_tax_exemption_proof",
    "fieldtype": "Check",
+   "hidden": 1,
+   "is_virtual": 1,
    "label": "Deduct Tax For Unsubmitted Tax Exemption Proof"
   },
   {
@@ -298,7 +304,8 @@
   },
   {
    "fieldname": "column_break_13",
-   "fieldtype": "Column Break"
+   "fieldtype": "Column Break",
+   "hidden": 1
   },
   {
    "fieldname": "accounting_dimensions_tab",
@@ -328,6 +335,8 @@
   {
    "fieldname": "grade",
    "fieldtype": "Link",
+   "hidden": 1,
+   "is_virtual": 1,
    "label": "Grade",
    "options": "Employee Grade"
   }
@@ -335,7 +344,7 @@
  "icon": "fa fa-cog",
  "is_submittable": 1,
  "links": [],
- "modified": "2025-01-22 15:27:16.652848",
+ "modified": "2025-07-12 16:09:26.428314",
  "modified_by": "Administrator",
  "module": "Payroll",
  "name": "Payroll Entry",
@@ -354,6 +363,7 @@
    "write": 1
   }
  ],
+ "row_format": "Dynamic",
  "sort_field": "modified",
  "sort_order": "DESC",
  "states": []

@@ -34,15 +34,26 @@
   "column_break_wyhp",
   "salary_slip_based_on_timesheet",
   "section_break_gerh",
+  "column_break_kugy",
   "deduct_tax_for_unclaimed_employee_benefits",
   "deduct_tax_for_unsubmitted_tax_exemption_proof",
   "payment_days_tab",
   "total_working_days",
   "unmarked_days",
   "leave_without_pay",
+  "leave_with_pay",
+  "holidays",
   "column_break_geio",
   "absent_days",
   "payment_days",
+  "payroll_days",
+  "weekly_off",
+  "section_break_hours",
+  "working_hours",
+  "working_hours_salary",
+  "column_break_overtime",
+  "overtime_hours",
+  "overtime_salary",
   "help_section",
   "payment_days_calculation_help",
   "earnings_and_deductions_tab",
@@ -212,6 +223,8 @@
    "default": "0",
    "fieldname": "salary_slip_based_on_timesheet",
    "fieldtype": "Check",
+   "hidden": 1,
+   "is_virtual": 1,
    "label": "Salary Slip Based on Timesheet",
    "read_only": 1
   },
@@ -239,6 +252,7 @@
    "search_index": 1
   },
   {
+   "default": "Monthly",
    "fieldname": "payroll_frequency",
    "fieldtype": "Select",
    "label": "Payroll Frequency",
@@ -256,9 +270,11 @@
   {
    "fieldname": "leave_without_pay",
    "fieldtype": "Float",
+   "is_virtual": 1,
    "label": "Leave Without Pay",
    "oldfieldname": "leave_without_pay",
-   "oldfieldtype": "Currency"
+   "oldfieldtype": "Currency",
+   "read_only": 1
   },
   {
    "fieldname": "payment_days",
@@ -302,12 +318,14 @@
    "default": "0",
    "fieldname": "deduct_tax_for_unclaimed_employee_benefits",
    "fieldtype": "Check",
+   "is_virtual": 1,
    "label": "Deduct Tax For Unclaimed Employee Benefits"
   },
   {
    "default": "0",
    "fieldname": "deduct_tax_for_unsubmitted_tax_exemption_proof",
    "fieldtype": "Check",
+   "is_virtual": 1,
    "label": "Deduct Tax For Unsubmitted Tax Exemption Proof"
   },
   {
@@ -563,7 +581,8 @@
   },
   {
    "fieldname": "section_break_gerh",
-   "fieldtype": "Section Break"
+   "fieldtype": "Section Break",
+   "hidden": 1
   },
   {
    "fieldname": "column_break_geio",
@@ -701,7 +720,8 @@
   },
   {
    "fieldname": "column_break_wyhp",
-   "fieldtype": "Column Break"
+   "fieldtype": "Column Break",
+   "hidden": 1
   },
   {
    "depends_on": "eval:doc.salary_slip_based_on_timesheet",
@@ -740,13 +760,75 @@
    "no_copy": 1,
    "print_hide": 1,
    "read_only": 1
+  },
+  {
+   "fieldname": "column_break_kugy",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "leave_with_pay",
+   "fieldtype": "Float",
+   "label": "Leave with Pay",
+   "read_only": 1
+  },
+  {
+   "fieldname": "holidays",
+   "fieldtype": "Int",
+   "label": "Holidays",
+   "read_only": 1
+  },
+  {
+   "fieldname": "payroll_days",
+   "fieldtype": "Int",
+   "label": "Payroll Days",
+   "read_only": 1
+  },
+  {
+   "fieldname": "weekly_off",
+   "fieldtype": "Int",
+   "label": "Weekly Off",
+   "read_only": 1
+  },
+  {
+   "fieldname": "section_break_hours",
+   "fieldtype": "Section Break"
+  },
+  {
+   "fieldname": "working_hours",
+   "fieldtype": "Float",
+   "label": "Working Hours",
+   "read_only": 1
+  },
+  {
+   "fieldname": "working_hours_salary",
+   "fieldtype": "Currency",
+   "label": "Working Hours Salary",
+   "options": "currency",
+   "read_only": 1
+  },
+  {
+   "fieldname": "column_break_overtime",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "overtime_hours",
+   "fieldtype": "Float",
+   "label": "Overtime Hours",
+   "read_only": 1
+  },
+  {
+   "fieldname": "overtime_salary",
+   "fieldtype": "Currency",
+   "label": "Overtime Salary",
+   "options": "currency",
+   "read_only": 1
   }
  ],
  "icon": "fa fa-file-text",
  "idx": 9,
  "is_submittable": 1,
  "links": [],
- "modified": "2024-07-01 21:25:36.651583",
+ "modified": "2025-07-12 18:49:45.488644",
  "modified_by": "Administrator",
  "module": "Payroll",
  "name": "Salary Slip",
@@ -783,6 +865,7 @@
    "role": "Employee"
   }
  ],
+ "row_format": "Dynamic",
  "search_fields": "employee_name",
  "show_name_in_global_search": 1,
  "sort_field": "modified",

@@ -22,8 +22,13 @@
   "currency",
   "section_break_7",
   "base",
+  "monthly_salary",
+  "overtime_ratio",
   "column_break_9",
   "variable",
+  "hourly_salary",
+  "freezing_amount",
+  "round_salary",
   "amended_from",
   "opening_balances_section",
   "taxable_earnings_till_date",
@@ -109,6 +114,7 @@
    "fieldname": "base",
    "fieldtype": "Currency",
    "label": "Base",
+   "non_negative": 1,
    "options": "currency"
   },
   {
@@ -118,6 +124,8 @@
   {
    "fieldname": "variable",
    "fieldtype": "Currency",
+   "hidden": 1,
+   "is_virtual": 1,
    "label": "Variable",
    "options": "currency"
   },
@@ -206,11 +214,45 @@
    "fieldtype": "Section Break",
    "hidden": 1,
    "label": "Opening Balances"
+  },
+  {
+   "fieldname": "monthly_salary",
+   "fieldtype": "Currency",
+   "label": "Monthly Salary",
+   "non_negative": 1,
+   "options": "currency"
+  },
+  {
+   "fieldname": "overtime_ratio",
+   "fieldtype": "Float",
+   "label": "Overtime Ratio",
+   "non_negative": 1
+  },
+  {
+   "fieldname": "hourly_salary",
+   "fieldtype": "Currency",
+   "label": "Hourly Salary",
+   "non_negative": 1,
+   "options": "currency"
+  },
+  {
+   "fieldname": "freezing_amount",
+   "fieldtype": "Currency",
+   "label": "Freezing Amount",
+   "non_negative": 1,
+   "options": "currency"
+  },
+  {
+   "fieldname": "round_salary",
+   "fieldtype": "Currency",
+   "label": "Round Salary",
+   "non_negative": 1,
+   "options": "currency"
   }
  ],
  "is_submittable": 1,
  "links": [],
- "modified": "2024-10-18 18:06:42.013701",
+ "modified": "2025-07-12 19:51:27.899965",
  "modified_by": "Administrator",
  "module": "Payroll",
  "name": "Salary Structure Assignment",
@@ -257,6 +299,7 @@
    "write": 1
   }
  ],
+ "row_format": "Dynamic",
  "search_fields": "employee_name, salary_structure",
  "sort_field": "modified",
  "sort_order": "DESC",

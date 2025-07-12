@@ -9,9 +9,11 @@
  "field_order": [
   "start_time",
   "end_time",
+  "title",
   "column_break_3",
   "holiday_list",
   "color",
+  "skip_mark_attendance",
   "enable_auto_attendance",
   "auto_attendance_settings_section",
   "determine_check_in_and_check_out",
@@ -19,8 +21,12 @@
   "begin_check_in_before_shift_start_time",
   "allow_check_out_after_shift_end_time",
   "mark_auto_attendance_on_holidays",
+  "exit_checkin_not_mandatory",
+  "limit_to_max_hours",
+  "max_hours",
   "column_break_10",
   "working_hours_threshold_for_half_day",
+  "half_day_leave_type",
   "working_hours_threshold_for_absent",
   "process_attendance_after",
   "last_sync_of_checkin",
@@ -64,12 +70,16 @@
   {
    "fieldname": "determine_check_in_and_check_out",
    "fieldtype": "Select",
+   "hidden": 1,
+   "is_virtual": 1,
    "label": "Determine Check-in and Check-out",
    "options": "Alternating entries as IN and OUT during the same shift\nStrictly based on Log Type in Employee Checkin"
   },
   {
    "fieldname": "working_hours_calculation_based_on",
    "fieldtype": "Select",
+   "hidden": 1,
+   "is_virtual": 1,
    "label": "Working Hours Calculation Based On",
    "options": "First Check-in and Last Check-out\nEvery Valid Check-in and Check-out"
   },
@@ -120,22 +130,22 @@
    "label": "Allow check-out after shift end time (in minutes)"
   },
   {
-   "depends_on": "enable_auto_attendance",
    "fieldname": "auto_attendance_settings_section",
    "fieldtype": "Section Break",
-   "label": "Auto Attendance Settings"
+   "label": "Mark Attendance Settings"
   },
   {
-   "depends_on": "enable_auto_attendance",
    "fieldname": "grace_period_settings_auto_attendance_section",
    "fieldtype": "Section Break",
-   "label": "Late Entry & Early Exit Settings for Auto Attendance"
+   "label": "Late Entry & Early Exit Settings for Mark Attendance"
   },
   {
    "default": "0",
    "description": "Mark attendance based on 'Employee Checkin' for Employees assigned to this shift.",
    "fieldname": "enable_auto_attendance",
    "fieldtype": "Check",
+   "hidden": 1,
+   "is_virtual": 1,
    "label": "Enable Auto Attendance"
   },
   {
@@ -143,6 +153,8 @@
    "description": "Attendance will be marked automatically only after this date.",
    "fieldname": "process_attendance_after",
    "fieldtype": "Date",
+   "hidden": 1,
+   "is_virtual": 1,
    "label": "Process Attendance After",
    "mandatory_depends_on": "enable_auto_attendance"
   },
@@ -150,6 +162,8 @@
    "description": "Last Known Successful Sync of Employee Checkin. Reset this only if you are sure that all Logs are synced from all the locations. Please don't modify this if you are unsure.",
    "fieldname": "last_sync_of_checkin",
    "fieldtype": "Datetime",
+   "hidden": 1,
+   "is_virtual": 1,
    "label": "Last Sync of Checkin",
    "read_only_depends_on": "auto_update_last_sync"
   },
@@ -158,6 +172,8 @@
    "description": "If enabled, auto attendance will be marked on holidays if Employee Checkins exist",
    "fieldname": "mark_auto_attendance_on_holidays",
    "fieldtype": "Check",
+   "hidden": 1,
+   "is_virtual": 1,
    "label": "Mark Auto Attendance on Holidays"
   },
   {
@@ -184,11 +200,52 @@
    "description": "Recommended for a single biometric device / checkins via mobile app",
    "fieldname": "auto_update_last_sync",
    "fieldtype": "Check",
+   "hidden": 1,
+   "is_virtual": 1,
    "label": "Automatically update Last Sync of Checkin"
+  },
+  {
+   "fieldname": "title",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "label": "Title"
+  },
+  {
+   "default": "0",
+   "fieldname": "skip_mark_attendance",
+   "fieldtype": "Check",
+   "label": "Skip Mark Attendance"
+  },
+  {
+   "default": "0",
+   "fieldname": "exit_checkin_not_mandatory",
+   "fieldtype": "Check",
+   "label": "Exit Checkin Not Mandatory"
+  },
+  {
+   "default": "0",
+   "fieldname": "limit_to_max_hours",
+   "fieldtype": "Check",
+   "label": "Limit To Max Hours"
+  },
+  {
+   "depends_on": "limit_to_max_hours",
+   "fieldname": "max_hours",
+   "fieldtype": "Float",
+   "label": "Max Hours",
+   "non_negative": 1
+  },
+  {
+   "depends_on": "eval:doc.working_hours_threshold_for_half_day > 0",
+   "fieldname": "half_day_leave_type",
+   "fieldtype": "Link",
+   "label": "Half Day Leave Type",
+   "mandatory_depends_on": "eval:doc.working_hours_threshold_for_half_day > 0",
+   "options": "Leave Type"
   }
  ],
  "links": [],
- "modified": "2024-12-18 19:03:38.278336",
+ "modified": "2025-07-12 18:24:53.769431",
  "modified_by": "Administrator",
  "module": "HR",
  "name": "Shift Type",
@@ -229,6 +286,8 @@
   }
  ],
  "quick_entry": 1,
+ "row_format": "Dynamic",
+ "search_fields": "title",
  "sort_field": "modified",
  "sort_order": "DESC",
  "states": [],
