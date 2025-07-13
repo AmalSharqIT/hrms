@@ -22,8 +22,13 @@
   "currency",
   "section_break_7",
   "base",
+  "monthly_salary",
+  "overtime_ratio",
   "column_break_9",
   "variable",
+  "hourly_salary",
+  "freezing_amount",
+  "round_salary",
   "amended_from",
   "opening_balances_section",
   "taxable_earnings_till_date",
@@ -109,7 +114,21 @@
    "fieldname": "base",
    "fieldtype": "Currency",
    "label": "Base",
+   "non_negative": 1,
    "options": "currency"
+  },
+  {
+   "fieldname": "monthly_salary",
+   "fieldtype": "Currency",
+   "label": "Monthly Salary",
+   "non_negative": 1,
+   "options": "currency"
+  },
+  {
+   "fieldname": "overtime_ratio",
+   "fieldtype": "Float",
+   "label": "Overtime Ratio",
+   "non_negative": 1
   },
   {
    "fieldname": "column_break_9",
@@ -118,7 +137,29 @@
   {
    "fieldname": "variable",
    "fieldtype": "Currency",
+   "hidden": 1,
    "label": "Variable",
+   "options": "currency"
+  },
+  {
+   "fieldname": "hourly_salary",
+   "fieldtype": "Currency",
+   "label": "Hourly Salary",
+   "non_negative": 1,
+   "options": "currency"
+  },
+  {
+   "fieldname": "freezing_amount",
+   "fieldtype": "Currency",
+   "label": "Freezing Amount",
+   "non_negative": 1,
+   "options": "currency"
+  },
+  {
+   "fieldname": "round_salary",
+   "fieldtype": "Currency",
+   "label": "Round Salary",
+   "non_negative": 1,
    "options": "currency"
   },
   {

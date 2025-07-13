@@ -20,6 +20,8 @@
   "column_break_hyec",
   "sender",
   "sender_email",
+  "advance_setting_section",
+  "advance_limit_percent_of_salary",
   "leave_and_expense_claim_settings",
   "send_leave_notification",
   "leave_approval_notification_template",
@@ -273,6 +275,16 @@
    "fieldtype": "Data",
    "label": "Sender Email",
    "read_only": 1
+  },
+  {
+   "fieldname": "advance_setting_section",
+   "fieldtype": "Section Break",
+   "label": "Advance Setting"
+  },
+  {
+   "fieldname": "advance_limit_percent_of_salary",
+   "fieldtype": "Percent",
+   "label": "Advance Limit (% Of Salary)"
   },
   {
    "fieldname": "column_break_hyec",
