@@ -293,6 +293,13 @@
    "role": "HR User"
   },
   {
+   "create": 1,
+   "delete": 1,
+   "read": 1,
+   "role": "Leave Approver",
+   "write": 1
+  },
+  {
    "permlevel": 8,
    "read": 1,
    "role": "Leave Approver"
@@ -326,7 +333,7 @@
   {
    "color": "Light Blue",
    "title": "Initial Approved"
-  }
+  },
   {
    "color": "Red",
    "title": "Invalid"
@@ -338,7 +345,7 @@
   {
    "color": "Green",
    "title": "Valid"
-  },
+  }
  ],
  "title_field": "employee_name",
  "track_changes": 1
