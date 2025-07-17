@@ -249,6 +249,7 @@
   },
   {
    "allow_on_submit": 1,
+   "depends_on": "eval:doc.overtime_status!='No Overtime'",
    "fieldname": "overtime_status",
    "fieldtype": "Select",
    "label": "Overtime Status",
@@ -310,7 +311,7 @@
  "idx": 1,
  "is_submittable": 1,
  "links": [],
- "modified": "2025-04-21 12:33:14.446458",
+ "modified": "2025-07-17 19:48:53.608708",
  "modified_by": "Administrator",
  "module": "HR",
  "name": "Attendance",
@@ -318,14 +319,15 @@
  "owner": "Administrator",
  "permissions": [
   {
+   "create": 1,
    "email": 1,
    "export": 1,
    "print": 1,
    "read": 1,
    "report": 1,
    "role": "Employee",
-   "select": 1,
-   "share": 1
+   "share": 1,
+   "write": 1
   },
   {
    "permlevel": 1,
@@ -333,20 +335,20 @@
    "role": "Employee"
   },
   {
+   "create": 1,
    "email": 1,
    "export": 1,
    "print": 1,
    "read": 1,
    "report": 1,
    "role": "Leave Approver",
-   "select": 1,
-   "share": 1
+   "share": 1,
+   "write": 1
   },
   {
    "permlevel": 1,
    "read": 1,
-   "role": "Leave Approver",
-   "write": 1
+   "role": "Leave Approver"
   },
   {
    "cancel": 1,

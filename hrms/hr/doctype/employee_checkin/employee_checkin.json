@@ -192,6 +192,7 @@
   {
    "fieldname": "geolocation",
    "fieldtype": "Geolocation",
+   "hidden": 1,
    "label": "Geolocation",
    "read_only": 1
   },
@@ -207,6 +208,7 @@
   {
    "fieldname": "latitude",
    "fieldtype": "Float",
+   "hidden": 1,
    "label": "Latitude",
    "precision": "7",
    "read_only": 1
@@ -214,6 +216,7 @@
   {
    "fieldname": "longitude",
    "fieldtype": "Float",
+   "hidden": 1,
    "label": "Longitude",
    "precision": "7",
    "read_only": 1
@@ -230,6 +233,7 @@
   {
    "fieldname": "fetch_geolocation",
    "fieldtype": "Button",
+   "hidden": 1,
    "label": "Fetch Geolocation"
   },
   {
@@ -242,7 +246,7 @@
   }
  ],
  "links": [],
- "modified": "2025-03-05 15:36:10.014354",
+ "modified": "2025-07-17 19:30:34.744267",
  "modified_by": "Administrator",
  "module": "HR",
  "name": "Employee Checkin",
