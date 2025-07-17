@@ -160,7 +160,7 @@
       "hidden": 0,
       "is_query_report": 0,
       "label": "Settings",
-      "link_count": 3,
+      "link_count": 1,
       "link_type": "DocType",
       "onboard": 0,
       "type": "Card Break"
@@ -173,28 +173,6 @@
       "link_count": 0,
       "link_to": "HR Settings",
       "link_type": "DocType",
-      "onboard": 0,
-      "type": "Link"
-    },
-    {
-      "dependencies": "",
-      "hidden": 0,
-      "is_query_report": 0,
-      "label": "Daily Work Summary Group",
-      "link_count": 0,
-      "link_to": "Daily Work Summary Group",
-      "link_type": "DocType",
-      "onboard": 0,
-      "type": "Link"
-    },
-    {
-      "dependencies": "",
-      "hidden": 0,
-      "is_query_report": 0,
-      "label": "Team Updates",
-      "link_count": 0,
-      "link_to": "team-updates",
-      "link_type": "Page",
       "onboard": 0,
       "type": "Link"
     },
@@ -464,7 +442,7 @@
       "type": "Link"
     }
   ],
-  "modified": "2025-07-08",
+  "modified": "2025-07-18",
   "modified_by": "Administrator",
   "module": "HR",
   "name": "HR",
