@@ -21,6 +21,13 @@
   "department",
   "attendance_request",
   "half_day_status",
+  "section_break_overtime",
+  "overtime_status",
+  "approved_overtime_hours",
+  "column_break_overtime",
+  "start_overtime_hours",
+  "end_overtime_hours",
+  "total_overtime_hours",
   "details_section",
   "shift",
   "in_time",
@@ -72,15 +79,18 @@
    "read_only": 1
   },
   {
-   "depends_on": "working_hours",
+   "allow_on_submit": 1,
+   "depends_on": "eval:(doc.status != 'Absent' && doc.status != 'On Leave')",
    "fieldname": "working_hours",
    "fieldtype": "Float",
    "label": "Working Hours",
-   "precision": "1",
-   "read_only": 1
+   "no_copy": 1,
+   "non_negative": 1,
+   "read_only_depends_on": "eval:doc.docstatus==1"
   },
   {
-   "default": "Present",
+   "allow_on_submit": 1,
+   "default": "Attendance Request",
    "fieldname": "status",
    "fieldtype": "Select",
    "in_standard_filter": 1,
@@ -88,11 +98,14 @@
    "no_copy": 1,
    "oldfieldname": "status",
    "oldfieldtype": "Select",
-   "options": "\nPresent\nAbsent\nOn Leave\nHalf Day\nWork From Home",
+   "options": "Attendance Request\nPresent\nAbsent\nOn Leave\nHalf Day\nWork From Home",
+   "permlevel": 1,
+   "read_only_depends_on": "eval:doc.docstatus==1",
    "reqd": 1,
    "search_index": 1
   },
   {
+   "allow_on_submit": 1,
    "depends_on": "eval:in_list([\"On Leave\", \"Half Day\"], doc.status)",
    "fieldname": "leave_type",
    "fieldtype": "Link",
@@ -101,7 +114,8 @@
    "mandatory_depends_on": "eval:in_list([\"On Leave\", \"Half Day\"], doc.status)",
    "oldfieldname": "leave_type",
    "oldfieldtype": "Link",
-   "options": "Leave Type"
+   "options": "Leave Type",
+   "read_only_depends_on": "eval:doc.docstatus==1"
   },
   {
    "fieldname": "leave_application",
@@ -121,6 +135,7 @@
    "fieldname": "attendance_date",
    "fieldtype": "Date",
    "in_list_view": 1,
+   "in_standard_filter": 1,
    "label": "Attendance Date",
    "oldfieldname": "attendance_date",
    "oldfieldtype": "Date",
@@ -131,13 +146,13 @@
    "fetch_from": "employee.company",
    "fieldname": "company",
    "fieldtype": "Link",
+   "hidden": 1,
    "label": "Company",
    "oldfieldname": "company",
    "oldfieldtype": "Link",
    "options": "Company",
    "read_only": 1,
-   "remember_last_selected_value": 1,
-   "reqd": 1
+   "remember_last_selected_value": 1
   },
   {
    "fetch_from": "employee.department",
@@ -148,10 +163,14 @@
    "read_only": 1
   },
   {
+   "allow_on_submit": 1,
    "fieldname": "shift",
    "fieldtype": "Link",
+   "in_list_view": 1,
    "label": "Shift",
-   "options": "Shift Type"
+   "mandatory_depends_on": "eval:doc.status!='On Leave'",
+   "options": "Shift Type",
+   "read_only_depends_on": "eval:doc.docstatus==1"
   },
   {
    "fieldname": "attendance_request",
@@ -171,16 +190,22 @@
    "read_only": 1
   },
   {
+   "allow_on_submit": 1,
    "default": "0",
    "fieldname": "late_entry",
    "fieldtype": "Check",
-   "label": "Late Entry"
+   "label": "Late Entry",
+   "no_copy": 1,
+   "read_only_depends_on": "eval:doc.docstatus==1"
   },
   {
+   "allow_on_submit": 1,
    "default": "0",
    "fieldname": "early_exit",
    "fieldtype": "Check",
-   "label": "Early Exit"
+   "label": "Early Exit",
+   "no_copy": 1,
+   "read_only_depends_on": "eval:doc.docstatus==1"
   },
   {
    "fieldname": "details_section",
@@ -188,17 +213,21 @@
    "label": "Details"
   },
   {
+   "allow_on_submit": 1,
    "depends_on": "shift",
    "fieldname": "in_time",
    "fieldtype": "Datetime",
    "label": "In Time",
+   "no_copy": 1,
    "read_only": 1
   },
   {
+   "allow_on_submit": 1,
    "depends_on": "shift",
    "fieldname": "out_time",
    "fieldtype": "Datetime",
    "label": "Out Time",
+   "no_copy": 1,
    "read_only": 1
   },
   {
@@ -209,9 +238,66 @@
    "depends_on": "eval:doc.status==\"Half Day\";",
    "fieldname": "half_day_status",
    "fieldtype": "Select",
+   "hidden": 1,
    "label": "Status for Other Half",
    "no_copy": 1,
    "options": "\nPresent\nAbsent"
+  },
+  {
+   "fieldname": "section_break_overtime",
+   "fieldtype": "Section Break"
+  },
+  {
+   "allow_on_submit": 1,
+   "depends_on": "eval:doc.overtime_status!='No Overtime'",
+   "fieldname": "overtime_status",
+   "fieldtype": "Select",
+   "label": "Overtime Status",
+   "no_copy": 1,
+   "options": "No Overtime\nApproved\nInitial Approved\nUnapproved\nRejected",
+   "read_only": 1
+  },
+  {
+   "allow_on_submit": 1,
+   "depends_on": "eval:doc.overtime_status=='Approved'",
+   "fieldname": "approved_overtime_hours",
+   "fieldtype": "Float",
+   "label": "Approved Overtime Hours",
+   "no_copy": 1,
+   "non_negative": 1,
+   "read_only": 1
+  },
+  {
+   "fieldname": "column_break_overtime",
+   "fieldtype": "Column Break"
+  },
+  {
+   "allow_on_submit": 1,
+   "depends_on": "start_overtime_hours",
+   "fieldname": "start_overtime_hours",
+   "fieldtype": "Float",
+   "label": "Start Overtime Hours",
+   "no_copy": 1,
+   "read_only": 1
+  },
+  {
+   "allow_on_submit": 1,
+   "depends_on": "end_overtime_hours",
+   "fieldname": "end_overtime_hours",
+   "fieldtype": "Float",
+   "label": "End Overtime Hours",
+   "no_copy": 1,
+   "read_only": 1
+  },
+  {
+   "allow_on_submit": 1,
+   "depends_on": "eval:(doc.start_overtime_hours > 0 || doc.end_overtime_hours > 0 )",
+   "fieldname": "total_overtime_hours",
+   "fieldtype": "Float",
+   "is_virtual": 1,
+   "label": "Total Overtime Hours",
+   "no_copy": 1,
+   "read_only": 1
   },
   {
    "default": "0",
@@ -274,19 +360,53 @@
    "write": 1
   },
   {
+   "create": 1,
    "email": 1,
    "export": 1,
    "print": 1,
    "read": 1,
    "report": 1,
    "role": "Employee",
-   "select": 1,
-   "share": 1
+   "share": 1,
+   "write": 1
+  },
+  {
+   "permlevel": 1,
+   "read": 1,
+   "role": "Employee"
+  },
+  {
+   "create": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "Leave Approver",
+   "share": 1,
+   "write": 1
+  },
+  {
+   "permlevel": 1,
+   "read": 1,
+   "role": "Leave Approver"
+  },
+  {
+   "permlevel": 1,
+   "read": 1,
+   "role": "HR Manager",
+   "write": 1
+  },
+  {
+   "permlevel": 1,
+   "read": 1,
+   "role": "HR User",
+   "write": 1
   }
  ],
  "row_format": "Dynamic",
  "search_fields": "employee,employee_name,attendance_date,status",
- "sort_field": "modified",
+ "sort_field": "attendance_date",
  "sort_order": "DESC",
  "states": [],
  "title_field": "employee_name",

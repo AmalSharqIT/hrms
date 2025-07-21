@@ -40,9 +40,19 @@
   "total_working_days",
   "unmarked_days",
   "leave_without_pay",
+  "leave_with_pay",
+  "holidays",
   "column_break_geio",
   "absent_days",
   "payment_days",
+  "payroll_days",
+  "weekly_off",
+  "section_break_hours",
+  "working_hours",
+  "working_hours_salary",
+  "column_break_overtime",
+  "overtime_hours",
+  "overtime_salary",
   "help_section",
   "payment_days_calculation_help",
   "earnings_and_deductions_tab",
@@ -212,6 +222,7 @@
    "default": "0",
    "fieldname": "salary_slip_based_on_timesheet",
    "fieldtype": "Check",
+   "hidden": 1,
    "label": "Salary Slip Based on Timesheet",
    "read_only": 1
   },
@@ -239,6 +250,7 @@
    "search_index": 1
   },
   {
+   "default": "Monthly",
    "fieldname": "payroll_frequency",
    "fieldtype": "Select",
    "label": "Payroll Frequency",
@@ -258,7 +270,20 @@
    "fieldtype": "Float",
    "label": "Leave Without Pay",
    "oldfieldname": "leave_without_pay",
-   "oldfieldtype": "Currency"
+   "oldfieldtype": "Currency",
+   "read_only": 1
+  },
+  {
+   "fieldname": "leave_with_pay",
+   "fieldtype": "Float",
+   "label": "Leave with Pay",
+   "read_only": 1
+  },
+  {
+   "fieldname": "holidays",
+   "fieldtype": "Int",
+   "label": "Holidays",
+   "read_only": 1
   },
   {
    "fieldname": "payment_days",
@@ -268,6 +293,52 @@
    "oldfieldtype": "Float",
    "read_only": 1,
    "reqd": 1
+  },
+  {
+   "fieldname": "payroll_days",
+   "fieldtype": "Int",
+   "label": "Payroll Days",
+   "read_only": 1
+  },
+  {
+   "fieldname": "weekly_off",
+   "fieldtype": "Int",
+   "label": "Weekly Off",
+   "read_only": 1
+  },
+  {
+   "fieldname": "section_break_hours",
+   "fieldtype": "Section Break"
+  },
+  {
+   "fieldname": "working_hours",
+   "fieldtype": "Float",
+   "label": "Working Hours",
+   "read_only": 1
+  },
+  {
+   "fieldname": "working_hours_salary",
+   "fieldtype": "Currency",
+   "label": "Working Hours Salary",
+   "options": "currency",
+   "read_only": 1
+  },
+  {
+   "fieldname": "column_break_overtime",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "overtime_hours",
+   "fieldtype": "Float",
+   "label": "Overtime Hours",
+   "read_only": 1
+  },
+  {
+   "fieldname": "overtime_salary",
+   "fieldtype": "Currency",
+   "label": "Overtime Salary",
+   "options": "currency",
+   "read_only": 1
   },
   {
    "fieldname": "timesheets",
@@ -563,7 +634,8 @@
   },
   {
    "fieldname": "section_break_gerh",
-   "fieldtype": "Section Break"
+   "fieldtype": "Section Break",
+   "hidden": 1
   },
   {
    "fieldname": "column_break_geio",
@@ -781,6 +853,11 @@
    "print": 1,
    "read": 1,
    "role": "Employee"
+  },
+  {
+   "permlevel": 9,
+   "read": 1,
+   "role": "HR Manager"
   }
  ],
  "search_fields": "employee_name",

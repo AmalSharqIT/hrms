@@ -15,6 +15,13 @@
   "device_id",
   "skip_auto_attendance",
   "attendance",
+  "section_break_data",
+  "status",
+  "device_time_difference",
+  "invalid_reason",
+  "column_break_data",
+  "attendance_id",
+  "attendance_serial",
   "location_section",
   "latitude",
   "column_break_yqpi",
@@ -51,14 +58,17 @@
   {
    "fieldname": "log_type",
    "fieldtype": "Select",
-   "in_list_view": 1,
+   "hidden": 1,
    "label": "Log Type",
    "options": "\nIN\nOUT"
   },
   {
    "fieldname": "shift",
    "fieldtype": "Link",
+   "in_list_view": 1,
+   "in_standard_filter": 1,
    "label": "Shift",
+   "no_copy": 1,
    "options": "Shift Type",
    "read_only": 1,
    "search_index": 1
@@ -73,25 +83,27 @@
    "fieldtype": "Datetime",
    "in_list_view": 1,
    "label": "Time",
-   "permlevel": 1,
-   "read_only_depends_on": "eval:doc.attendance;",
    "reqd": 1
   },
   {
    "fieldname": "device_id",
    "fieldtype": "Data",
-   "label": "Location / Device ID"
+   "label": "Device Name",
+   "read_only": 1
   },
   {
    "default": "0",
+   "depends_on": "skip_auto_attendance",
    "fieldname": "skip_auto_attendance",
    "fieldtype": "Check",
-   "label": "Skip Auto Attendance"
+   "label": "Skip Mark Attendance",
+   "read_only": 1
   },
   {
    "fieldname": "attendance",
    "fieldtype": "Link",
    "label": "Attendance Marked",
+   "no_copy": 1,
    "options": "Attendance",
    "read_only": 1
   },
@@ -99,25 +111,78 @@
    "fieldname": "shift_start",
    "fieldtype": "Datetime",
    "hidden": 1,
-   "label": "Shift Start"
+   "in_list_view": 1,
+   "label": "Shift Start",
+   "no_copy": 1
   },
   {
    "fieldname": "shift_end",
    "fieldtype": "Datetime",
    "hidden": 1,
-   "label": "Shift End"
+   "in_list_view": 1,
+   "label": "Shift End",
+   "no_copy": 1
   },
   {
    "fieldname": "shift_actual_start",
    "fieldtype": "Datetime",
    "hidden": 1,
-   "label": "Shift Actual Start"
+   "label": "Shift Actual Start",
+   "no_copy": 1
   },
   {
    "fieldname": "shift_actual_end",
    "fieldtype": "Datetime",
    "hidden": 1,
-   "label": "Shift Actual End"
+   "label": "Shift Actual End",
+   "no_copy": 1
+  },
+  {
+   "fieldname": "section_break_data",
+   "fieldtype": "Section Break"
+  },
+  {
+   "fieldname": "status",
+   "fieldtype": "Select",
+   "in_standard_filter": 1,
+   "label": "Status",
+   "no_copy": 1,
+   "options": "\nValid\nInvalid\nManual\nCorrected\nCheckin Request\nInitial Approved",
+   "read_only": 1
+  },
+  {
+   "fieldname": "device_time_difference",
+   "fieldtype": "Duration",
+   "label": "Device Time Difference",
+   "no_copy": 1,
+   "read_only": 1
+  },
+  {
+   "fieldname": "invalid_reason",
+   "fieldtype": "Int",
+   "hidden": 1,
+   "label": "Invalid Reason",
+   "no_copy": 1,
+   "read_only": 1
+  },
+  {
+   "fieldname": "column_break_data",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "attendance_id",
+   "fieldtype": "Data",
+   "label": "Attendance ID",
+   "no_copy": 1,
+   "read_only": 1
+  },
+  {
+   "depends_on": "eval:doc.attendance_serial!=0",
+   "fieldname": "attendance_serial",
+   "fieldtype": "Int",
+   "label": "Attendance Serial (Beta)",
+   "no_copy": 1,
+   "read_only": 1
   },
   {
    "fieldname": "location_section",
@@ -127,6 +192,7 @@
   {
    "fieldname": "geolocation",
    "fieldtype": "Geolocation",
+   "hidden": 1,
    "label": "Geolocation",
    "read_only": 1
   },
@@ -142,6 +208,7 @@
   {
    "fieldname": "latitude",
    "fieldtype": "Float",
+   "hidden": 1,
    "label": "Latitude",
    "precision": "7",
    "read_only": 1
@@ -149,6 +216,7 @@
   {
    "fieldname": "longitude",
    "fieldtype": "Float",
+   "hidden": 1,
    "label": "Longitude",
    "precision": "7",
    "read_only": 1
@@ -165,6 +233,7 @@
   {
    "fieldname": "fetch_geolocation",
    "fieldtype": "Button",
+   "hidden": 1,
    "label": "Fetch Geolocation"
   },
   {
@@ -231,50 +300,56 @@
    "write": 1
   },
   {
+   "create": 1,
    "delete": 1,
-   "email": 1,
-   "export": 1,
-   "permlevel": 1,
-   "print": 1,
    "read": 1,
-   "report": 1,
-   "role": "System Manager",
-   "share": 1,
+   "role": "Leave Approver",
    "write": 1
   },
   {
-   "delete": 1,
-   "email": 1,
-   "export": 1,
-   "permlevel": 1,
-   "print": 1,
+   "permlevel": 8,
    "read": 1,
-   "report": 1,
-   "role": "HR Manager",
-   "share": 1,
-   "write": 1
+   "role": "Leave Approver"
   },
   {
-   "delete": 1,
-   "email": 1,
-   "export": 1,
-   "permlevel": 1,
-   "print": 1,
+   "permlevel": 9,
    "read": 1,
-   "report": 1,
-   "role": "HR User",
-   "share": 1,
-   "write": 1
+   "role": "HR Manager"
   },
   {
-   "permlevel": 1,
+   "permlevel": 9,
    "read": 1,
-   "role": "Employee"
+   "role": "HR User"
   }
  ],
  "sort_field": "modified",
  "sort_order": "ASC",
- "states": [],
+ "states": [
+  {
+   "color": "Yellow",
+   "title": "Checkin Request"
+  },
+  {
+   "color": "Cyan",
+   "title": "Corrected"
+  },
+  {
+   "color": "Light Blue",
+   "title": "Initial Approved"
+  },
+  {
+   "color": "Red",
+   "title": "Invalid"
+  },
+  {
+   "color": "Blue",
+   "title": "Manual"
+  },
+  {
+   "color": "Green",
+   "title": "Valid"
+  }
+ ],
  "title_field": "employee_name",
  "track_changes": 1
 }
