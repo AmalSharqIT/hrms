@@ -579,45 +579,7 @@ def update_user_type_doctype_limit(user_types=None):
 
 
 def get_user_types_data():
-	return {
-		"Employee Self Service": {
-			"role": "Employee Self Service",
-			"apply_user_permission_on": "Employee",
-			"user_id_field": "user_id",
-			"doctypes": {
-				# masters
-				"Holiday List": ["read"],
-				"Employee": ["read", "write"],
-				"Company": ["read"],
-				# payroll
-				"Salary Slip": ["read"],
-				"Employee Benefit Application": ["read", "write", "create", "delete"],
-				# expenses
-				"Expense Claim": ["read", "write", "create", "delete"],
-				"Expense Claim Type": ["read"],
-				"Employee Advance": ["read", "write", "create", "delete"],
-				# leave and attendance
-				"Leave Application": ["read", "write", "create", "delete"],
-				"Attendance Request": ["read", "write", "create", "delete"],
-				"Compensatory Leave Request": ["read", "write", "create", "delete"],
-				# tax
-				"Employee Tax Exemption Declaration": ["read", "write", "create", "delete"],
-				"Employee Tax Exemption Proof Submission": ["read", "write", "create", "delete"],
-				# projects
-				"Timesheet": ["read", "write", "create", "delete", "submit", "cancel", "amend"],
-				# trainings
-				"Training Program": ["read"],
-				"Training Feedback": ["read", "write", "create", "delete", "submit", "cancel", "amend"],
-				# shifts
-				"Employee Checkin": ["read"],
-				"Shift Request": ["read", "write", "create", "delete", "submit", "cancel", "amend"],
-				# misc
-				"Employee Grievance": ["read", "write", "create", "delete"],
-				"Employee Referral": ["read", "write", "create", "delete"],
-				"Travel Request": ["read", "write", "create", "delete"],
-			},
-		}
-	}
+	return {}
 
 
 def get_lending_docperms_for_ess():
