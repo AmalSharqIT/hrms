@@ -350,19 +350,6 @@ def make_fixtures():
 		{"doctype": "Job Applicant Source", "source_name": _("Walk In")},
 		{"doctype": "Job Applicant Source", "source_name": _("Employee Referral")},
 		{"doctype": "Job Applicant Source", "source_name": _("Campaign")},
-		# Offer Term
-		{"doctype": "Offer Term", "offer_term": _("Date of Joining")},
-		{"doctype": "Offer Term", "offer_term": _("Annual Salary")},
-		{"doctype": "Offer Term", "offer_term": _("Probationary Period")},
-		{"doctype": "Offer Term", "offer_term": _("Employee Benefits")},
-		{"doctype": "Offer Term", "offer_term": _("Working Hours")},
-		{"doctype": "Offer Term", "offer_term": _("Stock Options")},
-		{"doctype": "Offer Term", "offer_term": _("Department")},
-		{"doctype": "Offer Term", "offer_term": _("Job Description")},
-		{"doctype": "Offer Term", "offer_term": _("Responsibilities")},
-		{"doctype": "Offer Term", "offer_term": _("Leaves per Year")},
-		{"doctype": "Offer Term", "offer_term": _("Notice Period")},
-		{"doctype": "Offer Term", "offer_term": _("Incentives")},
 		# Email Account
 		{"doctype": "Email Account", "email_id": "jobs@example.com", "append_to": "Job Applicant"},
 	]
