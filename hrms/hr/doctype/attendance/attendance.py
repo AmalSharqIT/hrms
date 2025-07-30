@@ -16,6 +16,7 @@ from frappe.utils import (
 	nowdate,
 )
 
+import hrms
 from hrms.hr.doctype.shift_assignment.shift_assignment import has_overlapping_timings
 from hrms.hr.utils import (
 	get_holiday_dates_for_employee,
@@ -234,6 +235,16 @@ class Attendance(Document):
 				is_minimizable=True,
 				wide=True,
 			)
+
+	def on_update(self):
+		self.publish_update()
+
+	def after_delete(self):
+		self.publish_update()
+
+	def publish_update(self):
+		employee_user = frappe.db.get_value("Employee", self.employee, "user_id", cache=True)
+		hrms.refetch_resource("hrms:attendance_calendar_events", employee_user)
 
 
 @frappe.whitelist()
