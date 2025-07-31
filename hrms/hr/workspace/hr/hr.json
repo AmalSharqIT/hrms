@@ -249,7 +249,7 @@
       "hidden": 0,
       "is_query_report": 0,
       "label": "Expense Claim",
-      "link_count": 3,
+      "link_count": 2,
       "link_type": "DocType",
       "onboard": 0,
       "type": "Card Break"
@@ -270,16 +270,6 @@
       "label": "Employee Advance",
       "link_count": 0,
       "link_to": "Employee Advance",
-      "link_type": "DocType",
-      "onboard": 0,
-      "type": "Link"
-    },
-    {
-      "hidden": 0,
-      "is_query_report": 0,
-      "label": "Travel Request",
-      "link_count": 0,
-      "link_to": "Travel Request",
       "link_type": "DocType",
       "onboard": 0,
       "type": "Link"
@@ -373,7 +363,7 @@
       "hidden": 0,
       "is_query_report": 0,
       "label": "Other Reports",
-      "link_count": 4,
+      "link_count": 3,
       "link_type": "DocType",
       "onboard": 0,
       "type": "Card Break"
@@ -412,17 +402,6 @@
       "type": "Link"
     },
     {
-      "dependencies": "Daily Work Summary",
-      "hidden": 0,
-      "is_query_report": 1,
-      "label": "Daily Work Summary Replies",
-      "link_count": 0,
-      "link_to": "Daily Work Summary Replies",
-      "link_type": "Report",
-      "onboard": 0,
-      "type": "Link"
-    },
-    {
       "hidden": 0,
       "is_query_report": 0,
       "label": "ZK Device",
@@ -442,7 +421,7 @@
       "type": "Link"
     }
   ],
-  "modified": "2025-07-18",
+  "modified": "2025-07-31",
   "modified_by": "Administrator",
   "module": "HR",
   "name": "HR",
