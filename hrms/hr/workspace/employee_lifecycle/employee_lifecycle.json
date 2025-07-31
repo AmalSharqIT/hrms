@@ -1,6 +1,6 @@
 {
   "charts": [],
-  "content": "[{\"id\":\"4YvaSbJAGt\",\"type\":\"header\",\"data\":{\"text\":\"<span class=\\\"h4\\\"><b>Your Shortcuts</b></span>\",\"col\":12}},{\"id\":\"ag7v1FctEa\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Employee Onboarding\",\"col\":3}},{\"id\":\"LIOCIPvYEF\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Employee Separation\",\"col\":3}},{\"id\":\"eil3TdAJDL\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Employee Grievance\",\"col\":3}},{\"id\":\"v4c9BPt0VX\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Dashboard\",\"col\":3}},{\"id\":\"eKr5EpNmJA\",\"type\":\"spacer\",\"data\":{\"col\":12}},{\"id\":\"ungRtoQK8-\",\"type\":\"quick_list\",\"data\":{\"quick_list_name\":\"New Hires (This Month)\",\"col\":4}},{\"id\":\"tdtMNaKfGX\",\"type\":\"quick_list\",\"data\":{\"quick_list_name\":\"Exits (This Month)\",\"col\":4}},{\"id\":\"tBDVz1R1Nq\",\"type\":\"quick_list\",\"data\":{\"quick_list_name\":\"Trainings (This Week)\",\"col\":4}},{\"id\":\"-UWYFUUcwx\",\"type\":\"spacer\",\"data\":{\"col\":12}},{\"id\":\"14rKRrXYEk\",\"type\":\"header\",\"data\":{\"text\":\"<span class=\\\"h4\\\"><b>Masters &amp; Reports</b></span>\",\"col\":12}},{\"id\":\"tQgTLZVivE\",\"type\":\"card\",\"data\":{\"card_name\":\"Onboarding\",\"col\":4}},{\"id\":\"t7RiaD8iqU\",\"type\":\"card\",\"data\":{\"card_name\":\"Journey\",\"col\":4}},{\"id\":\"dLNEAZPt7c\",\"type\":\"card\",\"data\":{\"card_name\":\"Grievance\",\"col\":4}},{\"id\":\"94EviCkxiE\",\"type\":\"card\",\"data\":{\"card_name\":\"Training\",\"col\":4}},{\"id\":\"gsZu8tyUAg\",\"type\":\"card\",\"data\":{\"card_name\":\"Exit\",\"col\":4}},{\"id\":\"CtwtgrOmXd\",\"type\":\"card\",\"data\":{\"card_name\":\"Daily Work Summary\",\"col\":4}},{\"id\":\"qZSJdYEIxa\",\"type\":\"card\",\"data\":{\"card_name\":\"Reports\",\"col\":4}}]",
+  "content": "[{\"id\":\"4YvaSbJAGt\",\"type\":\"header\",\"data\":{\"text\":\"<span class=\\\"h4\\\"><b>Your Shortcuts</b></span>\",\"col\":12}},{\"id\":\"ag7v1FctEa\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Employee Onboarding\",\"col\":3}},{\"id\":\"LIOCIPvYEF\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Employee Separation\",\"col\":3}},{\"id\":\"eil3TdAJDL\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Employee Grievance\",\"col\":3}},{\"id\":\"v4c9BPt0VX\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Dashboard\",\"col\":3}},{\"id\":\"eKr5EpNmJA\",\"type\":\"spacer\",\"data\":{\"col\":12}},{\"id\":\"ungRtoQK8-\",\"type\":\"quick_list\",\"data\":{\"quick_list_name\":\"New Hires (This Month)\",\"col\":4}},{\"id\":\"tdtMNaKfGX\",\"type\":\"quick_list\",\"data\":{\"quick_list_name\":\"Exits (This Month)\",\"col\":4}},{\"id\":\"tBDVz1R1Nq\",\"type\":\"quick_list\",\"data\":{\"quick_list_name\":\"Trainings (This Week)\",\"col\":4}},{\"id\":\"-UWYFUUcwx\",\"type\":\"spacer\",\"data\":{\"col\":12}},{\"id\":\"14rKRrXYEk\",\"type\":\"header\",\"data\":{\"text\":\"<span class=\\\"h4\\\"><b>Masters &amp; Reports</b></span>\",\"col\":12}},{\"id\":\"t7RiaD8iqU\",\"type\":\"card\",\"data\":{\"card_name\":\"Journey\",\"col\":4}},{\"id\":\"dLNEAZPt7c\",\"type\":\"card\",\"data\":{\"card_name\":\"Grievance\",\"col\":4}},{\"id\":\"gsZu8tyUAg\",\"type\":\"card\",\"data\":{\"card_name\":\"Exit\",\"col\":4}},{\"id\":\"qZSJdYEIxa\",\"type\":\"card\",\"data\":{\"card_name\":\"Reports\",\"col\":4}}]",
   "creation": "2022-08-20 14:06:34.309347",
   "custom_blocks": [],
   "docstatus": 0,
@@ -12,45 +12,6 @@
   "is_hidden": 0,
   "label": "Employee Lifecycle",
   "links": [
-    {
-      "hidden": 0,
-      "is_query_report": 0,
-      "label": "Onboarding",
-      "link_count": 3,
-      "link_type": "DocType",
-      "onboard": 0,
-      "type": "Card Break"
-    },
-    {
-      "hidden": 0,
-      "is_query_report": 0,
-      "label": "Employee Onboarding Template",
-      "link_count": 0,
-      "link_to": "Employee Onboarding Template",
-      "link_type": "DocType",
-      "onboard": 0,
-      "type": "Link"
-    },
-    {
-      "hidden": 0,
-      "is_query_report": 0,
-      "label": "Employee Onboarding",
-      "link_count": 0,
-      "link_to": "Employee Onboarding",
-      "link_type": "DocType",
-      "onboard": 0,
-      "type": "Link"
-    },
-    {
-      "hidden": 0,
-      "is_query_report": 0,
-      "label": "Employee Skill Map",
-      "link_count": 0,
-      "link_to": "Employee Skill Map",
-      "link_type": "DocType",
-      "onboard": 0,
-      "type": "Link"
-    },
     {
       "hidden": 0,
       "is_query_report": 0,
@@ -112,55 +73,6 @@
     {
       "hidden": 0,
       "is_query_report": 0,
-      "label": "Training",
-      "link_count": 4,
-      "link_type": "DocType",
-      "onboard": 0,
-      "type": "Card Break"
-    },
-    {
-      "hidden": 0,
-      "is_query_report": 0,
-      "label": "Training Program",
-      "link_count": 0,
-      "link_to": "Training Program",
-      "link_type": "DocType",
-      "onboard": 0,
-      "type": "Link"
-    },
-    {
-      "hidden": 0,
-      "is_query_report": 0,
-      "label": "Training Event",
-      "link_count": 0,
-      "link_to": "Training Event",
-      "link_type": "DocType",
-      "onboard": 0,
-      "type": "Link"
-    },
-    {
-      "hidden": 0,
-      "is_query_report": 0,
-      "label": "Training Feedback",
-      "link_count": 0,
-      "link_to": "Training Feedback",
-      "link_type": "DocType",
-      "onboard": 0,
-      "type": "Link"
-    },
-    {
-      "hidden": 0,
-      "is_query_report": 0,
-      "label": "Training Result",
-      "link_count": 0,
-      "link_to": "Training Result",
-      "link_type": "DocType",
-      "onboard": 0,
-      "type": "Link"
-    },
-    {
-      "hidden": 0,
-      "is_query_report": 0,
       "label": "Exit",
       "link_count": 4,
       "link_type": "DocType",
@@ -204,45 +116,6 @@
       "link_count": 0,
       "link_to": "Exit Interview",
       "link_type": "DocType",
-      "onboard": 0,
-      "type": "Link"
-    },
-    {
-      "hidden": 0,
-      "is_query_report": 0,
-      "label": "Daily Work Summary",
-      "link_count": 3,
-      "link_type": "DocType",
-      "onboard": 0,
-      "type": "Card Break"
-    },
-    {
-      "hidden": 0,
-      "is_query_report": 0,
-      "label": "Daily Work Summary",
-      "link_count": 0,
-      "link_to": "Daily Work Summary",
-      "link_type": "DocType",
-      "onboard": 0,
-      "type": "Link"
-    },
-    {
-      "hidden": 0,
-      "is_query_report": 0,
-      "label": "Daily Work Summary Group",
-      "link_count": 0,
-      "link_to": "Daily Work Summary Group",
-      "link_type": "DocType",
-      "onboard": 0,
-      "type": "Link"
-    },
-    {
-      "hidden": 0,
-      "is_query_report": 1,
-      "label": "Daily Work Summary Replies",
-      "link_count": 0,
-      "link_to": "Daily Work Summary Replies",
-      "link_type": "Report",
       "onboard": 0,
       "type": "Link"
     },
@@ -296,7 +169,7 @@
       "type": "Link"
     }
   ],
-  "modified": "2025-07-08",
+  "modified": "2025-07-31",
   "modified_by": "Administrator",
   "module": "HR",
   "name": "Employee Lifecycle",
