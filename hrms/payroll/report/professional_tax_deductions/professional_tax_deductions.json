@@ -16,5 +16,9 @@
  "ref_doctype": "Salary Slip",
  "report_name": "Professional Tax Deductions",
  "report_type": "Script Report",
- "roles": []
+ "roles": [
+  {
+   "role": "System Manager"
+  }
+ ]
 }
