@@ -323,16 +323,6 @@ def get_custom_fields():
 
 def make_fixtures():
 	records = [
-		# expense claim type
-		{"doctype": "Expense Claim Type", "name": "اتصالات", "expense_type": "اتصالات"},
-		{"doctype": "Expense Claim Type", "name": "طعام", "expense_type": "طعام"},
-		{"doctype": "Expense Claim Type", "name": "طبية", "expense_type": "طبية"},
-		{"doctype": "Expense Claim Type", "name": "أخرى", "expense_type": "أخرى"},
-		{"doctype": "Expense Claim Type", "name": "سفر", "expense_type": "سفر"},
-		{"doctype": "Expense Claim Type", "name": "سكن", "expense_type": "سكن"},
-		{"doctype": "Expense Claim Type", "name": "وقود", "expense_type": "وقود"},
-		{"doctype": "Expense Claim Type", "name": "صيانة", "expense_type": "صيانة"},
-		{"doctype": "Expense Claim Type", "name": "قانونية", "expense_type": "قانونية"},
 		# vehicle service item
 		{"doctype": "Vehicle Service Item", "service_item": "Brake Oil"},
 		{"doctype": "Vehicle Service Item", "service_item": "Brake Pad"},
