@@ -65,6 +65,10 @@
    "role": "HR User",
    "share": 1,
    "write": 1
+  },
+  {
+   "role": "Employee",
+   "select": 1
   }
  ],
  "quick_entry": 1,
