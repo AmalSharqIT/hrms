@@ -231,45 +231,26 @@
    "write": 1
   },
   {
+   "create": 1,
    "delete": 1,
-   "email": 1,
-   "export": 1,
-   "permlevel": 1,
-   "print": 1,
    "read": 1,
-   "report": 1,
-   "role": "System Manager",
-   "share": 1,
+   "role": "Leave Approver",
    "write": 1
   },
   {
-   "delete": 1,
-   "email": 1,
-   "export": 1,
-   "permlevel": 1,
-   "print": 1,
+   "permlevel": 9,
    "read": 1,
-   "report": 1,
-   "role": "HR Manager",
-   "share": 1,
-   "write": 1
+   "role": "HR Manager"
   },
   {
-   "delete": 1,
-   "email": 1,
-   "export": 1,
-   "permlevel": 1,
-   "print": 1,
+   "permlevel": 9,
    "read": 1,
-   "report": 1,
-   "role": "HR User",
-   "share": 1,
-   "write": 1
+   "role": "HR User"
   },
   {
-   "permlevel": 1,
+   "permlevel": 8,
    "read": 1,
-   "role": "Employee"
+   "role": "Leave Approver"
   }
  ],
  "sort_field": "modified",
