@@ -1327,7 +1327,7 @@ class SalarySlip(TransactionBase):
 				filters={
 					"status": ["in", ["Paid", "Partly Paid"]],
 					"employee": self.employee,
-					"repayment_start": [">=", self.start_date],
+					"repayment_start": ["<=", self.end_date],
 				},
 				pluck="name",
 			)
@@ -1492,7 +1492,6 @@ class SalarySlip(TransactionBase):
 		data=None,
 		default_amount=None,
 		remove_if_zero_valued=None,
-		employee_loan=None,
 	):
 		component_row = None
 		for d in self.get(component_type):
@@ -1502,7 +1501,6 @@ class SalarySlip(TransactionBase):
 			if (not d.additional_salary and (not additional_salary or additional_salary.overwrite)) or (
 				additional_salary and additional_salary.name == d.additional_salary
 			):
-				# if not employee_loan:
 				component_row = d
 				break
 
@@ -1560,8 +1558,6 @@ class SalarySlip(TransactionBase):
 			)
 
 		component_row.amount = amount
-		if employee_loan:
-			component_row.employee_loan = employee_loan
 
 		self.update_component_amount_based_on_payment_days(component_row, remove_if_zero_valued)
 
