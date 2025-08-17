@@ -337,6 +337,7 @@ class PayrollEntry(Document):
 					ssd.amount,
 					ssd.parentfield,
 					ssd.additional_salary,
+					ssd.employee_loan,
 					ss.salary_structure,
 					ss.employee,
 				)
@@ -378,8 +379,26 @@ class PayrollEntry(Document):
 							item, amount_against_cost_center, cost_center, employee_advance
 						)
 					else:
-						key = (item.salary_component, cost_center)
-						component_dict[key] = component_dict.get(key, 0) + amount_against_cost_center
+						salary_component_account = self.get_salary_component_account(item.salary_component)
+						if frappe.get_value("Account", salary_component_account, "account_type") in [
+							"Receivable",
+							"Payable",
+						]:
+							self._recivable_payable_account.append(
+								{
+									"employee": item.employee,
+									"account": salary_component_account,
+									"amount": amount_against_cost_center,
+									"cost_center": cost_center,
+									"entry_type": "credit" if component_type == "deductions" else "debit",
+									"reference_type": "Employee Loan" if item.get("employee_loan") else None,
+									"reference_name": item.get("employee_loan"),
+									"is_advance": "Yes" if item.get("employee_loan") else "No",
+								}
+							)
+						else:
+							key = (item.salary_component, cost_center)
+							component_dict[key] = component_dict.get(key, 0) + amount_against_cost_center
 
 					if employee_wise_accounting_enabled:
 						self.set_employee_based_payroll_payable_entries(
@@ -460,6 +479,35 @@ class PayrollEntry(Document):
 
 		return payable_amount
 
+	def set_accounting_entries_for_recivable_payable(
+		self,
+		accounts: list,
+		currencies: list,
+		company_currency: str,
+		accounting_dimensions: list,
+		precision: int,
+		payable_amount: float,
+	):
+		for entry in self._recivable_payable_account:
+			payable_amount = self.get_accounting_entries_and_payable_amount(
+				entry.get("account"),
+				entry.get("cost_center"),
+				entry.get("amount"),
+				currencies,
+				company_currency,
+				payable_amount,
+				accounting_dimensions,
+				precision,
+				entry_type=entry.get("entry_type"),
+				accounts=accounts,
+				party=entry.get("employee"),
+				reference_type=entry.get("reference_type"),
+				reference_name=entry.get("reference_name"),
+				is_advance=entry.get("is_advance"),
+			)
+
+		return payable_amount
+
 	def set_employee_based_payroll_payable_entries(
 		self, component_type, employee, amount, salary_structure=None
 	):
@@ -535,6 +583,7 @@ class PayrollEntry(Document):
 		)
 		self.employee_based_payroll_payable_entries = {}
 		self._advance_deduction_entries = []
+		self._recivable_payable_account = []
 
 		earnings = (
 			self.get_salary_component_total(
@@ -581,6 +630,14 @@ class PayrollEntry(Document):
 				payable_amount,
 			)
 
+			payable_amount = self.set_accounting_entries_for_recivable_payable(
+				accounts,
+				currencies,
+				company_currency,
+				accounting_dimensions,
+				precision,
+				payable_amount,
+			)
 			self.set_payable_amount_against_payroll_payable_account(
 				accounts,
 				currencies,

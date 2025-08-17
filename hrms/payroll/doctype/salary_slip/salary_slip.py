@@ -1318,6 +1318,42 @@ class SalarySlip(TransactionBase):
 				additional_salary,
 				is_recurring=additional_salary.is_recurring,
 			)
+		if component_type == "deductions":
+			loan_employees = frappe.get_all(
+				"Employee Loan",
+				filters={"status": ["in", ["Paid", "Partly Paid"]], "employee": self.employee},
+				fields=["name", "employee", "loan_account"],
+			)
+			if loan_employees:
+				loan_compnent = frappe.get_value(
+					"Salary Component", {"salary_component_abbr": "installment_amount"}, "name"
+				)
+				# use loop
+				loan_installments = frappe.get_all(
+					"Loan Installment",
+					{
+						"parent": loan_employees[0].name,
+						"status": ["!=", "Paid"],
+						"payment_date": ["<=", self.end_date],
+					},
+					pluck="amount",
+				)
+				# get parialy amount
+				# do not add sum
+				self.update_component_row(
+					get_salary_component_data(loan_compnent),
+					sum(loan_installments),
+					"deductions",
+					employee_loan=loan_employees[0].name,
+				)
+			frezing_compnent = frappe.get_value(
+				"Salary Component", {"salary_component_abbr": "freezing_amount"}, "name"
+			)
+			self.update_component_row(
+				get_salary_component_data(frezing_compnent),
+				self._salary_structure_assignment.freezing_amount,
+				"deductions",
+			)
 
 	def add_tax_components(self):
 		# Calculate variable_based_on_taxable_salary after all components updated in salary slip
@@ -1431,6 +1467,7 @@ class SalarySlip(TransactionBase):
 		data=None,
 		default_amount=None,
 		remove_if_zero_valued=None,
+		employee_loan=None,
 	):
 		component_row = None
 		for d in self.get(component_type):
@@ -1497,6 +1534,8 @@ class SalarySlip(TransactionBase):
 			)
 
 		component_row.amount = amount
+		if employee_loan:
+			component_row.employee_loan = employee_loan
 
 		self.update_component_amount_based_on_payment_days(component_row, remove_if_zero_valued)
 

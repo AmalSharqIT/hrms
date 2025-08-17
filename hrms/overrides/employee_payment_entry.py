@@ -25,7 +25,14 @@ class EmployeePaymentEntry(PaymentEntry):
 		elif self.party_type == "Shareholder":
 			return ("Journal Entry",)
 		elif self.party_type == "Employee":
-			return ("Expense Claim", "Journal Entry", "Employee Advance", "Leave Encashment", "Gratuity")
+			return (
+				"Expense Claim",
+				"Journal Entry",
+				"Employee Advance",
+				"Leave Encashment",
+				"Gratuity",
+				"Employee Loan",
+			)
 
 	def set_missing_ref_details(
 		self,
@@ -140,6 +147,8 @@ def get_party_account(doc):
 
 	if doc.doctype == "Employee Advance":
 		party_account = doc.advance_account
+	if doc.doctype == "Employee Loan":
+		party_account = doc.loan_account
 	elif doc.doctype in ("Expense Claim", "Gratuity", "Leave Encashment"):
 		party_account = doc.payable_account
 
@@ -162,6 +171,13 @@ def get_grand_total_and_outstanding_amount(doc, party_amount, party_account_curr
 		if party_account_currency != doc.currency:
 			grand_total = flt(doc.advance_amount) * flt(doc.exchange_rate)
 			outstanding_amount = (flt(doc.advance_amount) - flt(doc.paid_amount)) * flt(doc.exchange_rate)
+
+	elif doc.doctype == "Employee Loan":
+		grand_total = flt(doc.loan_amount)
+		outstanding_amount = flt(doc.loan_amount) - flt(doc.paid_amount)
+		if party_account_currency != doc.currency:
+			grand_total = flt(doc.loan_amount) * flt(doc.exchange_rate)
+			outstanding_amount = (flt(doc.loan_amount) - flt(doc.paid_amount)) * flt(doc.exchange_rate)
 
 	elif doc.doctype == "Gratuity":
 		grand_total = doc.amount
@@ -195,7 +211,7 @@ def get_paid_amount_and_received_amount(
 			received_amount = bank_amount
 		else:
 			received_amount = paid_amount * doc.get("conversion_rate", 1)
-			if doc.doctype == "Employee Advance":
+			if doc.doctype == "Employee Advance" or doc.doctype == "Employee Loan":
 				received_amount = paid_amount * doc.get("exchange_rate", 1)
 
 	else:
@@ -205,7 +221,7 @@ def get_paid_amount_and_received_amount(
 		else:
 			# if party account currency and bank currency is different then populate paid amount as well
 			paid_amount = received_amount * doc.get("conversion_rate", 1)
-			if doc.doctype == "Employee Advance":
+			if doc.doctype == "Employee Advance" or doc.doctype == "Employee Loan":
 				paid_amount = received_amount * doc.get("exchange_rate", 1)
 
 	return paid_amount, received_amount
@@ -215,7 +231,13 @@ def get_paid_amount_and_received_amount(
 def get_payment_reference_details(
 	reference_doctype, reference_name, party_account_currency, party_type=None, party=None
 ):
-	if reference_doctype in ("Expense Claim", "Employee Advance", "Gratuity", "Leave Encashment"):
+	if reference_doctype in (
+		"Expense Claim",
+		"Employee Advance",
+		"Gratuity",
+		"Leave Encashment",
+		"Employee Loan",
+	):
 		return get_reference_details_for_employee(reference_doctype, reference_name, party_account_currency)
 	else:
 		return get_reference_details(
@@ -244,6 +266,13 @@ def get_reference_details_for_employee(reference_doctype, reference_name, party_
 		outstanding_amount = flt(ref_doc.advance_amount) - flt(ref_doc.paid_amount)
 		if party_account_currency != ref_doc.currency:
 			outstanding_amount = flt(outstanding_amount) * flt(exchange_rate)
+
+	elif reference_doctype == "Employee Loan":
+		outstanding_amount = (flt(ref_doc.paid_amount) or flt(ref_doc.loan_amount)) - flt(
+			ref_doc.return_amount
+		)
+		if party_account_currency != ref_doc.currency:
+			outstanding_amount = flt(outstanding_amount) * flt(exchange_rate)
 	elif reference_doctype == "Gratuity":
 		outstanding_amount = ref_doc.amount - flt(ref_doc.paid_amount)
 	elif reference_doctype == "Leave Encashment":
@@ -268,6 +297,14 @@ def get_total_amount_and_exchange_rate(ref_doc, party_account_currency, company_
 		total_amount = flt(ref_doc.total_sanctioned_amount) + flt(ref_doc.total_taxes_and_charges)
 	elif ref_doc.doctype == "Employee Advance":
 		total_amount = ref_doc.advance_amount
+		exchange_rate = ref_doc.get("exchange_rate")
+		if party_account_currency != ref_doc.currency:
+			total_amount = flt(total_amount) * flt(exchange_rate)
+		if party_account_currency == company_currency:
+			exchange_rate = 1
+
+	elif ref_doc.doctype == "Employee Loan":
+		total_amount = ref_doc.loan_amount
 		exchange_rate = ref_doc.get("exchange_rate")
 		if party_account_currency != ref_doc.currency:
 			total_amount = flt(total_amount) * flt(exchange_rate)
