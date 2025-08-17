@@ -12,6 +12,7 @@
   "year_to_date",
   "section_break_5",
   "additional_salary",
+  "employee_loan",
   "is_recurring_additional_salary",
   "statistical_component",
   "depends_on_payment_days",
@@ -262,6 +263,14 @@
    "fieldname": "do_not_include_in_accounts",
    "fieldtype": "Check",
    "label": "Do Not Include in Accounting Entries"
+  },
+  {
+   "fieldname": "employee_loan",
+   "fieldtype": "Link",
+   "in_list_view": 1,
+   "label": "Employee Loan",
+   "options": "Employee Loan",
+   "read_only": 1
   }
  ],
  "istable": 1,

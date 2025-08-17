@@ -5,6 +5,8 @@
 import unicodedata
 from datetime import date
 
+from amalsharq.amalsharq_hr.doctype.loan_installment.loan_installment import LoanInstallment
+
 import frappe
 from frappe import _, msgprint
 from frappe.model.naming import make_autoname
@@ -29,7 +31,7 @@ from frappe.utils import (
 from frappe.utils.background_jobs import enqueue
 
 import erpnext
-from erpnext.accounts.utils import get_fiscal_year
+from erpnext.accounts.utils import get_balance_on, get_fiscal_year
 from erpnext.setup.doctype.employee.employee import get_holiday_list_for_employee
 from erpnext.utilities.transaction_base import TransactionBase
 
@@ -1319,41 +1321,64 @@ class SalarySlip(TransactionBase):
 				is_recurring=additional_salary.is_recurring,
 			)
 		if component_type == "deductions":
-			loan_employees = frappe.get_all(
+			self.set(component_type, [d for d in self.get("deductions") if not d.get("employee_loan")])
+			employee_loans = frappe.get_all(
 				"Employee Loan",
-				filters={"status": ["in", ["Paid", "Partly Paid"]], "employee": self.employee},
-				fields=["name", "employee", "loan_account"],
+				filters={
+					"status": ["in", ["Paid", "Partly Paid"]],
+					"employee": self.employee,
+					"repayment_start": [">=", self.start_date],
+				},
+				pluck="name",
 			)
-			if loan_employees:
-				loan_compnent = frappe.get_value(
+			if employee_loans:
+				installment_compnent = frappe.get_value(
 					"Salary Component", {"salary_component_abbr": "installment_amount"}, "name"
 				)
-				# use loop
-				loan_installments = frappe.get_all(
-					"Loan Installment",
-					{
-						"parent": loan_employees[0].name,
-						"status": ["!=", "Paid"],
-						"payment_date": ["<=", self.end_date],
-					},
-					pluck="amount",
-				)
-				# get parialy amount
-				# do not add sum
-				self.update_component_row(
-					get_salary_component_data(loan_compnent),
-					sum(loan_installments),
-					"deductions",
-					employee_loan=loan_employees[0].name,
-				)
-			frezing_compnent = frappe.get_value(
+				for employee_loan in employee_loans:
+					installments: list[LoanInstallment] = frappe.get_all(
+						"Loan Installment",
+						filters={
+							"parent": employee_loan,
+							"status": ["!=", "Paid"],
+							"payment_date": ["<=", self.end_date],
+						},
+						fields=["amount", "paid_amount"],
+					)
+					for installment in installments:
+						self.append(
+							"deductions",
+							{
+								"salary_component": installment_compnent,
+								"amount": installment.amount - installment.paid_amount,
+								"employee_loan": employee_loan,
+							},
+						)
+			freezing_component = frappe.get_value(
 				"Salary Component", {"salary_component_abbr": "freezing_amount"}, "name"
 			)
-			self.update_component_row(
-				get_salary_component_data(frezing_compnent),
-				self._salary_structure_assignment.freezing_amount,
-				"deductions",
+			account_component = frappe.get_value(
+				"Salary Component Account", {"parent": freezing_component, "company": self.company}, "account"
 			)
+			employee_balance = (
+				get_balance_on(
+					account=account_component,
+					party_type="Employee",
+					party=self.employee,
+				)
+			) * -1
+			freezing_amount = self._salary_structure_assignment.freezing_amount
+			base = self._salary_structure_assignment.base + self._salary_structure_assignment.monthly_salary
+			if employee_balance < base:
+				if employee_balance + freezing_amount > base:
+					freezing_amount = base - employee_balance
+				if freezing_amount > self.net_pay:
+					freezing_amount = self.net_pay
+				self.update_component_row(
+					get_salary_component_data(freezing_component),
+					freezing_amount,
+					"deductions",
+				)
 
 	def add_tax_components(self):
 		# Calculate variable_based_on_taxable_salary after all components updated in salary slip
@@ -1477,6 +1502,7 @@ class SalarySlip(TransactionBase):
 			if (not d.additional_salary and (not additional_salary or additional_salary.overwrite)) or (
 				additional_salary and additional_salary.name == d.additional_salary
 			):
+				# if not employee_loan:
 				component_row = d
 				break
 
