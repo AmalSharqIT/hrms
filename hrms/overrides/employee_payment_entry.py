@@ -147,8 +147,6 @@ def get_party_account(doc):
 
 	if doc.doctype == "Employee Advance":
 		party_account = doc.advance_account
-	if doc.doctype == "Employee Loan":
-		party_account = doc.loan_account
 	elif doc.doctype in ("Expense Claim", "Gratuity", "Leave Encashment"):
 		party_account = doc.payable_account
 
@@ -171,13 +169,6 @@ def get_grand_total_and_outstanding_amount(doc, party_amount, party_account_curr
 		if party_account_currency != doc.currency:
 			grand_total = flt(doc.advance_amount) * flt(doc.exchange_rate)
 			outstanding_amount = (flt(doc.advance_amount) - flt(doc.paid_amount)) * flt(doc.exchange_rate)
-
-	elif doc.doctype == "Employee Loan":
-		grand_total = flt(doc.loan_amount)
-		outstanding_amount = flt(doc.loan_amount) - flt(doc.paid_amount)
-		if party_account_currency != doc.currency:
-			grand_total = flt(doc.loan_amount) * flt(doc.exchange_rate)
-			outstanding_amount = (flt(doc.loan_amount) - flt(doc.paid_amount)) * flt(doc.exchange_rate)
 
 	elif doc.doctype == "Gratuity":
 		grand_total = doc.amount
@@ -211,7 +202,7 @@ def get_paid_amount_and_received_amount(
 			received_amount = bank_amount
 		else:
 			received_amount = paid_amount * doc.get("conversion_rate", 1)
-			if doc.doctype == "Employee Advance" or doc.doctype == "Employee Loan":
+			if doc.doctype == "Employee Advance":
 				received_amount = paid_amount * doc.get("exchange_rate", 1)
 
 	else:
@@ -221,7 +212,7 @@ def get_paid_amount_and_received_amount(
 		else:
 			# if party account currency and bank currency is different then populate paid amount as well
 			paid_amount = received_amount * doc.get("conversion_rate", 1)
-			if doc.doctype == "Employee Advance" or doc.doctype == "Employee Loan":
+			if doc.doctype == "Employee Advance":
 				paid_amount = received_amount * doc.get("exchange_rate", 1)
 
 	return paid_amount, received_amount

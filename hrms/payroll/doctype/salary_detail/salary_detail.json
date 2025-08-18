@@ -12,7 +12,8 @@
   "year_to_date",
   "section_break_5",
   "additional_salary",
-  "employee_loan",
+  "reference_type",
+  "reference_name",
   "is_recurring_additional_salary",
   "statistical_component",
   "depends_on_payment_days",
@@ -265,11 +266,19 @@
    "label": "Do Not Include in Accounting Entries"
   },
   {
-   "fieldname": "employee_loan",
+   "fieldname": "reference_type",
    "fieldtype": "Link",
    "in_list_view": 1,
-   "label": "Employee Loan",
-   "options": "Employee Loan",
+   "label": "Reference Type",
+   "options": "DocType",
+   "read_only": 1
+  },
+  {
+   "fieldname": "reference_name",
+   "fieldtype": "Dynamic Link",
+   "in_list_view": 1,
+   "label": "Reference Document",
+   "options": "reference_type",
    "read_only": 1
   }
  ],
