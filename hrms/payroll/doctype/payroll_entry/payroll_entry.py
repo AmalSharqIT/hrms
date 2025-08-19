@@ -381,10 +381,8 @@ class PayrollEntry(Document):
 						)
 					else:
 						salary_component_account = self.get_salary_component_account(item.salary_component)
-						if frappe.get_value("Account", salary_component_account, "account_type") in [
-							"Receivable",
-							"Payable",
-						]:
+						account_type = frappe.get_value("Account", salary_component_account, "account_type")
+						if account_type in ["Receivable", "Payable"]:
 							self._recivable_payable_account.append(
 								{
 									"employee": item.employee,
@@ -641,6 +639,7 @@ class PayrollEntry(Document):
 				precision,
 				payable_amount,
 			)
+
 			self.set_payable_amount_against_payroll_payable_account(
 				accounts,
 				currencies,

@@ -47,29 +47,14 @@ class EmployeePaymentEntry(PaymentEntry):
 				):
 					continue
 
-				if d.reference_doctype == "Employee Loan":
-					loan_amount, paid_amount_loan, return_amount_loan, exchange_rate_loan = frappe.get_value(
-						"Employee Loan",
-						d.reference_name,
-						["loan_amount", "paid_amount", "return_amount", "exchange_rate"],
-					)
-					ref_details = frappe._dict(
-						{
-							"total_amount": loan_amount,
-							"outstanding_amount": loan_amount - paid_amount_loan
-							if self.payment_type == "Pay"
-							else paid_amount_loan - return_amount_loan,
-							"exchange_rate": exchange_rate_loan,
-						}
-					)
-				else:
-					ref_details = get_payment_reference_details(
-						d.reference_doctype,
-						d.reference_name,
-						self.party_account_currency,
-						self.party_type,
-						self.party,
-					)
+				ref_details = get_payment_reference_details(
+					d.reference_doctype,
+					d.reference_name,
+					self.party_account_currency,
+					self.party_type,
+					self.party,
+					self.payment_type,
+				)
 
 				# Only update exchange rate when the reference is Journal Entry
 				if (
@@ -236,15 +221,18 @@ def get_paid_amount_and_received_amount(
 
 @frappe.whitelist()
 def get_payment_reference_details(
-	reference_doctype, reference_name, party_account_currency, party_type=None, party=None
+	reference_doctype, reference_name, party_account_currency, party_type=None, party=None, payment_type=None
 ):
 	if reference_doctype in (
 		"Expense Claim",
 		"Employee Advance",
 		"Gratuity",
 		"Leave Encashment",
+		"Employee Loan",
 	):
-		return get_reference_details_for_employee(reference_doctype, reference_name, party_account_currency)
+		return get_reference_details_for_employee(
+			reference_doctype, reference_name, party_account_currency, payment_type
+		)
 	else:
 		return get_reference_details(
 			reference_doctype, reference_name, party_account_currency, party_type, party
@@ -252,7 +240,9 @@ def get_payment_reference_details(
 
 
 @frappe.whitelist()
-def get_reference_details_for_employee(reference_doctype, reference_name, party_account_currency):
+def get_reference_details_for_employee(
+	reference_doctype, reference_name, party_account_currency, payment_type
+):
 	"""
 	Returns payment reference details for employee related doctypes:
 	Employee Advance, Expense Claim, Gratuity, Leave Encashment
@@ -270,6 +260,13 @@ def get_reference_details_for_employee(reference_doctype, reference_name, party_
 		outstanding_amount = get_outstanding_amount_for_claim(ref_doc)
 	elif reference_doctype == "Employee Advance":
 		outstanding_amount = flt(ref_doc.advance_amount) - flt(ref_doc.paid_amount)
+		if party_account_currency != ref_doc.currency:
+			outstanding_amount = flt(outstanding_amount) * flt(exchange_rate)
+	elif reference_doctype == "Employee Loan":
+		if payment_type == "Pay":
+			outstanding_amount = ref_doc.loan_amount - ref_doc.paid_amount
+		else:
+			outstanding_amount = ref_doc.paid_amount - ref_doc.return_amount
 		if party_account_currency != ref_doc.currency:
 			outstanding_amount = flt(outstanding_amount) * flt(exchange_rate)
 	elif reference_doctype == "Gratuity":
