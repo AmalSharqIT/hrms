@@ -380,7 +380,14 @@ class PayrollEntry(Document):
 							item, amount_against_cost_center, cost_center, employee_advance
 						)
 					else:
-						salary_component_account = self.get_salary_component_account(item.salary_component)
+						if item.reference_type == "Employee Loan":
+							salary_component_account = frappe.db.get_value(
+								"Employee Loan", item.reference_name, "loan_account"
+							)
+						else:
+							salary_component_account = self.get_salary_component_account(
+								item.salary_component
+							)
 						account_type = frappe.get_value("Account", salary_component_account, "account_type")
 						if account_type in ["Receivable", "Payable"]:
 							self._recivable_payable_account.append(
