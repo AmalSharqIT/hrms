@@ -698,6 +698,28 @@ class PayrollEntry(Document):
 
 		journal_entry.save(ignore_permissions=True)
 
+		# Task: Move this to get_accounting_entries_and_payable_amount
+		if journal_entry.difference != 0:
+			unrealized_exchange_gain_loss_account = frappe.get_cached_value(
+				"Company", self.company, "unrealized_exchange_gain_loss_account"
+			)
+			journal_entry.append(
+				"accounts",
+				{
+					"account": unrealized_exchange_gain_loss_account,
+					"exchange_rate": 0,
+					"debit_in_account_currency": abs(journal_entry.difference)
+					if journal_entry.difference < 0
+					else 0,
+					"credit_in_account_currency": abs(journal_entry.difference)
+					if journal_entry.difference > 0
+					else 0,
+					"reference_type": self.doctype,
+					"reference_name": self.name,
+					"cost_center": "ادارة - AS",
+				},
+			)
+
 		try:
 			if submit_journal_entry:
 				journal_entry.submit()
@@ -834,6 +856,8 @@ class PayrollEntry(Document):
 		exchange_rate, amt = self.get_amount_and_exchange_rate_for_journal_entry(
 			account, amount, company_currency, currencies
 		)
+		if reference_type == "Employee Loan":
+			exchange_rate = frappe.get_value("Employee Loan", reference_name, "exchange_rate")
 
 		row = {
 			"account": account,
