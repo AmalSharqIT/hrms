@@ -698,28 +698,6 @@ class PayrollEntry(Document):
 
 		journal_entry.save(ignore_permissions=True)
 
-		# Task: Move this to get_accounting_entries_and_payable_amount
-		if journal_entry.difference != 0:
-			unrealized_exchange_gain_loss_account = frappe.get_cached_value(
-				"Company", self.company, "unrealized_exchange_gain_loss_account"
-			)
-			journal_entry.append(
-				"accounts",
-				{
-					"account": unrealized_exchange_gain_loss_account,
-					"exchange_rate": 0,
-					"debit_in_account_currency": abs(journal_entry.difference)
-					if journal_entry.difference < 0
-					else 0,
-					"credit_in_account_currency": abs(journal_entry.difference)
-					if journal_entry.difference > 0
-					else 0,
-					"reference_type": self.doctype,
-					"reference_name": self.name,
-					"cost_center": "ادارة - AS",
-				},
-			)
-
 		try:
 			if submit_journal_entry:
 				journal_entry.submit()
@@ -857,7 +835,31 @@ class PayrollEntry(Document):
 			account, amount, company_currency, currencies
 		)
 		if reference_type == "Employee Loan":
-			exchange_rate = frappe.get_value("Employee Loan", reference_name, "exchange_rate")
+			exchange_rate_loan = frappe.get_value("Employee Loan", reference_name, "exchange_rate")
+			if exchange_rate != exchange_rate_loan:
+				amount_in_orignal_exchange = flt(amount) * flt(exchange_rate_loan)
+				amount_in_loan_exchange = flt(amount) * flt(exchange_rate)
+				debit_in_account_currency = credit_in_account_currency = 0
+				if amount_in_orignal_exchange > amount_in_loan_exchange:
+					difference = amount_in_orignal_exchange - amount_in_loan_exchange
+					debit_in_account_currency = difference
+				else:
+					difference = amount_in_loan_exchange - amount_in_orignal_exchange
+					credit_in_account_currency = difference
+
+				accounts.append(
+					{
+						"account": frappe.get_cached_value(
+							"Company", self.company, "unrealized_exchange_gain_loss_account"
+						),
+						"debit_in_account_currency": debit_in_account_currency,
+						"credit_in_account_currency": credit_in_account_currency,
+						"reference_type": self.doctype,
+						"reference_name": self.name,
+						"cost_center": "ادارة - AS",
+					},
+				)
+				exchange_rate = exchange_rate_loan
 
 		row = {
 			"account": account,
