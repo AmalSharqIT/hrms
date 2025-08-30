@@ -834,32 +834,32 @@ class PayrollEntry(Document):
 		exchange_rate, amt = self.get_amount_and_exchange_rate_for_journal_entry(
 			account, amount, company_currency, currencies
 		)
-		if reference_type == "Employee Loan":
-			exchange_rate_loan = frappe.get_value("Employee Loan", reference_name, "exchange_rate")
-			if exchange_rate != exchange_rate_loan:
-				amount_in_orignal_exchange = flt(amount) * flt(exchange_rate_loan)
-				amount_in_loan_exchange = flt(amount) * flt(exchange_rate)
-				debit_in_account_currency = credit_in_account_currency = 0
-				if amount_in_orignal_exchange > amount_in_loan_exchange:
-					difference = amount_in_orignal_exchange - amount_in_loan_exchange
-					debit_in_account_currency = difference
-				else:
-					difference = amount_in_loan_exchange - amount_in_orignal_exchange
-					credit_in_account_currency = difference
+		# if reference_type == "Employee Loan":
+		# 	exchange_rate_loan = frappe.get_value("Employee Loan", reference_name, "exchange_rate")
+		# 	if exchange_rate != exchange_rate_loan:
+		# 		amount_in_orignal_exchange = flt(amount) * flt(exchange_rate_loan)
+		# 		amount_in_loan_exchange = flt(amount) * flt(exchange_rate)
+		# 		debit_in_account_currency = credit_in_account_currency = 0
+		# 		if amount_in_orignal_exchange > amount_in_loan_exchange:
+		# 			difference = amount_in_orignal_exchange - amount_in_loan_exchange
+		# 			debit_in_account_currency = difference
+		# 		else:
+		# 			difference = amount_in_loan_exchange - amount_in_orignal_exchange
+		# 			credit_in_account_currency = difference
 
-				accounts.append(
-					{
-						"account": frappe.get_cached_value(
-							"Company", self.company, "unrealized_exchange_gain_loss_account"
-						),
-						"debit_in_account_currency": debit_in_account_currency,
-						"credit_in_account_currency": credit_in_account_currency,
-						"reference_type": self.doctype,
-						"reference_name": self.name,
-						"cost_center": "ادارة - AS",
-					},
-				)
-				exchange_rate = exchange_rate_loan
+		# 		accounts.append(
+		# 			{
+		# 				"account": frappe.get_cached_value(
+		# 					"Company", self.company, "unrealized_exchange_gain_loss_account"
+		# 				),
+		# 				"debit_in_account_currency": debit_in_account_currency,
+		# 				"credit_in_account_currency": credit_in_account_currency,
+		# 				"reference_type": self.doctype,
+		# 				"reference_name": self.name,
+		# 				"cost_center": "ادارة - AS",
+		# 			},
+		# 		)
+		# 		exchange_rate = exchange_rate_loan
 
 		row = {
 			"account": account,
