@@ -301,11 +301,9 @@ def get_total_amount_and_exchange_rate(ref_doc, party_account_currency, company_
 
 	elif ref_doc.doctype == "Employee Loan":
 		total_amount = ref_doc.loan_amount
-		exchange_rate = ref_doc.get("exchange_rate")
+		exchange_rate = get_exchange_rate(party_account_currency, ref_doc.currency)
 		if party_account_currency != ref_doc.currency:
 			total_amount = flt(total_amount) * flt(exchange_rate)
-		if party_account_currency == company_currency:
-			exchange_rate = 1
 	elif ref_doc.doctype == "Leave Encashment":
 		total_amount = ref_doc.encashment_amount
 	elif ref_doc.doctype == "Gratuity":
