@@ -400,9 +400,9 @@ class PayrollEntry(Document):
 									"entry_type": "credit" if component_type == "deductions" else "debit",
 									"reference_type": item.reference_type,
 									"reference_name": item.reference_name,
-									"is_advance": "Yes"
-									if item.reference_type in get_advance_payment_doctypes()
-									else "No",
+									# "is_advance": "Yes"
+									# if item.reference_type in get_advance_payment_doctypes()
+									# else "No",
 								}
 							)
 						else:
@@ -512,7 +512,7 @@ class PayrollEntry(Document):
 				party=entry.get("employee"),
 				reference_type=entry.get("reference_type"),
 				reference_name=entry.get("reference_name"),
-				is_advance=entry.get("is_advance"),
+				# is_advance=entry.get("is_advance"),
 			)
 
 		return payable_amount
