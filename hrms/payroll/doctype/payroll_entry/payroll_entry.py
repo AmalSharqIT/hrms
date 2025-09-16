@@ -26,7 +26,7 @@ import erpnext
 from erpnext.accounts.doctype.accounting_dimension.accounting_dimension import (
 	get_accounting_dimensions,
 )
-from erpnext.accounts.utils import get_advance_payment_doctypes, get_fiscal_year
+from erpnext.accounts.utils import get_fiscal_year
 
 from hrms.payroll.doctype.salary_slip.salary_slip_loan_utils import if_lending_app_installed
 from hrms.payroll.doctype.salary_withholding.salary_withholding import link_bank_entry_in_salary_withholdings
@@ -380,14 +380,6 @@ class PayrollEntry(Document):
 							item, amount_against_cost_center, cost_center, employee_advance
 						)
 					else:
-						# if item.reference_type == "Employee Loan":
-						# 	salary_component_account = frappe.db.get_value(
-						# 		"Employee Loan", item.reference_name, "loan_account"
-						# 	)
-						# else:
-						# 	salary_component_account = self.get_salary_component_account(
-						# 		item.salary_component
-						# 	)
 						salary_component_account = self.get_salary_component_account(item.salary_component)
 						account_type = frappe.get_value("Account", salary_component_account, "account_type")
 						if account_type in ["Receivable", "Payable"]:
@@ -400,9 +392,6 @@ class PayrollEntry(Document):
 									"entry_type": "credit" if component_type == "deductions" else "debit",
 									"reference_type": item.reference_type,
 									"reference_name": item.reference_name,
-									# "is_advance": "Yes"
-									# if item.reference_type in get_advance_payment_doctypes()
-									# else "No",
 								}
 							)
 						else:
@@ -512,7 +501,6 @@ class PayrollEntry(Document):
 				party=entry.get("employee"),
 				reference_type=entry.get("reference_type"),
 				reference_name=entry.get("reference_name"),
-				# is_advance=entry.get("is_advance"),
 			)
 
 		return payable_amount
@@ -682,7 +670,7 @@ class PayrollEntry(Document):
 		submit_journal_entry=False,
 	) -> str:
 		multi_currency = 0
-		if len(currencies) > 1 or currencies[0] != erpnext.get_company_currency(self.company):
+		if len(currencies) > 1:
 			multi_currency = 1
 
 		journal_entry = frappe.new_doc("Journal Entry")
