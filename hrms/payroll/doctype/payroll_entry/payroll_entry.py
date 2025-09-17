@@ -26,7 +26,7 @@ import erpnext
 from erpnext.accounts.doctype.accounting_dimension.accounting_dimension import (
 	get_accounting_dimensions,
 )
-from erpnext.accounts.utils import get_fiscal_year
+from erpnext.accounts.utils import get_advance_payment_doctypes, get_fiscal_year
 
 from hrms.payroll.doctype.salary_slip.salary_slip_loan_utils import if_lending_app_installed
 from hrms.payroll.doctype.salary_withholding.salary_withholding import link_bank_entry_in_salary_withholdings
@@ -381,7 +381,9 @@ class PayrollEntry(Document):
 						)
 					else:
 						salary_component_account = self.get_salary_component_account(item.salary_component)
-						account_type = frappe.get_value("Account", salary_component_account, "account_type")
+						account_type = frappe.get_cached_value(
+							"Account", salary_component_account, "account_type"
+						)
 						if account_type in ["Receivable", "Payable"]:
 							self._recivable_payable_account.append(
 								{
@@ -392,6 +394,9 @@ class PayrollEntry(Document):
 									"entry_type": "credit" if component_type == "deductions" else "debit",
 									"reference_type": item.reference_type,
 									"reference_name": item.reference_name,
+									"is_advance": "Yes"
+									if item.reference_type in get_advance_payment_doctypes()
+									else "No",
 								}
 							)
 						else:
@@ -501,6 +506,7 @@ class PayrollEntry(Document):
 				party=entry.get("employee"),
 				reference_type=entry.get("reference_type"),
 				reference_name=entry.get("reference_name"),
+				is_advance=entry.get("is_advance"),
 			)
 
 		return payable_amount
