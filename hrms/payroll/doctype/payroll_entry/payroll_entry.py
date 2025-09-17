@@ -385,7 +385,7 @@ class PayrollEntry(Document):
 							"Account", salary_component_account, "account_type"
 						)
 						if account_type in ["Receivable", "Payable"]:
-							self._recivable_payable_account.append(
+							self._receivable_payable_entries.append(
 								{
 									"employee": item.employee,
 									"account": salary_component_account,
@@ -482,7 +482,7 @@ class PayrollEntry(Document):
 
 		return payable_amount
 
-	def set_accounting_entries_for_recivable_payable(
+	def set_accounting_entries_for_receivable_payables(
 		self,
 		accounts: list,
 		currencies: list,
@@ -491,7 +491,7 @@ class PayrollEntry(Document):
 		precision: int,
 		payable_amount: float,
 	):
-		for entry in self._recivable_payable_account:
+		for entry in self._receivable_payable_entries:
 			payable_amount = self.get_accounting_entries_and_payable_amount(
 				entry.get("account"),
 				entry.get("cost_center"),
@@ -586,7 +586,7 @@ class PayrollEntry(Document):
 		)
 		self.employee_based_payroll_payable_entries = {}
 		self._advance_deduction_entries = []
-		self._recivable_payable_account = []
+		self._receivable_payable_entries = []
 
 		earnings = (
 			self.get_salary_component_total(
@@ -633,7 +633,7 @@ class PayrollEntry(Document):
 				payable_amount,
 			)
 
-			payable_amount = self.set_accounting_entries_for_recivable_payable(
+			payable_amount = self.set_accounting_entries_for_receivable_payables(
 				accounts,
 				currencies,
 				company_currency,
