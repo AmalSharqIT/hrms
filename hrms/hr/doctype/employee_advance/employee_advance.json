@@ -46,6 +46,7 @@
    "options": "HR-EAD-.YYYY.-"
   },
   {
+   "default": "eval:(frappe.boot.user.employee)",
    "fieldname": "employee",
    "fieldtype": "Link",
    "in_list_view": 1,
