@@ -116,6 +116,7 @@
    "reqd": 1
   },
   {
+   "default": "eval:(frappe.boot.user.employee)",
    "fieldname": "raised_by",
    "fieldtype": "Link",
    "label": "Raised By",
