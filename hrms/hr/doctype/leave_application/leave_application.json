@@ -42,11 +42,11 @@
   {
    "fieldname": "naming_series",
    "fieldtype": "Select",
+   "hidden": 1,
    "label": "Series",
    "no_copy": 1,
    "options": "HR-LAP-.YYYY.-",
    "print_hide": 1,
-   "reqd": 1,
    "set_only_once": 1
   },
   {
@@ -223,6 +223,7 @@
    "allow_on_submit": 1,
    "fieldname": "letter_head",
    "fieldtype": "Link",
+   "hidden": 1,
    "ignore_user_permissions": 1,
    "label": "Letter Head",
    "options": "Letter Head",
@@ -232,6 +233,7 @@
    "allow_on_submit": 1,
    "fieldname": "color",
    "fieldtype": "Color",
+   "hidden": 1,
    "label": "Color",
    "print_hide": 1
   },

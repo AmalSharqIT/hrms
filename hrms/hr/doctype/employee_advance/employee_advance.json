@@ -42,6 +42,7 @@
   {
    "fieldname": "naming_series",
    "fieldtype": "Select",
+   "hidden": 1,
    "label": "Series",
    "options": "HR-EAD-.YYYY.-"
   },

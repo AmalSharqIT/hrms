@@ -47,6 +47,7 @@
    "fieldtype": "Column Break"
   },
   {
+   "default": "now",
    "fieldname": "date",
    "fieldtype": "Date",
    "in_list_view": 1,
