@@ -57,11 +57,11 @@
   {
    "fieldname": "naming_series",
    "fieldtype": "Select",
+   "hidden": 1,
    "label": "Series",
    "no_copy": 1,
    "options": "HR-EXP-.YYYY.-",
    "print_hide": 1,
-   "reqd": 1,
    "set_only_once": 1
   },
   {
@@ -383,6 +383,7 @@
    "collapsible_depends_on": "eval:doc.taxes?.length",
    "fieldname": "taxes_and_charges_sb",
    "fieldtype": "Section Break",
+   "hidden": 1,
    "label": "Taxes & Charges",
    "options": "Simple"
   }
