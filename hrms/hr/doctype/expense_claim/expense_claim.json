@@ -108,6 +108,7 @@
   },
   {
    "default": "Draft",
+   "depends_on": "eval:(frappe.model.can_submit(\"Expense Claim\"))",
    "fieldname": "approval_status",
    "fieldtype": "Select",
    "label": "Approval Status",
@@ -187,6 +188,7 @@
   {
    "fieldname": "task",
    "fieldtype": "Link",
+   "hidden": 1,
    "label": "Task",
    "options": "Task",
    "remember_last_selected_value": 1
@@ -358,11 +360,13 @@
    "fieldtype": "Column Break"
   },
   {
+   "depends_on": "eval:(frappe.model.can_submit(\"Expense Claim\"))",
    "fieldname": "accounting_details_tab",
    "fieldtype": "Tab Break",
    "label": "Accounting"
   },
   {
+   "depends_on": "eval:(frappe.model.can_submit(\"Expense Claim\"))",
    "fieldname": "more_info_tab",
    "fieldtype": "Tab Break",
    "label": "More Info"
