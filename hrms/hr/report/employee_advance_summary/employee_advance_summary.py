@@ -52,7 +52,7 @@ def get_columns():
 			"options": "Employee",
 			"width": 120,
 		},
-		{"label": _("Employee Name"), "fieldtype": "Data", "fieldname": "employee_name", "width": 120},
+		{"label": _("Employee Name"), "fieldname": "employee_name", "fieldtype": "Data", "width": 120},
 		{
 			"label": _("Company"),
 			"fieldname": "company",
