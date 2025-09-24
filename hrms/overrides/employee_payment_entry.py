@@ -266,7 +266,7 @@ def get_reference_details_for_employee(
 		if payment_type == "Pay":
 			outstanding_amount = flt(ref_doc.loan_amount) - flt(ref_doc.paid_amount)
 		else:
-			outstanding_amount = flt(ref_doc.paid_amount) - flt(ref_doc.return_amount)
+			outstanding_amount = flt(ref_doc.paid_amount) - flt(ref_doc.returned_amount)
 		if party_account_currency != ref_doc.currency:
 			outstanding_amount = flt(outstanding_amount) * flt(exchange_rate)
 	elif reference_doctype == "Gratuity":
