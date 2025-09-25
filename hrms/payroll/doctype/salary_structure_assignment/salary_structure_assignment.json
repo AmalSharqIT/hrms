@@ -289,6 +289,10 @@
    "permlevel": 9,
    "read": 1,
    "role": "HR Manager"
+  },
+  {
+   "read": 1,
+   "role": "Employee"
   }
  ],
  "search_fields": "employee_name, salary_structure",
