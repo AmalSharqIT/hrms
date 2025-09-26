@@ -26,7 +26,7 @@ import erpnext
 from erpnext.accounts.doctype.accounting_dimension.accounting_dimension import (
 	get_accounting_dimensions,
 )
-from erpnext.accounts.utils import get_fiscal_year
+from erpnext.accounts.utils import get_advance_payment_doctypes, get_fiscal_year
 
 from hrms.payroll.doctype.salary_slip.salary_slip_loan_utils import if_lending_app_installed
 from hrms.payroll.doctype.salary_withholding.salary_withholding import link_bank_entry_in_salary_withholdings
@@ -337,6 +337,8 @@ class PayrollEntry(Document):
 					ssd.amount,
 					ssd.parentfield,
 					ssd.additional_salary,
+					ssd.reference_type,
+					ssd.reference_name,
 					ss.salary_structure,
 					ss.employee,
 				)
@@ -378,8 +380,28 @@ class PayrollEntry(Document):
 							item, amount_against_cost_center, cost_center, employee_advance
 						)
 					else:
-						key = (item.salary_component, cost_center)
-						component_dict[key] = component_dict.get(key, 0) + amount_against_cost_center
+						salary_component_account = self.get_salary_component_account(item.salary_component)
+						account_type = frappe.get_cached_value(
+							"Account", salary_component_account, "account_type"
+						)
+						if account_type in ["Receivable", "Payable"]:
+							self._receivable_payable_entries.append(
+								{
+									"employee": item.employee,
+									"account": salary_component_account,
+									"amount": amount_against_cost_center,
+									"cost_center": cost_center,
+									"entry_type": "credit" if component_type == "deductions" else "debit",
+									"reference_type": item.reference_type,
+									"reference_name": item.reference_name,
+									"is_advance": "Yes"
+									if item.reference_type in get_advance_payment_doctypes()
+									else "No",
+								}
+							)
+						else:
+							key = (item.salary_component, cost_center)
+							component_dict[key] = component_dict.get(key, 0) + amount_against_cost_center
 
 					if employee_wise_accounting_enabled:
 						self.set_employee_based_payroll_payable_entries(
@@ -460,6 +482,35 @@ class PayrollEntry(Document):
 
 		return payable_amount
 
+	def set_accounting_entries_for_receivable_payables(
+		self,
+		accounts: list,
+		currencies: list,
+		company_currency: str,
+		accounting_dimensions: list,
+		precision: int,
+		payable_amount: float,
+	):
+		for entry in self._receivable_payable_entries:
+			payable_amount = self.get_accounting_entries_and_payable_amount(
+				entry.get("account"),
+				entry.get("cost_center"),
+				entry.get("amount"),
+				currencies,
+				company_currency,
+				payable_amount,
+				accounting_dimensions,
+				precision,
+				entry_type=entry.get("entry_type"),
+				accounts=accounts,
+				party=entry.get("employee"),
+				reference_type=entry.get("reference_type"),
+				reference_name=entry.get("reference_name"),
+				is_advance=entry.get("is_advance"),
+			)
+
+		return payable_amount
+
 	def set_employee_based_payroll_payable_entries(
 		self, component_type, employee, amount, salary_structure=None
 	):
@@ -535,6 +586,7 @@ class PayrollEntry(Document):
 		)
 		self.employee_based_payroll_payable_entries = {}
 		self._advance_deduction_entries = []
+		self._receivable_payable_entries = []
 
 		earnings = (
 			self.get_salary_component_total(
@@ -573,6 +625,15 @@ class PayrollEntry(Document):
 			)
 
 			payable_amount = self.set_accounting_entries_for_advance_deductions(
+				accounts,
+				currencies,
+				company_currency,
+				accounting_dimensions,
+				precision,
+				payable_amount,
+			)
+
+			payable_amount = self.set_accounting_entries_for_receivable_payables(
 				accounts,
 				currencies,
 				company_currency,
@@ -865,7 +926,7 @@ class PayrollEntry(Document):
 			.on(je.name == jea.parent)
 			.select(je.name)
 			.where(
-				(je.voucher_type == "Bank Entry")
+				((je.voucher_type == "Bank Entry") | (je.voucher_type == "Cash Entry"))
 				& (jea.reference_name == self.name)
 				& (jea.reference_type == "Payroll Entry")
 			)
@@ -1092,7 +1153,9 @@ class PayrollEntry(Document):
 		return self.make_journal_entry(
 			accounts,
 			currencies,
-			voucher_type="Bank Entry",
+			voucher_type="Bank Entry"
+			if frappe.get_cached_value("Account", self.payment_account, "account_type") == "Bank"
+			else "Cash Entry",
 			user_remark=_("Payment of {0} from {1} to {2}").format(
 				_(user_remark), self.start_date, self.end_date
 			),
