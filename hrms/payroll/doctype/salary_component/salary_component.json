@@ -292,13 +292,17 @@
    "print": 1,
    "read": 1,
    "report": 1,
-   "role": "HR User",
+   "role": "HR Manager",
    "share": 1,
    "write": 1
   },
   {
    "read": 1,
    "role": "Employee"
+  },
+  {
+   "read": 1,
+   "role": "HR User"
   }
  ],
  "row_format": "Dynamic",
