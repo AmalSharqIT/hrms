@@ -194,7 +194,8 @@
    "fieldname": "payroll_payable_account",
    "fieldtype": "Link",
    "label": "Payroll Payable Account",
-   "options": "Account"
+   "options": "Account",
+   "read_only": 1
   },
   {
    "collapsible": 1,
