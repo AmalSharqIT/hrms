@@ -57,9 +57,9 @@ frappe.ui.form.on("Payment Entry", {
 
 			if (child.reference_doctype == "Employee Loan") {
 				if (frm.doc.payment_type == "Pay") {
-					filters["status"] = ["in", ["Unpaid", "Partly Paid"]];
+					filters["status"] = ["in", ["Approved", "Partially Disbursed"]];
 				} else if (frm.doc.payment_type == "Receive") {
-					filters["status"] = ["in", ["Paid", "Partly Paid"]];
+					filters["status"] = ["in", ["Disbursed", "Partially Disbursed"]];
 				}
 			}
 
