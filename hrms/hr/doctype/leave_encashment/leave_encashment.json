@@ -21,13 +21,13 @@
   "actual_encashable_days",
   "encashment_days",
   "encashment_amount",
+  "currency",
   "accounting_section",
   "pay_via_payment_entry",
   "expense_account",
   "payable_account",
   "column_break_vdnb",
   "posting_date",
-  "currency",
   "paid_amount",
   "accounting_dimensions_section",
   "cost_center",
@@ -200,6 +200,7 @@
   {
    "fieldname": "accounting_section",
    "fieldtype": "Section Break",
+   "hidden": 1,
    "label": "Accounting"
   },
   {
