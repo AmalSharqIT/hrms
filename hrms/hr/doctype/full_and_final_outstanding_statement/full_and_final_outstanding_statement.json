@@ -5,15 +5,15 @@
  "editable_grid": 1,
  "engine": "InnoDB",
  "field_order": [
+  "amount",
+  "status",
+  "remark",
+  "column_break_4",
   "component",
   "reference_document_type",
   "reference_document",
   "account",
-  "paid_via_salary_slip",
-  "column_break_4",
-  "amount",
-  "status",
-  "remark"
+  "paid_via_salary_slip"
  ],
  "fields": [
   {
@@ -87,8 +87,7 @@
    "fieldname": "paid_via_salary_slip",
    "fieldtype": "Check",
    "hidden": 1,
-   "label": "Paid via Salary Slip",
-   "read_only": 1
+   "label": "Paid via Salary Slip"
   }
  ],
  "index_web_pages_for_search": 1,

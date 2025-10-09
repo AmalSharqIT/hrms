@@ -32,7 +32,7 @@
   "total_asset_recovery_cost",
   "totals_section",
   "total_payable_amount",
-  "balance_employee",
+  "employee_balance",
   "column_break_21",
   "total_receivable_amount"
  ],
@@ -196,8 +196,7 @@
    "fieldtype": "Link",
    "label": "Currency",
    "options": "Currency",
-   "read_only": 1,
-   "reqd": 1
+   "read_only": 1
   },
   {
    "fieldname": "mode_of_payment",
@@ -216,9 +215,9 @@
    "options": "Full and Final Statement Employee"
   },
   {
-   "fieldname": "balance_employee",
+   "fieldname": "employee_balance",
    "fieldtype": "Currency",
-   "label": "Balance Employee",
+   "label": "Employee Balance",
    "options": "currency",
    "read_only": 1
   }
