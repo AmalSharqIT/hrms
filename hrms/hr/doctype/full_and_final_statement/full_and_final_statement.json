@@ -21,8 +21,8 @@
   "column_break_4",
   "designation",
   "department",
-  "review_section",
-  "full_and_final_statement_employee",
+  "exit_formalities_checklist_section",
+  "checklist",
   "section_break_8",
   "payables",
   "section_break_10",
@@ -205,14 +205,14 @@
    "options": "Mode of Payment"
   },
   {
-   "fieldname": "review_section",
+   "fieldname": "exit_formalities_checklist_section",
    "fieldtype": "Section Break",
-   "label": "Review"
+   "label": "Exit Formalities Checklist"
   },
   {
-   "fieldname": "full_and_final_statement_employee",
+   "fieldname": "checklist",
    "fieldtype": "Table",
-   "options": "Full and Final Statement Employee"
+   "options": "Full and Final Statement Checklist"
   },
   {
    "fieldname": "employee_balance",
