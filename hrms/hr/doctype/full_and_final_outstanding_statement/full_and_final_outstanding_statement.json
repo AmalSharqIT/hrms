@@ -5,15 +5,15 @@
  "editable_grid": 1,
  "engine": "InnoDB",
  "field_order": [
-  "amount",
-  "status",
-  "remark",
-  "column_break_4",
   "component",
   "reference_document_type",
   "reference_document",
   "account",
-  "paid_via_salary_slip"
+  "paid_via_salary_slip",
+  "column_break_4",
+  "amount",
+  "status",
+  "remark"
  ],
  "fields": [
   {
