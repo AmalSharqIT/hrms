@@ -1,6 +1,6 @@
 {
   "charts": [],
-  "content": "[{\"id\":\"4YvaSbJAGt\",\"type\":\"header\",\"data\":{\"text\":\"<span class=\\\"h4\\\"><b>Your Shortcuts</b></span>\",\"col\":12}},{\"id\":\"ag7v1FctEa\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Employee Onboarding\",\"col\":3}},{\"id\":\"LIOCIPvYEF\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Employee Separation\",\"col\":3}},{\"id\":\"v4c9BPt0VX\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Employee Lifecycle Dashboard\",\"col\":3}},{\"id\":\"eKr5EpNmJA\",\"type\":\"spacer\",\"data\":{\"col\":12}},{\"id\":\"ungRtoQK8-\",\"type\":\"quick_list\",\"data\":{\"quick_list_name\":\"New Hires (This Month)\",\"col\":4}},{\"id\":\"tdtMNaKfGX\",\"type\":\"quick_list\",\"data\":{\"quick_list_name\":\"Exits (This Month)\",\"col\":4}},{\"id\":\"tBDVz1R1Nq\",\"type\":\"quick_list\",\"data\":{\"quick_list_name\":\"Trainings (This Week)\",\"col\":4}},{\"id\":\"-UWYFUUcwx\",\"type\":\"spacer\",\"data\":{\"col\":12}},{\"id\":\"14rKRrXYEk\",\"type\":\"header\",\"data\":{\"text\":\"<span class=\\\"h4\\\"><b>Masters &amp; Reports</b></span>\",\"col\":12}},{\"id\":\"t7RiaD8iqU\",\"type\":\"card\",\"data\":{\"card_name\":\"Journey\",\"col\":4}},{\"id\":\"gsZu8tyUAg\",\"type\":\"card\",\"data\":{\"card_name\":\"Exit\",\"col\":4}},{\"id\":\"qZSJdYEIxa\",\"type\":\"card\",\"data\":{\"card_name\":\"Reports\",\"col\":4}}]",
+  "content": "[{\"id\":\"4YvaSbJAGt\",\"type\":\"header\",\"data\":{\"text\":\"<span class=\\\"h4\\\"><b>Your Shortcuts</b></span>\",\"col\":12}},{\"id\":\"v4c9BPt0VX\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Employee Lifecycle Dashboard\",\"col\":3}},{\"id\":\"eKr5EpNmJA\",\"type\":\"spacer\",\"data\":{\"col\":12}},{\"id\":\"ungRtoQK8-\",\"type\":\"quick_list\",\"data\":{\"quick_list_name\":\"New Hires (This Month)\",\"col\":4}},{\"id\":\"tdtMNaKfGX\",\"type\":\"quick_list\",\"data\":{\"quick_list_name\":\"Exits (This Month)\",\"col\":4}},{\"id\":\"-UWYFUUcwx\",\"type\":\"spacer\",\"data\":{\"col\":12}},{\"id\":\"14rKRrXYEk\",\"type\":\"header\",\"data\":{\"text\":\"<span class=\\\"h4\\\"><b>Masters &amp; Reports</b></span>\",\"col\":12}},{\"id\":\"t7RiaD8iqU\",\"type\":\"card\",\"data\":{\"card_name\":\"Journey\",\"col\":4}},{\"id\":\"gsZu8tyUAg\",\"type\":\"card\",\"data\":{\"card_name\":\"Exit\",\"col\":4}},{\"id\":\"qZSJdYEIxa\",\"type\":\"card\",\"data\":{\"card_name\":\"Reports\",\"col\":4}}]",
   "creation": "2022-08-20 14:06:34.309347",
   "custom_blocks": [],
   "docstatus": 0,
@@ -45,7 +45,7 @@
       "hidden": 0,
       "is_query_report": 0,
       "label": "Exit",
-      "link_count": 4,
+      "link_count": 1,
       "link_type": "DocType",
       "onboard": 0,
       "type": "Card Break"
@@ -53,39 +53,9 @@
     {
       "hidden": 0,
       "is_query_report": 0,
-      "label": "Employee Separation Template",
-      "link_count": 0,
-      "link_to": "Employee Separation Template",
-      "link_type": "DocType",
-      "onboard": 0,
-      "type": "Link"
-    },
-    {
-      "hidden": 0,
-      "is_query_report": 0,
-      "label": "Employee Separation",
-      "link_count": 0,
-      "link_to": "Employee Separation",
-      "link_type": "DocType",
-      "onboard": 0,
-      "type": "Link"
-    },
-    {
-      "hidden": 0,
-      "is_query_report": 0,
       "label": "Full and Final Statement",
       "link_count": 0,
       "link_to": "Full and Final Statement",
-      "link_type": "DocType",
-      "onboard": 0,
-      "type": "Link"
-    },
-    {
-      "hidden": 0,
-      "is_query_report": 0,
-      "label": "Exit Interview",
-      "link_count": 0,
-      "link_to": "Exit Interview",
       "link_type": "DocType",
       "onboard": 0,
       "type": "Link"
@@ -140,7 +110,7 @@
       "type": "Link"
     }
   ],
-  "modified": "2025-08-04",
+  "modified": "2025-10-24",
   "modified_by": "Administrator",
   "module": "HR",
   "name": "Employee Lifecycle",
@@ -158,11 +128,6 @@
       "document_type": "Employee",
       "label": "Exits (This Month)",
       "quick_list_filter": "{\"relieving_date\":[\"Timespan\",\"this month\"]}"
-    },
-    {
-      "document_type": "Training Event",
-      "label": "Trainings (This Week)",
-      "quick_list_filter": "{\"start_time\":[\"Timespan\",\"this week\"]}"
     }
   ],
   "roles": [
@@ -178,24 +143,6 @@
   ],
   "sequence_id": 6.0,
   "shortcuts": [
-    {
-      "color": "Orange",
-      "doc_view": "List",
-      "format": "{} Pending",
-      "label": "Employee Onboarding",
-      "link_to": "Employee Onboarding",
-      "stats_filter": "{\"boarding_status\":[\"=\",\"Pending\"]}",
-      "type": "DocType"
-    },
-    {
-      "color": "Orange",
-      "doc_view": "List",
-      "format": "{} Pending",
-      "label": "Employee Separation",
-      "link_to": "Employee Separation",
-      "stats_filter": "{\"boarding_status\":[\"=\",\"Pending\"]}",
-      "type": "DocType"
-    },
     {
       "color": "Grey",
       "doc_view": "List",

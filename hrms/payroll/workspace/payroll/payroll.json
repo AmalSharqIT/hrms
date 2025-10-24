@@ -5,7 +5,7 @@
       "label": "Outgoing Salary"
     }
   ],
-  "content": "[{\"id\":\"Aepwa15ss4\",\"type\":\"chart\",\"data\":{\"chart_name\":\"Outgoing Salary\",\"col\":12}},{\"id\":\"fbulPt-iwY\",\"type\":\"header\",\"data\":{\"text\":\"<span class=\\\"h4\\\"><b>Your Shortcuts</b></span>\",\"col\":12}},{\"id\":\"ZWbAPeAG02\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Payroll Dashboard\",\"col\":3}},{\"id\":\"3Kzx8re2lB\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Salary Register\",\"col\":3}},{\"id\":\"68gP7NJY7_\",\"type\":\"spacer\",\"data\":{\"col\":12}},{\"id\":\"LLCWGiASqO\",\"type\":\"card\",\"data\":{\"card_name\":\"Quick Links\",\"col\":4}},{\"id\":\"kpB4tKNTBN\",\"type\":\"card\",\"data\":{\"card_name\":\"Settings\",\"col\":4}}]",
+  "content": "[{\"id\":\"Aepwa15ss4\",\"type\":\"chart\",\"data\":{\"chart_name\":\"Outgoing Salary\",\"col\":12}},{\"id\":\"fbulPt-iwY\",\"type\":\"header\",\"data\":{\"text\":\"<span class=\\\"h4\\\"><b>Your Shortcuts</b></span>\",\"col\":12}},{\"id\":\"ZWbAPeAG02\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Payroll Dashboard\",\"col\":3}},{\"id\":\"3Kzx8re2lB\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Salary Register\",\"col\":3}},{\"id\":\"68gP7NJY7_\",\"type\":\"spacer\",\"data\":{\"col\":12}},{\"id\":\"LLCWGiASqO\",\"type\":\"card\",\"data\":{\"card_name\":\"Quick Links\",\"col\":4}}]",
   "creation": "2020-05-27 19:54:23.405607",
   "custom_blocks": [],
   "docstatus": 0,
@@ -45,28 +45,9 @@
       "link_type": "DocType",
       "onboard": 0,
       "type": "Link"
-    },
-    {
-      "hidden": 0,
-      "is_query_report": 0,
-      "label": "Settings",
-      "link_count": 1,
-      "link_type": "DocType",
-      "onboard": 0,
-      "type": "Card Break"
-    },
-    {
-      "hidden": 0,
-      "is_query_report": 0,
-      "label": "Payroll Settings",
-      "link_count": 0,
-      "link_to": "Payroll Settings",
-      "link_type": "DocType",
-      "onboard": 0,
-      "type": "Link"
     }
   ],
-  "modified": "2025-08-04",
+  "modified": "2025-10-24",
   "modified_by": "Administrator",
   "module": "Payroll",
   "name": "Payroll",

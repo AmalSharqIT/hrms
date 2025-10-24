@@ -90,7 +90,7 @@
       "hidden": 0,
       "is_query_report": 0,
       "label": "Attendance",
-      "link_count": 8,
+      "link_count": 6,
       "link_type": "DocType",
       "onboard": 0,
       "type": "Card Break"
@@ -103,16 +103,6 @@
       "link_to": "Attendance",
       "link_type": "DocType",
       "onboard": 1,
-      "type": "Link"
-    },
-    {
-      "hidden": 0,
-      "is_query_report": 0,
-      "label": "Attendance Request",
-      "link_count": 0,
-      "link_to": "Attendance Request",
-      "link_type": "DocType",
-      "onboard": 0,
       "type": "Link"
     },
     {
@@ -131,16 +121,6 @@
       "label": "Employee Attendance Tool",
       "link_count": 0,
       "link_to": "Employee Attendance Tool",
-      "link_type": "DocType",
-      "onboard": 0,
-      "type": "Link"
-    },
-    {
-      "hidden": 0,
-      "is_query_report": 0,
-      "label": "Upload Attendance",
-      "link_count": 0,
-      "link_to": "Upload Attendance",
       "link_type": "DocType",
       "onboard": 0,
       "type": "Link"
@@ -234,7 +214,7 @@
       "type": "Link"
     }
   ],
-  "modified": "2025-09-16",
+  "modified": "2025-10-24",
   "modified_by": "Administrator",
   "module": "HR",
   "name": "Shift & Attendance",
