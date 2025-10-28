@@ -24,7 +24,7 @@
   "section_break_overtime",
   "overtime_status",
   "approved_overtime_hours",
-  "reason_for_approval",
+  "overtime_note",
   "column_break_overtime",
   "start_overtime_hours",
   "end_overtime_hours",
@@ -311,9 +311,9 @@
   {
    "allow_on_submit": 1,
    "depends_on": "eval:doc.overtime_status=='Approved'",
-   "fieldname": "reason_for_approval",
+   "fieldname": "overtime_note",
    "fieldtype": "Data",
-   "label": "Reason for Approval",
+   "label": "Overtime Note",
    "no_copy": 1,
    "read_only": 1
   }
