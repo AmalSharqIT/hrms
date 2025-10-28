@@ -310,7 +310,6 @@
   },
   {
    "allow_on_submit": 1,
-   "depends_on": "eval:doc.overtime_status=='Approved'",
    "fieldname": "overtime_note",
    "fieldtype": "Data",
    "label": "Overtime Note",
