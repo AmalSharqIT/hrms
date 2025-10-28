@@ -24,6 +24,7 @@
   "section_break_overtime",
   "overtime_status",
   "approved_overtime_hours",
+  "reason_for_approval",
   "column_break_overtime",
   "start_overtime_hours",
   "end_overtime_hours",
@@ -306,6 +307,15 @@
    "fieldtype": "Check",
    "hidden": 1,
    "label": "modify_half_day_status"
+  },
+  {
+   "allow_on_submit": 1,
+   "depends_on": "eval:doc.overtime_status=='Approved'",
+   "fieldname": "reason_for_approval",
+   "fieldtype": "Data",
+   "label": "Reason for Approval",
+   "no_copy": 1,
+   "read_only": 1
   }
  ],
  "icon": "fa fa-ok",
