@@ -218,7 +218,7 @@
       "hidden": 0,
       "is_query_report": 0,
       "label": "Key Reports",
-      "link_count": 7,
+      "link_count": 6,
       "link_type": "DocType",
       "onboard": 0,
       "type": "Card Break"
@@ -230,17 +230,6 @@
       "label": "Monthly Attendance Sheet",
       "link_count": 0,
       "link_to": "Monthly Attendance Sheet",
-      "link_type": "Report",
-      "onboard": 0,
-      "type": "Link"
-    },
-    {
-      "dependencies": "Staffing Plan",
-      "hidden": 0,
-      "is_query_report": 1,
-      "label": "Recruitment Analytics",
-      "link_count": 0,
-      "link_to": "Recruitment Analytics",
       "link_type": "Report",
       "onboard": 0,
       "type": "Link"
@@ -350,7 +339,7 @@
       "type": "Link"
     }
   ],
-  "modified": "2025-10-24",
+  "modified": "2025-11-01",
   "modified_by": "Administrator",
   "module": "HR",
   "name": "HR",
