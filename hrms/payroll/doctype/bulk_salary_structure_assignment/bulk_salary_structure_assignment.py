@@ -56,6 +56,11 @@ class BulkSalaryStructureAssignment(Document):
 			.select(
 				Coalesce(Grade.default_base_pay, 0).as_("base"),
 				ConstantColumn(0).as_("variable"),
+				ConstantColumn(0).as_("monthly_salary"),
+				ConstantColumn(0).as_("hourly_salary"),
+				ConstantColumn(0).as_("withholding"),
+				ConstantColumn(0).as_("overtime_ratio"),
+				ConstantColumn(0).as_("round_salary"),
 			)
 		)
 		return query.run(as_dict=True)
@@ -92,6 +97,11 @@ class BulkSalaryStructureAssignment(Document):
 					from_date=self.from_date,
 					base=d["base"],
 					variable=d["variable"],
+					monthly_salary=d["monthly_salary"],
+					hourly_salary=d["hourly_salary"],
+					withholding=d["withholding"],
+					overtime_ratio=d["overtime_ratio"],
+					round_salary=d["round_salary"],
 					income_tax_slab=self.income_tax_slab,
 				)
 			except Exception:

@@ -1,5 +1,23 @@
 // Copyright (c) 2024, Frappe Technologies Pvt. Ltd. and contributors
 // For license information, please see license.txt
+FIELD = [
+	"Monthly Salary",
+	"Hourly Salary",
+	"Withholding",
+	"Overtime Ratio",
+	"Round Salary",
+	"Base",
+	"Variable",
+];
+FIELD_NAME = [
+	"monthly_salary",
+	"hourly_salary",
+	"withholding",
+	"overtime_ratio",
+	"round_salary",
+	"base",
+	"variable",
+];
 
 frappe.ui.form.on("Bulk Salary Structure Assignment", {
 	setup(frm) {
@@ -116,7 +134,7 @@ frappe.ui.form.on("Bulk Salary Structure Assignment", {
 				: "Please select From Date.",
 		);
 		const get_editor = (colIndex, rowIndex, value, parent, column) => {
-			if (!["base", "variable"].includes(column.name)) return;
+			if (!FIELD_NAME.includes(column.name)) return;
 			const $input = document.createElement("input");
 			$input.className = "dt-input h-100";
 			$input.type = "number";
@@ -184,6 +202,31 @@ frappe.ui.form.on("Bulk Salary Structure Assignment", {
 				id: "variable",
 				content: __("Variable"),
 			},
+			{
+				name: "monthly_salary",
+				id: "monthly_salary",
+				content: __("Monthly Salary"),
+			},
+			{
+				name: "hourly_salary",
+				id: "hourly_salary",
+				content: __("Hourly Salary"),
+			},
+			{
+				name: "withholding",
+				id: "withholding",
+				content: __("Withholding"),
+			},
+			{
+				name: "overtime_ratio",
+				id: "overtime_ratio",
+				content: __("Overtime Ratio"),
+			},
+			{
+				name: "round_salary",
+				id: "round_salary",
+				content: __("Round Salary"),
+			},
 		].map((x) => ({
 			...x,
 			dropdown: false,
@@ -192,7 +235,7 @@ frappe.ui.form.on("Bulk Salary Structure Assignment", {
 	},
 
 	render_update_button(frm) {
-		["Base", "Variable"].forEach((d) =>
+		FIELD.forEach((d) =>
 			frm.add_custom_button(
 				__(d),
 				function () {
@@ -232,7 +275,7 @@ frappe.ui.form.on("Bulk Salary Structure Assignment", {
 	handle_row_check(frm) {
 		frm.checked_rows_indexes = frm.employees_datatable.rowmanager.getCheckedRows();
 		if (!frm.checked_rows_indexes.length && frm.update_button_rendered) {
-			["Base", "Variable"].forEach((d) => frm.remove_custom_button(__(d), __("Update")));
+			FIELD.forEach((d) => frm.remove_custom_button(__(d), __("Update")));
 			frm.update_button_rendered = false;
 		} else if (frm.checked_rows_indexes.length && !frm.update_button_rendered)
 			frm.trigger("render_update_button");
@@ -246,7 +289,7 @@ frappe.ui.form.on("Bulk Salary Structure Assignment", {
 		frm.checked_rows_indexes.forEach((idx) => {
 			const row_content = {};
 			rows[idx].forEach((cell) => {
-				if (["employee", "base", "variable"].includes(cell.column.name))
+				if ([...FIELD_NAME, "employee"].includes(cell.column.name))
 					row_content[cell.column.name] = cell.content;
 			});
 			checked_rows_content.push(row_content);
