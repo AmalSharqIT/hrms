@@ -5,7 +5,7 @@
       "label": "Hiring vs Attrition Count"
     }
   ],
-  "content": "[{\"id\":\"clLbTyeQoR\",\"type\":\"chart\",\"data\":{\"chart_name\":\"Hiring vs Attrition Count\",\"col\":12}},{\"id\":\"dyIbVghi95\",\"type\":\"header\",\"data\":{\"text\":\"<span class=\\\"h4\\\"><b>Your Shortcuts</b></span>\",\"col\":12}},{\"id\":\"2dpDnki5lh\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Employee\",\"col\":3}},{\"id\":\"0hspuP37Ya\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Leave Application\",\"col\":3}},{\"id\":\"Zo0LBM5iCL\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"HR Dashboard\",\"col\":3}},{\"id\":\"8xYsyvGPK4\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Recruitment Dashboard\",\"col\":3}},{\"id\":\"gVc3nn6ou_\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Employee Lifecycle Dashboard\",\"col\":3}},{\"id\":\"OVR2bNjzI-\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Attendance Dashboard\",\"col\":3}},{\"id\":\"sDTmpzQIMw\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Expense Claims Dashboard\",\"col\":3}},{\"id\":\"IcsNiKPukR\",\"type\":\"spacer\",\"data\":{\"col\":12}},{\"id\":\"qxmg-9Tg2a\",\"type\":\"header\",\"data\":{\"text\":\"<span class=\\\"h4\\\"><b>Reports &amp; Masters</b></span>\",\"col\":12}},{\"id\":\"xCYOZ1dvkC\",\"type\":\"card\",\"data\":{\"card_name\":\"Setup\",\"col\":4}},{\"id\":\"yaxfAHgyL5\",\"type\":\"card\",\"data\":{\"card_name\":\"Employee\",\"col\":4}},{\"id\":\"0UjT-cEaYL\",\"type\":\"card\",\"data\":{\"card_name\":\"Leaves\",\"col\":4}},{\"id\":\"MxVzYK-vVy\",\"type\":\"card\",\"data\":{\"card_name\":\"Attendance\",\"col\":4}},{\"id\":\"Xirqr78QPv\",\"type\":\"card\",\"data\":{\"card_name\":\"Expense Claim\",\"col\":4}},{\"id\":\"rGrkxhyxFL\",\"type\":\"card\",\"data\":{\"card_name\":\"Key Reports\",\"col\":4}},{\"id\":\"_B5S51BB4R\",\"type\":\"card\",\"data\":{\"card_name\":\"Other Reports\",\"col\":4}},{\"id\":\"Vtmx3FfGvC\",\"type\":\"card\",\"data\":{\"card_name\":\"ZK Device\",\"col\":4}}]",
+  "content": "[{\"id\":\"clLbTyeQoR\",\"type\":\"chart\",\"data\":{\"chart_name\":\"Hiring vs Attrition Count\",\"col\":12}},{\"id\":\"dyIbVghi95\",\"type\":\"header\",\"data\":{\"text\":\"<span class=\\\"h4\\\"><b>Your Shortcuts</b></span>\",\"col\":12}},{\"id\":\"2dpDnki5lh\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Employee\",\"col\":3}},{\"id\":\"0hspuP37Ya\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Leave Application\",\"col\":3}},{\"id\":\"Zo0LBM5iCL\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"HR Dashboard\",\"col\":3}},{\"id\":\"gVc3nn6ou_\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Employee Lifecycle Dashboard\",\"col\":3}},{\"id\":\"OVR2bNjzI-\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Attendance Dashboard\",\"col\":3}},{\"id\":\"sDTmpzQIMw\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Expense Claims Dashboard\",\"col\":3}},{\"id\":\"IcsNiKPukR\",\"type\":\"spacer\",\"data\":{\"col\":12}},{\"id\":\"qxmg-9Tg2a\",\"type\":\"header\",\"data\":{\"text\":\"<span class=\\\"h4\\\"><b>Reports &amp; Masters</b></span>\",\"col\":12}},{\"id\":\"xCYOZ1dvkC\",\"type\":\"card\",\"data\":{\"card_name\":\"Setup\",\"col\":4}},{\"id\":\"yaxfAHgyL5\",\"type\":\"card\",\"data\":{\"card_name\":\"Employee\",\"col\":4}},{\"id\":\"0UjT-cEaYL\",\"type\":\"card\",\"data\":{\"card_name\":\"Leaves\",\"col\":4}},{\"id\":\"MxVzYK-vVy\",\"type\":\"card\",\"data\":{\"card_name\":\"Attendance\",\"col\":4}},{\"id\":\"Xirqr78QPv\",\"type\":\"card\",\"data\":{\"card_name\":\"Expense Claim\",\"col\":4}},{\"id\":\"rGrkxhyxFL\",\"type\":\"card\",\"data\":{\"card_name\":\"Key Reports\",\"col\":4}}]",
   "creation": "2020-03-02 15:48:58.322521",
   "custom_blocks": [],
   "docstatus": 0,
@@ -21,21 +21,10 @@
       "hidden": 0,
       "is_query_report": 0,
       "label": "Setup",
-      "link_count": 5,
+      "link_count": 4,
       "link_type": "DocType",
       "onboard": 0,
       "type": "Card Break"
-    },
-    {
-      "dependencies": "",
-      "hidden": 0,
-      "is_query_report": 0,
-      "label": "Company",
-      "link_count": 0,
-      "link_to": "Company",
-      "link_type": "DocType",
-      "onboard": 0,
-      "type": "Link"
     },
     {
       "dependencies": "",
@@ -130,7 +119,7 @@
       "hidden": 0,
       "is_query_report": 0,
       "label": "Attendance",
-      "link_count": 5,
+      "link_count": 6,
       "link_type": "DocType",
       "onboard": 0,
       "type": "Card Break"
@@ -178,6 +167,16 @@
     {
       "hidden": 0,
       "is_query_report": 1,
+      "label": "Employee Presence Monitor",
+      "link_count": 0,
+      "link_to": "Employee Presence Monitor",
+      "link_type": "Report",
+      "onboard": 0,
+      "type": "Link"
+    },
+    {
+      "hidden": 0,
+      "is_query_report": 1,
       "label": "Guard Team Checker",
       "link_count": 0,
       "link_to": "Guard Team Checker",
@@ -218,7 +217,7 @@
       "hidden": 0,
       "is_query_report": 0,
       "label": "Key Reports",
-      "link_count": 6,
+      "link_count": 5,
       "link_type": "DocType",
       "onboard": 0,
       "type": "Card Break"
@@ -277,69 +276,9 @@
       "link_type": "Report",
       "onboard": 0,
       "type": "Link"
-    },
-    {
-      "hidden": 0,
-      "is_query_report": 1,
-      "label": "Employee Exits",
-      "link_count": 0,
-      "link_to": "Employee Exits",
-      "link_type": "Report",
-      "onboard": 0,
-      "type": "Link"
-    },
-    {
-      "hidden": 0,
-      "is_query_report": 0,
-      "label": "Other Reports",
-      "link_count": 2,
-      "link_type": "DocType",
-      "onboard": 0,
-      "type": "Card Break"
-    },
-    {
-      "dependencies": "Employee",
-      "hidden": 0,
-      "is_query_report": 1,
-      "label": "Employee Information",
-      "link_count": 0,
-      "link_to": "Employee Information",
-      "link_type": "Report",
-      "onboard": 0,
-      "type": "Link"
-    },
-    {
-      "dependencies": "Employee",
-      "hidden": 0,
-      "is_query_report": 1,
-      "label": "Employee Birthday",
-      "link_count": 0,
-      "link_to": "Employee Birthday",
-      "link_type": "Report",
-      "onboard": 0,
-      "type": "Link"
-    },
-    {
-      "hidden": 0,
-      "is_query_report": 0,
-      "label": "ZK Device",
-      "link_count": 1,
-      "link_type": "DocType",
-      "onboard": 0,
-      "type": "Card Break"
-    },
-    {
-      "hidden": 0,
-      "is_query_report": 0,
-      "label": "ZK Device",
-      "link_count": 0,
-      "link_to": "ZK Device",
-      "link_type": "DocType",
-      "onboard": 0,
-      "type": "Link"
     }
   ],
-  "modified": "2025-11-01",
+  "modified": "2025-11-02",
   "modified_by": "Administrator",
   "module": "HR",
   "name": "HR",
@@ -382,13 +321,6 @@
       "label": "HR Dashboard",
       "link_to": "Human Resource",
       "stats_filter": "{\n    \"status\": \"Open\"\n}",
-      "type": "Dashboard"
-    },
-    {
-      "color": "Grey",
-      "doc_view": "List",
-      "label": "Recruitment Dashboard",
-      "link_to": "Recruitment",
       "type": "Dashboard"
     },
     {

@@ -5,7 +5,7 @@
       "label": "Attendance Count"
     }
   ],
-  "content": "[{\"id\":\"r0a57m9-Yx\",\"type\":\"chart\",\"data\":{\"chart_name\":\"Attendance Count\",\"col\":12}},{\"id\":\"9_DQbkhJgn\",\"type\":\"spacer\",\"data\":{\"col\":12}},{\"id\":\"NWHR4zbbZW\",\"type\":\"header\",\"data\":{\"text\":\"<span class=\\\"h4\\\"><b>Your Shortcuts</b></span>\",\"col\":12}},{\"id\":\"JS3JgWQp49\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Employee Checkin\",\"col\":3}},{\"id\":\"S0DZ1mFw9f\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Attendance\",\"col\":3}},{\"id\":\"Llf2uaX7x4\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Attendance Dashboard\",\"col\":3}},{\"id\":\"FwqPdfwjlv\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Roster\",\"col\":3}},{\"id\":\"fNKKY2A-ON\",\"type\":\"spacer\",\"data\":{\"col\":12}},{\"id\":\"mYz7o2zWVf\",\"type\":\"header\",\"data\":{\"text\":\"<span style=\\\"font-size: 18px;\\\"><b>Masters &amp; Reports</b></span>\",\"col\":12}},{\"id\":\"iBvYqY6Ul6\",\"type\":\"card\",\"data\":{\"card_name\":\"Shifts\",\"col\":4}},{\"id\":\"aCKU8VAUu8\",\"type\":\"card\",\"data\":{\"card_name\":\"Attendance\",\"col\":4}},{\"id\":\"WAO9X_IrfP\",\"type\":\"card\",\"data\":{\"card_name\":\"Reports\",\"col\":4}},{\"id\":\"N5l_REpH8r\",\"type\":\"card\",\"data\":{\"card_name\":\"ZK Device\",\"col\":4}}]",
+  "content": "[{\"id\":\"r0a57m9-Yx\",\"type\":\"chart\",\"data\":{\"chart_name\":\"Attendance Count\",\"col\":12}},{\"id\":\"9_DQbkhJgn\",\"type\":\"spacer\",\"data\":{\"col\":12}},{\"id\":\"NWHR4zbbZW\",\"type\":\"header\",\"data\":{\"text\":\"<span class=\\\"h4\\\"><b>Your Shortcuts</b></span>\",\"col\":12}},{\"id\":\"JS3JgWQp49\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Employee Checkin\",\"col\":3}},{\"id\":\"S0DZ1mFw9f\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Attendance\",\"col\":3}},{\"id\":\"Llf2uaX7x4\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Attendance Dashboard\",\"col\":3}},{\"id\":\"fNKKY2A-ON\",\"type\":\"spacer\",\"data\":{\"col\":12}},{\"id\":\"mYz7o2zWVf\",\"type\":\"header\",\"data\":{\"text\":\"<span style=\\\"font-size: 18px;\\\"><b>Masters &amp; Reports</b></span>\",\"col\":12}},{\"id\":\"iBvYqY6Ul6\",\"type\":\"card\",\"data\":{\"card_name\":\"Shifts\",\"col\":4}},{\"id\":\"aCKU8VAUu8\",\"type\":\"card\",\"data\":{\"card_name\":\"Attendance\",\"col\":4}},{\"id\":\"N5l_REpH8r\",\"type\":\"card\",\"data\":{\"card_name\":\"ZK Device\",\"col\":4}},{\"id\":\"WAO9X_IrfP\",\"type\":\"card\",\"data\":{\"card_name\":\"Reports\",\"col\":4}}]",
   "creation": "2022-08-20 15:50:06.598086",
   "custom_blocks": [],
   "docstatus": 0,
@@ -90,7 +90,7 @@
       "hidden": 0,
       "is_query_report": 0,
       "label": "Attendance",
-      "link_count": 6,
+      "link_count": 7,
       "link_type": "DocType",
       "onboard": 0,
       "type": "Card Break"
@@ -148,10 +148,39 @@
     {
       "hidden": 0,
       "is_query_report": 1,
+      "label": "Employee Presence Monitor",
+      "link_count": 0,
+      "link_to": "Employee Presence Monitor",
+      "link_type": "Report",
+      "onboard": 0,
+      "type": "Link"
+    },
+    {
+      "hidden": 0,
+      "is_query_report": 1,
       "label": "Guard Team Checker",
       "link_count": 0,
       "link_to": "Guard Team Checker",
       "link_type": "Report",
+      "onboard": 0,
+      "type": "Link"
+    },
+    {
+      "hidden": 0,
+      "is_query_report": 0,
+      "label": "ZK Device",
+      "link_count": 1,
+      "link_type": "DocType",
+      "onboard": 0,
+      "type": "Card Break"
+    },
+    {
+      "hidden": 0,
+      "is_query_report": 0,
+      "label": "ZK Device",
+      "link_count": 0,
+      "link_to": "ZK Device",
+      "link_type": "DocType",
       "onboard": 0,
       "type": "Link"
     },
@@ -183,28 +212,9 @@
       "link_type": "Report",
       "onboard": 0,
       "type": "Link"
-    },
-    {
-      "hidden": 0,
-      "is_query_report": 0,
-      "label": "ZK Device",
-      "link_count": 1,
-      "link_type": "DocType",
-      "onboard": 0,
-      "type": "Card Break"
-    },
-    {
-      "hidden": 0,
-      "is_query_report": 0,
-      "label": "ZK Device",
-      "link_count": 0,
-      "link_to": "ZK Device",
-      "link_type": "DocType",
-      "onboard": 0,
-      "type": "Link"
     }
   ],
-  "modified": "2025-11-01",
+  "modified": "2025-11-02",
   "modified_by": "Administrator",
   "module": "HR",
   "name": "Shift & Attendance",
@@ -247,13 +257,6 @@
       "label": "Attendance Dashboard",
       "link_to": "Attendance",
       "type": "Dashboard"
-    },
-    {
-      "color": "Grey",
-      "doc_view": "List",
-      "label": "Roster",
-      "type": "URL",
-      "url": "/hr/roster"
     }
   ],
   "title": "Shift & Attendance"
