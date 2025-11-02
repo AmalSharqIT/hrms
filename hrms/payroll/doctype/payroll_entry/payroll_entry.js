@@ -303,7 +303,6 @@ frappe.ui.form.on("Payroll Entry", {
 			"default_payroll_payable_account",
 			(r) => {
 				frm.set_value("payroll_payable_account", r);
-				frm.refresh_field("payroll_payable_account");
 			}
 		);
 	},

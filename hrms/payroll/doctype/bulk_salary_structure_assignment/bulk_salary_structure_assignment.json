@@ -50,6 +50,7 @@
    "depends_on": "salary_structure",
    "fieldname": "income_tax_slab",
    "fieldtype": "Link",
+   "hidden": 1,
    "label": "Income Tax Slab",
    "options": "Income Tax Slab"
   },
@@ -62,7 +63,8 @@
    "fieldname": "payroll_payable_account",
    "fieldtype": "Link",
    "label": "Payroll Payable Account",
-   "options": "Account"
+   "options": "Account",
+   "read_only": 1
   },
   {
    "fieldname": "branch",
@@ -125,6 +127,7 @@
   {
    "fieldname": "grade",
    "fieldtype": "Link",
+   "hidden": 1,
    "label": "Employee Grade",
    "options": "Employee Grade"
   },
