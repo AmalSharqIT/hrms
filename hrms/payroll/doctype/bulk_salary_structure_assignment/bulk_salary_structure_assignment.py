@@ -1,5 +1,6 @@
 # Copyright (c) 2024, Frappe Technologies Pvt. Ltd. and contributors
 # For license information, please see license.txt
+from pypika.terms import ValueWrapper
 
 import frappe
 from frappe import _
@@ -55,12 +56,11 @@ class BulkSalaryStructureAssignment(Document):
 			.on(Employee.grade == Grade.name)
 			.select(
 				Coalesce(Grade.default_base_pay, 0).as_("base"),
-				ConstantColumn(0).as_("variable"),
-				ConstantColumn(0).as_("monthly_salary"),
-				ConstantColumn(0).as_("hourly_salary"),
-				ConstantColumn(0).as_("withholding"),
-				ConstantColumn(0).as_("overtime_ratio"),
-				ConstantColumn(0).as_("round_salary"),
+				ValueWrapper(0).as_("monthly_salary"),
+				ValueWrapper(0).as_("hourly_salary"),
+				ValueWrapper(0).as_("withholding"),
+				ValueWrapper(0).as_("overtime_ratio"),
+				ValueWrapper(0).as_("round_salary"),
 			)
 		)
 		return query.run(as_dict=True)
@@ -96,7 +96,6 @@ class BulkSalaryStructureAssignment(Document):
 					payroll_payable_account=self.payroll_payable_account,
 					from_date=self.from_date,
 					base=d["base"],
-					variable=d["variable"],
 					monthly_salary=d["monthly_salary"],
 					hourly_salary=d["hourly_salary"],
 					withholding=d["withholding"],
