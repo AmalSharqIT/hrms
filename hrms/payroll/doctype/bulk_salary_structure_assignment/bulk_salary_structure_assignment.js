@@ -189,7 +189,6 @@ frappe.ui.form.on("Bulk Salary Structure Assignment", {
 				editable: false,
 				focusable: false,
 			},
-
 			{
 				name: "monthly_salary",
 				id: "monthly_salary",
@@ -282,7 +281,7 @@ frappe.ui.form.on("Bulk Salary Structure Assignment", {
 		frm.checked_rows_indexes.forEach((idx) => {
 			const row_content = {};
 			rows[idx].forEach((cell) => {
-				if ([...FIELDS_NAME, "employee"].includes(cell.column.name))
+				if (["employee", ...FIELDS_NAME].includes(cell.column.name))
 					row_content[cell.column.name] = cell.content;
 			});
 			checked_rows_content.push(row_content);

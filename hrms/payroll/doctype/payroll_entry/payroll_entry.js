@@ -91,7 +91,7 @@ frappe.ui.form.on("Payroll Entry", {
 				__("Salary Slip {0} failed. You can resolve the {1} and retry {0}.", [
 					process,
 					issue,
-				])
+				]),
 			);
 
 			$("#jump_to_error").on("click", (e) => {
@@ -262,7 +262,7 @@ frappe.ui.form.on("Payroll Entry", {
 			"default_payroll_payable_account",
 			(r) => {
 				frm.set_value("payroll_payable_account", r.default_payroll_payable_account);
-			}
+			},
 		);
 	},
 
@@ -287,7 +287,7 @@ frappe.ui.form.on("Payroll Entry", {
 						frm.set_df_property(
 							"exchange_rate",
 							"description",
-							"1 " + frm.doc.currency + " = [?] " + company_currency
+							"1 " + frm.doc.currency + " = [?] " + company_currency,
 						);
 					},
 				});
@@ -401,7 +401,7 @@ frappe.ui.form.on("Payroll Entry", {
 const submit_salary_slip = function (frm) {
 	frappe.confirm(
 		__(
-			"This will submit Salary Slips and create accrual Journal Entry. Do you want to proceed?"
+			"This will submit Salary Slips and create accrual Journal Entry. Do you want to proceed?",
 		),
 		function () {
 			frappe.call({
@@ -416,7 +416,7 @@ const submit_salary_slip = function (frm) {
 			if (frappe.dom.freeze_count) {
 				frappe.dom.unfreeze();
 			}
-		}
+		},
 	);
 };
 
@@ -449,6 +449,6 @@ let render_employee_attendance = function (frm, data) {
 	frm.fields_dict.attendance_detail_html.html(
 		frappe.render_template("employees_with_unmarked_attendance", {
 			data: data,
-		})
+		}),
 	);
 };

@@ -59,8 +59,8 @@ class BulkSalaryStructureAssignment(Document):
 				ValueWrapper(0).as_("monthly_salary"),
 				ValueWrapper(0).as_("hourly_salary"),
 				ValueWrapper(0).as_("withholding"),
-				ValueWrapper(0).as_("overtime_ratio"),
 				ValueWrapper(0).as_("round_salary"),
+				ValueWrapper(0).as_("overtime_ratio"),
 			)
 		)
 		return query.run(as_dict=True)
@@ -99,8 +99,8 @@ class BulkSalaryStructureAssignment(Document):
 					monthly_salary=d["monthly_salary"],
 					hourly_salary=d["hourly_salary"],
 					withholding=d["withholding"],
-					overtime_ratio=d["overtime_ratio"],
 					round_salary=d["round_salary"],
+					overtime_ratio=d["overtime_ratio"],
 					income_tax_slab=self.income_tax_slab,
 				)
 			except Exception:

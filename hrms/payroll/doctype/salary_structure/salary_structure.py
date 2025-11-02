@@ -304,8 +304,8 @@ def create_salary_structure_assignment(
 	monthly_salary=None,
 	hourly_salary=None,
 	withholding=None,
-	overtime_ratio=None,
 	round_salary=None,
+	overtime_ratio=None,
 	income_tax_slab=None,
 ):
 	assignment = frappe.new_doc("Salary Structure Assignment")
@@ -337,8 +337,8 @@ def create_salary_structure_assignment(
 	assignment.monthly_salary = monthly_salary
 	assignment.hourly_salary = hourly_salary
 	assignment.withholding = withholding
-	assignment.overtime_ratio = overtime_ratio
 	assignment.round_salary = round_salary
+	assignment.overtime_ratio = overtime_ratio
 	assignment.income_tax_slab = income_tax_slab
 	assignment.save(ignore_permissions=True)
 	assignment.submit()
