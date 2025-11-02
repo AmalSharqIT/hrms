@@ -1,6 +1,6 @@
 {
   "charts": [],
-  "content": "[{\"id\":\"4YvaSbJAGt\",\"type\":\"header\",\"data\":{\"text\":\"<span class=\\\"h4\\\"><b>Your Shortcuts</b></span>\",\"col\":12}},{\"id\":\"v4c9BPt0VX\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Employee Lifecycle Dashboard\",\"col\":3}},{\"id\":\"eKr5EpNmJA\",\"type\":\"spacer\",\"data\":{\"col\":12}},{\"id\":\"ungRtoQK8-\",\"type\":\"quick_list\",\"data\":{\"quick_list_name\":\"New Hires (This Month)\",\"col\":4}},{\"id\":\"tdtMNaKfGX\",\"type\":\"quick_list\",\"data\":{\"quick_list_name\":\"Exits (This Month)\",\"col\":4}},{\"id\":\"-UWYFUUcwx\",\"type\":\"spacer\",\"data\":{\"col\":12}},{\"id\":\"14rKRrXYEk\",\"type\":\"header\",\"data\":{\"text\":\"<span class=\\\"h4\\\"><b>Masters &amp; Reports</b></span>\",\"col\":12}},{\"id\":\"t7RiaD8iqU\",\"type\":\"card\",\"data\":{\"card_name\":\"Journey\",\"col\":4}},{\"id\":\"gsZu8tyUAg\",\"type\":\"card\",\"data\":{\"card_name\":\"Exit\",\"col\":4}},{\"id\":\"qZSJdYEIxa\",\"type\":\"card\",\"data\":{\"card_name\":\"Reports\",\"col\":4}}]",
+  "content": "[{\"id\":\"ungRtoQK8-\",\"type\":\"quick_list\",\"data\":{\"quick_list_name\":\"New Hires (This Month)\",\"col\":4}},{\"id\":\"tdtMNaKfGX\",\"type\":\"quick_list\",\"data\":{\"quick_list_name\":\"Exits (This Month)\",\"col\":4}},{\"id\":\"-UWYFUUcwx\",\"type\":\"spacer\",\"data\":{\"col\":12}},{\"id\":\"14rKRrXYEk\",\"type\":\"header\",\"data\":{\"text\":\"<span class=\\\"h4\\\"><b>Masters &amp; Reports</b></span>\",\"col\":12}},{\"id\":\"t7RiaD8iqU\",\"type\":\"card\",\"data\":{\"card_name\":\"Journey\",\"col\":4}},{\"id\":\"gsZu8tyUAg\",\"type\":\"card\",\"data\":{\"card_name\":\"Exit\",\"col\":4}},{\"id\":\"qZSJdYEIxa\",\"type\":\"card\",\"data\":{\"card_name\":\"Reports\",\"col\":4}}]",
   "creation": "2022-08-20 14:06:34.309347",
   "custom_blocks": [],
   "docstatus": 0,
@@ -112,14 +112,6 @@
     }
   ],
   "sequence_id": 6.0,
-  "shortcuts": [
-    {
-      "color": "Grey",
-      "doc_view": "List",
-      "label": "Employee Lifecycle Dashboard",
-      "link_to": "Employee Lifecycle",
-      "type": "Dashboard"
-    }
-  ],
+  "shortcuts": [],
   "title": "Employee Lifecycle"
 }
