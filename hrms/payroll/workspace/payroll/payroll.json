@@ -5,7 +5,7 @@
       "label": "Outgoing Salary"
     }
   ],
-  "content": "[{\"id\":\"Aepwa15ss4\",\"type\":\"chart\",\"data\":{\"chart_name\":\"Outgoing Salary\",\"col\":12}},{\"id\":\"fbulPt-iwY\",\"type\":\"header\",\"data\":{\"text\":\"<span class=\\\"h4\\\"><b>Your Shortcuts</b></span>\",\"col\":12}},{\"id\":\"ZWbAPeAG02\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Payroll Dashboard\",\"col\":3}},{\"id\":\"3Kzx8re2lB\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Salary Register\",\"col\":3}},{\"id\":\"68gP7NJY7_\",\"type\":\"spacer\",\"data\":{\"col\":12}},{\"id\":\"LLCWGiASqO\",\"type\":\"card\",\"data\":{\"card_name\":\"Quick Links\",\"col\":4}}]",
+  "content": "[{\"id\":\"Aepwa15ss4\",\"type\":\"chart\",\"data\":{\"chart_name\":\"Outgoing Salary\",\"col\":12}},{\"id\":\"fbulPt-iwY\",\"type\":\"header\",\"data\":{\"text\":\"<span class=\\\"h4\\\"><b>Your Shortcuts</b></span>\",\"col\":12}},{\"id\":\"ZWbAPeAG02\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Payroll Dashboard\",\"col\":3}},{\"id\":\"3Kzx8re2lB\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Payroll Entry\",\"col\":3}},{\"id\":\"hNVIisuaFR\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Salary Slip\",\"col\":3}},{\"id\":\"yjIBi3GMoo\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Salary Register\",\"col\":3}},{\"id\":\"68gP7NJY7_\",\"type\":\"spacer\",\"data\":{\"col\":12}},{\"id\":\"gGURwviUAZ\",\"type\":\"header\",\"data\":{\"text\":\"<span class=\\\"h4\\\"><b>Transactions &amp; Reports</b></span>\",\"col\":12}},{\"id\":\"LLCWGiASqO\",\"type\":\"card\",\"data\":{\"card_name\":\"Payroll\",\"col\":4}},{\"id\":\"m7ibJXxzpl\",\"type\":\"card\",\"data\":{\"card_name\":\"Masters\",\"col\":4}},{\"id\":\"LG69O3ku4y\",\"type\":\"card\",\"data\":{\"card_name\":\"Incentives\",\"col\":4}},{\"id\":\"eNZuk6i-jy\",\"type\":\"card\",\"data\":{\"card_name\":\"Payroll Reports\",\"col\":4}}]",
   "creation": "2020-05-27 19:54:23.405607",
   "custom_blocks": [],
   "docstatus": 0,
@@ -20,8 +20,8 @@
     {
       "hidden": 0,
       "is_query_report": 0,
-      "label": "Quick Links",
-      "link_count": 2,
+      "label": "Payroll",
+      "link_count": 3,
       "link_type": "DocType",
       "onboard": 0,
       "type": "Card Break"
@@ -45,9 +45,96 @@
       "link_type": "DocType",
       "onboard": 0,
       "type": "Link"
+    },
+    {
+      "hidden": 0,
+      "is_query_report": 0,
+      "label": "Salary Structure Assignment",
+      "link_count": 0,
+      "link_to": "Salary Structure Assignment",
+      "link_type": "DocType",
+      "onboard": 0,
+      "type": "Link"
+    },
+    {
+      "hidden": 0,
+      "is_query_report": 0,
+      "label": "Masters",
+      "link_count": 2,
+      "link_type": "DocType",
+      "onboard": 0,
+      "type": "Card Break"
+    },
+    {
+      "hidden": 0,
+      "is_query_report": 0,
+      "label": "Salary Component",
+      "link_count": 0,
+      "link_to": "Salary Component",
+      "link_type": "DocType",
+      "onboard": 0,
+      "type": "Link"
+    },
+    {
+      "hidden": 0,
+      "is_query_report": 0,
+      "label": "Salary Structure",
+      "link_count": 0,
+      "link_to": "Salary Structure",
+      "link_type": "DocType",
+      "onboard": 0,
+      "type": "Link"
+    },
+    {
+      "hidden": 0,
+      "is_query_report": 0,
+      "label": "Incentives",
+      "link_count": 1,
+      "link_type": "DocType",
+      "onboard": 0,
+      "type": "Card Break"
+    },
+    {
+      "hidden": 0,
+      "is_query_report": 0,
+      "label": "Additional Salary",
+      "link_count": 0,
+      "link_to": "Additional Salary",
+      "link_type": "DocType",
+      "onboard": 0,
+      "type": "Link"
+    },
+    {
+      "hidden": 0,
+      "is_query_report": 0,
+      "label": "Payroll Reports",
+      "link_count": 2,
+      "link_type": "DocType",
+      "onboard": 0,
+      "type": "Card Break"
+    },
+    {
+      "hidden": 0,
+      "is_query_report": 1,
+      "label": "Salary Register",
+      "link_count": 0,
+      "link_to": "Salary Register",
+      "link_type": "Report",
+      "onboard": 0,
+      "type": "Link"
+    },
+    {
+      "hidden": 0,
+      "is_query_report": 1,
+      "label": "Salary Payments Based On Payment Mode",
+      "link_count": 0,
+      "link_to": "Salary Payments Based On Payment Mode",
+      "link_type": "Report",
+      "onboard": 0,
+      "type": "Link"
     }
   ],
-  "modified": "2025-10-24",
+  "modified": "2025-11-02",
   "modified_by": "Administrator",
   "module": "Payroll",
   "name": "Payroll",
@@ -71,6 +158,24 @@
       "label": "Payroll Dashboard",
       "link_to": "Payroll",
       "type": "Dashboard"
+    },
+    {
+      "color": "Red",
+      "doc_view": "List",
+      "format": "{} Draft",
+      "label": "Salary Slip",
+      "link_to": "Salary Slip",
+      "stats_filter": "{\"status\":[\"=\",\"Draft\"]}",
+      "type": "DocType"
+    },
+    {
+      "color": "Red",
+      "doc_view": "List",
+      "format": "{} Draft",
+      "label": "Payroll Entry",
+      "link_to": "Payroll Entry",
+      "stats_filter": "{\"status\":[\"=\",\"Draft\"]}",
+      "type": "DocType"
     },
     {
       "color": "Grey",

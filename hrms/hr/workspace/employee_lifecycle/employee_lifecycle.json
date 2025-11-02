@@ -64,40 +64,10 @@
       "hidden": 0,
       "is_query_report": 0,
       "label": "Reports",
-      "link_count": 4,
+      "link_count": 1,
       "link_type": "DocType",
       "onboard": 0,
       "type": "Card Break"
-    },
-    {
-      "hidden": 0,
-      "is_query_report": 1,
-      "label": "Employee Exits",
-      "link_count": 0,
-      "link_to": "Employee Exits",
-      "link_type": "Report",
-      "onboard": 0,
-      "type": "Link"
-    },
-    {
-      "hidden": 0,
-      "is_query_report": 1,
-      "label": "Employee Birthday",
-      "link_count": 0,
-      "link_to": "Employee Birthday",
-      "link_type": "Report",
-      "onboard": 0,
-      "type": "Link"
-    },
-    {
-      "hidden": 0,
-      "is_query_report": 1,
-      "label": "Employee Information",
-      "link_count": 0,
-      "link_to": "Employee Information",
-      "link_type": "Report",
-      "onboard": 0,
-      "type": "Link"
     },
     {
       "hidden": 0,
@@ -110,7 +80,7 @@
       "type": "Link"
     }
   ],
-  "modified": "2025-10-24",
+  "modified": "2025-11-02",
   "modified_by": "Administrator",
   "module": "HR",
   "name": "Employee Lifecycle",
