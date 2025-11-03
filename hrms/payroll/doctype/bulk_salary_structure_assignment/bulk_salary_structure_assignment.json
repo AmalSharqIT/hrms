@@ -8,6 +8,7 @@
   "set_assignment_details_section",
   "salary_structure",
   "from_date",
+  "cost_center",
   "income_tax_slab",
   "column_break_rsep",
   "company",
@@ -45,6 +46,12 @@
    "in_list_view": 1,
    "label": "From Date",
    "reqd": 1
+  },
+  {
+   "fieldname": "cost_center",
+   "fieldtype": "Link",
+   "label": "Cost Center",
+   "options": "Cost Center"
   },
   {
    "depends_on": "salary_structure",

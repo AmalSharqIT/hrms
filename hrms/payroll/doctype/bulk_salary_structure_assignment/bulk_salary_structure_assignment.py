@@ -101,6 +101,7 @@ class BulkSalaryStructureAssignment(Document):
 					withholding=d["withholding"],
 					round_salary=d["round_salary"],
 					overtime_ratio=d["overtime_ratio"],
+					cost_center=self.cost_center,
 					income_tax_slab=self.income_tax_slab,
 				)
 			except Exception:

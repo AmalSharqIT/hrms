@@ -306,6 +306,7 @@ def create_salary_structure_assignment(
 	withholding=None,
 	round_salary=None,
 	overtime_ratio=None,
+	cost_center=None,
 	income_tax_slab=None,
 ):
 	assignment = frappe.new_doc("Salary Structure Assignment")
@@ -340,6 +341,8 @@ def create_salary_structure_assignment(
 	assignment.round_salary = round_salary
 	assignment.overtime_ratio = overtime_ratio
 	assignment.income_tax_slab = income_tax_slab
+	if cost_center:
+		assignment.append("payroll_cost_centers", {"cost_center": cost_center, "percentage": 100.00})
 	assignment.save(ignore_permissions=True)
 	assignment.submit()
 
