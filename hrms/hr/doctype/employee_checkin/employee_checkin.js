@@ -29,7 +29,7 @@ frappe.ui.form.on("Employee Checkin", {
 	},
 
 	add_fetch_shift_button(frm) {
-		if (frm.doc.attendace) return;
+		if (frm.doc.attendance || !frappe.perm.has_perm("Employee Checkin", 9, "read")) return;
 		frm.add_custom_button(__("Fetch Shift"), function () {
 			frappe.call({
 				method: "fetch_shift",
