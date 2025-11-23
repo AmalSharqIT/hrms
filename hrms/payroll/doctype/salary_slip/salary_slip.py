@@ -436,7 +436,9 @@ class SalarySlip(TransactionBase):
 
 			self.add_earning_for_hourly_wages(self, self._salary_structure_doc.salary_component, wages_amount)
 
-		make_salary_slip(self._salary_structure_doc.name, self)
+		make_salary_slip(
+			self._salary_structure_doc.name, self, ignore_permissions=self.flags.ignore_permissions
+		)
 
 	def get_working_days_details(self, lwp=None, for_preview=0):
 		payroll_settings = frappe.get_cached_value(
@@ -1355,13 +1357,6 @@ class SalarySlip(TransactionBase):
 
 		if self.is_new() and not tax_components:
 			tax_components = self.get_tax_components()
-			frappe.msgprint(
-				_(
-					"Added tax components from the Salary Component master as the salary structure didn't have any tax component."
-				),
-				indicator="blue",
-				alert=True,
-			)
 
 		self._component_based_variable_tax = {}
 		if tax_components and self.payroll_period and self.salary_structure:

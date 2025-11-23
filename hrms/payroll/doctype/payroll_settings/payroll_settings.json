@@ -28,7 +28,9 @@
   "password_policy",
   "other_settings_section",
   "process_payroll_accounting_entry_based_on_employee",
-  "column_break_zi9y"
+  "column_break_zi9y",
+  "default_salary_component_section",
+  "default_salary_component"
  ],
  "fields": [
   {
@@ -172,6 +174,16 @@
    "fieldtype": "Link",
    "label": "Email Template",
    "options": "Email Template"
+  },
+  {
+   "fieldname": "default_salary_component_section",
+   "fieldtype": "Section Break"
+  },
+  {
+   "fieldname": "default_salary_component",
+   "fieldtype": "Table",
+   "label": "Default Salary Component",
+   "options": "Payroll Settings Salary Component"
   }
  ],
  "icon": "fa fa-cog",
@@ -192,6 +204,10 @@
    "role": "System Manager",
    "share": 1,
    "write": 1
+  },
+  {
+   "read": 1,
+   "role": "HR Manager"
   }
  ],
  "sort_field": "modified",

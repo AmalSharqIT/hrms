@@ -22,8 +22,13 @@
   "currency",
   "section_break_7",
   "base",
+  "monthly_salary",
+  "overtime_ratio",
   "column_break_9",
   "variable",
+  "hourly_salary",
+  "withholding",
+  "round_salary",
   "amended_from",
   "opening_balances_section",
   "taxable_earnings_till_date",
@@ -109,7 +114,21 @@
    "fieldname": "base",
    "fieldtype": "Currency",
    "label": "Base",
+   "non_negative": 1,
    "options": "currency"
+  },
+  {
+   "fieldname": "monthly_salary",
+   "fieldtype": "Currency",
+   "label": "Monthly Salary",
+   "non_negative": 1,
+   "options": "currency"
+  },
+  {
+   "fieldname": "overtime_ratio",
+   "fieldtype": "Float",
+   "label": "Overtime Ratio",
+   "non_negative": 1
   },
   {
    "fieldname": "column_break_9",
@@ -118,7 +137,29 @@
   {
    "fieldname": "variable",
    "fieldtype": "Currency",
+   "hidden": 1,
    "label": "Variable",
+   "options": "currency"
+  },
+  {
+   "fieldname": "hourly_salary",
+   "fieldtype": "Currency",
+   "label": "Hourly Salary",
+   "non_negative": 1,
+   "options": "currency"
+  },
+  {
+   "fieldname": "withholding",
+   "fieldtype": "Currency",
+   "label": "Withholding",
+   "non_negative": 1,
+   "options": "currency"
+  },
+  {
+   "fieldname": "round_salary",
+   "fieldtype": "Currency",
+   "label": "Round Salary",
+   "non_negative": 1,
    "options": "currency"
   },
   {
@@ -134,6 +175,7 @@
    "depends_on": "salary_structure",
    "fieldname": "income_tax_slab",
    "fieldtype": "Link",
+   "hidden": 1,
    "label": "Income Tax Slab",
    "options": "Income Tax Slab"
   },
@@ -153,7 +195,8 @@
    "fieldname": "payroll_payable_account",
    "fieldtype": "Link",
    "label": "Payroll Payable Account",
-   "options": "Account"
+   "options": "Account",
+   "read_only": 1
   },
   {
    "collapsible": 1,
@@ -245,16 +288,13 @@
    "write": 1
   },
   {
-   "create": 1,
-   "email": 1,
-   "export": 1,
-   "print": 1,
+   "permlevel": 9,
    "read": 1,
-   "report": 1,
-   "role": "HR User",
-   "share": 1,
-   "submit": 1,
-   "write": 1
+   "role": "HR Manager"
+  },
+  {
+   "read": 1,
+   "role": "Employee"
   }
  ],
  "search_fields": "employee_name, salary_structure",
