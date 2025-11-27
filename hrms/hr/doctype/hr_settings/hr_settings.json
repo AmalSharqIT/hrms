@@ -25,6 +25,7 @@
   "loan_settings_section",
   "default_number_of_installments",
   "days_after_joining_to_apply_for_loan",
+  "blocked_guarantors_employee_group",
   "column_break_loan_settings",
   "loan_amount_limits",
   "leave_and_expense_claim_settings",
@@ -311,6 +312,12 @@
    "fieldtype": "Int",
    "label": "Days After Joining to Apply for Loan",
    "non_negative": 1
+  },
+  {
+   "fieldname": "blocked_guarantors_employee_group",
+   "fieldtype": "Link",
+   "label": "Blocked Guarantors Employee Group",
+   "options": "Employee Group"
   },
   {
    "fieldname": "column_break_loan_settings",
