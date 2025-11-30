@@ -211,6 +211,7 @@ class AdditionalSalary(Document):
 		return amount_per_day * no_of_days
 
 	def validate_update_after_submit(self):
+		super().validate_update_after_submit()
 		if not self.disabled:
 			self.validate_recurring_additional_salary_overlap()
 
