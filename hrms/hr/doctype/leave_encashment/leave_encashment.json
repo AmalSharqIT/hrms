@@ -54,6 +54,7 @@
    "fieldtype": "Link",
    "in_list_view": 1,
    "label": "Employee",
+   "link_filters": "[[\"Employee\",\"status\",\"=\",\"Active\"]]",
    "options": "Employee",
    "reqd": 1
   },

@@ -30,6 +30,7 @@
    "fieldtype": "Link",
    "in_standard_filter": 1,
    "label": "Employee",
+   "link_filters": "[[\"Employee\",\"status\",\"=\",\"Active\"]]",
    "options": "Employee",
    "reqd": 1,
    "search_index": 1
