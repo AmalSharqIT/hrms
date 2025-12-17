@@ -230,6 +230,7 @@ def get_custom_fields():
 				"label": _("Health Insurance Provider"),
 				"options": "Employee Health Insurance",
 				"insert_after": "health_insurance_section",
+				"hidden": 1,
 			},
 			{
 				"depends_on": "eval:doc.health_insurance_provider",
