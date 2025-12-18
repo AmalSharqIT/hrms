@@ -394,7 +394,9 @@ class PayrollEntry(Document):
 							component_type, item.employee, amount_against_cost_center
 						)
 
-			account_details = self.get_account(component_dict=component_dict)
+			account_details = self.get_account(
+				employee_wise_accounting_enabled, component_dict=component_dict
+			)
 
 			return account_details
 
@@ -525,14 +527,17 @@ class PayrollEntry(Document):
 
 		return self.employee_cost_centers.get(employee, {})
 
-	def get_account(self, component_dict=None):
+	def get_account(self, employee_wise_accounting_enabled, component_dict=None):
 		account_dict = {}
 		for key, amount in component_dict.items():
 			component, cost_center, employee, reference_type, reference_name = key
 			account = self.get_salary_component_account(component)
-			account_type = frappe.get_cached_value("Account", account, "account_type")
-			if account_type not in ["Receivable", "Payable"]:
+			if not employee_wise_accounting_enabled and not reference_name:
 				employee = None
+			else:
+				account_type = frappe.get_cached_value("Account", account, "account_type")
+				if account_type not in ["Receivable", "Payable"]:
+					employee = None
 			accounting_key = (account, cost_center, employee, reference_type, reference_name)
 
 			account_dict[accounting_key] = account_dict.get(accounting_key, 0) + amount
