@@ -65,7 +65,6 @@
    "set_only_once": 1
   },
   {
-   "default": "eval:(frappe.boot.user.employee)",
    "fieldname": "employee",
    "fieldtype": "Link",
    "in_global_search": 1,

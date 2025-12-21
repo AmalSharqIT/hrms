@@ -39,7 +39,6 @@
  ],
  "fields": [
   {
-   "default": "eval:(frappe.boot.user.employee)",
    "fieldname": "employee",
    "fieldtype": "Link",
    "in_standard_filter": 1,
