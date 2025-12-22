@@ -237,6 +237,12 @@
    "share": 1,
    "submit": 1,
    "write": 1
+  },
+  {
+   "cancel": 1,
+   "role": "HR Manager",
+   "submit": 1,
+   "write": 1
   }
  ],
  "search_fields": "employee_name",

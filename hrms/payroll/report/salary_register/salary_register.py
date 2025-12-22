@@ -4,7 +4,7 @@
 
 import frappe
 from frappe import _
-from frappe.utils import flt
+from frappe.utils import floor, flt
 
 import erpnext
 
@@ -69,6 +69,7 @@ def execute(filters=None):
 					"total_deduction": (flt(ss.total_deduction) + flt(ss.total_loan_repayment))
 					* flt(ss.exchange_rate),
 					"net_pay": flt(ss.net_pay) * flt(ss.exchange_rate),
+					"thousands": floor(ss.net_pay % 5000) / 1000,
 				}
 			)
 
@@ -249,6 +250,12 @@ def get_columns(earning_types, ded_types):
 				"fieldtype": "Currency",
 				"options": "currency",
 				"width": 120,
+			},
+			{
+				"label": _("Thousands"),
+				"fieldname": "thousands",
+				"fieldtype": "Int",
+				"width": 80,
 			},
 			{
 				"label": _("Currency"),
