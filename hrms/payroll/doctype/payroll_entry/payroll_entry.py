@@ -26,7 +26,7 @@ import erpnext
 from erpnext.accounts.doctype.accounting_dimension.accounting_dimension import (
 	get_accounting_dimensions,
 )
-from erpnext.accounts.utils import get_fiscal_year
+from erpnext.accounts.utils import get_advance_payment_doctypes, get_fiscal_year
 
 from hrms.payroll.doctype.salary_slip.salary_slip_loan_utils import if_lending_app_installed
 from hrms.payroll.doctype.salary_withholding.salary_withholding import link_bank_entry_in_salary_withholdings
@@ -337,6 +337,8 @@ class PayrollEntry(Document):
 					ssd.amount,
 					ssd.parentfield,
 					ssd.additional_salary,
+					ssd.reference_type,
+					ssd.reference_name,
 					ss.salary_structure,
 					ss.employee,
 				)
@@ -378,7 +380,13 @@ class PayrollEntry(Document):
 							item, amount_against_cost_center, cost_center, employee_advance
 						)
 					else:
-						key = (item.salary_component, cost_center)
+						key = (
+							item.salary_component,
+							cost_center,
+							item.employee,
+							item.reference_type,
+							item.reference_name,
+						)
 						component_dict[key] = component_dict.get(key, 0) + amount_against_cost_center
 
 					if employee_wise_accounting_enabled:
@@ -386,7 +394,9 @@ class PayrollEntry(Document):
 							component_type, item.employee, amount_against_cost_center
 						)
 
-			account_details = self.get_account(component_dict=component_dict)
+			account_details = self.get_account(
+				employee_wise_accounting_enabled, component_dict=component_dict
+			)
 
 			return account_details
 
@@ -517,12 +527,18 @@ class PayrollEntry(Document):
 
 		return self.employee_cost_centers.get(employee, {})
 
-	def get_account(self, component_dict=None):
+	def get_account(self, employee_wise_accounting_enabled, component_dict=None):
 		account_dict = {}
 		for key, amount in component_dict.items():
-			component, cost_center = key
+			component, cost_center, employee, reference_type, reference_name = key
 			account = self.get_salary_component_account(component)
-			accounting_key = (account, cost_center)
+			if not employee_wise_accounting_enabled and not reference_name:
+				employee = None
+			else:
+				account_type = frappe.get_cached_value("Account", account, "account_type")
+				if account_type not in ["Receivable", "Payable"]:
+					employee = None
+			accounting_key = (account, cost_center, employee, reference_type, reference_name)
 
 			account_dict[accounting_key] = account_dict.get(accounting_key, 0) + amount
 
@@ -674,7 +690,11 @@ class PayrollEntry(Document):
 				accounting_dimensions,
 				precision,
 				entry_type="debit",
+				party=acc_cc[2],
 				accounts=accounts,
+				reference_type=acc_cc[3],
+				reference_name=acc_cc[4],
+				is_advance="Yes" if acc_cc[3] in get_advance_payment_doctypes() else None,
 			)
 
 		# Deductions
@@ -689,7 +709,11 @@ class PayrollEntry(Document):
 				accounting_dimensions,
 				precision,
 				entry_type="credit",
+				party=acc_cc[2],
 				accounts=accounts,
+				reference_type=acc_cc[3],
+				reference_name=acc_cc[4],
+				is_advance="Yes" if acc_cc[3] in get_advance_payment_doctypes() else None,
 			)
 
 		return payable_amount
@@ -865,7 +889,7 @@ class PayrollEntry(Document):
 			.on(je.name == jea.parent)
 			.select(je.name)
 			.where(
-				(je.voucher_type == "Bank Entry")
+				((je.voucher_type == "Bank Entry") | (je.voucher_type == "Cash Entry"))
 				& (jea.reference_name == self.name)
 				& (jea.reference_type == "Payroll Entry")
 			)
@@ -1098,7 +1122,9 @@ class PayrollEntry(Document):
 		return self.make_journal_entry(
 			accounts,
 			currencies,
-			voucher_type="Bank Entry",
+			voucher_type="Bank Entry"
+			if frappe.get_cached_value("Account", self.payment_account, "account_type") == "Bank"
+			else "Cash Entry",
 			user_remark=_("Payment of {0} from {1} to {2}").format(
 				_(user_remark), self.start_date, self.end_date
 			),
