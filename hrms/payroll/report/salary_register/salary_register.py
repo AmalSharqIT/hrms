@@ -8,6 +8,7 @@ from frappe.utils import floor, flt
 
 import erpnext
 
+Employee = frappe.qb.DocType("Employee")
 salary_slip = frappe.qb.DocType("Salary Slip")
 salary_detail = frappe.qb.DocType("Salary Detail")
 salary_component = frappe.qb.DocType("Salary Component")
@@ -286,6 +287,15 @@ def get_salary_slips(filters, company_currency):
 	doc_status = {"Draft": 0, "Submitted": 1, "Cancelled": 2}
 
 	query = frappe.qb.from_(salary_slip).select(salary_slip.star)
+
+	if filters.get("employeestatus"):
+		query = (
+			frappe.qb.from_(salary_slip)
+			.join(Employee)
+			.on(salary_slip.employee == Employee.name)
+			.select(salary_slip.star)
+			.where(Employee.status == filters.get("employeestatus"))
+		)
 
 	if filters.get("docstatus"):
 		query = query.where(salary_slip.docstatus == doc_status[filters.get("docstatus")])
