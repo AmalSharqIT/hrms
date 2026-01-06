@@ -4,10 +4,11 @@
 
 import frappe
 from frappe import _
-from frappe.utils import flt
+from frappe.utils import floor, flt
 
 import erpnext
 
+Employee = frappe.qb.DocType("Employee")
 salary_slip = frappe.qb.DocType("Salary Slip")
 salary_detail = frappe.qb.DocType("Salary Detail")
 salary_component = frappe.qb.DocType("Salary Component")
@@ -69,6 +70,7 @@ def execute(filters=None):
 					"total_deduction": (flt(ss.total_deduction) + flt(ss.total_loan_repayment))
 					* flt(ss.exchange_rate),
 					"net_pay": flt(ss.net_pay) * flt(ss.exchange_rate),
+					"thousands": floor(ss.net_pay % 5000) / 1000,
 				}
 			)
 
@@ -251,6 +253,12 @@ def get_columns(earning_types, ded_types):
 				"width": 120,
 			},
 			{
+				"label": _("Thousands"),
+				"fieldname": "thousands",
+				"fieldtype": "Int",
+				"width": 80,
+			},
+			{
 				"label": _("Currency"),
 				"fieldtype": "Data",
 				"fieldname": "currency",
@@ -279,6 +287,15 @@ def get_salary_slips(filters, company_currency):
 	doc_status = {"Draft": 0, "Submitted": 1, "Cancelled": 2}
 
 	query = frappe.qb.from_(salary_slip).select(salary_slip.star)
+
+	if filters.get("employeestatus"):
+		query = (
+			frappe.qb.from_(salary_slip)
+			.join(Employee)
+			.on(salary_slip.employee == Employee.name)
+			.select(salary_slip.star)
+			.where(Employee.status == filters.get("employeestatus"))
+		)
 
 	if filters.get("docstatus"):
 		query = query.where(salary_slip.docstatus == doc_status[filters.get("docstatus")])

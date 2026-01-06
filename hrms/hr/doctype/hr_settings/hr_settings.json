@@ -20,6 +20,14 @@
   "column_break_hyec",
   "sender",
   "sender_email",
+  "advance_settings_section",
+  "advance_limit_percent_of_salary",
+  "loan_settings_section",
+  "default_number_of_installments",
+  "days_after_joining_to_apply_for_loan",
+  "blocked_guarantors_employee_group",
+  "column_break_loan_settings",
+  "loan_amount_limits",
   "leave_and_expense_claim_settings",
   "send_leave_notification",
   "leave_approval_notification_template",
@@ -275,6 +283,51 @@
    "fieldtype": "Data",
    "label": "Sender Email",
    "read_only": 1
+  },
+  {
+   "fieldname": "advance_settings_section",
+   "fieldtype": "Section Break",
+   "label": "Advance Settings"
+  },
+  {
+   "fieldname": "advance_limit_percent_of_salary",
+   "fieldtype": "Percent",
+   "label": "Advance Limit (% Of Salary)"
+  },
+  {
+   "fieldname": "loan_settings_section",
+   "fieldtype": "Section Break",
+   "label": "Loan Settings"
+  },
+  {
+   "default": "4",
+   "fieldname": "default_number_of_installments",
+   "fieldtype": "Int",
+   "label": "Default Number of Installments",
+   "non_negative": 1
+  },
+  {
+   "default": "365",
+   "fieldname": "days_after_joining_to_apply_for_loan",
+   "fieldtype": "Int",
+   "label": "Days After Joining to Apply for Loan",
+   "non_negative": 1
+  },
+  {
+   "fieldname": "blocked_guarantors_employee_group",
+   "fieldtype": "Link",
+   "label": "Blocked Guarantors Employee Group",
+   "options": "Employee Group"
+  },
+  {
+   "fieldname": "column_break_loan_settings",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "loan_amount_limits",
+   "fieldtype": "Table",
+   "label": "Loan Amount Limits",
+   "options": "HR Settings Loan Amounts"
   },
   {
    "fieldname": "column_break_hyec",
