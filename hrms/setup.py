@@ -102,7 +102,7 @@ def get_custom_fields():
 				"fieldname": "default_employee_loan_account",
 				"fieldtype": "Link",
 				"label": _("Default Employee Loan Account"),
-				"link_filters": '[["Account","company","=","eval:(cur_frm.doc.name)"],["Account","is_group","=",0],["Account","root_type","=","Asset"],["Account","account_type","=","Receivable"]]',
+				"link_filters": '[["Account","company","=","eval:(doc.name)"],["Account","is_group","=",0],["Account","root_type","=","Asset"],["Account","account_type","=","Receivable"]]',
 				"no_copy": 1,
 				"options": "Account",
 				"insert_after": "default_payroll_payable_account",
