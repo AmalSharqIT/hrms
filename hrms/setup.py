@@ -584,7 +584,8 @@ def update_user_type_doctype_limit(user_types=None):
 
 
 def get_user_types_data():
-	return {}
+	return {
+	}
 
 
 def get_lending_docperms_for_ess():
