@@ -45,6 +45,7 @@
   "column_break_geio",
   "absent_days",
   "payment_days",
+  "present_days",
   "payroll_days",
   "weekly_off",
   "section_break_hours",
@@ -286,6 +287,7 @@
    "read_only": 1
   },
   {
+   "depends_on": "false",
    "fieldname": "payment_days",
    "fieldtype": "Float",
    "label": "Payment Days",
@@ -811,6 +813,13 @@
    "label": "Salary Withholding Cycle",
    "no_copy": 1,
    "print_hide": 1,
+   "read_only": 1
+  },
+  {
+   "fieldname": "present_days",
+   "fieldtype": "Float",
+   "label": "Present Days",
+   "non_negative": 1,
    "read_only": 1
   }
  ],
