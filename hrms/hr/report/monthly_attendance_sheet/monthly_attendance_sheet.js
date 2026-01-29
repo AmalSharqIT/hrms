@@ -90,6 +90,13 @@ frappe.query_reports["Monthly Attendance Sheet"] = {
 			options: "Company",
 			default: frappe.defaults.get_user_default("Company"),
 			reqd: 1,
+			hidden: 1,
+		},
+		{
+			fieldname: "branch",
+			label: __("Branch"),
+			fieldtype: "Link",
+			options: "Branch",
 		},
 		{
 			fieldname: "group_by",
@@ -134,7 +141,7 @@ frappe.query_reports["Monthly Attendance Sheet"] = {
 		if (!summarized_view) {
 			if ((group_by && column.colIndex > 3) || (!group_by && column.colIndex > 2)) {
 				if (value == "HD/P") value = "<span style='color:#914EE3'>" + value + "</span>";
-				else if (value == "HD/A")
+				else if (value == "HD/A" || value == "HD")
 					value = "<span style='color:orange'>" + value + "</span>";
 				else if (value == "P" || value == "WFH")
 					value = "<span style='color:green'>" + value + "</span>";
