@@ -539,7 +539,7 @@ class SalarySlip(TransactionBase):
 		unmarked_days = (
 			self.total_working_days
 			- self._get_days_outside_period(include_holidays_in_total_working_days, holidays)
-			- self._get_marked_attendance_days(holidays if include_holidays_in_total_working_days else None)
+			- self._get_marked_attendance_days(holidays)
 		)
 
 		if include_holidays_in_total_working_days and holidays:

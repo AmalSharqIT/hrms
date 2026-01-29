@@ -45,6 +45,7 @@
   "column_break_geio",
   "absent_days",
   "payment_days",
+  "_payment_days",
   "payroll_days",
   "weekly_off",
   "section_break_hours",
@@ -286,6 +287,7 @@
    "read_only": 1
   },
   {
+   "depends_on": "eval(false)",
    "fieldname": "payment_days",
    "fieldtype": "Float",
    "label": "Payment Days",
@@ -812,6 +814,14 @@
    "no_copy": 1,
    "print_hide": 1,
    "read_only": 1
+  },
+  {
+   "fieldname": "_payment_days",
+   "fieldtype": "Float",
+   "label": "Payment Days",
+   "non_negative": 1,
+   "read_only": 1,
+   "reqd": 1
   }
  ],
  "icon": "fa fa-file-text",
