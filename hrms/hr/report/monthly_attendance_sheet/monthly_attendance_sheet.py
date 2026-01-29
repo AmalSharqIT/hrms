@@ -23,6 +23,7 @@ Filters = frappe._dict
 status_map = {
 	"Present": "P",
 	"Absent": "A",
+	"Half Day": "HD",
 	"Half Day/Other Half Absent": "HD/A",
 	"Half Day/Other Half Present": "HD/P",
 	"Work From Home": "WFH",
@@ -82,6 +83,7 @@ def get_message() -> str:
 	colors = [
 		"green",
 		"red",
+		"orange",
 		"orange",
 		"#914EE3",
 		"green",
@@ -152,12 +154,6 @@ def get_columns(filters: Filters) -> list[dict]:
 					"fieldname": "total_holidays",
 					"fieldtype": "Float",
 					"width": 120,
-				},
-				{
-					"label": _("Unmarked Days"),
-					"fieldname": "unmarked_days",
-					"fieldtype": "Float",
-					"width": 130,
 				},
 			]
 		)
@@ -514,7 +510,7 @@ def get_attendance_status_for_summarized_view(
 	return {
 		"total_present": summary.total_present + summary.total_half_days,
 		"total_leaves": summary.total_leaves + summary.total_half_days,
-		"total_absent": summary.total_absent,
+		"total_absent": summary.total_absent + total_unmarked_days,
 		"total_holidays": total_holidays,
 		"unmarked_days": total_unmarked_days,
 	}
@@ -598,7 +594,7 @@ def get_attendance_status_for_detailed_view(
 			if status is None and holidays:
 				status = get_holiday_status(d, holidays)
 
-			abbr = status_map.get(status, "")
+			abbr = status_map.get(status, "A")
 			row[d.strftime("%d-%m-%Y")] = abbr
 
 		attendance_values.append(row)
