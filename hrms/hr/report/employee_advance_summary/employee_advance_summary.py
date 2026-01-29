@@ -107,6 +107,8 @@ def get_conditions(filters):
 		conditions += " and posting_date>=%(from_date)s"
 	if filters.get("to_date"):
 		conditions += " and posting_date<=%(to_date)s"
+	if filters.get("branch"):
+		conditions += " and employee in (select name from tabEmployee where branch = %(branch)s)"
 
 	return conditions
 
