@@ -257,6 +257,7 @@
    "fetch_if_empty": 1,
    "fieldname": "leave_encashment_amount_per_day",
    "fieldtype": "Currency",
+   "hidden": 1,
    "label": "Leave Encashment Amount Per Day",
    "options": "currency"
   }
