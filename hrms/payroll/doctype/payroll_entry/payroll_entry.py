@@ -1289,7 +1289,7 @@ def get_filtered_employees(
 		.on(Employee.name == SalaryStructureAssignment.employee)
 		.where(
 			(SalaryStructureAssignment.docstatus == 1)
-			& (Employee.status != "Inactive")
+			& (Employee.status == "Active")
 			& (Employee.company == filters.company)
 			& ((Employee.date_of_joining <= filters.end_date) | (Employee.date_of_joining.isnull()))
 			& ((Employee.relieving_date >= filters.start_date) | (Employee.relieving_date.isnull()))
