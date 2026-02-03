@@ -153,12 +153,6 @@ def get_columns(filters: Filters) -> list[dict]:
 					"fieldtype": "Float",
 					"width": 120,
 				},
-				{
-					"label": _("Unmarked Days"),
-					"fieldname": "unmarked_days",
-					"fieldtype": "Float",
-					"width": 130,
-				},
 			]
 		)
 		columns.extend(get_columns_for_leave_types())
@@ -333,6 +327,10 @@ def get_attendance_records(filters: Filters) -> list[dict]:
 		)
 	)
 
+	if branch := filters.get("branch"):
+		Employee = frappe.qb.DocType("Employee")
+		query = query.join(Employee).on(Attendance.employee == Employee.name)
+		query = query.where(Employee.branch == branch)
 	if filters.employee:
 		query = query.where(Attendance.employee == filters.employee)
 	query = query.orderby(Attendance.employee, Attendance.attendance_date)
@@ -514,7 +512,7 @@ def get_attendance_status_for_summarized_view(
 	return {
 		"total_present": summary.total_present + summary.total_half_days,
 		"total_leaves": summary.total_leaves + summary.total_half_days,
-		"total_absent": summary.total_absent,
+		"total_absent": summary.total_absent + total_unmarked_days,
 		"total_holidays": total_holidays,
 		"unmarked_days": total_unmarked_days,
 	}
@@ -598,7 +596,7 @@ def get_attendance_status_for_detailed_view(
 			if status is None and holidays:
 				status = get_holiday_status(d, holidays)
 
-			abbr = status_map.get(status, "")
+			abbr = status_map.get(status, "A")
 			row[d.strftime("%d-%m-%Y")] = abbr
 
 		attendance_values.append(row)
