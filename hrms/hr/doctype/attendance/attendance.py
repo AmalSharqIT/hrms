@@ -191,6 +191,7 @@ class Attendance(Document):
 		if self.status in ("On Leave", "Half Day"):
 			if not leave_record:
 				self.modify_half_day_status = 0
+				self.half_day_status = "Present"
 				frappe.msgprint(
 					_("No leave record found for employee {0} on {1}").format(
 						self.employee, format_date(self.attendance_date)
