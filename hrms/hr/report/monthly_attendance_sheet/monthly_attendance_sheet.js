@@ -90,6 +90,13 @@ frappe.query_reports["Monthly Attendance Sheet"] = {
 			options: "Company",
 			default: frappe.defaults.get_user_default("Company"),
 			reqd: 1,
+			hidden: 1,
+		},
+		{
+			fieldname: "branch",
+			label: __("Branch"),
+			fieldtype: "Link",
+			options: "Branch",
 		},
 		{
 			fieldname: "group_by",
