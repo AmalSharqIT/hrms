@@ -231,7 +231,8 @@
    "fieldname": "tax_deducted_till_date",
    "fieldtype": "Currency",
    "label": "Tax Deducted Till Date",
-   "options": "currency"
+   "options": "currency",
+   "print_hide": 1
   },
   {
    "fieldname": "column_break_20",
@@ -242,7 +243,8 @@
    "fieldname": "taxable_earnings_till_date",
    "fieldtype": "Currency",
    "label": "Taxable Earnings Till Date",
-   "options": "currency"
+   "options": "currency",
+   "print_hide": 1
   },
   {
    "collapsible_depends_on": "eval:doc.taxable_earnings_till_date && doc.tax_deducted_till_date",
