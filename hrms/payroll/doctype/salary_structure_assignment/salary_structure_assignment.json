@@ -20,6 +20,7 @@
   "company",
   "payroll_payable_account",
   "currency",
+  "amended_from",
   "section_break_7",
   "base",
   "monthly_salary",
@@ -29,7 +30,6 @@
   "hourly_salary",
   "withholding",
   "round_salary",
-  "amended_from",
   "column_break_kjvm",
   "leave_encashment_amount_per_day",
   "opening_balances_section",
@@ -117,20 +117,23 @@
    "fieldtype": "Currency",
    "label": "Base",
    "non_negative": 1,
-   "options": "currency"
+   "options": "currency",
+   "permlevel": 1
   },
   {
    "fieldname": "monthly_salary",
    "fieldtype": "Currency",
    "label": "Monthly Salary",
    "non_negative": 1,
-   "options": "currency"
+   "options": "currency",
+   "permlevel": 1
   },
   {
    "fieldname": "overtime_ratio",
    "fieldtype": "Float",
    "label": "Overtime Ratio",
-   "non_negative": 1
+   "non_negative": 1,
+   "permlevel": 1
   },
   {
    "fieldname": "column_break_9",
@@ -141,28 +144,32 @@
    "fieldtype": "Currency",
    "hidden": 1,
    "label": "Variable",
-   "options": "currency"
+   "options": "currency",
+   "permlevel": 1
   },
   {
    "fieldname": "hourly_salary",
    "fieldtype": "Currency",
    "label": "Hourly Salary",
    "non_negative": 1,
-   "options": "currency"
+   "options": "currency",
+   "permlevel": 1
   },
   {
    "fieldname": "withholding",
    "fieldtype": "Currency",
    "label": "Withholding",
    "non_negative": 1,
-   "options": "currency"
+   "options": "currency",
+   "permlevel": 1
   },
   {
    "fieldname": "round_salary",
    "fieldtype": "Currency",
    "label": "Round Salary",
    "non_negative": 1,
-   "options": "currency"
+   "options": "currency",
+   "permlevel": 1
   },
   {
    "fieldname": "amended_from",
@@ -261,7 +268,8 @@
    "fieldtype": "Currency",
    "hidden": 1,
    "label": "Leave Encashment Amount Per Day",
-   "options": "currency"
+   "options": "currency",
+   "permlevel": 1
   }
  ],
  "is_submittable": 1,
@@ -300,9 +308,19 @@
    "write": 1
   },
   {
+   "permlevel": 1,
+   "read": 1,
+   "role": "HR Manager",
+   "write": 1
+  },
+  {
+   "read": 1,
+   "role": "HR User"
+  },
+  {
    "permlevel": 9,
    "read": 1,
-   "role": "HR Manager"
+   "role": "HR User"
   },
   {
    "read": 1,
