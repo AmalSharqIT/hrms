@@ -1,5 +1,5 @@
 from frappe.model.document import Document
 
 
-class MinimumWithholdingSalary(Document):
+class PayrollSettingsWithholding(Document):
 	pass

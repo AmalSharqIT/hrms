@@ -189,8 +189,8 @@
   {
    "fieldname": "minimum_withholding_salary",
    "fieldtype": "Table",
-   "label": "Minimum Withholding Salary",
-   "options": "Minimum Withholding Salary"
+   "label": "Payroll Settings Withholding",
+   "options": "Payroll Settings Withholding"
   }
  ],
  "icon": "fa fa-cog",
