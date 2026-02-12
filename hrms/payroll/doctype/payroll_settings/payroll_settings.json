@@ -31,7 +31,7 @@
   "column_break_zi9y",
   "default_salary_component_section",
   "default_salary_component",
-  "minimum_withholding_salary"
+  "payroll_settings_withholding"
  ],
  "fields": [
   {
@@ -187,7 +187,7 @@
    "options": "Payroll Settings Salary Component"
   },
   {
-   "fieldname": "minimum_withholding_salary",
+   "fieldname": "payroll_settings_withholding",
    "fieldtype": "Table",
    "label": "Payroll Settings Withholding",
    "options": "Payroll Settings Withholding"
