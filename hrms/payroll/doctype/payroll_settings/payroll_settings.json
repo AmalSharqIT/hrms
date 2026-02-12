@@ -30,7 +30,8 @@
   "process_payroll_accounting_entry_based_on_employee",
   "column_break_zi9y",
   "default_salary_component_section",
-  "default_salary_component"
+  "default_salary_component",
+  "minimum_withholding_salary"
  ],
  "fields": [
   {
@@ -184,6 +185,12 @@
    "fieldtype": "Table",
    "label": "Default Salary Component",
    "options": "Payroll Settings Salary Component"
+  },
+  {
+   "fieldname": "minimum_withholding_salary",
+   "fieldtype": "Table",
+   "label": "Minimum Withholding Salary",
+   "options": "Minimum Withholding Salary"
   }
  ],
  "icon": "fa fa-cog",
