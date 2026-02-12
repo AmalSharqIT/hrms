@@ -31,7 +31,7 @@
   "column_break_zi9y",
   "default_salary_component_section",
   "default_salary_component",
-  "payroll_settings_withholding"
+  "withholding"
  ],
  "fields": [
   {
@@ -187,9 +187,9 @@
    "options": "Payroll Settings Salary Component"
   },
   {
-   "fieldname": "payroll_settings_withholding",
+   "fieldname": "withholding",
    "fieldtype": "Table",
-   "label": "Payroll Settings Withholding",
+   "label": "Withholding",
    "options": "Payroll Settings Withholding"
   }
  ],
