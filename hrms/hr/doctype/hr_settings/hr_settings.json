@@ -21,7 +21,7 @@
   "sender",
   "sender_email",
   "overtime_settings_section",
-  "overtime_settings",
+  "overtime",
   "advance_settings_section",
   "advance_limit_percent_of_salary",
   "loan_settings_section",
@@ -407,9 +407,9 @@
    "label": "Overtime Settings"
   },
   {
-   "fieldname": "overtime_settings",
+   "fieldname": "overtime",
    "fieldtype": "Table",
-   "options": "Auto Approve Overtime System"
+   "options": "HR Settings Overtime"
   }
  ],
  "icon": "fa fa-cog",

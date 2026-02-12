@@ -1,5 +1,5 @@
 from frappe.model.document import Document
 
 
-class AutoApproveOvertimeSystem(Document):
+class HRSettingsOvertime(Document):
 	pass

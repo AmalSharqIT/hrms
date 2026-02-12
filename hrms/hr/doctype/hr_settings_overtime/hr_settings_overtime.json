@@ -41,7 +41,7 @@
   "modified": "2026-02-12",
   "modified_by": "Administrator",
   "module": "HR",
-  "name": "Auto Approve Overtime System",
+  "name": "HR Settings Overtime",
   "owner": "Administrator",
   "permissions": [],
   "row_format": "Dynamic",
