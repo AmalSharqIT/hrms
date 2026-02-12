@@ -7,7 +7,7 @@
  "engine": "InnoDB",
  "field_order": [
   "currency",
-  "amount"
+  "minimum_amount"
  ],
  "fields": [
   {
@@ -19,10 +19,10 @@
    "reqd": 1
   },
   {
-   "fieldname": "amount",
+   "fieldname": "minimum_amount",
    "fieldtype": "Currency",
    "in_list_view": 1,
-   "label": "Amount",
+   "label": "Minimum Amount",
    "options": "currency",
    "reqd": 1
   }
