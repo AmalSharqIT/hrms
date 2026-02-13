@@ -1,6 +1,5 @@
 {
   "actions": [],
-  "allow_rename": 1,
   "creation": "2026-02-12",
   "doctype": "DocType",
   "editable_grid": 1,
@@ -34,7 +33,6 @@
   "owner": "Administrator",
   "permissions": [],
   "row_format": "Dynamic",
-  "rows_threshold_for_grid_search": 20,
   "sort_field": "modified",
   "sort_order": "DESC",
   "states": []
