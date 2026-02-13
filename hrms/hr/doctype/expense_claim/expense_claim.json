@@ -57,11 +57,11 @@
   {
    "fieldname": "naming_series",
    "fieldtype": "Select",
+   "hidden": 1,
    "label": "Series",
    "no_copy": 1,
    "options": "HR-EXP-.YYYY.-",
    "print_hide": 1,
-   "reqd": 1,
    "set_only_once": 1
   },
   {
@@ -107,6 +107,7 @@
   },
   {
    "default": "Draft",
+   "depends_on": "eval:(frappe.model.can_submit(\"Expense Claim\"))",
    "fieldname": "approval_status",
    "fieldtype": "Select",
    "label": "Approval Status",
@@ -186,6 +187,7 @@
   {
    "fieldname": "task",
    "fieldtype": "Link",
+   "hidden": 1,
    "label": "Task",
    "options": "Task",
    "remember_last_selected_value": 1
@@ -357,11 +359,13 @@
    "fieldtype": "Column Break"
   },
   {
+   "depends_on": "eval:(frappe.model.can_submit(\"Expense Claim\"))",
    "fieldname": "accounting_details_tab",
    "fieldtype": "Tab Break",
    "label": "Accounting"
   },
   {
+   "depends_on": "eval:(frappe.model.can_submit(\"Expense Claim\"))",
    "fieldname": "more_info_tab",
    "fieldtype": "Tab Break",
    "label": "More Info"
@@ -382,6 +386,7 @@
    "collapsible_depends_on": "eval:doc.taxes?.length",
    "fieldname": "taxes_and_charges_sb",
    "fieldtype": "Section Break",
+   "hidden": 1,
    "label": "Taxes & Charges",
    "options": "Simple"
   }
@@ -404,23 +409,12 @@
    "create": 1,
    "delete": 1,
    "email": 1,
-   "export": 1,
    "print": 1,
    "read": 1,
    "report": 1,
    "role": "HR Manager",
    "share": 1,
    "submit": 1,
-   "write": 1
-  },
-  {
-   "create": 1,
-   "email": 1,
-   "print": 1,
-   "read": 1,
-   "report": 1,
-   "role": "Employee",
-   "share": 1,
    "write": 1
   },
   {
@@ -476,7 +470,6 @@
   },
   {
    "email": 1,
-   "export": 1,
    "permlevel": 1,
    "print": 1,
    "read": 1,

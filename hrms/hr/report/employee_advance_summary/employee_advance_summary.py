@@ -24,6 +24,7 @@ def execute(filters=None):
 		row = [
 			advance.name,
 			advance.employee,
+			advance.employee_name,
 			advance.company,
 			advance.posting_date,
 			advance.advance_amount,
@@ -54,6 +55,7 @@ def get_columns():
 			"options": "Employee",
 			"width": 120,
 		},
+		{"label": _("Employee Name"), "fieldname": "employee_name", "fieldtype": "Data", "width": 120},
 		{
 			"label": _("Company"),
 			"fieldname": "company",
