@@ -29,8 +29,10 @@
   "other_settings_section",
   "process_payroll_accounting_entry_based_on_employee",
   "column_break_zi9y",
-  "default_salary_component_section",
-  "default_salary_component"
+  "salary_component_settings_section",
+  "default_salary_component",
+  "withholding_settings_section",
+  "withholding"
  ],
  "fields": [
   {
@@ -176,14 +178,24 @@
    "options": "Email Template"
   },
   {
-   "fieldname": "default_salary_component_section",
-   "fieldtype": "Section Break"
+   "fieldname": "salary_component_settings_section",
+   "fieldtype": "Section Break",
+   "label": "Salary Component Settings"
   },
   {
    "fieldname": "default_salary_component",
    "fieldtype": "Table",
-   "label": "Default Salary Component",
    "options": "Payroll Settings Salary Component"
+  },
+  {
+   "fieldname": "withholding_settings_section",
+   "fieldtype": "Section Break",
+   "label": "Withholding Settings"
+  },
+  {
+   "fieldname": "withholding",
+   "fieldtype": "Table",
+   "options": "Payroll Settings Withholding"
   }
  ],
  "icon": "fa fa-cog",
