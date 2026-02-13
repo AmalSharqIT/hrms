@@ -20,6 +20,8 @@
   "column_break_hyec",
   "sender",
   "sender_email",
+  "overtime_settings_section",
+  "overtime_settings",
   "advance_settings_section",
   "advance_limit_percent_of_salary",
   "loan_settings_section",
@@ -398,6 +400,16 @@
    "fieldname": "prevent_self_expense_approval",
    "fieldtype": "Check",
    "label": "Prevent self approval for expense claims even if user has permissions"
+  },
+  {
+   "fieldname": "overtime_settings_section",
+   "fieldtype": "Section Break",
+   "label": "Overtime Settings"
+  },
+  {
+   "fieldname": "overtime_settings",
+   "fieldtype": "Table",
+   "options": "HR Settings Overtime"
   }
  ],
  "icon": "fa fa-cog",
