@@ -21,7 +21,7 @@
   "sender",
   "sender_email",
   "overtime_settings_section",
-  "overtime",
+  "overtime_settings",
   "advance_settings_section",
   "advance_limit_percent_of_salary",
   "loan_settings_section",
@@ -407,7 +407,7 @@
    "label": "Overtime Settings"
   },
   {
-   "fieldname": "overtime",
+   "fieldname": "overtime_settings",
    "fieldtype": "Table",
    "options": "HR Settings Overtime"
   }
@@ -416,7 +416,7 @@
  "idx": 1,
  "issingle": 1,
  "links": [],
- "modified": "2026-02-12 16:04:37.085688",
+ "modified": "2025-07-28 10:37:35.977951",
  "modified_by": "Administrator",
  "module": "HR",
  "name": "HR Settings",

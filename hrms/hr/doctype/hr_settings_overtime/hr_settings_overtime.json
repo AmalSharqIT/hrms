@@ -1,11 +1,15 @@
 {
   "actions": [],
-  "allow_rename": 1,
   "creation": "2026-02-12",
   "doctype": "DocType",
   "editable_grid": 1,
   "engine": "InnoDB",
-  "field_order": ["branch", "minimum", "maximal", "minus"],
+  "field_order": [
+    "branch",
+    "min_auto_overtime",
+    "max_auto_overtime",
+    "overtime_deduction"
+  ],
   "fields": [
     {
       "fieldname": "branch",
@@ -16,36 +20,34 @@
       "reqd": 1
     },
     {
-      "fieldname": "minimum",
+      "fieldname": "min_auto_overtime",
       "fieldtype": "Int",
       "in_list_view": 1,
-      "label": "Minimum"
+      "label": "Min Auto Overtime"
     },
     {
-      "fieldname": "maximal",
+      "fieldname": "max_auto_overtime",
       "fieldtype": "Int",
       "in_list_view": 1,
-      "label": "Maximal"
+      "label": "Max Auto Overtime"
     },
     {
-      "fieldname": "minus",
+      "fieldname": "overtime_deduction",
       "fieldtype": "Int",
       "in_list_view": 1,
-      "label": "Minus"
+      "label": "Overtime Deduction"
     }
   ],
   "grid_page_length": 50,
-  "index_web_pages_for_search": 1,
   "istable": 1,
   "links": [],
-  "modified": "2026-02-12",
+  "modified": "2026-02-13",
   "modified_by": "Administrator",
   "module": "HR",
   "name": "HR Settings Overtime",
   "owner": "Administrator",
   "permissions": [],
   "row_format": "Dynamic",
-  "rows_threshold_for_grid_search": 20,
   "sort_field": "modified",
   "sort_order": "DESC",
   "states": []
