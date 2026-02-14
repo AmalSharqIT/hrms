@@ -22,20 +22,6 @@ class HRSettings(Document):
 			self.validate_frequency_change()
 		PROCEED_WITH_FREQUENCY_CHANGE = False
 
-		for row in self.overtime_settings:
-			if row.min_auto_overtime and (row.overtime_deduction > row.min_auto_overtime):
-				frappe.throw(
-					_("Overtime Deduction cannot exceed Min Auto Overtime for the {0} branch.").format(
-						row.branch
-					)
-				)
-			if row.max_auto_overtime and (row.overtime_deduction > row.max_auto_overtime):
-				frappe.throw(
-					_("Overtime Deduction cannot exceed Max Auto Overtime for the {0} branch.").format(
-						row.branch
-					)
-				)
-
 	def set_naming_series(self):
 		from erpnext.utilities.naming import set_by_naming_series
 
