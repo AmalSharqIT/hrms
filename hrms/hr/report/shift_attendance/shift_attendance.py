@@ -85,6 +85,12 @@ def get_columns():
 			"width": 100,
 		},
 		{
+			"label": _("Approved Overtime Hours"),
+			"fieldname": "approved_overtime_hours",
+			"fieldtype": "Data",
+			"width": 100,
+		},
+		{
 			"label": _("Late Entry By"),
 			"fieldname": "late_entry_hrs",
 			"fieldtype": "Data",
@@ -93,6 +99,18 @@ def get_columns():
 		{
 			"label": _("Early Exit By"),
 			"fieldname": "early_exit_hrs",
+			"fieldtype": "Data",
+			"width": 120,
+		},
+		{
+			"label": _("Start Overtime Hours"),
+			"fieldname": "start_overtime_hours",
+			"fieldtype": "Data",
+			"width": 120,
+		},
+		{
+			"label": _("End Overtime Hours"),
+			"fieldname": "end_overtime_hours",
 			"fieldtype": "Data",
 			"width": 120,
 		},
@@ -134,9 +152,9 @@ def get_columns():
 
 def get_data(filters):
 	data = get_attendance_with_checkins(filters)
-	data = update_data(data, filters)
 	if filters.include_attendance_without_checkins:
 		data.extend(get_attendance_without_checkins(filters))
+	data = update_data(data, filters)
 	return data
 
 
@@ -264,6 +282,9 @@ def get_base_attendance_query(filters):
 			attendance.early_exit,
 			attendance.department,
 			attendance.company,
+			attendance.approved_overtime_hours,
+			attendance.start_overtime_hours,
+			attendance.end_overtime_hours,
 		)
 		.where(attendance.docstatus == 1)
 		.groupby(attendance.name)
@@ -310,6 +331,9 @@ def update_data(data, filters):
 		update_early_exit(d, filters.consider_grace_period)
 
 		d.working_hours = format_float_precision(d.working_hours)
+		d.approved_overtime_hours = format_float_precision(d.approved_overtime_hours) if d.approved_overtime_hours else None
+		d.start_overtime_hours = format_float_precision(d.start_overtime_hours) if d.start_overtime_hours else None
+		d.end_overtime_hours = format_float_precision(d.end_overtime_hours) if d.end_overtime_hours else None
 		d.in_time, d.out_time = format_in_out_time(d.in_time, d.out_time, d.attendance_date)
 		d.shift_start, d.shift_end = convert_datetime_to_time_for_same_date(d.shift_start, d.shift_end)
 		d.shift_actual_start, d.shift_actual_end = convert_datetime_to_time_for_same_date(
