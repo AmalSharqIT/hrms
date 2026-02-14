@@ -26,7 +26,7 @@ def get_columns():
 			"fieldname": "employee",
 			"fieldtype": "Link",
 			"options": "Employee",
-			"width": 220,
+			"width": 350,
 		},
 		{
 			"fieldname": "employee_name",
@@ -274,6 +274,13 @@ def get_base_attendance_query(filters):
 			query = query.where(attendance.attendance_date >= filters.from_date)
 		elif field == "to_date":
 			query = query.where(attendance.attendance_date <= filters.to_date)
+		elif field == "branch":
+			employee = frappe.qb.DocType("Employee")
+			query = (
+				query.inner_join(employee)
+				.on(employee.name == attendance.employee)
+				.where(employee.branch == filters.branch)
+			)
 		elif field in ["consider_grace_period", "include_attendance_without_checkins"]:
 			continue
 		else:
