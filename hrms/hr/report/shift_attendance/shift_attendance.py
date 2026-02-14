@@ -353,7 +353,7 @@ def update_late_entry(entry, consider_grace_period):
 		entry.late_entry = 1
 		entry.late_entry_hrs = entry.in_time - entry.shift_start
 	if entry.late_entry_hrs:
-		entry.late_entry_hrs = format_duration(entry.late_entry_hrs.total_seconds())
+		entry.late_entry_hrs = format_float_precision(entry.late_entry_hrs.total_seconds() / 3600)
 
 
 def update_early_exit(entry, consider_grace_period):
@@ -366,4 +366,4 @@ def update_early_exit(entry, consider_grace_period):
 		entry.early_exit = 1
 		entry.early_exit_hrs = entry.shift_end - entry.out_time
 	if entry.early_exit_hrs:
-		entry.early_exit_hrs = format_duration(entry.early_exit_hrs.total_seconds())
+		entry.early_exit_hrs = format_float_precision(entry.early_exit_hrs.total_seconds() / 3600)
