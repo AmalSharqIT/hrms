@@ -1,5 +1,6 @@
 {
   "actions": [],
+  "autoname": "field:branch",
   "creation": "2026-02-12",
   "doctype": "DocType",
   "editable_grid": 1,
@@ -17,7 +18,8 @@
       "in_list_view": 1,
       "label": "Branch",
       "options": "Branch",
-      "reqd": 1
+      "reqd": 1,
+      "unique": 1
     },
     {
       "fieldname": "min_auto_overtime",
@@ -45,6 +47,7 @@
   "modified_by": "Administrator",
   "module": "HR",
   "name": "HR Settings Overtime",
+  "naming_rule": "By fieldname",
   "owner": "Administrator",
   "permissions": [],
   "row_format": "Dynamic",
