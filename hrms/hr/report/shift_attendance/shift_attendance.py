@@ -296,11 +296,11 @@ def get_base_attendance_query(filters):
 		elif field == "to_date":
 			query = query.where(attendance.attendance_date <= filters.to_date)
 		elif field == "branch":
-			employee = frappe.qb.DocType("Employee")
+			Employee = frappe.qb.DocType("Employee")
 			query = (
-				query.inner_join(employee)
-				.on(employee.name == attendance.employee)
-				.where(employee.branch == filters.branch)
+				query.join(Employee)
+				.on(Employee.name == attendance.employee)
+				.where(Employee.branch == filters.branch)
 			)
 		elif field in ["consider_grace_period", "include_attendance_without_checkins"]:
 			continue
