@@ -53,9 +53,15 @@ def get_columns():
 			"fieldname": "employee",
 			"fieldtype": "Link",
 			"options": "Employee",
-			"width": 120,
+			"width": 350,
 		},
-		{"label": _("Employee Name"), "fieldname": "employee_name", "fieldtype": "Data", "width": 120},
+		{
+			"label": _("Employee Name"),
+			"fieldname": "employee_name",
+			"fieldtype": "Data",
+			"width": 120,
+			"hidden": 1,
+		},
 		{
 			"label": _("Company"),
 			"fieldname": "company",
