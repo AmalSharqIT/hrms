@@ -87,7 +87,7 @@ def get_columns():
 		{
 			"label": _("Approved Overtime Hours"),
 			"fieldname": "approved_overtime_hours",
-			"fieldtype": "Data",
+			"fieldtype": "Float",
 			"width": 100,
 		},
 		{
@@ -105,13 +105,13 @@ def get_columns():
 		{
 			"label": _("Start Overtime Hours"),
 			"fieldname": "start_overtime_hours",
-			"fieldtype": "Data",
+			"fieldtype": "Float",
 			"width": 120,
 		},
 		{
 			"label": _("End Overtime Hours"),
 			"fieldname": "end_overtime_hours",
-			"fieldtype": "Data",
+			"fieldtype": "Float",
 			"width": 120,
 		},
 		{
@@ -331,9 +331,9 @@ def update_data(data, filters):
 		update_early_exit(d, filters.consider_grace_period)
 
 		d.working_hours = format_float_precision(d.working_hours)
-		d.approved_overtime_hours = format_float_precision(d.approved_overtime_hours) if d.approved_overtime_hours else None
-		d.start_overtime_hours = format_float_precision(d.start_overtime_hours) if d.start_overtime_hours else None
-		d.end_overtime_hours = format_float_precision(d.end_overtime_hours) if d.end_overtime_hours else None
+		d.approved_overtime_hours = d.approved_overtime_hours or None
+		d.start_overtime_hours = d.start_overtime_hours or None
+		d.end_overtime_hours = d.end_overtime_hours or None
 		d.in_time, d.out_time = format_in_out_time(d.in_time, d.out_time, d.attendance_date)
 		d.shift_start, d.shift_end = convert_datetime_to_time_for_same_date(d.shift_start, d.shift_end)
 		d.shift_actual_start, d.shift_actual_end = convert_datetime_to_time_for_same_date(
@@ -369,7 +369,7 @@ def convert_datetime_to_time_for_same_date(start, end):
 
 def update_late_entry(entry, consider_grace_period):
 	if consider_grace_period:
-		if entry.late_entry:
+		if entry.late_entry and entry.shift_start:
 			entry_grace_period = entry.late_entry_grace_period if entry.enable_late_entry_marking else 0
 			start_time = entry.shift_start + timedelta(minutes=entry_grace_period)
 			entry.late_entry_hrs = entry.in_time - start_time
@@ -382,7 +382,7 @@ def update_late_entry(entry, consider_grace_period):
 
 def update_early_exit(entry, consider_grace_period):
 	if consider_grace_period:
-		if entry.early_exit:
+		if entry.early_exit and entry.shift_end:
 			exit_grace_period = entry.early_exit_grace_period if entry.enable_early_exit_marking else 0
 			end_time = entry.shift_end - timedelta(minutes=exit_grace_period)
 			entry.early_exit_hrs = end_time - entry.out_time
