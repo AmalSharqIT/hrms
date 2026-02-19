@@ -49,8 +49,9 @@ def execute(filters=None):
 			"start_date": ss.start_date,
 			"end_date": ss.end_date,
 			"leave_without_pay": ss.leave_without_pay,
+			"leave_with_pay": ss.leave_with_pay,
 			"absent_days": ss.absent_days,
-			"payment_days": ss.payment_days,
+			"present_days": ss.present_days,
 			"currency": currency or company_currency,
 			"total_loan_repayment": ss.total_loan_repayment,
 		}
@@ -123,19 +124,21 @@ def get_columns(earning_types, ded_types):
 			"fieldname": "employee",
 			"fieldtype": "Link",
 			"options": "Employee",
-			"width": 120,
+			"width": 350,
 		},
 		{
 			"label": _("Employee Name"),
 			"fieldname": "employee_name",
 			"fieldtype": "Data",
 			"width": 140,
+			"hidden": 1,
 		},
 		{
 			"label": _("Date of Joining"),
 			"fieldname": "data_of_joining",
 			"fieldtype": "Date",
 			"width": 80,
+			"hidden": 1,
 		},
 		{
 			"label": _("Branch"),
@@ -143,6 +146,7 @@ def get_columns(earning_types, ded_types):
 			"fieldtype": "Link",
 			"options": "Branch",
 			"width": -1,
+			"hidden": 1,
 		},
 		{
 			"label": _("Department"),
@@ -150,6 +154,7 @@ def get_columns(earning_types, ded_types):
 			"fieldtype": "Link",
 			"options": "Department",
 			"width": -1,
+			"hidden": 1,
 		},
 		{
 			"label": _("Designation"),
@@ -157,6 +162,7 @@ def get_columns(earning_types, ded_types):
 			"fieldtype": "Link",
 			"options": "Designation",
 			"width": 120,
+			"hidden": 1,
 		},
 		{
 			"label": _("Company"),
@@ -182,6 +188,13 @@ def get_columns(earning_types, ded_types):
 			"fieldname": "leave_without_pay",
 			"fieldtype": "Float",
 			"width": 50,
+			"hidden": 1,
+		},
+		{
+			"label": _("Leave With Pay"),
+			"fieldname": "leave_with_pay",
+			"fieldtype": "Float",
+			"width": 50,
 		},
 		{
 			"label": _("Absent Days"),
@@ -190,8 +203,8 @@ def get_columns(earning_types, ded_types):
 			"width": 50,
 		},
 		{
-			"label": _("Payment Days"),
-			"fieldname": "payment_days",
+			"label": _("Present Days"),
+			"fieldname": "present_days",
 			"fieldtype": "Float",
 			"width": 120,
 		},
