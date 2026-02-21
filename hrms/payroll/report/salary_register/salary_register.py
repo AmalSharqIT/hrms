@@ -49,8 +49,11 @@ def execute(filters=None):
 			"start_date": ss.start_date,
 			"end_date": ss.end_date,
 			"leave_without_pay": ss.leave_without_pay,
+			"leave_with_pay": ss.leave_with_pay,
 			"absent_days": ss.absent_days,
-			"payment_days": ss.payment_days,
+			"present_days": ss.present_days,
+			"working_hours": ss.working_hours,
+			"overtime_hours": ss.overtime_hours,
 			"currency": currency or company_currency,
 			"total_loan_repayment": ss.total_loan_repayment,
 		}
@@ -123,13 +126,14 @@ def get_columns(earning_types, ded_types):
 			"fieldname": "employee",
 			"fieldtype": "Link",
 			"options": "Employee",
-			"width": 120,
+			"width": 350,
 		},
 		{
 			"label": _("Employee Name"),
 			"fieldname": "employee_name",
 			"fieldtype": "Data",
 			"width": 140,
+			"hidden": 1,
 		},
 		{
 			"label": _("Date of Joining"),
@@ -169,7 +173,7 @@ def get_columns(earning_types, ded_types):
 			"label": _("Start Date"),
 			"fieldname": "start_date",
 			"fieldtype": "Data",
-			"width": 80,
+			"width": 120,
 		},
 		{
 			"label": _("End Date"),
@@ -184,16 +188,34 @@ def get_columns(earning_types, ded_types):
 			"width": 50,
 		},
 		{
+			"label": _("Leave With Pay"),
+			"fieldname": "leave_with_pay",
+			"fieldtype": "Float",
+			"width": 50,
+		},
+		{
 			"label": _("Absent Days"),
 			"fieldname": "absent_days",
 			"fieldtype": "Float",
 			"width": 50,
 		},
 		{
-			"label": _("Payment Days"),
-			"fieldname": "payment_days",
+			"label": _("Present Days"),
+			"fieldname": "present_days",
 			"fieldtype": "Float",
-			"width": 120,
+			"width": 50,
+		},
+		{
+			"label": _("Working Hours"),
+			"fieldname": "working_hours",
+			"fieldtype": "Float",
+			"width": 50,
+		},
+		{
+			"label": _("Overtime Hours"),
+			"fieldname": "overtime_hours",
+			"fieldtype": "Float",
+			"width": 50,
 		},
 	]
 
