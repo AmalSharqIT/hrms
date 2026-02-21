@@ -140,7 +140,6 @@ def get_columns(earning_types, ded_types):
 			"fieldname": "data_of_joining",
 			"fieldtype": "Date",
 			"width": 80,
-			"hidden": 1,
 		},
 		{
 			"label": _("Branch"),
@@ -148,7 +147,6 @@ def get_columns(earning_types, ded_types):
 			"fieldtype": "Link",
 			"options": "Branch",
 			"width": -1,
-			"hidden": 1,
 		},
 		{
 			"label": _("Department"),
@@ -156,7 +154,6 @@ def get_columns(earning_types, ded_types):
 			"fieldtype": "Link",
 			"options": "Department",
 			"width": -1,
-			"hidden": 1,
 		},
 		{
 			"label": _("Designation"),
@@ -164,7 +161,6 @@ def get_columns(earning_types, ded_types):
 			"fieldtype": "Link",
 			"options": "Designation",
 			"width": 120,
-			"hidden": 1,
 		},
 		{
 			"label": _("Company"),
