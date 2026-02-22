@@ -188,7 +188,7 @@ def get_columns(earning_types, ded_types):
 			"width": 50,
 		},
 		{
-			"label": _("Leave With Pay"),
+			"label": _("Leave with Pay"),
 			"fieldname": "leave_with_pay",
 			"fieldtype": "Float",
 			"width": 50,
