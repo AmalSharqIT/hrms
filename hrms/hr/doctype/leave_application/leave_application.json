@@ -171,7 +171,7 @@
   },
   {
    "default": "Open",
-   "depends_on": "eval:(frappe.model.can_submit(\"Leave Application\"))",
+   "depends_on": "eval:frappe.model.can_submit('Leave Application')",
    "fieldname": "status",
    "fieldtype": "Select",
    "in_standard_filter": 1,

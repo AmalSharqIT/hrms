@@ -129,7 +129,7 @@
    "label": "Accounting"
   },
   {
-   "depends_on": "eval:(frappe.model.can_submit(\"Employee Advance\"))",
+   "depends_on": "eval:frappe.model.can_submit('Employee Advance')",
    "fieldname": "status",
    "fieldtype": "Select",
    "label": "Status",
@@ -160,7 +160,7 @@
    "fieldtype": "Column Break"
   },
   {
-   "depends_on": "eval:(frappe.model.can_submit(\"Employee Advance\"))",
+   "depends_on": "eval:frappe.model.can_submit('Employee Advance')",
    "fieldname": "advance_account",
    "fieldtype": "Link",
    "ignore_user_permissions": 1,
@@ -243,7 +243,7 @@
   },
   {
    "collapsible": 1,
-   "depends_on": "eval:(frappe.model.can_submit(\"Employee Advance\"))",
+   "depends_on": "eval:frappe.model.can_submit('Employee Advance')",
    "fieldname": "currency_section",
    "fieldtype": "Section Break",
    "label": "Currency "

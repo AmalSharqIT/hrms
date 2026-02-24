@@ -96,11 +96,11 @@
    "precision": "2"
   },
   {
-   "depends_on": "eval:doc.working_hours_threshold_for_half_day > 0",
+   "depends_on": "eval:doc.working_hours_threshold_for_half_day>0",
    "fieldname": "half_day_leave_type",
    "fieldtype": "Link",
    "label": "Half Day Leave Type",
-   "mandatory_depends_on": "eval:doc.working_hours_threshold_for_half_day > 0",
+   "mandatory_depends_on": "eval:doc.working_hours_threshold_for_half_day>0",
    "options": "Leave Type"
   },
   {

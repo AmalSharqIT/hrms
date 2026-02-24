@@ -107,7 +107,7 @@
   },
   {
    "default": "Draft",
-   "depends_on": "eval:(frappe.model.can_submit(\"Expense Claim\"))",
+   "depends_on": "eval:frappe.model.can_submit('Expense Claim')",
    "fieldname": "approval_status",
    "fieldtype": "Select",
    "label": "Approval Status",
@@ -359,13 +359,13 @@
    "fieldtype": "Column Break"
   },
   {
-   "depends_on": "eval:(frappe.model.can_submit(\"Expense Claim\"))",
+   "depends_on": "eval:frappe.model.can_submit('Expense Claim')",
    "fieldname": "accounting_details_tab",
    "fieldtype": "Tab Break",
    "label": "Accounting"
   },
   {
-   "depends_on": "eval:(frappe.model.can_submit(\"Expense Claim\"))",
+   "depends_on": "eval:frappe.model.can_submit('Expense Claim')",
    "fieldname": "more_info_tab",
    "fieldtype": "Tab Break",
    "label": "More Info"

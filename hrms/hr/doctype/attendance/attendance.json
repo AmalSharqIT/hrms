@@ -81,7 +81,7 @@
   },
   {
    "allow_on_submit": 1,
-   "depends_on": "eval:(doc.status != 'Absent' && doc.status != 'On Leave')",
+   "depends_on": "eval:(doc.status!='Absent' && doc.status!='On Leave')",
    "fieldname": "working_hours",
    "fieldtype": "Float",
    "label": "Working Hours",
@@ -292,7 +292,7 @@
   },
   {
    "allow_on_submit": 1,
-   "depends_on": "eval:(doc.start_overtime_hours > 0 || doc.end_overtime_hours > 0 )",
+   "depends_on": "eval:(doc.start_overtime_hours>0 || doc.end_overtime_hours>0)",
    "fieldname": "total_overtime_hours",
    "fieldtype": "Float",
    "is_virtual": 1,
