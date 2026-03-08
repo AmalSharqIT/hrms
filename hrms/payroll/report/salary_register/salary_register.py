@@ -126,14 +126,13 @@ def get_columns(earning_types, ded_types):
 			"fieldname": "employee",
 			"fieldtype": "Link",
 			"options": "Employee",
-			"width": 350,
+			"width": 120,
 		},
 		{
 			"label": _("Employee Name"),
 			"fieldname": "employee_name",
 			"fieldtype": "Data",
-			"width": 140,
-			"hidden": 1,
+			"width": 300,
 		},
 		{
 			"label": _("Date of Joining"),
