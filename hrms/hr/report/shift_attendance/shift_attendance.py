@@ -81,7 +81,7 @@ def get_columns():
 		{
 			"label": _("Total Working Hours"),
 			"fieldname": "working_hours",
-			"fieldtype": "Data",
+			"fieldtype": "Float",
 			"width": 100,
 		},
 		{
@@ -93,13 +93,13 @@ def get_columns():
 		{
 			"label": _("Late Entry By"),
 			"fieldname": "late_entry_hrs",
-			"fieldtype": "Data",
+			"fieldtype": "Float",
 			"width": 120,
 		},
 		{
 			"label": _("Early Exit By"),
 			"fieldname": "early_exit_hrs",
-			"fieldtype": "Data",
+			"fieldtype": "Float",
 			"width": 120,
 		},
 		{
