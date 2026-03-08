@@ -494,14 +494,7 @@ class SalarySlip(TransactionBase):
 				holidays, working_days_list, daily_wages_fraction_for_half_day
 			)
 
-		if not lwp:
-			lwp = actual_lwp
-		elif lwp != actual_lwp:
-			frappe.msgprint(
-				_("Leave Without Pay does not match with approved {} records").format(
-					payroll_settings.payroll_based_on
-				)
-			)
+		lwp = actual_lwp
 
 		self.leave_without_pay = lwp
 		self.total_working_days = working_days
