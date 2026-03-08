@@ -389,8 +389,7 @@
    "label": "Earnings",
    "oldfieldname": "earning_details",
    "oldfieldtype": "Table",
-   "options": "Salary Detail",
-   "read_only": 1
+   "options": "Salary Detail"
   },
   {
    "fieldname": "deductions",
@@ -398,8 +397,7 @@
    "label": "Deductions",
    "oldfieldname": "deduction_details",
    "oldfieldtype": "Table",
-   "options": "Salary Detail",
-   "read_only": 1
+   "options": "Salary Detail"
   },
   {
    "fieldname": "totals",
