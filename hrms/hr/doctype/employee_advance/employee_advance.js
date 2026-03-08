@@ -10,27 +10,6 @@ frappe.ui.form.on("Employee Advance", {
 				},
 			};
 		});
-
-		frm.set_query("advance_account", function () {
-			if (!frm.doc.employee) {
-				frappe.msgprint(__("Please select employee first"));
-			}
-			let company_currency = erpnext.get_currency(frm.doc.company);
-			let currencies = [company_currency];
-			if (frm.doc.currency && frm.doc.currency != company_currency) {
-				currencies.push(frm.doc.currency);
-			}
-
-			return {
-				filters: {
-					root_type: "Asset",
-					is_group: 0,
-					company: frm.doc.company,
-					account_currency: ["in", currencies],
-					account_type: "Receivable",
-				},
-			};
-		});
 	},
 
 	refresh: function (frm) {
@@ -64,10 +43,7 @@ frappe.ui.form.on("Employee Advance", {
 			frm.doc.docstatus === 1 &&
 			flt(frm.doc.claimed_amount) < flt(frm.doc.paid_amount) - flt(frm.doc.return_amount)
 		) {
-			if (
-				frm.doc.repay_unclaimed_amount_from_salary == 0 &&
-				frappe.model.can_create("Journal Entry")
-			) {
+			if (frappe.model.can_create("Journal Entry")) {
 				frm.add_custom_button(
 					__("Return"),
 					function () {
@@ -75,10 +51,8 @@ frappe.ui.form.on("Employee Advance", {
 					},
 					__("Create"),
 				);
-			} else if (
-				frm.doc.repay_unclaimed_amount_from_salary == 1 &&
-				frappe.model.can_create("Additional Salary")
-			) {
+			}
+			if (frappe.model.can_create("Additional Salary")) {
 				frm.add_custom_button(
 					__("Deduction from Salary"),
 					function () {

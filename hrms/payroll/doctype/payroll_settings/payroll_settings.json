@@ -28,7 +28,11 @@
   "password_policy",
   "other_settings_section",
   "process_payroll_accounting_entry_based_on_employee",
-  "column_break_zi9y"
+  "column_break_zi9y",
+  "salary_component_settings_section",
+  "default_salary_component",
+  "withholding_settings_section",
+  "withholding"
  ],
  "fields": [
   {
@@ -172,6 +176,26 @@
    "fieldtype": "Link",
    "label": "Email Template",
    "options": "Email Template"
+  },
+  {
+   "fieldname": "salary_component_settings_section",
+   "fieldtype": "Section Break",
+   "label": "Salary Component Settings"
+  },
+  {
+   "fieldname": "default_salary_component",
+   "fieldtype": "Table",
+   "options": "Payroll Settings Salary Component"
+  },
+  {
+   "fieldname": "withholding_settings_section",
+   "fieldtype": "Section Break",
+   "label": "Withholding Settings"
+  },
+  {
+   "fieldname": "withholding",
+   "fieldtype": "Table",
+   "options": "Payroll Settings Withholding"
   }
  ],
  "icon": "fa fa-cog",

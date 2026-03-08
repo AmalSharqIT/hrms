@@ -16,15 +16,17 @@ from frappe.query_builder.functions import Count, Extract, Sum
 from frappe.utils import cint, cstr, formatdate, getdate
 from frappe.utils.nestedset import get_descendants_of
 
+from erpnext.projects.doctype.project.project import get_holiday_list
+
 from hrms.utils import date_diff, get_date_range
+from hrms.utils.holiday_list import get_holiday_dates_between
 
 Filters = frappe._dict
 
 status_map = {
 	"Present": "P",
 	"Absent": "A",
-	"Half Day/Other Half Absent": "HD/A",
-	"Half Day/Other Half Present": "HD/P",
+	"Half Day": "HD",
 	"Work From Home": "WFH",
 	"On Leave": "L",
 	"Holiday": "H",
@@ -83,7 +85,6 @@ def get_message() -> str:
 		"green",
 		"red",
 		"orange",
-		"#914EE3",
 		"green",
 		"#3187D8",
 		"#878787",
@@ -152,12 +153,6 @@ def get_columns(filters: Filters) -> list[dict]:
 					"fieldname": "total_holidays",
 					"fieldtype": "Float",
 					"width": 120,
-				},
-				{
-					"label": _("Unmarked Days"),
-					"fieldname": "unmarked_days",
-					"fieldtype": "Float",
-					"width": 130,
 				},
 			]
 		)
@@ -310,7 +305,7 @@ def get_attendance_records(filters: Filters) -> list[dict]:
 		frappe.qb.terms.Case()
 		.when(
 			((Attendance.status == "Half Day") & (Attendance.half_day_status == "Present")),
-			"Half Day/Other Half Present",
+			"Half Day",
 		)
 		.when(
 			((Attendance.status == "Half Day") & (Attendance.half_day_status == "Absent")),
@@ -374,6 +369,8 @@ def get_employee_related_details(filters: Filters) -> tuple[dict, list]:
 
 	if filters.employee:
 		query = query.where(Employee.name == filters.employee)
+	if branch := filters.get("branch"):
+		query = query.where(Employee.branch == branch)
 
 	group_by = filters.group_by
 	if group_by:
@@ -514,7 +511,7 @@ def get_attendance_status_for_summarized_view(
 	return {
 		"total_present": summary.total_present + summary.total_half_days,
 		"total_leaves": summary.total_leaves + summary.total_half_days,
-		"total_absent": summary.total_absent,
+		"total_absent": summary.total_absent + total_unmarked_days,
 		"total_holidays": total_holidays,
 		"unmarked_days": total_unmarked_days,
 	}
@@ -598,7 +595,7 @@ def get_attendance_status_for_detailed_view(
 			if status is None and holidays:
 				status = get_holiday_status(d, holidays)
 
-			abbr = status_map.get(status, "")
+			abbr = status_map.get(status, "A")
 			row[d.strftime("%d-%m-%Y")] = abbr
 
 		attendance_values.append(row)
@@ -701,6 +698,11 @@ def get_chart_data(attendance_map: dict, filters: Filters) -> dict:
 	present = []
 	leave = []
 
+	holiday_list = get_holiday_dates_between(
+		get_holiday_list(filters.company),
+		getdate(days[0]["fieldname"], True),
+		getdate(days[-1]["fieldname"], True),
+	)
 	for day in days:
 		labels.append(day["label"])
 		total_absent_on_day = total_leaves_on_day = total_present_on_day = 0
@@ -713,7 +715,9 @@ def get_chart_data(attendance_map: dict, filters: Filters) -> dict:
 					# leave should be counted only once for the entire day
 					total_leaves_on_day += 1
 					break
-				elif attendance_on_day == "Absent":
+				elif attendance_on_day == "Absent" or not (
+					attendance_on_day or getdate(day["fieldname"], True) in holiday_list
+				):
 					total_absent_on_day += 1
 				elif attendance_on_day in ["Present", "Work From Home"]:
 					total_present_on_day += 1

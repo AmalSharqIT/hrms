@@ -26,7 +26,7 @@ def get_columns():
 			"fieldname": "employee",
 			"fieldtype": "Link",
 			"options": "Employee",
-			"width": 220,
+			"width": 350,
 		},
 		{
 			"fieldname": "employee_name",
@@ -81,19 +81,37 @@ def get_columns():
 		{
 			"label": _("Total Working Hours"),
 			"fieldname": "working_hours",
-			"fieldtype": "Data",
+			"fieldtype": "Float",
+			"width": 100,
+		},
+		{
+			"label": _("Approved Overtime Hours"),
+			"fieldname": "approved_overtime_hours",
+			"fieldtype": "Float",
 			"width": 100,
 		},
 		{
 			"label": _("Late Entry By"),
 			"fieldname": "late_entry_hrs",
-			"fieldtype": "Data",
+			"fieldtype": "Float",
 			"width": 120,
 		},
 		{
 			"label": _("Early Exit By"),
 			"fieldname": "early_exit_hrs",
-			"fieldtype": "Data",
+			"fieldtype": "Float",
+			"width": 120,
+		},
+		{
+			"label": _("Start Overtime Hours"),
+			"fieldname": "start_overtime_hours",
+			"fieldtype": "Float",
+			"width": 120,
+		},
+		{
+			"label": _("End Overtime Hours"),
+			"fieldname": "end_overtime_hours",
+			"fieldtype": "Float",
 			"width": 120,
 		},
 		{
@@ -134,9 +152,9 @@ def get_columns():
 
 def get_data(filters):
 	data = get_attendance_with_checkins(filters)
-	data = update_data(data, filters)
 	if filters.include_attendance_without_checkins:
 		data.extend(get_attendance_without_checkins(filters))
+	data = update_data(data, filters)
 	return data
 
 
@@ -264,6 +282,9 @@ def get_base_attendance_query(filters):
 			attendance.early_exit,
 			attendance.department,
 			attendance.company,
+			attendance.approved_overtime_hours,
+			attendance.start_overtime_hours,
+			attendance.end_overtime_hours,
 		)
 		.where(attendance.docstatus == 1)
 		.groupby(attendance.name)
@@ -274,6 +295,13 @@ def get_base_attendance_query(filters):
 			query = query.where(attendance.attendance_date >= filters.from_date)
 		elif field == "to_date":
 			query = query.where(attendance.attendance_date <= filters.to_date)
+		elif field == "branch":
+			Employee = frappe.qb.DocType("Employee")
+			query = (
+				query.join(Employee)
+				.on(Employee.name == attendance.employee)
+				.where(Employee.branch == filters.branch)
+			)
 		elif field in ["consider_grace_period", "include_attendance_without_checkins"]:
 			continue
 		else:
@@ -303,6 +331,9 @@ def update_data(data, filters):
 		update_early_exit(d, filters.consider_grace_period)
 
 		d.working_hours = format_float_precision(d.working_hours)
+		d.approved_overtime_hours = d.approved_overtime_hours or None
+		d.start_overtime_hours = d.start_overtime_hours or None
+		d.end_overtime_hours = d.end_overtime_hours or None
 		d.in_time, d.out_time = format_in_out_time(d.in_time, d.out_time, d.attendance_date)
 		d.shift_start, d.shift_end = convert_datetime_to_time_for_same_date(d.shift_start, d.shift_end)
 		d.shift_actual_start, d.shift_actual_end = convert_datetime_to_time_for_same_date(
@@ -338,7 +369,7 @@ def convert_datetime_to_time_for_same_date(start, end):
 
 def update_late_entry(entry, consider_grace_period):
 	if consider_grace_period:
-		if entry.late_entry:
+		if entry.late_entry and entry.shift_start:
 			entry_grace_period = entry.late_entry_grace_period if entry.enable_late_entry_marking else 0
 			start_time = entry.shift_start + timedelta(minutes=entry_grace_period)
 			entry.late_entry_hrs = entry.in_time - start_time
@@ -346,12 +377,12 @@ def update_late_entry(entry, consider_grace_period):
 		entry.late_entry = 1
 		entry.late_entry_hrs = entry.in_time - entry.shift_start
 	if entry.late_entry_hrs:
-		entry.late_entry_hrs = format_duration(entry.late_entry_hrs.total_seconds())
+		entry.late_entry_hrs = format_float_precision(entry.late_entry_hrs.total_seconds() / 3600)
 
 
 def update_early_exit(entry, consider_grace_period):
 	if consider_grace_period:
-		if entry.early_exit:
+		if entry.early_exit and entry.shift_end:
 			exit_grace_period = entry.early_exit_grace_period if entry.enable_early_exit_marking else 0
 			end_time = entry.shift_end - timedelta(minutes=exit_grace_period)
 			entry.early_exit_hrs = end_time - entry.out_time
@@ -359,4 +390,4 @@ def update_early_exit(entry, consider_grace_period):
 		entry.early_exit = 1
 		entry.early_exit_hrs = entry.shift_end - entry.out_time
 	if entry.early_exit_hrs:
-		entry.early_exit_hrs = format_duration(entry.early_exit_hrs.total_seconds())
+		entry.early_exit_hrs = format_float_precision(entry.early_exit_hrs.total_seconds() / 3600)
