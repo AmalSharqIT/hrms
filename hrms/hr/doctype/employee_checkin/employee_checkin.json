@@ -14,6 +14,7 @@
   "time",
   "device_id",
   "skip_auto_attendance",
+  "rest",
   "attendance",
   "section_break_data",
   "status",
@@ -100,6 +101,12 @@
    "fieldtype": "Check",
    "label": "Skip Mark Attendance",
    "read_only": 1
+  },
+  {
+   "default": "0",
+   "fieldname": "rest",
+   "fieldtype": "Check",
+   "label": "Rest"
   },
   {
    "fieldname": "attendance",
