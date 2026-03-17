@@ -14,7 +14,7 @@
   "time",
   "device_id",
   "skip_auto_attendance",
-  "rest",
+  "is_break",
   "attendance",
   "section_break_data",
   "status",
@@ -104,9 +104,9 @@
   },
   {
    "default": "0",
-   "fieldname": "rest",
+   "fieldname": "is_break",
    "fieldtype": "Check",
-   "label": "Rest"
+   "label": "Is Break"
   },
   {
    "fieldname": "attendance",
