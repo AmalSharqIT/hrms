@@ -295,7 +295,7 @@
   {
    "permlevel": 1,
    "read": 1,
-   "role": "All"
+   "role": "Employee"
   },
   {
    "amend": 1,
