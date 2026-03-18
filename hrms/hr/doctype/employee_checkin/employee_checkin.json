@@ -12,6 +12,7 @@
   "shift",
   "column_break_4",
   "time",
+  "original_time",
   "device_id",
   "skip_auto_attendance",
   "is_break",
@@ -86,6 +87,14 @@
    "in_list_view": 1,
    "label": "Time",
    "reqd": 1
+  },
+  {
+   "depends_on": "eval:doc.time!=doc.original_time",
+   "fieldname": "original_time",
+   "fieldtype": "Datetime",
+   "label": "Original Time",
+   "read_only": 1,
+   "set_only_once": 1
   },
   {
    "fieldname": "device_id",
