@@ -89,7 +89,7 @@
    "reqd": 1
   },
   {
-   "depends_on": "eval:(doc.original_time&&doc.time!=doc.original_time)",
+   "depends_on": "eval:doc.time!=doc.original_time",
    "fieldname": "original_time",
    "fieldtype": "Datetime",
    "label": "Original Time",
