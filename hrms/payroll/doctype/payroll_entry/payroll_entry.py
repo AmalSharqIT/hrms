@@ -135,11 +135,17 @@ class PayrollEntry(Document):
 	def delete_linked_salary_slips(self):
 		salary_slips = self.get_linked_salary_slips()
 
+		journal_entry = salary_slips[0].get("journal_entry") if salary_slips else None
+		any_net_pay_non_zero = True
 		# cancel & delete salary slips
 		for salary_slip in salary_slips:
+			if any_net_pay_non_zero and salary_slip.net_pay > 0:
+				any_net_pay_non_zero = False
 			if salary_slip.docstatus == 1:
 				frappe.get_doc("Salary Slip", salary_slip.name).cancel()
 			frappe.delete_doc("Salary Slip", salary_slip.name)
+		if any_net_pay_non_zero and journal_entry:
+			frappe.get_doc("Journal Entry", journal_entry).cancel()
 
 	def cancel_linked_journal_entries(self):
 		journal_entries = frappe.get_all(
@@ -154,7 +160,9 @@ class PayrollEntry(Document):
 			frappe.get_doc("Journal Entry", je).cancel()
 
 	def get_linked_salary_slips(self):
-		return frappe.get_all("Salary Slip", {"payroll_entry": self.name}, ["name", "docstatus"])
+		return frappe.get_all(
+			"Salary Slip", {"payroll_entry": self.name}, ["name", "docstatus", "journal_entry", "net_pay"]
+		)
 
 	def make_filters(self):
 		filters = frappe._dict(
