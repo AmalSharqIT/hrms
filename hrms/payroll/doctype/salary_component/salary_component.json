@@ -286,10 +286,6 @@
  "permissions": [
   {
    "read": 1,
-   "role": "Employee"
-  },
-  {
-   "read": 1,
    "role": "HR User"
   }
  ],

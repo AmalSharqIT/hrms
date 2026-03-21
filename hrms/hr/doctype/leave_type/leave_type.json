@@ -262,8 +262,8 @@
    "write": 1
   },
   {
-   "read": 1,
-   "role": "Employee"
+   "role": "Employee",
+   "select": 1
   }
  ],
  "sort_field": "modified",

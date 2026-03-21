@@ -115,7 +115,8 @@
    "default": "0",
    "fieldname": "is_break",
    "fieldtype": "Check",
-   "label": "Is Break"
+   "label": "Is Break",
+   "permlevel": 1
   },
   {
    "fieldname": "attendance",
