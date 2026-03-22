@@ -288,25 +288,9 @@
   {
    "create": 1,
    "delete": 1,
-   "email": 1,
-   "import": 1,
-   "print": 1,
-   "read": 1,
-   "report": 1,
-   "role": "HR Manager",
-   "share": 1,
-   "write": 1
-  },
-  {
-   "create": 1,
-   "delete": 1,
-   "email": 1,
-   "import": 1,
-   "print": 1,
    "read": 1,
    "report": 1,
    "role": "HR User",
-   "share": 1,
    "write": 1
   },
   {
@@ -320,20 +304,11 @@
   {
    "permlevel": 9,
    "read": 1,
-   "role": "HR Manager"
-  },
-  {
-   "permlevel": 9,
-   "read": 1,
    "role": "HR User"
   },
   {
-   "create": 1,
-   "delete": 1,
    "read": 1,
-   "report": 1,
-   "role": "Leave Approver",
-   "write": 1
+   "role": "Leave Approver"
   },
   {
    "permlevel": 8,

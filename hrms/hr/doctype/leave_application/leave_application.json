@@ -272,13 +272,8 @@
    "cancel": 1,
    "create": 1,
    "delete": 1,
-   "email": 1,
-   "print": 1,
    "read": 1,
-   "report": 1,
-   "role": "HR Manager",
-   "set_user_permissions": 1,
-   "share": 1,
+   "role": "HR User",
    "submit": 1,
    "write": 1
   },
@@ -287,26 +282,8 @@
    "cancel": 1,
    "create": 1,
    "delete": 1,
-   "email": 1,
-   "print": 1,
    "read": 1,
-   "report": 1,
-   "role": "HR User",
-   "set_user_permissions": 1,
-   "share": 1,
-   "submit": 1,
-   "write": 1
-  },
-  {
-   "amend": 1,
-   "cancel": 1,
-   "delete": 1,
-   "email": 1,
-   "print": 1,
-   "read": 1,
-   "report": 1,
    "role": "Leave Approver",
-   "share": 1,
    "submit": 1,
    "write": 1
   },
@@ -322,16 +299,6 @@
    "read": 1,
    "report": 1,
    "role": "HR User",
-   "write": 1
-  },
-  {
-   "email": 1,
-   "permlevel": 1,
-   "print": 1,
-   "read": 1,
-   "report": 1,
-   "role": "HR Manager",
-   "share": 1,
    "write": 1
   }
  ],
