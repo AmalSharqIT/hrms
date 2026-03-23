@@ -254,7 +254,7 @@
  "permissions": [
   {
    "read": 1,
-   "role": "HR User"
+   "role": "HR Manager"
   },
   {
    "amend": 1,

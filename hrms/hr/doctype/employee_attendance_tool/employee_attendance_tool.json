@@ -185,7 +185,6 @@
  "owner": "Administrator",
  "permissions": [
   {
-   "create": 1,
    "read": 1,
    "role": "HR Manager",
    "write": 1
