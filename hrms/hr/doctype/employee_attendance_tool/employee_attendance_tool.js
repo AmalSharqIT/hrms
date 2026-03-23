@@ -279,6 +279,8 @@ frappe.ui.form.on("Employee Attendance Tool", {
 					mark_half_day: employees_to_mark_half_day.length ? true : false,
 					half_day_status: frm.doc.half_day_status,
 					half_day_employee_list: employees_to_mark_half_day,
+					leave_type: frm.doc.leave_type,
+					working_hours: frm.doc.working_hours,
 				},
 				freeze: true,
 				freeze_message: __("Marking Attendance"),
