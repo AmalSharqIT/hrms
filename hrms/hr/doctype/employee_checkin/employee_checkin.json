@@ -294,6 +294,7 @@
   },
   {
    "create": 1,
+   "delete": 1,
    "read": 1,
    "report": 1,
    "role": "Employee",

@@ -248,10 +248,6 @@
   {
    "read": 1,
    "role": "HR User"
-  },
-  {
-   "role": "Employee",
-   "select": 1
   }
  ],
  "sort_field": "modified",
