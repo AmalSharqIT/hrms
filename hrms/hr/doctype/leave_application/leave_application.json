@@ -268,7 +268,6 @@
  "owner": "Administrator",
  "permissions": [
   {
-   "cancel": 1,
    "create": 1,
    "read": 1,
    "role": "HR User",
@@ -276,7 +275,6 @@
    "write": 1
   },
   {
-   "cancel": 1,
    "create": 1,
    "read": 1,
    "role": "Leave Approver",

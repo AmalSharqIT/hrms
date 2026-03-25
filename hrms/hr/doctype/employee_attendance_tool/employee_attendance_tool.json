@@ -186,7 +186,7 @@
  "permissions": [
   {
    "read": 1,
-   "role": "HR Manager",
+   "role": "HR User",
    "write": 1
   }
  ],
