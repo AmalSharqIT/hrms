@@ -177,7 +177,7 @@
    "options": "<hr>"
   },
   {
-   "depends_on": "eval:doc.status && !['Absent', 'On Leave'].includes(doc.status)",
+   "depends_on": "eval:(doc.status && !['Absent', 'On Leave'].includes(doc.status))",
    "fieldname": "working_hours",
    "fieldtype": "Float",
    "label": "Working Hours"
