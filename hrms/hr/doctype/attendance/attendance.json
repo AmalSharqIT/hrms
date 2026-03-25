@@ -110,7 +110,6 @@
    "depends_on": "eval:in_list([\"On Leave\", \"Half Day\"], doc.status)",
    "fieldname": "leave_type",
    "fieldtype": "Link",
-   "in_standard_filter": 1,
    "label": "Leave Type",
    "mandatory_depends_on": "eval:in_list([\"On Leave\", \"Half Day\"], doc.status)",
    "oldfieldname": "leave_type",
@@ -331,8 +330,6 @@
    "cancel": 1,
    "create": 1,
    "delete": 1,
-   "email": 1,
-   "print": 1,
    "read": 1,
    "report": 1,
    "role": "System Manager",
@@ -341,67 +338,25 @@
    "write": 1
   },
   {
-   "cancel": 1,
    "create": 1,
-   "delete": 1,
-   "email": 1,
-   "import": 1,
-   "print": 1,
    "read": 1,
    "report": 1,
    "role": "HR User",
-   "share": 1,
    "submit": 1,
    "write": 1
   },
   {
-   "cancel": 1,
    "create": 1,
    "delete": 1,
-   "email": 1,
-   "print": 1,
-   "read": 1,
-   "report": 1,
-   "role": "HR Manager",
-   "share": 1,
-   "submit": 1,
-   "write": 1
-  },
-  {
-   "create": 1,
-   "email": 1,
-   "print": 1,
    "read": 1,
    "report": 1,
    "role": "Employee",
-   "share": 1,
    "write": 1
   },
   {
    "permlevel": 1,
    "read": 1,
    "role": "Employee"
-  },
-  {
-   "create": 1,
-   "email": 1,
-   "print": 1,
-   "read": 1,
-   "report": 1,
-   "role": "Leave Approver",
-   "share": 1,
-   "write": 1
-  },
-  {
-   "permlevel": 1,
-   "read": 1,
-   "role": "Leave Approver"
-  },
-  {
-   "permlevel": 1,
-   "read": 1,
-   "role": "HR Manager",
-   "write": 1
   },
   {
    "permlevel": 1,

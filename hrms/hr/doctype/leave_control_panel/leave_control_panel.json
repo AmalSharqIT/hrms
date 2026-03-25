@@ -195,7 +195,7 @@
   {
    "create": 1,
    "read": 1,
-   "role": "HR User",
+   "role": "System Manager",
    "write": 1
   }
  ],

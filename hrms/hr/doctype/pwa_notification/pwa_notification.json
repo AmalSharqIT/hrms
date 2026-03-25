@@ -98,14 +98,6 @@
    "report": 1,
    "role": "System Manager",
    "share": 1
-  },
-  {
-   "email": 1,
-   "print": 1,
-   "read": 1,
-   "report": 1,
-   "role": "Employee",
-   "share": 1
   }
  ],
  "sort_field": "modified",
