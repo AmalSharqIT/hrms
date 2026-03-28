@@ -20,7 +20,13 @@
  "report_type": "Script Report",
  "roles": [
   {
-   "role": "System Manager"
+   "role": "Accounts User"
+  },
+  {
+   "role": "Projects User"
+  },
+  {
+   "role": "Manufacturing User"
   }
  ]
 }

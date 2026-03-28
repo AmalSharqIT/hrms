@@ -39,7 +39,7 @@
    "print": 1,
    "read": 1,
    "report": 1,
-   "role": "Fleet Manager",
+   "role": "System Manager",
    "share": 1,
    "write": 1
   }

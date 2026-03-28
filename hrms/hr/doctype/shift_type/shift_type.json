@@ -247,14 +247,6 @@
  "owner": "Administrator",
  "permissions": [
   {
-   "read": 1,
-   "role": "Employee"
-  },
-  {
-   "read": 1,
-   "role": "HR User"
-  },
-  {
    "create": 1,
    "delete": 1,
    "email": 1,
@@ -265,6 +257,14 @@
    "role": "System Manager",
    "share": 1,
    "write": 1
+  },
+  {
+   "read": 1,
+   "role": "Employee"
+  },
+  {
+   "read": 1,
+   "role": "HR User"
   }
  ],
  "quick_entry": 1,

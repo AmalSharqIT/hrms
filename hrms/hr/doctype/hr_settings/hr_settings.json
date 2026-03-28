@@ -433,11 +433,11 @@
   },
   {
    "read": 1,
-   "role": "Employee"
+   "role": "HR User"
   },
   {
    "read": 1,
-   "role": "HR User"
+   "role": "Employee"
   }
  ],
  "row_format": "Dynamic",
