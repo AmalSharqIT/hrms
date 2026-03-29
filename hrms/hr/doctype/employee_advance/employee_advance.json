@@ -281,17 +281,15 @@
   {
    "create": 1,
    "read": 1,
-   "role": "Expense Approver",
-   "submit": 1,
-   "write": 1
-  },
-  {
-   "create": 1,
-   "read": 1,
    "report": 1,
    "role": "HR User",
    "submit": 1,
    "write": 1
+  },
+  {
+   "permlevel": 1,
+   "read": 1,
+   "role": "HR User"
   },
   {
    "read": 1,
