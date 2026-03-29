@@ -8,7 +8,7 @@
  "filters": [],
  "idx": 0,
  "is_standard": "Yes",
- "modified": "2026-03-29",
+ "modified": "2023-03-30 18:50:42.394262",
  "modified_by": "Administrator",
  "module": "HR",
  "name": "Appraisal Overview",
@@ -28,6 +28,9 @@
   },
   {
    "role": "HR User"
+  },
+  {
+   "role": "Employee Self Service"
   },
   {
    "role": "HR Manager"
