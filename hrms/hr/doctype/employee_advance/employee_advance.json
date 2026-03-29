@@ -300,6 +300,10 @@
    "read": 1,
    "role": "HR Manager",
    "write": 1
+  },
+  {
+   "read": 1,
+   "role": "Expense Approver"
   }
  ],
  "search_fields": "employee,employee_name",
