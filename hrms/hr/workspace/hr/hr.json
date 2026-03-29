@@ -119,7 +119,7 @@
       "hidden": 0,
       "is_query_report": 0,
       "label": "Attendance",
-      "link_count": 6,
+      "link_count": 7,
       "link_type": "DocType",
       "onboard": 0,
       "type": "Card Break"
@@ -170,6 +170,16 @@
       "label": "Employee Presence Monitor",
       "link_count": 0,
       "link_to": "Employee Presence Monitor",
+      "link_type": "Report",
+      "onboard": 0,
+      "type": "Link"
+    },
+    {
+      "hidden": 0,
+      "is_query_report": 1,
+      "label": "Employee Break Monitor",
+      "link_count": 0,
+      "link_to": "Employee Break Monitor",
       "link_type": "Report",
       "onboard": 0,
       "type": "Link"
