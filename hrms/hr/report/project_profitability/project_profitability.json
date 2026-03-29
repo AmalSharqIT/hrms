@@ -20,13 +20,25 @@
  "report_type": "Script Report",
  "roles": [
   {
+   "role": "HR User"
+  },
+  {
    "role": "Accounts User"
+  },
+  {
+   "role": "Employee"
   },
   {
    "role": "Projects User"
   },
   {
    "role": "Manufacturing User"
+  },
+  {
+   "role": "Employee Self Service"
+  },
+  {
+   "role": "HR Manager"
   }
  ]
 }

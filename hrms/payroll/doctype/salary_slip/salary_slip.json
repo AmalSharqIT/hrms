@@ -834,6 +834,19 @@
  "owner": "Administrator",
  "permissions": [
   {
+   "create": 1,
+   "read": 1,
+   "report": 1,
+   "role": "HR Manager",
+   "submit": 1,
+   "write": 1
+  },
+  {
+   "permlevel": 9,
+   "read": 1,
+   "role": "HR Manager"
+  },
+  {
    "amend": 1,
    "cancel": 1,
    "create": 1,
@@ -846,19 +859,6 @@
    "share": 1,
    "submit": 1,
    "write": 1
-  },
-  {
-   "create": 1,
-   "read": 1,
-   "report": 1,
-   "role": "HR Manager",
-   "submit": 1,
-   "write": 1
-  },
-  {
-   "permlevel": 9,
-   "read": 1,
-   "role": "HR Manager"
   }
  ],
  "search_fields": "employee_name",
