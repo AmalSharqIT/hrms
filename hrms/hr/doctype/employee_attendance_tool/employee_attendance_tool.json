@@ -178,16 +178,15 @@
  "hide_toolbar": 1,
  "issingle": 1,
  "links": [],
- "modified": "2025-05-26 09:42:36.888216",
+ "modified": "2026-03-29",
  "modified_by": "Administrator",
  "module": "HR",
  "name": "Employee Attendance Tool",
  "owner": "Administrator",
  "permissions": [
   {
-   "create": 1,
    "read": 1,
-   "role": "HR Manager",
+   "role": "HR User",
    "write": 1
   }
  ],
