@@ -22,6 +22,8 @@
   "select_employees_section",
   "unmarked_employee_header",
   "status",
+  "working_hours",
+  "leave_type",
   "unmarked_employees_html",
   "horizontal_break",
   "half_day_marked_employee_header",
@@ -72,7 +74,7 @@
    "fieldtype": "Select",
    "in_list_view": 1,
    "label": "Status",
-   "options": "\nPresent\nAbsent\nHalf Day\nWork From Home"
+   "options": "\nPresent\nAbsent\nOn Leave\nHalf Day\nWork From Home"
   },
   {
    "collapsible": 1,
@@ -119,6 +121,7 @@
   {
    "fieldname": "employee_grade",
    "fieldtype": "Link",
+   "hidden": 1,
    "label": "Employee Grade",
    "options": "Employee Grade"
   },
@@ -172,22 +175,34 @@
    "fieldtype": "HTML",
    "label": "Horizontal Break",
    "options": "<hr>"
+  },
+  {
+   "depends_on": "eval:(doc.status && !['Absent', 'On Leave'].includes(doc.status))",
+   "fieldname": "working_hours",
+   "fieldtype": "Float",
+   "label": "Working Hours"
+  },
+  {
+   "depends_on": "eval:doc.status=='On Leave'",
+   "fieldname": "leave_type",
+   "fieldtype": "Link",
+   "label": "Leave Type",
+   "options": "Leave Type"
   }
  ],
  "grid_page_length": 50,
  "hide_toolbar": 1,
  "issingle": 1,
  "links": [],
- "modified": "2025-05-26 09:42:36.888216",
+ "modified": "2026-03-29",
  "modified_by": "Administrator",
  "module": "HR",
  "name": "Employee Attendance Tool",
  "owner": "Administrator",
  "permissions": [
   {
-   "create": 1,
    "read": 1,
-   "role": "HR Manager",
+   "role": "HR User",
    "write": 1
   }
  ],

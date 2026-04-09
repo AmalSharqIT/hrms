@@ -20,11 +20,16 @@
   "company",
   "payroll_payable_account",
   "currency",
+  "amended_from",
   "section_break_7",
   "base",
+  "monthly_salary",
+  "overtime_ratio",
   "column_break_9",
   "variable",
-  "amended_from",
+  "hourly_salary",
+  "withholding",
+  "round_salary",
   "column_break_kjvm",
   "leave_encashment_amount_per_day",
   "opening_balances_section",
@@ -111,7 +116,24 @@
    "fieldname": "base",
    "fieldtype": "Currency",
    "label": "Base",
-   "options": "currency"
+   "non_negative": 1,
+   "options": "currency",
+   "permlevel": 1
+  },
+  {
+   "fieldname": "monthly_salary",
+   "fieldtype": "Currency",
+   "label": "Monthly Salary",
+   "non_negative": 1,
+   "options": "currency",
+   "permlevel": 1
+  },
+  {
+   "fieldname": "overtime_ratio",
+   "fieldtype": "Float",
+   "label": "Overtime Ratio",
+   "non_negative": 1,
+   "permlevel": 1
   },
   {
    "fieldname": "column_break_9",
@@ -120,8 +142,34 @@
   {
    "fieldname": "variable",
    "fieldtype": "Currency",
+   "hidden": 1,
    "label": "Variable",
-   "options": "currency"
+   "options": "currency",
+   "permlevel": 1
+  },
+  {
+   "fieldname": "hourly_salary",
+   "fieldtype": "Currency",
+   "label": "Hourly Salary",
+   "non_negative": 1,
+   "options": "currency",
+   "permlevel": 1
+  },
+  {
+   "fieldname": "withholding",
+   "fieldtype": "Currency",
+   "label": "Withholding",
+   "non_negative": 1,
+   "options": "currency",
+   "permlevel": 1
+  },
+  {
+   "fieldname": "round_salary",
+   "fieldtype": "Currency",
+   "label": "Round Salary",
+   "non_negative": 1,
+   "options": "currency",
+   "permlevel": 1
   },
   {
    "fieldname": "amended_from",
@@ -136,6 +184,7 @@
    "depends_on": "salary_structure",
    "fieldname": "income_tax_slab",
    "fieldtype": "Link",
+   "hidden": 1,
    "label": "Income Tax Slab",
    "options": "Income Tax Slab"
   },
@@ -155,7 +204,8 @@
    "fieldname": "payroll_payable_account",
    "fieldtype": "Link",
    "label": "Payroll Payable Account",
-   "options": "Account"
+   "options": "Account",
+   "read_only": 1
   },
   {
    "collapsible": 1,
@@ -188,7 +238,8 @@
    "fieldname": "tax_deducted_till_date",
    "fieldtype": "Currency",
    "label": "Tax Deducted Till Date",
-   "options": "currency"
+   "options": "currency",
+   "print_hide": 1
   },
   {
    "fieldname": "column_break_20",
@@ -199,7 +250,8 @@
    "fieldname": "taxable_earnings_till_date",
    "fieldtype": "Currency",
    "label": "Taxable Earnings Till Date",
-   "options": "currency"
+   "options": "currency",
+   "print_hide": 1
   },
   {
    "collapsible_depends_on": "eval:doc.taxable_earnings_till_date && doc.tax_deducted_till_date",
@@ -214,31 +266,21 @@
    "fetch_if_empty": 1,
    "fieldname": "leave_encashment_amount_per_day",
    "fieldtype": "Currency",
+   "hidden": 1,
    "label": "Leave Encashment Amount Per Day",
-   "options": "currency"
+   "options": "currency",
+   "permlevel": 1
   }
  ],
  "is_submittable": 1,
  "links": [],
- "modified": "2026-01-09 11:52:07.106968",
+ "modified": "2026-03-29",
  "modified_by": "Administrator",
  "module": "Payroll",
  "name": "Salary Structure Assignment",
  "naming_rule": "Expression",
  "owner": "Administrator",
  "permissions": [
-  {
-   "create": 1,
-   "delete": 1,
-   "email": 1,
-   "export": 1,
-   "print": 1,
-   "read": 1,
-   "report": 1,
-   "role": "System Manager",
-   "share": 1,
-   "write": 1
-  },
   {
    "amend": 1,
    "cancel": 1,
@@ -249,22 +291,37 @@
    "print": 1,
    "read": 1,
    "report": 1,
-   "role": "HR Manager",
+   "role": "System Manager",
    "share": 1,
    "submit": 1,
    "write": 1
   },
   {
    "create": 1,
-   "email": 1,
-   "export": 1,
-   "print": 1,
    "read": 1,
    "report": 1,
-   "role": "HR User",
-   "share": 1,
+   "role": "HR Manager",
    "submit": 1,
    "write": 1
+  },
+  {
+   "permlevel": 1,
+   "read": 1,
+   "role": "HR Manager",
+   "write": 1
+  },
+  {
+   "read": 1,
+   "role": "HR User"
+  },
+  {
+   "permlevel": 9,
+   "read": 1,
+   "role": "HR User"
+  },
+  {
+   "read": 1,
+   "role": "Employee"
   }
  ],
  "search_fields": "employee_name, salary_structure",
