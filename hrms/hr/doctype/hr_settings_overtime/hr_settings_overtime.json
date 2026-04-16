@@ -1,0 +1,54 @@
+{
+  "actions": [],
+  "creation": "2026-02-12",
+  "doctype": "DocType",
+  "editable_grid": 1,
+  "engine": "InnoDB",
+  "field_order": [
+    "branch",
+    "min_auto_overtime",
+    "max_auto_overtime",
+    "overtime_deduction"
+  ],
+  "fields": [
+    {
+      "fieldname": "branch",
+      "fieldtype": "Link",
+      "in_list_view": 1,
+      "label": "Branch",
+      "options": "Branch",
+      "reqd": 1
+    },
+    {
+      "fieldname": "min_auto_overtime",
+      "fieldtype": "Float",
+      "in_list_view": 1,
+      "label": "Min Auto Overtime"
+    },
+    {
+      "fieldname": "max_auto_overtime",
+      "fieldtype": "Float",
+      "in_list_view": 1,
+      "label": "Max Auto Overtime"
+    },
+    {
+      "fieldname": "overtime_deduction",
+      "fieldtype": "Float",
+      "in_list_view": 1,
+      "label": "Overtime Deduction"
+    }
+  ],
+  "grid_page_length": 50,
+  "istable": 1,
+  "links": [],
+  "modified": "2026-03-29",
+  "modified_by": "Administrator",
+  "module": "HR",
+  "name": "HR Settings Overtime",
+  "owner": "Administrator",
+  "permissions": [],
+  "row_format": "Dynamic",
+  "sort_field": "modified",
+  "sort_order": "DESC",
+  "states": []
+}

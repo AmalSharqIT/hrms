@@ -48,7 +48,7 @@
  "icon": "fa fa-flag",
  "idx": 1,
  "links": [],
- "modified": "2020-09-18 17:26:09.703215",
+ "modified": "2026-03-29",
  "modified_by": "Administrator",
  "module": "HR",
  "name": "Expense Claim Type",
@@ -60,13 +60,9 @@
    "print": 1,
    "read": 1,
    "report": 1,
-   "role": "HR Manager",
+   "role": "System Manager",
    "share": 1,
    "write": 1
-  },
-  {
-   "read": 1,
-   "role": "Employee"
   }
  ],
  "sort_field": "modified",
