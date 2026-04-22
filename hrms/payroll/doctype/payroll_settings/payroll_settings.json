@@ -16,6 +16,7 @@
   "daily_wages_fraction_for_half_day",
   "column_break_rnoq",
   "disable_rounded_total",
+"social_security_department_deduction_rate",
   "column_break_gzpl",
   "show_leave_balances_in_salary_slip",
   "email_section",
@@ -196,6 +197,12 @@
    "fieldname": "withholding",
    "fieldtype": "Table",
    "options": "Payroll Settings Withholding"
+  },
+  {
+   "default": "5",
+   "fieldname": "social_security_department_deduction_rate",
+   "fieldtype": "Float",
+   "label": "Social Security Department deduction rate"
   }
  ],
  "icon": "fa fa-cog",
