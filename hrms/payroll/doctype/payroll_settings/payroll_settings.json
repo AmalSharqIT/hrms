@@ -16,9 +16,10 @@
   "daily_wages_fraction_for_half_day",
   "column_break_rnoq",
   "disable_rounded_total",
-"social_security_department_deduction_rate",
   "column_break_gzpl",
   "show_leave_balances_in_salary_slip",
+  "social_security_section",
+  "employee_contribution_percentage",
   "email_section",
   "email_salary_slip_to_employee",
   "sender",
@@ -199,17 +200,22 @@
    "options": "Payroll Settings Withholding"
   },
   {
+   "fieldname": "social_security_section",
+   "fieldtype": "Section Break",
+   "label": "Social Security"
+  },
+  {
    "default": "5",
-   "fieldname": "social_security_department_deduction_rate",
-   "fieldtype": "Float",
-   "label": "Social Security Department deduction rate"
+   "fieldname": "employee_contribution_percentage",
+   "fieldtype": "Percent",
+   "label": "Employee Contribution Percentage"
   }
  ],
  "icon": "fa fa-cog",
  "index_web_pages_for_search": 1,
  "issingle": 1,
  "links": [],
- "modified": "2026-03-29",
+ "modified": "2026-04-22",
  "modified_by": "Administrator",
  "module": "Payroll",
  "name": "Payroll Settings",
