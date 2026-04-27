@@ -260,7 +260,7 @@
  "is_submittable": 1,
  "links": [],
  "max_attachments": 3,
- "modified": "2026-03-29",
+ "modified": "2026-04-27",
  "modified_by": "Administrator",
  "module": "HR",
  "name": "Leave Application",
@@ -284,6 +284,7 @@
    "write": 1
   },
   {
+   "cancel": 1,
    "create": 1,
    "read": 1,
    "role": "HR User",
@@ -321,6 +322,17 @@
    "role": "System Manager",
    "share": 1,
    "write": 1
+  },
+  {
+   "create": 1,
+   "read": 1,
+   "role": "Employee",
+   "write": 1
+  },
+  {
+   "permlevel": 1,
+   "read": 1,
+   "role": "Employee"
   }
  ],
  "search_fields": "employee,employee_name,leave_type,from_date,to_date,total_leave_days",

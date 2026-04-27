@@ -238,7 +238,7 @@
  "icon": "fa fa-flag",
  "idx": 1,
  "links": [],
- "modified": "2026-03-29",
+ "modified": "2026-04-27",
  "modified_by": "Administrator",
  "module": "HR",
  "name": "Leave Type",
@@ -248,6 +248,10 @@
   {
    "read": 1,
    "role": "HR User"
+  },
+  {
+   "read": 1,
+   "role": "Employee"
   },
   {
    "create": 1,
