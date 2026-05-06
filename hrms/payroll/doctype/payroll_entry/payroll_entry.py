@@ -855,7 +855,7 @@ class PayrollEntry(Document):
 			accounting_dimensions,
 		)
 
-		if amt:
+		if flt(amt, precision):
 			accounts.append(row)
 
 		return payable_amount
