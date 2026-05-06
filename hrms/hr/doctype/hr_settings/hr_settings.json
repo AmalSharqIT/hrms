@@ -11,6 +11,7 @@
   "standard_working_hours",
   "column_break_9",
   "retirement_age",
+  "default_employment_type",
   "reminders_section",
   "column_break_11",
   "send_work_anniversary_reminders",
@@ -410,13 +411,19 @@
    "fieldname": "overtime_settings",
    "fieldtype": "Table",
    "options": "HR Settings Overtime"
+  },
+  {
+   "fieldname": "default_employment_type",
+   "fieldtype": "Link",
+   "label": "Default Employment Type",
+   "options": "Employment Type"
   }
  ],
  "icon": "fa fa-cog",
  "idx": 1,
  "issingle": 1,
  "links": [],
- "modified": "2026-03-29",
+ "modified": "2026-05-06",
  "modified_by": "Administrator",
  "module": "HR",
  "name": "HR Settings",

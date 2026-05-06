@@ -193,6 +193,7 @@ def get_custom_fields():
 				"ignore_user_permissions": 1,
 				"label": _("Employment Type"),
 				"options": "Employment Type",
+				"permlevel": 2,
 				"insert_after": "branch",
 			},
 			{
