@@ -6,7 +6,7 @@ from datetime import timedelta
 import frappe
 from frappe import _
 from frappe.query_builder import Criterion
-from frappe.utils import cint, flt, format_datetime, format_duration
+from frappe.utils import cint, flt, format_datetime, time_diff_in_hours
 
 from erpnext.accounts.utils import build_qb_match_conditions
 
@@ -83,6 +83,12 @@ def get_columns():
 			"fieldname": "working_hours",
 			"fieldtype": "Float",
 			"width": 100,
+		},
+		{
+			"label": _("Shortage of Working Hours"),
+			"fieldname": "shortage_working_hours",
+			"fieldtype": "Float",
+			"width": 140,
 		},
 		{
 			"label": _("Approved Overtime Hours"),
@@ -329,6 +335,9 @@ def update_data(data, filters):
 	for d in data:
 		update_late_entry(d, filters.consider_grace_period)
 		update_early_exit(d, filters.consider_grace_period)
+		d.shortage_working_hours = format_float_precision(
+			max(get_shift_max_hours(d.shift) - d.working_hours, 0)
+		)
 
 		d.working_hours = format_float_precision(d.working_hours)
 		d.approved_overtime_hours = d.approved_overtime_hours or None
@@ -391,3 +400,15 @@ def update_early_exit(entry, consider_grace_period):
 		entry.early_exit_hrs = entry.shift_end - entry.out_time
 	if entry.early_exit_hrs:
 		entry.early_exit_hrs = format_float_precision(entry.early_exit_hrs.total_seconds() / 3600)
+
+
+def get_shift_max_hours(shift_type):
+	start_time, end_time, max_hours, limit_to_max_hours = frappe.get_cached_value(
+		"Shift Type", shift_type, ["start_time", "end_time", "max_hours", "limit_to_max_hours"]
+	)
+	if limit_to_max_hours == 0:
+		if end_time > start_time:
+			max_hours = time_diff_in_hours(end_time, start_time)
+		else:
+			max_hours = 24 + time_diff_in_hours(end_time, start_time)
+	return max_hours
