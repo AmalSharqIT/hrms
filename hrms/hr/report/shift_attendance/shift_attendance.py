@@ -6,9 +6,11 @@ from datetime import timedelta
 import frappe
 from frappe import _
 from frappe.query_builder import Criterion
-from frappe.utils import cint, flt, format_datetime, format_duration, time_diff_in_hours
+from frappe.utils import cint, flt, format_datetime, format_duration
 
 from erpnext.accounts.utils import build_qb_match_conditions
+
+from hrms.hr.doctype.shift_type.shift_type import get_shift_max_hours
 
 
 def execute(filters=None):
@@ -398,15 +400,3 @@ def update_early_exit(entry, consider_grace_period):
 		entry.early_exit_hrs = entry.shift_end - entry.out_time
 	if entry.early_exit_hrs:
 		entry.early_exit_hrs = format_float_precision(entry.early_exit_hrs.total_seconds() / 3600)
-
-
-def get_shift_max_hours(shift_type):
-	limit_to_max_hours, max_hours, start_time, end_time = frappe.get_cached_value(
-		"Shift Type", shift_type, ["limit_to_max_hours", "max_hours", "start_time", "end_time"]
-	)
-	if limit_to_max_hours:
-		return max_hours
-	duration = time_diff_in_hours(end_time, start_time)
-	if duration < 0:
-		duration += 24
-	return duration
