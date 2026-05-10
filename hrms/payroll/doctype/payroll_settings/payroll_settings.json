@@ -20,6 +20,8 @@
   "show_leave_balances_in_salary_slip",
   "social_security_section",
   "employee_contribution_percentage",
+  "column_break_xbcm",
+  "hypothetical_contract_mount",
   "email_section",
   "email_salary_slip_to_employee",
   "sender",
@@ -209,6 +211,16 @@
    "fieldname": "employee_contribution_percentage",
    "fieldtype": "Percent",
    "label": "Employee Contribution Percentage"
+  },
+  {
+   "fieldname": "column_break_xbcm",
+   "fieldtype": "Column Break"
+  },
+  {
+   "default": "350000",
+   "fieldname": "hypothetical_contract_mount",
+   "fieldtype": "Currency",
+   "label": "Hypothetical Contract Amount"
   }
  ],
  "icon": "fa fa-cog",
