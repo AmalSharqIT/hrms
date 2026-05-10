@@ -20,8 +20,8 @@
   "show_leave_balances_in_salary_slip",
   "social_security_section",
   "employee_contribution_percentage",
-  "column_break_xbcm",
-  "hypothetical_contract_mount",
+  "social_security_column",
+  "default_employee_salary",
   "email_section",
   "email_salary_slip_to_employee",
   "sender",
@@ -213,21 +213,20 @@
    "label": "Employee Contribution Percentage"
   },
   {
-   "fieldname": "column_break_xbcm",
+   "fieldname": "social_security_column",
    "fieldtype": "Column Break"
   },
   {
-   "default": "350000",
-   "fieldname": "hypothetical_contract_mount",
+   "fieldname": "default_employee_salary",
    "fieldtype": "Currency",
-   "label": "Hypothetical Contract Amount"
+   "label": "Default Employee Salary"
   }
  ],
  "icon": "fa fa-cog",
  "index_web_pages_for_search": 1,
  "issingle": 1,
  "links": [],
- "modified": "2026-04-22",
+ "modified": "2026-05-10",
  "modified_by": "Administrator",
  "module": "Payroll",
  "name": "Payroll Settings",
