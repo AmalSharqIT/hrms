@@ -141,14 +141,14 @@ class PayrollEntry(Document):
 			if salary_slip.net_pay > 0:
 				linked_journal_entry = None
 			if salary_slip.docstatus == 1:
-				doc_salary_slip = frappe.get_doc("Salary Slip", salary_slip.name)
-				doc_salary_slip.flags.ignore_permissions = True
-				doc_salary_slip.cancel()
+				doc = frappe.get_doc("Salary Slip", salary_slip.name)
+				doc.flags.ignore_permissions = True
+				doc.cancel()
 			frappe.delete_doc("Salary Slip", salary_slip.name, ignore_permissions=True)
 		if linked_journal_entry:
-			doc_je = frappe.get_doc("Journal Entry", linked_journal_entry)
-			doc_je.flags.ignore_permissions = True
-			doc_je.cancel()
+			doc = frappe.get_doc("Journal Entry", linked_journal_entry)
+			doc.flags.ignore_permissions = True
+			doc.cancel()
 
 	def cancel_linked_journal_entries(self):
 		journal_entries = frappe.get_all(
@@ -160,9 +160,9 @@ class PayrollEntry(Document):
 
 		# cancel Journal Entries
 		for je in journal_entries:
-			doc_je = frappe.get_doc("Journal Entry", je)
-			doc_je.flags.ignore_permissions = True
-			doc_je.cancel()
+			doc = frappe.get_doc("Journal Entry", je)
+			doc.flags.ignore_permissions = True
+			doc.cancel()
 
 	def get_linked_salary_slips(self):
 		return frappe.get_all(
