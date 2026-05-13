@@ -24,6 +24,7 @@ def execute(filters=None):
 		row = [
 			advance.name,
 			advance.employee,
+			advance.employee_name,
 			advance.company,
 			advance.posting_date,
 			advance.advance_amount,
@@ -52,7 +53,14 @@ def get_columns():
 			"fieldname": "employee",
 			"fieldtype": "Link",
 			"options": "Employee",
+			"width": 350,
+		},
+		{
+			"label": _("Employee Name"),
+			"fieldname": "employee_name",
+			"fieldtype": "Data",
 			"width": 120,
+			"hidden": 1,
 		},
 		{
 			"label": _("Company"),
@@ -110,6 +118,7 @@ def get_advances(filters):
 		.select(
 			EmployeeAdvance.name,
 			EmployeeAdvance.employee,
+			EmployeeAdvance.employee_name,
 			EmployeeAdvance.paid_amount,
 			EmployeeAdvance.status,
 			EmployeeAdvance.advance_amount,
@@ -137,6 +146,14 @@ def get_advances(filters):
 
 	if filters.get("to_date"):
 		query = query.where(EmployeeAdvance.posting_date <= filters.to_date)
+
+	if filters.get("branch"):
+		Employee = frappe.qb.DocType("Employee")
+		query = (
+			query.join(Employee)
+			.on(EmployeeAdvance.employee == Employee.name)
+			.where(Employee.branch == filters.branch)
+		)
 
 	return query.orderby(EmployeeAdvance.posting_date, EmployeeAdvance.name, order=Order.desc).run(
 		as_dict=True
