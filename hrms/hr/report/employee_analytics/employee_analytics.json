@@ -7,7 +7,7 @@
  "doctype": "Report",
  "idx": 0,
  "is_standard": "Yes",
- "modified": "2020-05-12 13:52:50.631086",
+ "modified": "2026-03-29",
  "modified_by": "Administrator",
  "module": "HR",
  "name": "Employee Analytics",
@@ -17,9 +17,6 @@
  "report_name": "Employee Analytics",
  "report_type": "Script Report",
  "roles": [
-  {
-   "role": "Employee"
-  },
   {
    "role": "HR User"
   },

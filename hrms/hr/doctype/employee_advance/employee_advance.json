@@ -241,24 +241,13 @@
  "grid_page_length": 50,
  "is_submittable": 1,
  "links": [],
- "modified": "2025-06-16 12:09:38.685483",
+ "modified": "2026-05-06",
  "modified_by": "Administrator",
  "module": "HR",
  "name": "Employee Advance",
  "naming_rule": "By \"Naming Series\" field",
  "owner": "Administrator",
  "permissions": [
-  {
-   "create": 1,
-   "email": 1,
-   "export": 1,
-   "print": 1,
-   "read": 1,
-   "report": 1,
-   "role": "Employee",
-   "share": 1,
-   "write": 1
-  },
   {
    "amend": 1,
    "cancel": 1,
@@ -269,10 +258,59 @@
    "print": 1,
    "read": 1,
    "report": 1,
-   "role": "Expense Approver",
+   "role": "System Manager",
    "share": 1,
    "submit": 1,
    "write": 1
+  },
+  {
+   "permlevel": 1,
+   "read": 1,
+   "role": "System Manager",
+   "write": 1
+  },
+  {
+   "permlevel": 2,
+   "read": 1,
+   "role": "System Manager",
+   "write": 1
+  },
+  {
+   "cancel": 1,
+   "create": 1,
+   "read": 1,
+   "report": 1,
+   "role": "HR User",
+   "submit": 1,
+   "write": 1
+  },
+  {
+   "permlevel": 1,
+   "read": 1,
+   "role": "HR User"
+  },
+  {
+   "read": 1,
+   "role": "HR User - Branch"
+  },
+  {
+   "permlevel": 1,
+   "read": 1,
+   "role": "HR User - Branch"
+  },
+  {
+   "read": 1,
+   "role": "HR Manager"
+  },
+  {
+   "permlevel": 2,
+   "read": 1,
+   "role": "HR Manager",
+   "write": 1
+  },
+  {
+   "read": 1,
+   "role": "Expense Approver"
   }
  ],
  "search_fields": "employee,employee_name",
