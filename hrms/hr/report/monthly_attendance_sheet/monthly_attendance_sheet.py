@@ -343,6 +343,7 @@ def get_employee_related_details(filters: Filters) -> tuple[dict, list]:
 	Employee = frappe.qb.DocType("Employee")
 
 	joining_date_condition = get_date_condition(Employee.date_of_joining, filters)
+	relieved_date_condition = get_date_condition(Employee.relieving_date, filters)
 
 	query = (
 		frappe.qb.from_(Employee)
@@ -363,6 +364,14 @@ def get_employee_related_details(filters: Filters) -> tuple[dict, list]:
 			)
 			.else_(0)
 			.as_("joined_in_current_period"),
+			Employee.relieving_date,
+			Case()
+			.when(
+				relieved_date_condition,
+				1,
+			)
+			.else_(0)
+			.as_("relieved_in_current_period"),
 		)
 		.where(Employee.company.isin(filters.companies))
 	)
@@ -448,7 +457,13 @@ def get_rows(employee_details: dict, filters: Filters, holiday_map: dict, attend
 
 		if filters.summarized_view:
 			attendance = get_attendance_status_for_summarized_view(
-				employee, filters, holidays, details.joined_in_current_period, details.joined_date
+				employee,
+				filters,
+				holidays,
+				details.joined_in_current_period,
+				details.joined_date,
+				details.relieved_in_current_period,
+				details.relieving_date,
 			)
 			if not attendance:
 				continue
@@ -469,7 +484,14 @@ def get_rows(employee_details: dict, filters: Filters, holiday_map: dict, attend
 				continue
 
 			attendance_for_employee = get_attendance_status_for_detailed_view(
-				employee, filters, employee_attendance, holidays
+				employee,
+				filters,
+				employee_attendance,
+				holidays,
+				details.joined_in_current_period,
+				details.joined_date,
+				details.relieved_in_current_period,
+				details.relieving_date,
 			)
 			# set employee details in the first row
 			for record in attendance_for_employee:
@@ -487,7 +509,13 @@ def set_defaults_for_summarized_view(filters, row):
 
 
 def get_attendance_status_for_summarized_view(
-	employee: str, filters: Filters, holidays: list, joined_in_current_period: int, joined_date: int
+	employee: str,
+	filters: Filters,
+	holidays: list,
+	joined_in_current_period: int,
+	joined_date,
+	relieved_in_current_period: int,
+	relieving_date,
 ) -> dict:
 	"""Returns dict of attendance status for employee like
 	{'total_present': 1.5, 'total_leaves': 0.5, 'total_absent': 13.5, 'total_holidays': 8, 'unmarked_days': 5}
@@ -501,7 +529,9 @@ def get_attendance_status_for_summarized_view(
 
 	for d in total_days:
 		d = getdate(d)
-		if d.day in attendance_days or (joined_in_current_period and d < joined_date):
+		is_before_joining = joined_in_current_period and d < joined_date
+		is_after_relieving = relieved_in_current_period and d > relieving_date
+		if d.day in attendance_days or is_before_joining or is_after_relieving:
 			continue
 
 		status = get_holiday_status(d, holidays)
@@ -572,7 +602,14 @@ def get_attendance_summary_and_days(employee: str, filters: Filters) -> tuple[di
 
 
 def get_attendance_status_for_detailed_view(
-	employee: str, filters: Filters, employee_attendance: dict, holidays: list
+	employee: str,
+	filters: Filters,
+	employee_attendance: dict,
+	holidays: list,
+	joined_in_current_period: int = 0,
+	joined_date=None,
+	relieved_in_current_period: int = 0,
+	relieving_date=None,
 ) -> list[dict]:
 	"""Returns list of shift-wise attendance status for employee
 	[
@@ -591,6 +628,11 @@ def get_attendance_status_for_detailed_view(
 	    },"""
 		for d in total_days:
 			d = getdate(d)
+
+			is_before_joining = joined_in_current_period and d < joined_date
+			is_after_relieving = relieved_in_current_period and d > relieving_date
+			if is_before_joining or is_after_relieving:
+				continue
 
 			status = status_dict.get(d)
 
