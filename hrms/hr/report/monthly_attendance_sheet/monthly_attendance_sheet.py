@@ -629,15 +629,14 @@ def get_attendance_status_for_detailed_view(
 		for d in total_days:
 			d = getdate(d)
 
-			is_before_joining = joined_in_current_period and d < joined_date
-			is_after_relieving = relieved_in_current_period and d > relieving_date
-			if is_before_joining or is_after_relieving:
-				continue
-
 			status = status_dict.get(d)
-
-			if status is None and holidays:
-				status = get_holiday_status(d, holidays)
+			if status is None:
+				is_before_joining = joined_in_current_period and d < joined_date
+				is_after_relieving = relieved_in_current_period and d > relieving_date
+				if is_before_joining or is_after_relieving:
+					continue
+				if holidays:
+					status = get_holiday_status(d, holidays)
 
 			abbr = status_map.get(status, "A")
 			row[d.strftime("%d-%m-%Y")] = abbr
