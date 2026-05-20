@@ -341,7 +341,9 @@ def get_salary_slips(filters, company_currency):
 		query = query.where(salary_slip.currency == filters.get("currency"))
 
 	if filters.get("department"):
-		query = query.where(salary_slip.department == filters["department"])
+		departments = [filters["department"]]
+		departments.extend(frappe.db.get_descendants("Department", filters["department"]))
+		query = query.where(salary_slip.department.isin(departments))
 
 	if filters.get("designation"):
 		query = query.where(salary_slip.designation == filters["designation"])
