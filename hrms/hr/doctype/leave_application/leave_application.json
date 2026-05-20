@@ -42,11 +42,11 @@
   {
    "fieldname": "naming_series",
    "fieldtype": "Select",
+   "hidden": 1,
    "label": "Series",
    "no_copy": 1,
    "options": "HR-LAP-.YYYY.-",
    "print_hide": 1,
-   "reqd": 1,
    "set_only_once": 1
   },
   {
@@ -171,6 +171,7 @@
   },
   {
    "default": "Open",
+   "depends_on": "eval:frappe.model.can_submit('Leave Application')",
    "fieldname": "status",
    "fieldtype": "Select",
    "in_standard_filter": 1,
@@ -200,9 +201,10 @@
   },
   {
    "allow_on_submit": 1,
-   "default": "1",
+   "default": "0",
    "fieldname": "follow_via_email",
    "fieldtype": "Check",
+   "hidden": 1,
    "label": "Follow via Email",
    "print_hide": 1
   },
@@ -213,6 +215,7 @@
   {
    "fieldname": "salary_slip",
    "fieldtype": "Link",
+   "hidden": 1,
    "label": "Salary Slip",
    "options": "Salary Slip",
    "print_hide": 1
@@ -221,6 +224,7 @@
    "allow_on_submit": 1,
    "fieldname": "letter_head",
    "fieldtype": "Link",
+   "hidden": 1,
    "ignore_user_permissions": 1,
    "label": "Letter Head",
    "options": "Letter Head",
@@ -230,6 +234,7 @@
    "allow_on_submit": 1,
    "fieldname": "color",
    "fieldtype": "Color",
+   "hidden": 1,
    "label": "Color",
    "print_hide": 1
   },
@@ -255,7 +260,7 @@
  "is_submittable": 1,
  "links": [],
  "max_attachments": 3,
- "modified": "2024-04-08 13:56:03.818019",
+ "modified": "2026-04-27",
  "modified_by": "Administrator",
  "module": "HR",
  "name": "Leave Application",
@@ -264,13 +269,14 @@
  "permissions": [
   {
    "create": 1,
-   "email": 1,
-   "print": 1,
    "read": 1,
-   "report": 1,
    "role": "Employee",
-   "share": 1,
    "write": 1
+  },
+  {
+   "permlevel": 1,
+   "read": 1,
+   "role": "Employee"
   },
   {
    "amend": 1,
@@ -282,42 +288,24 @@
    "print": 1,
    "read": 1,
    "report": 1,
-   "role": "HR Manager",
+   "role": "System Manager",
    "set_user_permissions": 1,
    "share": 1,
    "submit": 1,
    "write": 1
   },
   {
-   "permlevel": 1,
-   "read": 1,
-   "role": "All"
-  },
-  {
-   "amend": 1,
    "cancel": 1,
    "create": 1,
-   "delete": 1,
-   "email": 1,
-   "print": 1,
    "read": 1,
-   "report": 1,
    "role": "HR User",
-   "set_user_permissions": 1,
-   "share": 1,
    "submit": 1,
    "write": 1
   },
   {
-   "amend": 1,
-   "cancel": 1,
-   "delete": 1,
-   "email": 1,
-   "print": 1,
+   "create": 1,
    "read": 1,
-   "report": 1,
    "role": "Leave Approver",
-   "share": 1,
    "submit": 1,
    "write": 1
   },
@@ -342,7 +330,7 @@
    "print": 1,
    "read": 1,
    "report": 1,
-   "role": "HR Manager",
+   "role": "System Manager",
    "share": 1,
    "write": 1
   }

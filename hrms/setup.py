@@ -97,6 +97,15 @@ def get_custom_fields():
 				"options": "Account",
 				"insert_after": "column_break_10",
 			},
+			{
+				"fieldname": "default_employee_loan_account",
+				"fieldtype": "Link",
+				"label": _("Default Employee Loan Account"),
+				"link_filters": '[["Account","company","=","eval:doc.name"],["Account","is_group","=",0],["Account","root_type","=","Asset"],["Account","account_type","=","Receivable"]]',
+				"no_copy": 1,
+				"options": "Account",
+				"insert_after": "default_payroll_payable_account",
+			},
 		],
 		"Department": [
 			{
@@ -184,7 +193,8 @@ def get_custom_fields():
 				"ignore_user_permissions": 1,
 				"label": _("Employment Type"),
 				"options": "Employment Type",
-				"insert_after": "department",
+				"permlevel": 2,
+				"insert_after": "branch",
 			},
 			{
 				"fieldname": "job_applicant",
@@ -199,6 +209,7 @@ def get_custom_fields():
 				"label": _("Grade"),
 				"options": "Employee Grade",
 				"insert_after": "branch",
+				"hidden": 1,
 			},
 			{
 				"fieldname": "default_shift",
@@ -220,6 +231,7 @@ def get_custom_fields():
 				"label": _("Health Insurance Provider"),
 				"options": "Employee Health Insurance",
 				"insert_after": "health_insurance_section",
+				"hidden": 1,
 			},
 			{
 				"depends_on": "eval:doc.health_insurance_provider",
@@ -262,6 +274,7 @@ def get_custom_fields():
 				"options": "User",
 				"insert_after": "column_break_45",
 				"ignore_user_permissions": 1,
+				"hidden": 1,
 			},
 			{
 				"fieldname": "salary_cb",
@@ -323,12 +336,6 @@ def get_custom_fields():
 
 def make_fixtures():
 	records = [
-		# expense claim type
-		{"doctype": "Expense Claim Type", "name": _("Calls"), "expense_type": _("Calls")},
-		{"doctype": "Expense Claim Type", "name": _("Food"), "expense_type": _("Food")},
-		{"doctype": "Expense Claim Type", "name": _("Medical"), "expense_type": _("Medical")},
-		{"doctype": "Expense Claim Type", "name": _("Others"), "expense_type": _("Others")},
-		{"doctype": "Expense Claim Type", "name": _("Travel"), "expense_type": _("Travel")},
 		# vehicle service item
 		{"doctype": "Vehicle Service Item", "service_item": "Brake Oil"},
 		{"doctype": "Vehicle Service Item", "service_item": "Brake Pad"},
@@ -336,77 +343,34 @@ def make_fixtures():
 		{"doctype": "Vehicle Service Item", "service_item": "Engine Oil"},
 		{"doctype": "Vehicle Service Item", "service_item": "Oil Change"},
 		{"doctype": "Vehicle Service Item", "service_item": "Wheels"},
-		# leave type
-		{
-			"doctype": "Leave Type",
-			"leave_type_name": _("Casual Leave"),
-			"name": _("Casual Leave"),
-			"allow_encashment": 1,
-			"is_carry_forward": 1,
-			"max_continuous_days_allowed": "3",
-			"include_holiday": 1,
-		},
-		{
-			"doctype": "Leave Type",
-			"leave_type_name": _("Compensatory Off"),
-			"name": _("Compensatory Off"),
-			"allow_encashment": 0,
-			"is_carry_forward": 0,
-			"include_holiday": 1,
-			"is_compensatory": 1,
-		},
-		{
-			"doctype": "Leave Type",
-			"leave_type_name": _("Sick Leave"),
-			"name": _("Sick Leave"),
-			"allow_encashment": 0,
-			"is_carry_forward": 0,
-			"include_holiday": 1,
-		},
-		{
-			"doctype": "Leave Type",
-			"leave_type_name": _("Privilege Leave"),
-			"name": _("Privilege Leave"),
-			"allow_encashment": 0,
-			"is_carry_forward": 0,
-			"include_holiday": 1,
-		},
-		{
-			"doctype": "Leave Type",
-			"leave_type_name": _("Leave Without Pay"),
-			"name": _("Leave Without Pay"),
-			"allow_encashment": 0,
-			"is_carry_forward": 0,
-			"is_lwp": 1,
-			"include_holiday": 1,
-		},
 		# Employment Type
-		{"doctype": "Employment Type", "employee_type_name": _("Full-time")},
-		{"doctype": "Employment Type", "employee_type_name": _("Part-time")},
-		{"doctype": "Employment Type", "employee_type_name": _("Probation")},
-		{"doctype": "Employment Type", "employee_type_name": _("Contract")},
-		{"doctype": "Employment Type", "employee_type_name": _("Commission")},
-		{"doctype": "Employment Type", "employee_type_name": _("Piecework")},
-		{"doctype": "Employment Type", "employee_type_name": _("Intern")},
-		{"doctype": "Employment Type", "employee_type_name": _("Apprentice")},
+		{"doctype": "Employment Type", "employee_type_name": "دوام جزئي"},
+		{"doctype": "Employment Type", "employee_type_name": "دوام حر"},
+		{"doctype": "Employment Type", "employee_type_name": "دوام عن بعد"},
+		{"doctype": "Employment Type", "employee_type_name": "دوام كامل"},
+		{"doctype": "Employment Type", "employee_type_name": "ساعات"},
+		{"doctype": "Employment Type", "employee_type_name": "عمل بالعمولة"},
+		{"doctype": "Employment Type", "employee_type_name": "عمل بالقطعة"},
+		{"doctype": "Employment Type", "employee_type_name": "فترة تجريبية"},
+		{"doctype": "Employment Type", "employee_type_name": "متدرّب مهني"},
+		{"doctype": "Employment Type", "employee_type_name": "موظف بعقد"},
 		# Job Applicant Source
-		{"doctype": "Job Applicant Source", "source_name": _("Website Listing")},
-		{"doctype": "Job Applicant Source", "source_name": _("Walk In")},
-		{"doctype": "Job Applicant Source", "source_name": _("Employee Referral")},
-		{"doctype": "Job Applicant Source", "source_name": _("Campaign")},
+		{"doctype": "Job Applicant Source", "source_name": "إحالة من موظف"},
+		{"doctype": "Job Applicant Source", "source_name": "إدراج في الموقع الإلكتروني"},
+		{"doctype": "Job Applicant Source", "source_name": "تقديم مباشر"},
 		# Offer Term
-		{"doctype": "Offer Term", "offer_term": _("Date of Joining")},
-		{"doctype": "Offer Term", "offer_term": _("Annual Salary")},
-		{"doctype": "Offer Term", "offer_term": _("Probationary Period")},
-		{"doctype": "Offer Term", "offer_term": _("Employee Benefits")},
-		{"doctype": "Offer Term", "offer_term": _("Working Hours")},
-		{"doctype": "Offer Term", "offer_term": _("Stock Options")},
-		{"doctype": "Offer Term", "offer_term": _("Department")},
-		{"doctype": "Offer Term", "offer_term": _("Job Description")},
-		{"doctype": "Offer Term", "offer_term": _("Responsibilities")},
-		{"doctype": "Offer Term", "offer_term": _("Leaves per Year")},
-		{"doctype": "Offer Term", "offer_term": _("Notice Period")},
-		{"doctype": "Offer Term", "offer_term": _("Incentives")},
+		{"doctype": "Offer Term", "offer_term": "الإجازات السنوية"},
+		{"doctype": "Offer Term", "offer_term": "الحوافز"},
+		{"doctype": "Offer Term", "offer_term": "الراتب السنوي"},
+		{"doctype": "Offer Term", "offer_term": "القسم"},
+		{"doctype": "Offer Term", "offer_term": "المسؤوليات الوظيفية"},
+		{"doctype": "Offer Term", "offer_term": "تاريخ الانضمام"},
+		{"doctype": "Offer Term", "offer_term": "خيارات الأسهم"},
+		{"doctype": "Offer Term", "offer_term": "ساعات العمل"},
+		{"doctype": "Offer Term", "offer_term": "فترة الإشعار"},
+		{"doctype": "Offer Term", "offer_term": "فترة التجربة"},
+		{"doctype": "Offer Term", "offer_term": "مزايا الموظف"},
+		{"doctype": "Offer Term", "offer_term": "وصف الوظيفة"},
 		# Email Account
 		{"doctype": "Email Account", "email_id": "jobs@example.com", "append_to": "Job Applicant"},
 	]
@@ -612,44 +576,6 @@ def add_non_standard_user_types():
 
 def get_user_types_data():
 	return {
-		"Employee Self Service": {
-			"role": "Employee Self Service",
-			"apply_user_permission_on": "Employee",
-			"user_id_field": "user_id",
-			"doctypes": {
-				# masters
-				"Holiday List": ["read"],
-				"Employee": ["read", "write"],
-				"Company": ["read"],
-				# payroll
-				"Salary Slip": ["read"],
-				"Employee Benefit Application": ["read", "write", "create", "delete"],
-				# expenses
-				"Expense Claim": ["read", "write", "create", "delete"],
-				"Expense Claim Type": ["read"],
-				"Employee Advance": ["read", "write", "create", "delete"],
-				# leave and attendance
-				"Leave Type": ["read"],
-				"Leave Application": ["read", "write", "create", "delete"],
-				"Attendance Request": ["read", "write", "create", "delete"],
-				"Compensatory Leave Request": ["read", "write", "create", "delete"],
-				# tax
-				"Employee Tax Exemption Declaration": ["read", "write", "create", "delete"],
-				"Employee Tax Exemption Proof Submission": ["read", "write", "create", "delete"],
-				# projects
-				"Timesheet": ["read", "write", "create", "delete", "submit", "cancel", "amend"],
-				# trainings
-				"Training Program": ["read"],
-				"Training Feedback": ["read", "write", "create", "delete", "submit", "cancel", "amend"],
-				# shifts
-				"Employee Checkin": ["read"],
-				"Shift Request": ["read", "write", "create", "delete", "submit", "cancel", "amend"],
-				# misc
-				"Employee Grievance": ["read", "write", "create", "delete"],
-				"Employee Referral": ["read", "write", "create", "delete"],
-				"Travel Request": ["read", "write", "create", "delete"],
-			},
-		}
 	}
 
 

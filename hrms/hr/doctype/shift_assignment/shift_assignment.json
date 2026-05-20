@@ -30,6 +30,7 @@
    "fieldtype": "Link",
    "in_standard_filter": 1,
    "label": "Employee",
+   "link_filters": "[[\"Employee\",\"status\",\"=\",\"Active\"]]",
    "options": "Employee",
    "reqd": 1,
    "search_index": 1
@@ -138,22 +139,13 @@
  ],
  "is_submittable": 1,
  "links": [],
- "modified": "2024-11-13 12:59:50.928962",
+ "modified": "2026-05-18",
  "modified_by": "Administrator",
  "module": "HR",
  "name": "Shift Assignment",
  "naming_rule": "Expression (old style)",
  "owner": "Administrator",
  "permissions": [
-  {
-   "email": 1,
-   "export": 1,
-   "print": 1,
-   "read": 1,
-   "report": 1,
-   "role": "Employee",
-   "share": 1
-  },
   {
    "amend": 1,
    "cancel": 1,
@@ -164,20 +156,23 @@
    "print": 1,
    "read": 1,
    "report": 1,
-   "role": "HR Manager",
+   "role": "System Manager",
    "share": 1,
    "submit": 1,
    "write": 1
   },
   {
    "create": 1,
-   "email": 1,
-   "export": 1,
-   "print": 1,
    "read": 1,
-   "report": 1,
    "role": "HR User",
-   "share": 1,
+   "submit": 1,
+   "write": 1
+  },
+  {
+   "cancel": 1,
+   "create": 1,
+   "read": 1,
+   "role": "HR Manager",
    "submit": 1,
    "write": 1
   }
