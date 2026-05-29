@@ -323,6 +323,14 @@ frappe.ui.form.on("Payroll Entry", {
 				frm.set_df_property("exchange_rate", "description", "");
 			}
 		}
+		erpriva.get_account_by_currency(
+			frm.doc.company,
+			frm.doc.currency,
+			"default_payroll_payable_account",
+			(r) => {
+				frm.set_value("payroll_payable_account", r);
+			}
+		);
 	},
 
 	department: function (frm) {

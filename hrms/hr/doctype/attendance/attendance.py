@@ -39,6 +39,43 @@ class OverlappingShiftAttendanceError(frappe.ValidationError):
 
 
 class Attendance(Document):
+	# begin: auto-generated types
+	# This code is auto-generated. Do not modify anything in this block.
+
+	from typing import TYPE_CHECKING
+
+	if TYPE_CHECKING:
+		from frappe.types import DF
+
+		actual_overtime_duration: DF.Float
+		amended_from: DF.Link | None
+		approved_overtime_hours: DF.Float
+		attendance_date: DF.Date
+		attendance_request: DF.Link | None
+		company: DF.Link | None
+		department: DF.Link | None
+		early_exit: DF.Check
+		employee: DF.Link
+		employee_name: DF.Data | None
+		end_overtime_hours: DF.Float
+		half_day_status: DF.Literal["", "Present", "Absent"]
+		in_time: DF.Datetime | None
+		late_entry: DF.Check
+		leave_application: DF.Link | None
+		leave_type: DF.Link | None
+		modify_half_day_status: DF.Check
+		naming_series: DF.Literal["HR-ATT-.YYYY.-"]
+		out_time: DF.Datetime | None
+		overtime_note: DF.Data | None
+		overtime_status: DF.Literal["No Overtime", "Approved", "Initial Approved", "Unapproved", "Rejected"]
+		overtime_type: DF.Link | None
+		shift: DF.Link | None
+		standard_working_hours: DF.Float
+		start_overtime_hours: DF.Float
+		status: DF.Literal["Attendance Request", "Present", "Absent", "On Leave", "Half Day", "Work From Home"]
+		working_hours: DF.Float
+	# end: auto-generated types
+
 	def before_insert(self):
 		if self.half_day_status == "":
 			self.half_day_status = None
@@ -46,7 +83,6 @@ class Attendance(Document):
 	def validate(self):
 		from erpnext.controllers.status_updater import validate_status
 
-		validate_status(self.status, ["Present", "Absent", "On Leave", "Half Day", "Work From Home"])
 		validate_active_employee(self.employee)
 		self.validate_attendance_date()
 		self.validate_duplicate_record()
@@ -197,7 +233,7 @@ class Attendance(Document):
 		if self.status in ("On Leave", "Half Day"):
 			if not leave_record:
 				self.modify_half_day_status = 0
-				self.half_day_status = "Absent"
+				self.half_day_status = "Present"
 				frappe.msgprint(
 					_("No leave record found for employee {0} on {1}").format(
 						self.employee, format_date(self.attendance_date)

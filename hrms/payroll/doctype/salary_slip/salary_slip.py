@@ -62,6 +62,97 @@ TAX_COMPONENTS_BY_COMPANY = "tax_components_by_company"
 
 
 class SalarySlip(TransactionBase):
+	# begin: auto-generated types
+	# This code is auto-generated. Do not modify anything in this block.
+
+	from typing import TYPE_CHECKING
+
+	if TYPE_CHECKING:
+		from frappe.types import DF
+
+		from hrms.payroll.doctype.employee_benefit_detail.employee_benefit_detail import EmployeeBenefitDetail
+		from hrms.payroll.doctype.salary_detail.salary_detail import SalaryDetail
+		from hrms.payroll.doctype.salary_slip_leave.salary_slip_leave import SalarySlipLeave
+		from hrms.payroll.doctype.salary_slip_timesheet.salary_slip_timesheet import SalarySlipTimesheet
+
+		absent_days: DF.Float
+		accrued_benefits: DF.Table[EmployeeBenefitDetail]
+		amended_from: DF.Link | None
+		annual_taxable_amount: DF.Currency
+		bank_account_no: DF.Data | None
+		bank_name: DF.Data | None
+		base_gross_pay: DF.Currency
+		base_gross_year_to_date: DF.Currency
+		base_hour_rate: DF.Currency
+		base_month_to_date: DF.Currency
+		base_net_pay: DF.Currency
+		base_rounded_total: DF.Currency
+		base_total_deduction: DF.Currency
+		base_total_in_words: DF.Data | None
+		base_year_to_date: DF.Currency
+		branch: DF.Link | None
+		company: DF.Link
+		ctc: DF.Currency
+		currency: DF.Link
+		current_month_income_tax: DF.Currency
+		current_payroll_period: DF.Link | None
+		deduct_tax_for_unsubmitted_tax_exemption_proof: DF.Check
+		deductions: DF.Table[SalaryDetail]
+		deductions_before_tax_calculation: DF.Currency
+		department: DF.Link | None
+		designation: DF.Link | None
+		earnings: DF.Table[SalaryDetail]
+		employee: DF.Link
+		employee_name: DF.ReadOnly
+		end_date: DF.Date | None
+		exchange_rate: DF.Float
+		future_income_tax_deductions: DF.Currency
+		gross_pay: DF.Currency
+		gross_year_to_date: DF.Currency
+		holidays: DF.Int
+		hour_rate: DF.Currency
+		income_from_other_sources: DF.Currency
+		income_tax_deducted_till_date: DF.Currency
+		journal_entry: DF.Link | None
+		leave_details: DF.Table[SalarySlipLeave]
+		leave_with_pay: DF.Float
+		leave_without_pay: DF.Float
+		letter_head: DF.Link | None
+		mode_of_payment: DF.Literal[None]
+		month_to_date: DF.Currency
+		net_pay: DF.Currency
+		non_taxable_earnings: DF.Currency
+		overtime_hours: DF.Float
+		overtime_salary: DF.Currency
+		payment_days: DF.Float
+		payroll_days: DF.Int
+		payroll_entry: DF.Link | None
+		payroll_frequency: DF.Literal["", "Monthly", "Fortnightly", "Bimonthly", "Weekly", "Daily"]
+		posting_date: DF.Date
+		present_days: DF.Float
+		rounded_total: DF.Currency
+		salary_slip_based_on_timesheet: DF.Check
+		salary_structure: DF.Link
+		salary_withholding: DF.Link | None
+		salary_withholding_cycle: DF.Data | None
+		standard_tax_exemption_amount: DF.Currency
+		start_date: DF.Date | None
+		status: DF.Literal["Draft", "Submitted", "Cancelled", "Withheld"]
+		tax_exemption_declaration: DF.Currency
+		timesheets: DF.Table[SalarySlipTimesheet]
+		total_deduction: DF.Currency
+		total_earnings: DF.Currency
+		total_in_words: DF.Data | None
+		total_income_tax: DF.Currency
+		total_working_days: DF.Float
+		total_working_hours: DF.Float
+		unmarked_days: DF.Float
+		weekly_off: DF.Int
+		working_hours: DF.Float
+		working_hours_salary: DF.Currency
+		year_to_date: DF.Currency
+	# end: auto-generated types
+
 	def __init__(self, *args, **kwargs):
 		super().__init__(*args, **kwargs)
 		self.default_series = f"Sal Slip/{self.employee}/.#####"
@@ -455,7 +546,9 @@ class SalarySlip(TransactionBase):
 
 			self.add_earning_for_hourly_wages(self, self._salary_structure_doc.salary_component, wages_amount)
 
-		make_salary_slip(self._salary_structure_doc.name, self)
+		make_salary_slip(
+			self._salary_structure_doc.name, self, ignore_permissions=self.flags.ignore_permissions
+		)
 
 	def get_working_days_details(self, lwp=None, for_preview=0, lwp_days_corrected=None):
 		payroll_settings = frappe.get_cached_value(
@@ -507,14 +600,7 @@ class SalarySlip(TransactionBase):
 				holidays, working_days_list, daily_wages_fraction_for_half_day
 			)
 
-		if not lwp:
-			lwp = actual_lwp
-		elif lwp != actual_lwp:
-			frappe.msgprint(
-				_("Leave Without Pay does not match with approved {} records").format(
-					payroll_settings.payroll_based_on
-				)
-			)
+		lwp = actual_lwp
 
 		self.leave_without_pay = lwp
 		self.total_working_days = working_days
@@ -881,8 +967,9 @@ class SalarySlip(TransactionBase):
 		self.base_total_deduction = flt(
 			flt(self.total_deduction) * flt(self.exchange_rate), self.precision("base_total_deduction")
 		)
-		self.net_pay = flt(self.gross_pay) - (
-			flt(self.total_deduction) + flt(self.get("total_loan_repayment"))
+		self.net_pay = flt(
+			flt(self.gross_pay) - (flt(self.total_deduction) + flt(self.get("total_loan_repayment"))),
+			self.precision("net_pay"),
 		)
 		self.rounded_total = rounded(self.net_pay)
 		self.base_net_pay = flt(flt(self.net_pay) * flt(self.exchange_rate), self.precision("base_net_pay"))
@@ -1599,13 +1686,6 @@ class SalarySlip(TransactionBase):
 
 		if self.is_new() and not tax_components:
 			tax_components = self.get_tax_components()
-			frappe.msgprint(
-				_(
-					"Added tax components from the Salary Component master as the salary structure didn't have any tax component."
-				),
-				indicator="blue",
-				alert=True,
-			)
 
 		self._component_based_variable_tax = {}
 		if tax_components and self.payroll_period and self.salary_structure:
@@ -2289,7 +2369,7 @@ class SalarySlip(TransactionBase):
 		year_to_date = 0
 		period_start_date, period_end_date = self.get_year_to_date_period()
 
-		salary_slip_sum = frappe.get_list(
+		salary_slip_sum = frappe.get_all(
 			"Salary Slip",
 			fields=[{"SUM": "net_pay", "as": "net_sum"}, {"SUM": "gross_pay", "as": "gross_sum"}],
 			filters={
@@ -2312,7 +2392,7 @@ class SalarySlip(TransactionBase):
 	def compute_month_to_date(self):
 		month_to_date = 0
 		first_day_of_the_month = get_first_day(self.start_date)
-		salary_slip_sum = frappe.get_list(
+		salary_slip_sum = frappe.get_all(
 			"Salary Slip",
 			fields=[{"SUM": "net_pay", "as": "sum"}],
 			filters={
