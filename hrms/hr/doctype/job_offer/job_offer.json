@@ -170,7 +170,7 @@
  ],
  "is_submittable": 1,
  "links": [],
- "modified": "2025-07-28 16:29:10.149418",
+ "modified": "2026-05-25",
  "modified_by": "Administrator",
  "module": "HR",
  "name": "Job Offer",
@@ -187,7 +187,7 @@
    "print": 1,
    "read": 1,
    "report": 1,
-   "role": "HR User",
+   "role": "System Manager",
    "share": 1,
    "submit": 1,
    "write": 1

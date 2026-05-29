@@ -220,25 +220,13 @@
  ],
  "is_submittable": 1,
  "links": [],
- "modified": "2026-01-09 11:52:07.106968",
+ "modified": "2026-05-28",
  "modified_by": "Administrator",
  "module": "Payroll",
  "name": "Salary Structure Assignment",
  "naming_rule": "Expression",
  "owner": "Administrator",
  "permissions": [
-  {
-   "create": 1,
-   "delete": 1,
-   "email": 1,
-   "export": 1,
-   "print": 1,
-   "read": 1,
-   "report": 1,
-   "role": "System Manager",
-   "share": 1,
-   "write": 1
-  },
   {
    "amend": 1,
    "cancel": 1,
@@ -249,22 +237,39 @@
    "print": 1,
    "read": 1,
    "report": 1,
-   "role": "HR Manager",
+   "role": "System Manager",
    "share": 1,
    "submit": 1,
    "write": 1
   },
   {
+   "cancel": 1,
    "create": 1,
-   "email": 1,
-   "export": 1,
    "print": 1,
    "read": 1,
    "report": 1,
-   "role": "HR User",
-   "share": 1,
+   "role": "HR Manager",
    "submit": 1,
    "write": 1
+  },
+  {
+   "permlevel": 1,
+   "read": 1,
+   "role": "HR Manager",
+   "write": 1
+  },
+  {
+   "read": 1,
+   "role": "HR User"
+  },
+  {
+   "permlevel": 9,
+   "read": 1,
+   "role": "HR User"
+  },
+  {
+   "read": 1,
+   "role": "Employee"
   }
  ],
  "search_fields": "employee_name, salary_structure",

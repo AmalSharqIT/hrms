@@ -199,7 +199,7 @@
    "link_fieldname": "interview"
   }
  ],
- "modified": "2023-12-30 12:13:59.157555",
+ "modified": "2026-05-25",
  "modified_by": "Administrator",
  "module": "HR",
  "name": "Interview",
@@ -229,35 +229,7 @@
    "print": 1,
    "read": 1,
    "report": 1,
-   "role": "HR Manager",
-   "share": 1,
-   "submit": 1,
-   "write": 1
-  },
-  {
-   "cancel": 1,
-   "create": 1,
-   "delete": 1,
-   "email": 1,
-   "export": 1,
-   "print": 1,
-   "read": 1,
-   "report": 1,
    "role": "Interviewer",
-   "share": 1,
-   "submit": 1,
-   "write": 1
-  },
-  {
-   "cancel": 1,
-   "create": 1,
-   "delete": 1,
-   "email": 1,
-   "export": 1,
-   "print": 1,
-   "read": 1,
-   "report": 1,
-   "role": "HR User",
    "share": 1,
    "submit": 1,
    "write": 1

@@ -7,7 +7,7 @@
  "doctype": "Report",
  "idx": 0,
  "is_standard": "Yes",
- "modified": "2020-05-28 00:08:08.097494",
+ "modified": "2026-05-25",
  "modified_by": "Administrator",
  "module": "Payroll",
  "name": "Bank Remittance",
@@ -18,7 +18,7 @@
  "report_type": "Script Report",
  "roles": [
   {
-   "role": "HR Manager"
+   "role": "System Manager"
   }
  ]
 }
