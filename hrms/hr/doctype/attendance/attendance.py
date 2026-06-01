@@ -421,6 +421,7 @@ def process_bulk_attendance_in_batches(data, chunk_size=20):
 					"status": data.status,
 					"half_day_status": "Absent" if data.status == "Half Day" else None,
 					"shift": data.shift,
+					"working_hours": data.working_hours,
 				}
 				attendance = frappe.get_doc(doc_dict).insert()
 				attendance.submit()
