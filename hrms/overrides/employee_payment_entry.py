@@ -231,7 +231,7 @@ def get_paid_amount_and_received_amount(
 			# if party account currency and bank currency is different then populate paid amount as well
 			paid_amount = received_amount * doc.get("conversion_rate", 1)
 			if doc.doctype == "Employee Advance":
-				paid_amount = received_amount * exchange_rate
+				paid_amount = received_amount * (exchange_rate or 1)
 
 	return paid_amount, received_amount
 
