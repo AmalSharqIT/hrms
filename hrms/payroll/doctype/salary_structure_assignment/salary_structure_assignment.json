@@ -228,6 +228,7 @@
   {
    "fieldname": "employee_benefits_section",
    "fieldtype": "Section Break",
+   "hidden": 1,
    "label": "Employee Benefits"
   },
   {
@@ -300,7 +301,7 @@
  ],
  "is_submittable": 1,
  "links": [],
- "modified": "2026-05-29",
+ "modified": "2026-06-01",
  "modified_by": "Administrator",
  "module": "Payroll",
  "name": "Salary Structure Assignment",

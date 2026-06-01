@@ -22,7 +22,6 @@
   "department",
   "exit_formalities_checklist_section",
   "checklist",
-  "employee_balance",
   "section_break_8",
   "payables",
   "section_break_10",
@@ -32,6 +31,7 @@
   "total_asset_recovery_cost",
   "totals_section",
   "total_payable_amount",
+  "employee_balance",
   "column_break_21",
   "total_receivable_amount"
  ],
@@ -226,7 +226,7 @@
    "table_fieldname": "accounts"
   }
  ],
- "modified": "2026-05-29",
+ "modified": "2026-06-01",
  "modified_by": "Administrator",
  "module": "HR",
  "name": "Full and Final Statement",

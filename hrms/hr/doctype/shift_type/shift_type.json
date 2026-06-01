@@ -209,6 +209,7 @@
    "default": "0",
    "fieldname": "allow_overtime",
    "fieldtype": "Check",
+   "hidden": 1,
    "label": "Allow Overtime"
   },
   {
@@ -261,7 +262,7 @@
   }
  ],
  "links": [],
- "modified": "2026-05-29",
+ "modified": "2026-06-01",
  "modified_by": "Administrator",
  "module": "HR",
  "name": "Shift Type",
