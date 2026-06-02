@@ -135,8 +135,10 @@ def get_payment_entry_for_employee(
 	pe.set_missing_ref_details()
 
 	# fetching current exchange rate for advance payment entry
-	current_exchange_rate = get_exchange_rate(
-		pe.paid_to_account_currency, pe.paid_from_account_currency, pe.posting_date
+	current_exchange_rate = (
+		get_exchange_rate(pe.paid_to_account_currency, pe.paid_from_account_currency, pe.posting_date)
+		if pe.paid_to_account_currency and pe.paid_from_account_currency
+		else 1
 	)
 	paid_amount, received_amount = get_paid_amount_and_received_amount(
 		doc,
