@@ -547,7 +547,7 @@ class SalarySlip(TransactionBase):
 			self.add_earning_for_hourly_wages(self, self._salary_structure_doc.salary_component, wages_amount)
 
 		make_salary_slip(
-			self._salary_structure_doc.name, self, ignore_permissions=self.flags.ignore_permissions
+			self._salary_structure_doc.name, self, ignore_permissions=self.flags.ignore_permissions or False
 		)
 
 	def get_working_days_details(self, lwp=None, for_preview=0, lwp_days_corrected=None):
