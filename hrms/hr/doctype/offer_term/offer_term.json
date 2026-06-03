@@ -20,7 +20,7 @@
   }
  ],
  "links": [],
- "modified": "2026-04-09 18:33:35.969104",
+ "modified": "2026-05-29",
  "modified_by": "Administrator",
  "module": "HR",
  "name": "Offer Term",
@@ -38,16 +38,6 @@
    "role": "System Manager",
    "share": 1,
    "write": 1
-  },
-  {
-   "create": 1,
-   "read": 1,
-   "role": "HR Manager",
-   "write": 1
-  },
-  {
-   "role": "HR User",
-   "select": 1
   }
  ],
  "quick_entry": 1,

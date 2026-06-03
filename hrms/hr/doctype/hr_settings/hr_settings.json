@@ -12,6 +12,7 @@
   "standard_working_hours",
   "column_break_lrow",
   "retirement_age",
+  "default_employment_type",
   "reminders_section",
   "column_break_11",
   "send_work_anniversary_reminders",
@@ -21,6 +22,8 @@
   "column_break_hyec",
   "sender",
   "sender_email",
+  "overtime_settings_section",
+  "overtime_settings",
   "leaves_tab",
   "leave_settings_section",
   "auto_leave_encashment",
@@ -33,6 +36,16 @@
   "leave_status_notification_template",
   "restrict_backdated_leave_application",
   "role_allowed_to_create_backdated_leave_application",
+  "advances_tab",
+  "advance_settings_section",
+  "advance_limit_percent_of_salary",
+  "loans_tab",
+  "loan_settings_section",
+  "default_number_of_installments",
+  "days_after_joining_to_apply_for_loan",
+  "blocked_guarantors_employee_group",
+  "column_break_loan_settings",
+  "loan_amount_limits",
   "expenses_tab",
   "expenses_settings_section",
   "expense_approver_mandatory_in_expense_claim",
@@ -374,13 +387,84 @@
    "fieldname": "employee_exit_settings_section",
    "fieldtype": "Section Break",
    "label": "Employee Exit Settings"
+  },
+  {
+   "fieldname": "default_employment_type",
+   "fieldtype": "Link",
+   "label": "Default Employment Type",
+   "options": "Employment Type"
+  },
+  {
+   "fieldname": "overtime_settings_section",
+   "fieldtype": "Section Break",
+   "label": "Overtime Settings"
+  },
+  {
+   "fieldname": "overtime_settings",
+   "fieldtype": "Table",
+   "options": "HR Settings Overtime"
+  },
+  {
+   "fieldname": "advances_tab",
+   "fieldtype": "Tab Break",
+   "label": "Advances"
+  },
+  {
+   "fieldname": "advance_settings_section",
+   "fieldtype": "Section Break",
+   "label": "Advance Settings"
+  },
+  {
+   "fieldname": "advance_limit_percent_of_salary",
+   "fieldtype": "Percent",
+   "label": "Advance Limit (% Of Salary)"
+  },
+  {
+   "fieldname": "loans_tab",
+   "fieldtype": "Tab Break",
+   "label": "Loans"
+  },
+  {
+   "fieldname": "loan_settings_section",
+   "fieldtype": "Section Break",
+   "label": "Loan Settings"
+  },
+  {
+   "default": "4",
+   "fieldname": "default_number_of_installments",
+   "fieldtype": "Int",
+   "label": "Default Number of Installments",
+   "non_negative": 1
+  },
+  {
+   "default": "365",
+   "fieldname": "days_after_joining_to_apply_for_loan",
+   "fieldtype": "Int",
+   "label": "Days After Joining to Apply for Loan",
+   "non_negative": 1
+  },
+  {
+   "fieldname": "blocked_guarantors_employee_group",
+   "fieldtype": "Link",
+   "label": "Blocked Guarantors Employee Group",
+   "options": "Employee Group"
+  },
+  {
+   "fieldname": "column_break_loan_settings",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "loan_amount_limits",
+   "fieldtype": "Table",
+   "label": "Loan Amount Limits",
+   "options": "HR Settings Loan Amounts"
   }
  ],
  "icon": "fa fa-cog",
  "idx": 1,
  "issingle": 1,
  "links": [],
- "modified": "2025-12-29 16:25:06.271352",
+ "modified": "2026-05-29",
  "modified_by": "Administrator",
  "module": "HR",
  "name": "HR Settings",
@@ -396,19 +480,8 @@
    "write": 1
   },
   {
-   "email": 1,
-   "print": 1,
    "read": 1,
-   "role": "HR Manager",
-   "share": 1,
-   "write": 1
-  },
-  {
-   "email": 1,
-   "print": 1,
-   "read": 1,
-   "role": "HR User",
-   "share": 1
+   "role": "HR User"
   },
   {
    "read": 1,

@@ -18,6 +18,7 @@ from frappe.utils import (
 	get_time,
 	getdate,
 	time_diff,
+	time_diff_in_hours,
 )
 
 from erpnext.setup.doctype.employee.employee import get_holiday_list_for_employee
@@ -36,6 +37,50 @@ EMPLOYEE_CHUNK_SIZE = 50
 
 
 class ShiftType(Document):
+	# begin: auto-generated types
+	# This code is auto-generated. Do not modify anything in this block.
+
+	from typing import TYPE_CHECKING
+
+	if TYPE_CHECKING:
+		from frappe.types import DF
+
+		allow_check_out_after_shift_end_time: DF.Int
+		allow_overtime: DF.Check
+		auto_update_last_sync: DF.Check
+		begin_check_in_before_shift_start_time: DF.Int
+		color: DF.Literal[
+			"Blue", "Cyan", "Fuchsia", "Green", "Lime", "Orange", "Pink", "Red", "Violet", "Yellow"
+		]
+		determine_check_in_and_check_out: DF.Literal[
+			"Alternating entries as IN and OUT during the same shift",
+			"Strictly based on Log Type in Employee Checkin",
+		]
+		early_exit_grace_period: DF.Int
+		enable_auto_attendance: DF.Check
+		enable_early_exit_marking: DF.Check
+		enable_late_entry_marking: DF.Check
+		end_time: DF.Time
+		exit_checkin_not_mandatory: DF.Check
+		half_day_leave_type: DF.Link | None
+		holiday_list: DF.Link | None
+		last_sync_of_checkin: DF.Datetime | None
+		late_entry_grace_period: DF.Int
+		limit_to_max_hours: DF.Check
+		mark_auto_attendance_on_holidays: DF.Check
+		max_hours: DF.Float
+		overtime_type: DF.Link | None
+		process_attendance_after: DF.Date | None
+		skip_mark_attendance: DF.Check
+		start_time: DF.Time
+		title: DF.Data | None
+		working_hours_calculation_based_on: DF.Literal[
+			"First Check-in and Last Check-out", "Every Valid Check-in and Check-out"
+		]
+		working_hours_threshold_for_absent: DF.Float
+		working_hours_threshold_for_half_day: DF.Float
+	# end: auto-generated types
+
 	def validate(self):
 		start = get_time(self.start_time)
 		end = get_time(self.end_time)
@@ -465,3 +510,15 @@ def process_auto_attendance_for_all_shifts():
 	for shift in shift_list:
 		doc = frappe.get_cached_doc("Shift Type", shift)
 		doc.process_auto_attendance()
+
+
+def get_shift_max_hours(shift_type):
+	limit_to_max_hours, max_hours, start_time, end_time = frappe.get_cached_value(
+		"Shift Type", shift_type, ["limit_to_max_hours", "max_hours", "start_time", "end_time"]
+	)
+	if limit_to_max_hours:
+		return max_hours
+	duration = time_diff_in_hours(end_time, start_time)
+	if duration < 0:
+		duration += 24
+	return duration

@@ -27,13 +27,52 @@ import erpnext
 from erpnext.accounts.doctype.accounting_dimension.accounting_dimension import (
 	get_accounting_dimensions,
 )
-from erpnext.accounts.utils import get_fiscal_year
+from erpnext.accounts.utils import get_advance_payment_doctypes, get_fiscal_year
 
 from hrms.payroll.doctype.salary_slip.salary_slip_loan_utils import if_lending_app_installed
 from hrms.payroll.doctype.salary_withholding.salary_withholding import link_bank_entry_in_salary_withholdings
 
 
 class PayrollEntry(Document):
+	# begin: auto-generated types
+	# This code is auto-generated. Do not modify anything in this block.
+
+	from typing import TYPE_CHECKING
+
+	if TYPE_CHECKING:
+		from frappe.types import DF
+
+		from hrms.payroll.doctype.payroll_employee_detail.payroll_employee_detail import PayrollEmployeeDetail
+
+		amended_from: DF.Link | None
+		bank_account: DF.Link | None
+		branch: DF.Link | None
+		company: DF.Link
+		cost_center: DF.Link
+		currency: DF.Link
+		deduct_tax_for_unsubmitted_tax_exemption_proof: DF.Check
+		department: DF.Link | None
+		designation: DF.Link | None
+		employees: DF.Table[PayrollEmployeeDetail]
+		end_date: DF.Date
+		error_message: DF.SmallText | None
+		exchange_rate: DF.Float
+		grade: DF.Link | None
+		number_of_employees: DF.Int
+		overtime_step: DF.Literal["", "Create", "Submit"]
+		payment_account: DF.Link | None
+		payroll_frequency: DF.Literal["", "Monthly", "Fortnightly", "Bimonthly", "Weekly", "Daily"]
+		payroll_payable_account: DF.Link
+		posting_date: DF.Date
+		project: DF.Link | None
+		salary_slip_based_on_timesheet: DF.Check
+		salary_slips_created: DF.Check
+		salary_slips_submitted: DF.Check
+		start_date: DF.Date
+		status: DF.Literal["Draft", "Submitted", "Cancelled", "Queued", "Failed"]
+		validate_attendance: DF.Check
+	# end: auto-generated types
+
 	def onload(self):
 		if self.docstatus == 0 and not self.salary_slips_created and self.employees:
 			[employees_eligible_for_overtime, unsubmitted_overtime_slips] = self.get_overtime_slip_details()
@@ -156,11 +195,20 @@ class PayrollEntry(Document):
 	def delete_linked_salary_slips(self):
 		salary_slips = self.get_linked_salary_slips()
 
+		linked_journal_entry = salary_slips[0].get("journal_entry") if salary_slips else None
 		# cancel & delete salary slips
 		for salary_slip in salary_slips:
+			if salary_slip.net_pay > 0:
+				linked_journal_entry = None
 			if salary_slip.docstatus == 1:
-				frappe.get_doc("Salary Slip", salary_slip.name).cancel()
-			frappe.delete_doc("Salary Slip", salary_slip.name)
+				doc = frappe.get_doc("Salary Slip", salary_slip.name)
+				doc.flags.ignore_permissions = True
+				doc.cancel()
+			frappe.delete_doc("Salary Slip", salary_slip.name, ignore_permissions=True)
+		if linked_journal_entry:
+			doc = frappe.get_doc("Journal Entry", linked_journal_entry)
+			doc.flags.ignore_permissions = True
+			doc.cancel()
 
 	def cancel_linked_journal_entries(self):
 		journal_entries = frappe.get_all(
@@ -201,7 +249,9 @@ class PayrollEntry(Document):
 			payment_ledger_entry.cancel()
 
 	def get_linked_salary_slips(self):
-		return frappe.get_all("Salary Slip", {"payroll_entry": self.name}, ["name", "docstatus"])
+		return frappe.get_all(
+			"Salary Slip", {"payroll_entry": self.name}, ["name", "docstatus", "journal_entry", "net_pay"]
+		)
 
 	def make_filters(self):
 		filters = frappe._dict(
@@ -383,6 +433,8 @@ class PayrollEntry(Document):
 					ssd.amount,
 					ssd.parentfield,
 					ssd.additional_salary,
+					ssd.reference_type,
+					ssd.reference_name,
 					ss.salary_structure,
 					ss.employee,
 				)
@@ -421,7 +473,13 @@ class PayrollEntry(Document):
 							item, amount_against_cost_center, cost_center, employee_advance
 						)
 					else:
-						key = (item.salary_component, cost_center)
+						key = (
+							item.salary_component,
+							cost_center,
+							item.employee,
+							item.reference_type,
+							item.reference_name,
+						)
 						component_dict[key] = component_dict.get(key, 0) + amount_against_cost_center
 
 					if employee_wise_accounting_enabled:
@@ -429,7 +487,9 @@ class PayrollEntry(Document):
 							component_type, item.employee, amount_against_cost_center
 						)
 
-			account_details = self.get_account(component_dict=component_dict)
+			account_details = self.get_account(
+				employee_wise_accounting_enabled, component_dict=component_dict
+			)
 
 			return account_details
 
@@ -549,12 +609,18 @@ class PayrollEntry(Document):
 
 		return self.employee_cost_centers.get(employee, {})
 
-	def get_account(self, component_dict=None):
+	def get_account(self, employee_wise_accounting_enabled, component_dict=None):
 		account_dict = {}
 		for key, amount in component_dict.items():
-			component, cost_center = key
+			component, cost_center, employee, reference_type, reference_name = key
 			account = self.get_salary_component_account(component)
-			accounting_key = (account, cost_center)
+			if not employee_wise_accounting_enabled and not reference_name:
+				employee = None
+			else:
+				account_type = frappe.get_cached_value("Account", account, "account_type")
+				if account_type not in ["Receivable", "Payable"]:
+					employee = None
+			accounting_key = (account, cost_center, employee, reference_type, reference_name)
 
 			account_dict[accounting_key] = account_dict.get(accounting_key, 0) + amount
 
@@ -709,7 +775,11 @@ class PayrollEntry(Document):
 				accounting_dimensions,
 				precision,
 				entry_type="debit",
+				party=acc_cc[2],
 				accounts=accounts,
+				reference_type=acc_cc[3],
+				reference_name=acc_cc[4],
+				is_advance="Yes" if acc_cc[3] in get_advance_payment_doctypes() else None,
 			)
 
 		# Deductions
@@ -724,7 +794,11 @@ class PayrollEntry(Document):
 				accounting_dimensions,
 				precision,
 				entry_type="credit",
+				party=acc_cc[2],
 				accounts=accounts,
+				reference_type=acc_cc[3],
+				reference_name=acc_cc[4],
+				is_advance="Yes" if acc_cc[3] in get_advance_payment_doctypes() else None,
 			)
 
 		return payable_amount
@@ -859,7 +933,7 @@ class PayrollEntry(Document):
 			accounting_dimensions,
 		)
 
-		if amt:
+		if flt(amt, precision):
 			accounts.append(row)
 
 		return payable_amount
@@ -1357,7 +1431,7 @@ def get_filtered_employees(
 		.on(Employee.name == SalaryStructureAssignment.employee)
 		.where(
 			(SalaryStructureAssignment.docstatus == 1)
-			& (Employee.status != "Inactive")
+			& (Employee.status == "Active")
 			& (Employee.company == filters.company)
 			& ((Employee.date_of_joining <= filters.end_date) | (Employee.date_of_joining.isnull()))
 			& ((Employee.relieving_date >= filters.start_date) | (Employee.relieving_date.isnull()))
@@ -1365,6 +1439,7 @@ def get_filtered_employees(
 			& (SalaryStructureAssignment.payroll_payable_account == filters.payroll_payable_account)
 			& (filters.end_date >= SalaryStructureAssignment.from_date)
 		)
+		.orderby(Employee.employee_name)
 	)
 
 	query = set_fields_to_select(query, fields)

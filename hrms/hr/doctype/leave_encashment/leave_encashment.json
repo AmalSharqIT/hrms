@@ -21,13 +21,13 @@
   "actual_encashable_days",
   "encashment_days",
   "encashment_amount",
+  "currency",
   "accounting_section",
   "pay_via_payment_entry",
   "expense_account",
   "payable_account",
   "column_break_vdnb",
   "posting_date",
-  "currency",
   "paid_amount",
   "accounting_dimensions_section",
   "cost_center",
@@ -54,6 +54,7 @@
    "fieldtype": "Link",
    "in_list_view": 1,
    "label": "Employee",
+   "link_filters": "[[\"Employee\",\"status\",\"=\",\"Active\"]]",
    "options": "Employee",
    "reqd": 1
   },
@@ -200,6 +201,7 @@
   {
    "fieldname": "accounting_section",
    "fieldtype": "Section Break",
+   "hidden": 1,
    "label": "Accounting"
   },
   {
@@ -258,7 +260,7 @@
  ],
  "is_submittable": 1,
  "links": [],
- "modified": "2025-02-21 13:11:01.939992",
+ "modified": "2026-05-29",
  "modified_by": "Administrator",
  "module": "HR",
  "name": "Leave Encashment",
@@ -281,45 +283,10 @@
    "write": 1
   },
   {
-   "amend": 1,
-   "cancel": 1,
    "create": 1,
-   "delete": 1,
-   "email": 1,
-   "export": 1,
-   "print": 1,
    "read": 1,
-   "report": 1,
    "role": "HR Manager",
-   "share": 1,
    "submit": 1,
-   "write": 1
-  },
-  {
-   "amend": 1,
-   "cancel": 1,
-   "create": 1,
-   "delete": 1,
-   "email": 1,
-   "export": 1,
-   "print": 1,
-   "read": 1,
-   "report": 1,
-   "role": "HR User",
-   "share": 1,
-   "submit": 1,
-   "write": 1
-  },
-  {
-   "create": 1,
-   "delete": 1,
-   "email": 1,
-   "export": 1,
-   "print": 1,
-   "read": 1,
-   "report": 1,
-   "role": "Employee",
-   "share": 1,
    "write": 1
   }
  ],
