@@ -257,15 +257,15 @@
    "fieldtype": "Currency",
    "hidden": 1,
    "label": "Leave Encashment Amount Per Day",
-   "options": "currency"
+   "options": "currency",
    "permlevel": 1
   },
   {
    "allow_on_submit": 1,
    "fieldname": "ctc",
    "fieldtype": "Currency",
-   "label": "Total Cost To Company (CTC)"
-   "options": "currency",
+   "label": "Total Cost To Company (CTC)",
+   "options": "currency"
   },
   {
    "fieldname": "monthly_salary",
