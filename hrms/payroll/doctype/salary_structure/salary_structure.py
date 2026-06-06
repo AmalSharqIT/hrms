@@ -387,7 +387,7 @@ def make_salary_slip(
 	print_format: str | None = None,
 	for_preview: int = 0,
 	lwp_days_corrected: float | None = None,
-	ignore_permissions=False,
+	ignore_permissions: bool = False,
 ) -> str | Document:
 	def postprocess(source, target):
 		if employee:
