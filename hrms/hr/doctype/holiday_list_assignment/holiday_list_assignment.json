@@ -81,7 +81,7 @@
    "fieldname": "applicable_for",
    "fieldtype": "Select",
    "label": "Applicable For",
-   "options": "Employee\nCompany",
+   "options": "Employee\nBranch\nCompany",
    "reqd": 1
   },
   {
