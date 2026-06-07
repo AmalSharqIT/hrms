@@ -286,6 +286,7 @@ def get_custom_fields():
 				"label": _("Employee Advance Account"),
 				"options": "Account",
 				"insert_after": "salary_mode",
+				"hidden": 1,
 			},
 			{
 				"fieldname": "salary_cb",
