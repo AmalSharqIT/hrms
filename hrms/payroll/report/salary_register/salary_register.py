@@ -28,7 +28,7 @@ def execute(filters=None):
 		return [], []
 
 	earning_types, ded_types = get_earning_and_deduction_types(salary_slips)
-	columns = get_columns(earning_types, ded_types, filters.get("bank_name"))
+	columns = get_columns(earning_types, ded_types, filters.get("bank"))
 
 	ss_earning_map = get_salary_slip_details(salary_slips, currency, company_currency, "earnings")
 	ss_ded_map = get_salary_slip_details(salary_slips, currency, company_currency, "deductions")
@@ -60,7 +60,7 @@ def execute(filters=None):
 			"bank_ac_no": ss.bank_ac_no,
 		}
 
-		if not filters.get("bank_name"):
+		if not filters.get("bank"):
 			update_column_width(ss, columns)
 
 		for e in earning_types:
@@ -115,8 +115,8 @@ def update_column_width(ss, columns):
 		columns[9].update({"width": 120})
 
 
-def get_columns(earning_types, ded_types, bank_name):
-	if bank_name:
+def get_columns(earning_types, ded_types, bank):
+	if bank:
 		return [
 			{
 				"label": _("Employee"),
@@ -385,21 +385,14 @@ def get_salary_slips(filters, company_currency):
 	if filters.get("branch"):
 		query = query.where(salary_slip.branch == filters["branch"])
 
-	if filters.get("bank_name"):
-		if filters.get("employeestatus"):
-			query = (
-				query.select(Employee.cell_number, Employee.bank_ac_no)
-				.where(Employee.salary_mode == "Bank")
-				.where(Employee.bank_name == filters.get("bank_name"))
-			)
-		else:
-			query = (
-				query.join(Employee)
-				.on(salary_slip.employee == Employee.name)
-				.select(Employee.cell_number, Employee.bank_ac_no)
-				.where(Employee.salary_mode == "Bank")
-				.where(Employee.bank_name == filters.get("bank_name"))
-			)
+	if filters.get("bank"):
+		if not filters.get("employeestatus"):
+			query = query.join(Employee).on(salary_slip.employee == Employee.name)
+		query = (
+			query.select(Employee.cell_number, Employee.bank_ac_no)
+			.where(Employee.salary_mode == "Bank")
+			.where(Employee.bank_name == filters.get("bank"))
+		)
 
 	salary_slips = query.run(as_dict=1)
 
