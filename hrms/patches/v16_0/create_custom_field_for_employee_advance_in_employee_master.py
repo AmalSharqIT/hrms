@@ -11,5 +11,6 @@ def execute():
 			"label": _("Employee Advance Account"),
 			"options": "Account",
 			"insert_after": "salary_mode",
+			"hidden": 1,
 		},
 	)

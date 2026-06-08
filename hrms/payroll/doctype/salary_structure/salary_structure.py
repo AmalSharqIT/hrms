@@ -16,6 +16,39 @@ from hrms.payroll.utils import sanitize_expression
 
 
 class SalaryStructure(Document):
+	# begin: auto-generated types
+	# This code is auto-generated. Do not modify anything in this block.
+
+	from typing import TYPE_CHECKING
+
+	if TYPE_CHECKING:
+		from frappe.types import DF
+
+		from hrms.payroll.doctype.employee_benefit_detail.employee_benefit_detail import EmployeeBenefitDetail
+		from hrms.payroll.doctype.salary_detail.salary_detail import SalaryDetail
+
+		amended_from: DF.Link | None
+		company: DF.Link
+		currency: DF.Link
+		deductions: DF.Table[SalaryDetail]
+		earnings: DF.Table[SalaryDetail]
+		employee_benefits: DF.Table[EmployeeBenefitDetail]
+		hour_rate: DF.Currency
+		is_active: DF.Literal["", "Yes", "No"]
+		is_default: DF.Literal["Yes", "No"]
+		leave_encashment_amount_per_day: DF.Currency
+		letter_head: DF.Link | None
+		max_benefits: DF.Currency
+		mode_of_payment: DF.Link | None
+		net_pay: DF.Currency
+		payment_account: DF.Link | None
+		payroll_frequency: DF.Literal["", "Monthly", "Fortnightly", "Bimonthly", "Weekly", "Daily"]
+		salary_component: DF.Link | None
+		salary_slip_based_on_timesheet: DF.Check
+		total_deduction: DF.Currency
+		total_earning: DF.Currency
+	# end: auto-generated types
+
 	def before_validate(self):
 		self.sanitize_condition_and_formula_fields()
 
@@ -277,6 +310,12 @@ def create_salary_structure_assignment(
 	payroll_payable_account=None,
 	base=None,
 	variable=None,
+	monthly_salary=None,
+	hourly_salary=None,
+	withholding=None,
+	round_salary=None,
+	overtime_ratio=None,
+	cost_center=None,
 	income_tax_slab=None,
 ):
 	assignment = frappe.new_doc("Salary Structure Assignment")
@@ -305,7 +344,14 @@ def create_salary_structure_assignment(
 	assignment.from_date = from_date
 	assignment.base = base
 	assignment.variable = variable
+	assignment.monthly_salary = monthly_salary
+	assignment.hourly_salary = hourly_salary
+	assignment.withholding = withholding
+	assignment.round_salary = round_salary
+	assignment.overtime_ratio = overtime_ratio
 	assignment.income_tax_slab = income_tax_slab
+	if cost_center:
+		assignment.append("payroll_cost_centers", {"cost_center": cost_center, "percentage": 100.00})
 	assignment.save(ignore_permissions=True)
 	assignment.submit()
 
@@ -341,6 +387,7 @@ def make_salary_slip(
 	print_format: str | None = None,
 	for_preview: int = 0,
 	lwp_days_corrected: float | None = None,
+	ignore_permissions: bool = False,
 ) -> str | Document:
 	def postprocess(source, target):
 		if employee:
@@ -368,6 +415,7 @@ def make_salary_slip(
 		target_doc,
 		postprocess,
 		ignore_child_tables=True,
+		ignore_permissions=ignore_permissions,
 		cached=True,
 	)
 

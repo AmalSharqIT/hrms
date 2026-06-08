@@ -57,6 +57,11 @@ frappe.listview_settings["Attendance"] = {
 							reqd: 1,
 						},
 						{
+							label: __("Working Hours"),
+							fieldtype: "Float",
+							fieldname: "working_hours",
+						},
+						{
 							fieldtype: "Column Break",
 							fieldname: "time_period_column",
 						},
