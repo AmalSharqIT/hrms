@@ -116,37 +116,6 @@ def update_column_width(ss, columns):
 
 
 def get_columns(earning_types, ded_types, bank):
-	if bank:
-		return [
-			{
-				"label": _("Employee"),
-				"fieldname": "employee",
-				"fieldtype": "Link",
-				"options": "Employee",
-				"width": 120,
-			},
-			{
-				"label": _("Employee Name"),
-				"fieldname": "employee_name",
-				"fieldtype": "Data",
-			},
-			{
-				"label": _("Net Pay"),
-				"fieldname": "net_pay",
-				"fieldtype": "Currency",
-				"options": "currency",
-			},
-			{
-				"label": _("Mobile"),
-				"fieldname": "cell_number",
-				"fieldtype": "Phone",
-			},
-			{
-				"label": _("Bank A/C No"),
-				"fieldname": "bank_ac_no",
-				"fieldtype": "Data",
-			},
-		]
 	columns = [
 		{
 			"label": _("Salary Slip ID"),
@@ -310,6 +279,18 @@ def get_columns(earning_types, ded_types, bank):
 				"fieldtype": "Currency",
 				"options": "currency",
 				"width": 120,
+			},
+			{
+				"label": _("Mobile"),
+				"fieldname": "cell_number",
+				"fieldtype": "Phone",
+				"hidden": 0 if bank else 1,
+			},
+			{
+				"label": _("Bank A/C No"),
+				"fieldname": "bank_ac_no",
+				"fieldtype": "Data",
+				"hidden": 0 if bank else 1,
 			},
 			{
 				"label": _("Thousands"),
