@@ -7,7 +7,7 @@
  "doctype": "Report",
  "idx": 0,
  "is_standard": "Yes",
- "modified": "2020-06-16 18:38:23.680185",
+ "modified": "2026-05-25",
  "modified_by": "Administrator",
  "module": "Payroll",
  "name": "Salary Payments via ECS",
@@ -18,10 +18,7 @@
  "report_type": "Script Report",
  "roles": [
   {
-   "role": "HR Manager"
-  },
-  {
-   "role": "HR User"
+   "role": "System Manager"
   }
  ]
 }

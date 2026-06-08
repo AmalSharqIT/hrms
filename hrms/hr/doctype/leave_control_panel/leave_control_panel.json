@@ -186,7 +186,7 @@
  "idx": 1,
  "issingle": 1,
  "links": [],
- "modified": "2025-01-13 13:47:55.262534",
+ "modified": "2026-05-25",
  "modified_by": "Administrator",
  "module": "HR",
  "name": "Leave Control Panel",
@@ -195,7 +195,7 @@
   {
    "create": 1,
    "read": 1,
-   "role": "HR User",
+   "role": "System Manager",
    "write": 1
   }
  ],

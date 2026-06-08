@@ -111,7 +111,7 @@
  ],
  "is_submittable": 1,
  "links": [],
- "modified": "2023-01-05 12:00:57.942233",
+ "modified": "2026-05-25",
  "modified_by": "Administrator",
  "module": "Payroll",
  "name": "Employee Incentive",
@@ -128,29 +128,9 @@
    "print": 1,
    "read": 1,
    "report": 1,
-   "role": "HR Manager",
+   "role": "System Manager",
    "share": 1,
    "submit": 1,
-   "write": 1
-  },
-  {
-   "email": 1,
-   "export": 1,
-   "print": 1,
-   "read": 1,
-   "report": 1,
-   "role": "Employee",
-   "share": 1
-  },
-  {
-   "create": 1,
-   "email": 1,
-   "export": 1,
-   "print": 1,
-   "read": 1,
-   "report": 1,
-   "role": "HR User",
-   "share": 1,
    "write": 1
   }
  ],
