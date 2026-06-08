@@ -80,6 +80,12 @@ frappe.query_reports["Salary Register"] = {
 			width: "100px",
 		},
 		{
+			fieldname: "bank_name",
+			label: __("Bank Name"),
+			fieldtype: "Link",
+			options: "Bank",
+		},
+		{
 			fieldname: "employeestatus",
 			label: __("Employee Status"),
 			fieldtype: "Select",
