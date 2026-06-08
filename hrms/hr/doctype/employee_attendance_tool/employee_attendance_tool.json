@@ -187,16 +187,15 @@
  "is_virtual": 1,
  "issingle": 1,
  "links": [],
- "modified": "2026-04-22 11:16:10.561980",
+ "modified": "2026-05-29",
  "modified_by": "Administrator",
  "module": "HR",
  "name": "Employee Attendance Tool",
  "owner": "Administrator",
  "permissions": [
   {
-   "create": 1,
    "read": 1,
-   "role": "HR Manager",
+   "role": "HR User",
    "write": 1
   }
  ],

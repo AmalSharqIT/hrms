@@ -22,7 +22,6 @@
   "currency",
   "section_break_7",
   "base",
-  "ctc",
   "column_break_9",
   "variable",
   "amended_from",
@@ -243,35 +242,17 @@
    "fieldtype": "Currency",
    "label": "Leave Encashment Amount Per Day",
    "options": "currency"
-  },
-  {
-   "allow_on_submit": 1,
-   "fieldname": "ctc",
-   "fieldtype": "Currency",
-   "label": "Total Cost To Company (CTC)"
   }
  ],
  "is_submittable": 1,
  "links": [],
- "modified": "2026-05-14 13:33:55.869281",
+ "modified": "2026-06-01",
  "modified_by": "Administrator",
  "module": "Payroll",
  "name": "Salary Structure Assignment",
  "naming_rule": "Expression",
  "owner": "Administrator",
  "permissions": [
-  {
-   "create": 1,
-   "delete": 1,
-   "email": 1,
-   "export": 1,
-   "print": 1,
-   "read": 1,
-   "report": 1,
-   "role": "System Manager",
-   "share": 1,
-   "write": 1
-  },
   {
    "amend": 1,
    "cancel": 1,
@@ -282,22 +263,39 @@
    "print": 1,
    "read": 1,
    "report": 1,
-   "role": "HR Manager",
+   "role": "System Manager",
    "share": 1,
    "submit": 1,
    "write": 1
   },
   {
+   "cancel": 1,
    "create": 1,
-   "email": 1,
-   "export": 1,
    "print": 1,
    "read": 1,
    "report": 1,
-   "role": "HR User",
-   "share": 1,
+   "role": "HR Manager",
    "submit": 1,
    "write": 1
+  },
+  {
+   "permlevel": 1,
+   "read": 1,
+   "role": "HR Manager",
+   "write": 1
+  },
+  {
+   "read": 1,
+   "role": "HR User"
+  },
+  {
+   "permlevel": 9,
+   "read": 1,
+   "role": "HR User"
+  },
+  {
+   "read": 1,
+   "role": "Employee"
   }
  ],
  "row_format": "Dynamic",
