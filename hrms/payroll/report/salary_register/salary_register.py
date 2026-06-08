@@ -28,7 +28,7 @@ def execute(filters=None):
 		return [], []
 
 	earning_types, ded_types = get_earning_and_deduction_types(salary_slips)
-	columns = get_columns(earning_types, ded_types)
+	columns = get_columns(earning_types, ded_types, filters.get("bank"))
 
 	ss_earning_map = get_salary_slip_details(salary_slips, currency, company_currency, "earnings")
 	ss_ded_map = get_salary_slip_details(salary_slips, currency, company_currency, "deductions")
@@ -56,9 +56,12 @@ def execute(filters=None):
 			"overtime_hours": ss.overtime_hours,
 			"currency": currency or company_currency,
 			"total_loan_repayment": ss.total_loan_repayment,
+			"cell_number": ss.cell_number,
+			"bank_ac_no": ss.bank_ac_no,
 		}
 
-		update_column_width(ss, columns)
+		if not filters.get("bank"):
+			update_column_width(ss, columns)
 
 		for e in earning_types:
 			row.update({frappe.scrub(e): ss_earning_map.get(ss.name, {}).get(e)})
@@ -112,7 +115,7 @@ def update_column_width(ss, columns):
 		columns[9].update({"width": 120})
 
 
-def get_columns(earning_types, ded_types):
+def get_columns(earning_types, ded_types, bank):
 	columns = [
 		{
 			"label": _("Salary Slip ID"),
@@ -278,6 +281,18 @@ def get_columns(earning_types, ded_types):
 				"width": 120,
 			},
 			{
+				"label": _("Mobile"),
+				"fieldname": "cell_number",
+				"fieldtype": "Phone",
+				"hidden": 0 if bank else 1,
+			},
+			{
+				"label": _("Bank A/C No"),
+				"fieldname": "bank_ac_no",
+				"fieldtype": "Data",
+				"hidden": 0 if bank else 1,
+			},
+			{
 				"label": _("Thousands"),
 				"fieldname": "thousands",
 				"fieldtype": "Int",
@@ -350,6 +365,15 @@ def get_salary_slips(filters, company_currency):
 
 	if filters.get("branch"):
 		query = query.where(salary_slip.branch == filters["branch"])
+
+	if filters.get("bank"):
+		if not filters.get("employeestatus"):
+			query = query.join(Employee).on(salary_slip.employee == Employee.name)
+		query = (
+			query.select(Employee.cell_number, Employee.bank_ac_no)
+			.where(Employee.salary_mode == "Bank")
+			.where(Employee.bank_name == filters.get("bank"))
+		)
 
 	salary_slips = query.run(as_dict=1)
 
