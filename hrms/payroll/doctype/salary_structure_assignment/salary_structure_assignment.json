@@ -309,7 +309,7 @@
  ],
  "is_submittable": 1,
  "links": [],
- "modified": "2026-06-01",
+ "modified": "2026-06-08",
  "modified_by": "Administrator",
  "module": "Payroll",
  "name": "Salary Structure Assignment",
@@ -355,6 +355,15 @@
    "permlevel": 9,
    "read": 1,
    "role": "HR User"
+  },
+  {
+   "read": 1,
+   "role": "HR User - Branch"
+  },
+  {
+   "permlevel": 9,
+   "read": 1,
+   "role": "HR User - Branch"
   },
   {
    "read": 1,
