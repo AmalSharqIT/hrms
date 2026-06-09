@@ -22,39 +22,6 @@ class CheckinRadiusExceededError(frappe.ValidationError):
 
 
 class EmployeeCheckin(Document):
-	# begin: auto-generated types
-	# This code is auto-generated. Do not modify anything in this block.
-
-	from typing import TYPE_CHECKING
-
-	if TYPE_CHECKING:
-		from frappe.types import DF
-
-		attendance: DF.Link | None
-		attendance_id: DF.Data | None
-		attendance_serial: DF.Int
-		device_id: DF.Data | None
-		device_time_difference: DF.Duration | None
-		employee: DF.Link
-		employee_name: DF.Data | None
-		invalid_reason: DF.Int
-		is_break: DF.Check
-		latitude: DF.Float
-		log_type: DF.Literal["", "IN", "OUT"]
-		longitude: DF.Float
-		offshift: DF.Check
-		original_time: DF.Datetime | None
-		overtime_type: DF.Link | None
-		shift: DF.Link | None
-		shift_actual_end: DF.Datetime | None
-		shift_actual_start: DF.Datetime | None
-		shift_end: DF.Datetime | None
-		shift_start: DF.Datetime | None
-		skip_auto_attendance: DF.Check
-		status: DF.Literal["", "Valid", "Invalid", "Manual", "Corrected", "Checkin Request", "Initial Approved"]
-		time: DF.Datetime
-	# end: auto-generated types
-
 	def before_validate(self):
 		self.time = get_datetime(self.time).replace(microsecond=0)
 

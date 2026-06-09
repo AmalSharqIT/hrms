@@ -39,43 +39,6 @@ class OverlappingShiftAttendanceError(frappe.ValidationError):
 
 
 class Attendance(Document):
-	# begin: auto-generated types
-	# This code is auto-generated. Do not modify anything in this block.
-
-	from typing import TYPE_CHECKING
-
-	if TYPE_CHECKING:
-		from frappe.types import DF
-
-		actual_overtime_duration: DF.Float
-		amended_from: DF.Link | None
-		approved_overtime_hours: DF.Float
-		attendance_date: DF.Date
-		attendance_request: DF.Link | None
-		company: DF.Link | None
-		department: DF.Link | None
-		early_exit: DF.Check
-		employee: DF.Link
-		employee_name: DF.Data | None
-		end_overtime_hours: DF.Float
-		half_day_status: DF.Literal["", "Present", "Absent"]
-		in_time: DF.Datetime | None
-		late_entry: DF.Check
-		leave_application: DF.Link | None
-		leave_type: DF.Link | None
-		modify_half_day_status: DF.Check
-		naming_series: DF.Literal["HR-ATT-.YYYY.-"]
-		out_time: DF.Datetime | None
-		overtime_note: DF.Data | None
-		overtime_status: DF.Literal["No Overtime", "Approved", "Initial Approved", "Unapproved", "Rejected"]
-		overtime_type: DF.Link | None
-		shift: DF.Link | None
-		standard_working_hours: DF.Float
-		start_overtime_hours: DF.Float
-		status: DF.Literal["Attendance Request", "Present", "Absent", "On Leave", "Half Day", "Work From Home"]
-		working_hours: DF.Float
-	# end: auto-generated types
-
 	def before_insert(self):
 		if self.half_day_status == "":
 			self.half_day_status = None

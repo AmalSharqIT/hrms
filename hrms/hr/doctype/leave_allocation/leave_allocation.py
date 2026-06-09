@@ -401,7 +401,7 @@ class LeaveAllocation(Document):
 		adjustment_type: str,
 		leaves_to_adjust: str | float,
 		posting_date: str | datetime.date,
-		reason_for_adjustment: str | None = None,
+		reason_for_adjustment: str,
 	) -> None:
 		leave_adjustment = frappe.new_doc(
 			"Leave Adjustment",
