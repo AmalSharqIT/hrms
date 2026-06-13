@@ -16,11 +16,10 @@ from frappe.query_builder.functions import Count, Extract, Sum
 from frappe.utils import add_days, cint, cstr, formatdate, getdate
 from frappe.utils.nestedset import get_descendants_of
 
-from erpnext.projects.doctype.project.project import get_holiday_list
-
 from hrms.utils import date_diff, get_date_range
 from hrms.utils.holiday_list import (
 	fill_employee_holiday_list_date_gaps_with_company_holiday_list,
+	get_assigned_holiday_list,
 	get_assigned_holiday_lists_to_employee_and_company,
 	get_holiday_dates_between,
 )
@@ -800,7 +799,7 @@ def get_chart_data(attendance_map: dict, filters: Filters) -> dict:
 	leave = []
 
 	holiday_list = get_holiday_dates_between(
-		get_holiday_list(filters.company),
+		get_assigned_holiday_list(filters.company, getdate(days[0]["fieldname"], True)),
 		getdate(days[0]["fieldname"], True),
 		getdate(days[-1]["fieldname"], True),
 	)
