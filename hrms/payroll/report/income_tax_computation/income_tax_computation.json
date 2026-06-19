@@ -10,7 +10,7 @@
  "idx": 0,
  "is_standard": "Yes",
  "letter_head": "",
- "modified": "2022-02-23 13:07:30.347861",
+ "modified": "2026-06-14",
  "modified_by": "Administrator",
  "module": "Payroll",
  "name": "Income Tax Computation",
@@ -21,16 +21,7 @@
  "report_type": "Script Report",
  "roles": [
   {
-   "role": "Employee"
-  },
-  {
-   "role": "HR User"
-  },
-  {
-   "role": "HR Manager"
-  },
-  {
-   "role": "Employee Self Service"
+   "role": "System Manager"
   }
  ]
 }

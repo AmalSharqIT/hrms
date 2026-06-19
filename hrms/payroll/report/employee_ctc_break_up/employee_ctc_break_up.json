@@ -9,7 +9,7 @@
  "filters": [],
  "idx": 0,
  "is_standard": "Yes",
- "modified": "2026-05-14 12:08:50.414476",
+ "modified": "2026-06-14",
  "modified_by": "Administrator",
  "module": "Payroll",
  "name": "Employee CTC Break-up",
@@ -24,9 +24,6 @@
   },
   {
    "role": "System Manager"
-  },
-  {
-   "role": "HR User"
   }
  ],
  "timeout": 0
