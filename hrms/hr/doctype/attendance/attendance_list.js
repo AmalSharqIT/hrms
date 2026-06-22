@@ -12,7 +12,10 @@ frappe.listview_settings["Attendance"] = {
 	},
 	onload: function (list_view) {
 		let me = this;
-		if (frappe.perm.has_perm("Attendance", 0, "submit")) {
+		if (
+			frappe.perm.has_perm("Attendance", 0, "submit") &&
+			frappe.perm.has_perm("Attendance", 1, "write")
+		) {
 			list_view.page.add_inner_button(__("Mark Attendance"), function () {
 				let first_day_of_month = moment().startOf("month");
 
