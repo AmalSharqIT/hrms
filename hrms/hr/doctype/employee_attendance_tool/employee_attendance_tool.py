@@ -6,6 +6,7 @@ import datetime
 import json
 
 import frappe
+from frappe import _
 from frappe.model.document import Document
 from frappe.utils import getdate
 
@@ -30,8 +31,10 @@ class EmployeeAttendanceTool(Document):
 		filter_by_shift: DF.Check
 		half_day_status: DF.Literal["Present", "Absent"]
 		late_entry: DF.Check
+		leave_type: DF.Link | None
 		shift: DF.Link | None
-		status: DF.Literal["", "Present", "Absent", "Half Day", "Work From Home"]
+		status: DF.Literal["", "Present", "Absent", "On Leave", "Half Day", "Work From Home"]
+		working_hours: DF.Float
 	# end: auto-generated types
 
 	def save(self):
@@ -179,15 +182,24 @@ def mark_employee_attendance(
 	mark_half_day: bool | None = False,
 	half_day_status: str | None = None,
 	half_day_employee_list: list | str | None = None,
+	working_hours: float | None = None,
 ) -> None:
+	if not shift:
+		frappe.throw(
+			_("Error: Value missing for {0}: {1}").format(
+				_("Employee Attendance Tool"), _("Shift", context="Employee Attendance Tool")
+			)
+		)
+	if status == "On Leave" and not leave_type:
+		frappe.throw(
+			_("Error: Value missing for {0}: {1}").format(
+				_("Employee Attendance Tool"), _("Leave Type", context="Employee Attendance Tool")
+			)
+		)
 	if isinstance(employee_list, str):
 		employee_list = json.loads(employee_list)
 
 	for employee in employee_list:
-		leave_type = None
-		if status == "On Leave" and leave_type:
-			leave_type = leave_type
-
 		attendance = frappe.get_doc(
 			dict(
 				doctype="Attendance",
@@ -198,6 +210,7 @@ def mark_employee_attendance(
 				late_entry=late_entry,
 				early_exit=early_exit,
 				shift=shift,
+				working_hours=working_hours,
 			)
 		)
 		attendance.insert()

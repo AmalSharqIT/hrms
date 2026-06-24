@@ -277,6 +277,12 @@ def create_salary_structure_assignment(
 	payroll_payable_account=None,
 	base=None,
 	variable=None,
+	monthly_salary=None,
+	hourly_salary=None,
+	withholding=None,
+	round_salary=None,
+	overtime_ratio=None,
+	cost_center=None,
 	income_tax_slab=None,
 ):
 	assignment = frappe.new_doc("Salary Structure Assignment")
@@ -305,7 +311,14 @@ def create_salary_structure_assignment(
 	assignment.from_date = from_date
 	assignment.base = base
 	assignment.variable = variable
+	assignment.monthly_salary = monthly_salary
+	assignment.hourly_salary = hourly_salary
+	assignment.withholding = withholding
+	assignment.round_salary = round_salary
+	assignment.overtime_ratio = overtime_ratio
 	assignment.income_tax_slab = income_tax_slab
+	if cost_center:
+		assignment.append("payroll_cost_centers", {"cost_center": cost_center, "percentage": 100.00})
 	assignment.save(ignore_permissions=True)
 	assignment.submit()
 
@@ -341,6 +354,7 @@ def make_salary_slip(
 	print_format: str | None = None,
 	for_preview: int = 0,
 	lwp_days_corrected: float | None = None,
+	ignore_permissions: bool = False,
 ) -> str | Document:
 	def postprocess(source, target):
 		if employee:
@@ -368,6 +382,7 @@ def make_salary_slip(
 		target_doc,
 		postprocess,
 		ignore_child_tables=True,
+		ignore_permissions=ignore_permissions,
 		cached=True,
 	)
 
