@@ -89,6 +89,7 @@ def get_payment_entry_for_employee(
 	bank_amount: float | None = None,
 ):
 	"""Function to make Payment Entry for Employee Advance, Gratuity, Expense Claim, Leave Encashment"""
+	frappe.has_permission(dt, "read", dn, throw=True)
 	doc = frappe.get_doc(dt, dn)
 
 	party_account = get_party_account(doc)
@@ -151,10 +152,9 @@ def get_payment_entry_for_employee(
 	pe.received_amount = received_amount
 
 	if party_account and bank:
-		if dt == "Employee Advance":
+		pe.set_exchange_rate()  # always set source & target exchange rate
+		if dt == "Employee Advance" and pe.paid_to_account_currency != pe.paid_from_account_currency:
 			pe.target_exchange_rate = current_exchange_rate
-		else:
-			pe.set_exchange_rate()
 		pe.set_amounts()
 
 	return pe
@@ -245,6 +245,7 @@ def get_payment_reference_details(
 	party: str | None = None,
 	payment_type: str | None = None,
 ):
+	frappe.has_permission(reference_doctype, "read", reference_name, throw=True)
 	if reference_doctype in (
 		"Expense Claim",
 		"Employee Advance",
@@ -269,6 +270,7 @@ def get_reference_details_for_employee(
 	Returns payment reference details for employee related doctypes:
 	Employee Advance, Expense Claim, Gratuity, Leave Encashment
 	"""
+	frappe.has_permission(reference_doctype, "read", reference_name, throw=True)
 	total_amount = outstanding_amount = exchange_rate = None
 
 	ref_doc = frappe.get_doc(reference_doctype, reference_name)
@@ -353,6 +355,7 @@ def set_exchange_rate_in_advance(doc: Document, method: None = None):
 	if doc.references:
 		for reference_doc in doc.references:
 			if reference_doc.reference_doctype == "Employee Advance" and doc.target_exchange_rate:
+				frappe.has_permission("Employee Advance", "write", reference_doc.reference_name, throw=True)
 				frappe.db.set_value(
 					"Employee Advance",
 					reference_doc.reference_name,
