@@ -34,12 +34,6 @@ frappe.query_reports["Employee Advance Summary"] = {
 			hidden: 1,
 		},
 		{
-			fieldname: "branch",
-			label: __("Branch"),
-			fieldtype: "Link",
-			options: "Branch",
-		},
-		{
 			fieldname: "status",
 			label: __("Status"),
 			fieldtype: "Select",
