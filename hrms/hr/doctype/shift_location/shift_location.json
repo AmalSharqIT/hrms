@@ -65,7 +65,7 @@
    "link_fieldname": "shift_location"
   }
  ],
- "modified": "2024-10-10 12:54:26.209170",
+ "modified": "2026-06-14",
  "modified_by": "Administrator",
  "module": "HR",
  "name": "Shift Location",
@@ -83,39 +83,6 @@
    "role": "System Manager",
    "share": 1,
    "write": 1
-  },
-  {
-   "create": 1,
-   "delete": 1,
-   "email": 1,
-   "export": 1,
-   "print": 1,
-   "read": 1,
-   "report": 1,
-   "role": "HR Manager",
-   "share": 1,
-   "write": 1
-  },
-  {
-   "create": 1,
-   "delete": 1,
-   "email": 1,
-   "export": 1,
-   "print": 1,
-   "read": 1,
-   "report": 1,
-   "role": "HR User",
-   "share": 1,
-   "write": 1
-  },
-  {
-   "email": 1,
-   "export": 1,
-   "print": 1,
-   "read": 1,
-   "report": 1,
-   "role": "Employee",
-   "share": 1
   }
  ],
  "quick_entry": 1,
