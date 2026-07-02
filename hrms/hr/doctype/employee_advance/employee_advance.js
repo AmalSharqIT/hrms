@@ -166,6 +166,8 @@ frappe.ui.form.on("Employee Advance", {
 				if (!advance_return_data.has_return_scheduled) {
 					frm.dashboard.clear_headline();
 					return;
+				} else if (advance_return_data.total_return_scheduled === frm.doc.paid_amount) {
+					frm.clear_custom_buttons();
 				}
 
 				const filters = {
