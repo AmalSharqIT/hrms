@@ -65,7 +65,7 @@
   }
  ],
  "links": [],
- "modified": "2024-03-27 13:06:49.230881",
+ "modified": "2026-06-14",
  "modified_by": "Administrator",
  "module": "HR",
  "name": "Daily Work Summary Group",
@@ -79,7 +79,7 @@
    "print": 1,
    "read": 1,
    "report": 1,
-   "role": "HR Manager",
+   "role": "System Manager",
    "share": 1,
    "write": 1
   }
