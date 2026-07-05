@@ -39,15 +39,20 @@ class SalaryStructureAssignment(Document):
 		employee_name: DF.Data | None
 		from_date: DF.Date
 		grade: DF.Link | None
+		hourly_salary: DF.Currency
 		income_tax_slab: DF.Link | None
 		leave_encashment_amount_per_day: DF.Currency
 		max_benefits: DF.Currency
+		monthly_salary: DF.Currency
+		overtime_ratio: DF.Float
 		payroll_cost_centers: DF.Table[EmployeeCostCenter]
 		payroll_payable_account: DF.Link | None
+		round_salary: DF.Currency
 		salary_structure: DF.Link
 		tax_deducted_till_date: DF.Currency
 		taxable_earnings_till_date: DF.Currency
 		variable: DF.Currency
+		withholding: DF.Currency
 	# end: auto-generated types
 
 	def validate(self):
@@ -236,7 +241,9 @@ def get_assigned_salary_structure(employee, on_date):
 @frappe.whitelist()
 def get_employee_currency(employee: str) -> str:
 	frappe.has_permission("Employee", "read", employee, throw=True)
-	employee_currency = frappe.db.get_value("Salary Structure Assignment", {"employee": employee}, "currency")
+	employee_currency = frappe.db.get_value(
+		"Salary Structure Assignment", {"employee": employee, "docstatus": 1}, "currency"
+	)
 	if not employee_currency:
 		frappe.throw(
 			_("There is no Salary Structure assigned to {0}. First assign a Salary Structure.").format(
