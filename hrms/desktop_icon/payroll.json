@@ -11,7 +11,7 @@
  "link_to": "Payroll",
  "link_type": "Workspace Sidebar",
  "logo_url": "/assets/hrms/icons/desktop_icons/salary_payout.svg",
- "modified": "2026-06-18",
+ "modified": "2026-07-09",
  "modified_by": "Administrator",
  "name": "Payroll",
  "owner": "Administrator",
@@ -20,6 +20,9 @@
  "roles": [
   {
    "role": "HR Manager"
+  },
+  {
+   "role": "HR Manager - Branch"
   }
  ],
  "standard": 1
