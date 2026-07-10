@@ -370,7 +370,7 @@ class SalarySlip(TransactionBase):
 					self._timesheet_component = timesheet_config.timesheet_component
 					self.set_time_sheet()
 					self.add_timesheet_earning_component(timesheet_config)
-				make_salary_slip(self.salary_structure, self)
+				make_salary_slip(self.salary_structure, self, self, ignore_permissions=self.flags.ignore_permissions or False)
 
 			process_loan_interest_accrual_and_demand(self)
 
@@ -515,14 +515,7 @@ class SalarySlip(TransactionBase):
 				holidays, working_days_list, daily_wages_fraction_for_half_day
 			)
 
-		if not lwp:
-			lwp = actual_lwp
-		elif lwp != actual_lwp:
-			frappe.msgprint(
-				_("Leave Without Pay does not match with approved {} records").format(
-					payroll_settings.payroll_based_on
-				)
-			)
+		lwp = actual_lwp
 
 		self.leave_without_pay = lwp
 		self.total_working_days = working_days
@@ -880,8 +873,9 @@ class SalarySlip(TransactionBase):
 		self.base_total_deduction = flt(
 			flt(self.total_deduction) * flt(self.exchange_rate), self.precision("base_total_deduction")
 		)
-		self.net_pay = flt(self.gross_pay) - (
-			flt(self.total_deduction) + flt(self.get("total_loan_repayment"))
+		self.net_pay = flt(
+			flt(self.gross_pay) - (flt(self.total_deduction) + flt(self.get("total_loan_repayment"))),
+			self.precision("net_pay"),
 		)
 		self.rounded_total = rounded(self.net_pay)
 		self.base_net_pay = flt(flt(self.net_pay) * flt(self.exchange_rate), self.precision("base_net_pay"))
@@ -1600,13 +1594,6 @@ class SalarySlip(TransactionBase):
 
 		if self.is_new() and not tax_components:
 			tax_components = self.get_tax_components()
-			frappe.msgprint(
-				_(
-					"Added tax components from the Salary Component master as the salary structure didn't have any tax component."
-				),
-				indicator="blue",
-				alert=True,
-			)
 
 		self._component_based_variable_tax = {}
 		if tax_components and self.payroll_period and self.salary_structure:
@@ -2292,7 +2279,7 @@ class SalarySlip(TransactionBase):
 		year_to_date = 0
 		period_start_date, period_end_date = self.get_year_to_date_period()
 
-		salary_slip_sum = frappe.get_list(
+		salary_slip_sum = frappe.get_all(
 			"Salary Slip",
 			fields=[{"SUM": "net_pay", "as": "net_sum"}, {"SUM": "gross_pay", "as": "gross_sum"}],
 			filters={
@@ -2315,7 +2302,7 @@ class SalarySlip(TransactionBase):
 	def compute_month_to_date(self):
 		month_to_date = 0
 		first_day_of_the_month = get_first_day(self.start_date)
-		salary_slip_sum = frappe.get_list(
+		salary_slip_sum = frappe.get_all(
 			"Salary Slip",
 			fields=[{"SUM": "net_pay", "as": "sum"}],
 			filters={
