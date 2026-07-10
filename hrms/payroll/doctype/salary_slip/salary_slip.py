@@ -370,7 +370,9 @@ class SalarySlip(TransactionBase):
 					self._timesheet_component = timesheet_config.timesheet_component
 					self.set_time_sheet()
 					self.add_timesheet_earning_component(timesheet_config)
-				make_salary_slip(self.salary_structure, self, self, ignore_permissions=self.flags.ignore_permissions or False)
+				make_salary_slip(
+					self.salary_structure, self, ignore_permissions=self.flags.ignore_permissions or False
+				)
 
 			process_loan_interest_accrual_and_demand(self)
 
