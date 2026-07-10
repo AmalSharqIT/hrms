@@ -9,7 +9,8 @@
  "engine": "InnoDB",
  "field_order": [
   "max_amount",
-  "is_active"
+  "is_active",
+  "description"
  ],
  "fields": [
   {
@@ -23,6 +24,11 @@
    "fieldname": "is_active",
    "fieldtype": "Check",
    "label": "Is Active"
+  },
+  {
+   "fieldname": "description",
+   "fieldtype": "Small Text",
+   "label": "Description"
   }
  ],
  "links": [],

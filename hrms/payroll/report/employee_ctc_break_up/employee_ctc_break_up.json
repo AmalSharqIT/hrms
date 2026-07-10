@@ -15,7 +15,7 @@
  "name": "Employee CTC Break-up",
  "owner": "Administrator",
  "prepared_report": 0,
- "ref_doctype": "Salary Structure Assignment",
+ "ref_doctype": "Salary Slip",
  "report_name": "Employee CTC Break-up",
  "report_type": "Script Report",
  "roles": [

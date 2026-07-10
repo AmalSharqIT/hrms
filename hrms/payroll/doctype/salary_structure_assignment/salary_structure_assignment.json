@@ -32,6 +32,7 @@
   "round_salary",
   "column_break_kjvm",
   "ctc",
+  "annual_gross_earning",
   "leave_encashment_amount_per_day",
   "opening_balances_section",
   "taxable_earnings_till_date",
@@ -123,6 +124,22 @@
    "non_negative": 1,
    "options": "currency",
    "permlevel": 1
+  },
+  {
+   "fieldname": "annual_gross_earning",
+   "fieldtype": "Currency",
+   "hidden": 1,
+   "label": "Annual Gross Earning",
+   "options": "currency",
+   "read_only": 1
+  },
+  {
+   "allow_on_submit": 1,
+   "fieldname": "ctc",
+   "fieldtype": "Currency",
+   "hidden": 1,
+   "label": "Total Cost To Company (CTC)",
+   "read_only": 1
   },
   {
    "fieldname": "column_break_9",
@@ -261,13 +278,6 @@
    "permlevel": 1
   },
   {
-   "allow_on_submit": 1,
-   "fieldname": "ctc",
-   "fieldtype": "Currency",
-   "hidden": 1,
-   "label": "Total Cost To Company (CTC)"
-  },
-  {
    "fieldname": "monthly_salary",
    "fieldtype": "Currency",
    "label": "Monthly Salary",
@@ -309,7 +319,7 @@
  ],
  "is_submittable": 1,
  "links": [],
- "modified": "2026-07-04",
+ "modified": "2026-07-10",
  "modified_by": "Administrator",
  "module": "Payroll",
  "name": "Salary Structure Assignment",

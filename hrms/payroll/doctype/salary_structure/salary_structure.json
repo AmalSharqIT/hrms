@@ -27,6 +27,7 @@
   "column_break_besp",
   "earnings",
   "deductions",
+  "employer_contributions",
   "employee_benefits",
   "conditions_and_formula_variable_and_example",
   "net_pay_detail",
@@ -163,6 +164,12 @@
    "label": "Deductions",
    "oldfieldname": "deduction_details",
    "oldfieldtype": "Table",
+   "options": "Salary Detail"
+  },
+  {
+   "fieldname": "employer_contributions",
+   "fieldtype": "Table",
+   "label": "Employer Contributions",
    "options": "Salary Detail"
   },
   {
