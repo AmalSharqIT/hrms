@@ -12,6 +12,7 @@
   "employee",
   "employee_name",
   "working_hours",
+  "grace_period",
   "status",
   "leave_type",
   "leave_application",
@@ -346,6 +347,16 @@
    "is_virtual": 1,
    "label": "Total Overtime Hours",
    "no_copy": 1,
+   "read_only": 1
+  },
+  {
+   "allow_on_submit": 1,
+   "depends_on": "grace_period",
+   "fieldname": "grace_period",
+   "fieldtype": "Float",
+   "label": "Grace Period",
+   "no_copy": 1,
+   "non_negative": 1,
    "read_only": 1
   }
  ],
