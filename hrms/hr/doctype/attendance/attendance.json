@@ -12,7 +12,7 @@
   "employee",
   "employee_name",
   "working_hours",
-  "grace_period",
+  "grace_hours",
   "status",
   "leave_type",
   "leave_application",
@@ -351,12 +351,11 @@
   },
   {
    "allow_on_submit": 1,
-   "depends_on": "grace_period",
-   "fieldname": "grace_period",
+   "depends_on": "grace_hours",
+   "fieldname": "grace_hours",
    "fieldtype": "Float",
-   "label": "Grace Period",
+   "label": "Grace Hours",
    "no_copy": 1,
-   "non_negative": 1,
    "read_only": 1
   }
  ],
