@@ -221,7 +221,8 @@
    "default": "0",
    "fieldname": "is_break",
    "fieldtype": "Check",
-   "label": "Is Break"
+   "label": "Is Break",
+   "read_only_depends_on": "attendance"
   },
   {
    "fieldname": "section_break_data",
