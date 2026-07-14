@@ -362,6 +362,7 @@ class SalaryStructureAssignment(Document):
 		data.total_working_days = period_days
 		data.leave_without_pay = 0
 		data.absent_days = 0
+		data.unmarked_days = 0
 		data.holidays = 0
 		data.leave_with_pay = 0
 		data.overtime_hours = 0
