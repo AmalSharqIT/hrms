@@ -126,7 +126,7 @@
    "in_standard_filter": 1,
    "label": "Status",
    "no_copy": 1,
-   "options": "Draft\nPaid\nPartially Paid\nUnpaid\nClaimed\nReturned\nPartly Claimed and Returned\nCancelled\nReturn Scheduled",
+   "options": "Draft\nPaid\nPartially Paid\nUnpaid\nClaimed\nReturned\nReturn Scheduled\nPartly Claimed and Returned\nCancelled",
    "read_only": 1
   },
   {
@@ -261,7 +261,7 @@
  "grid_page_length": 50,
  "is_submittable": 1,
  "links": [],
- "modified": "2026-06-14",
+ "modified": "2026-07-15",
  "modified_by": "Administrator",
  "module": "HR",
  "name": "Employee Advance",
@@ -365,16 +365,16 @@
    "title": "Returned"
   },
   {
+   "color": "Cyan",
+   "title": "Return Scheduled"
+  },
+  {
    "color": "Yellow",
    "title": "Partly Claimed and Returned"
   },
   {
    "color": "Red",
    "title": "Cancelled"
-  },
-  {
-   "color": "Cyan",
-   "title": "Return Scheduled"
   }
  ],
  "title_field": "employee_name",
