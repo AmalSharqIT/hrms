@@ -123,6 +123,7 @@
    "depends_on": "eval:frappe.model.can_submit('Employee Advance')",
    "fieldname": "status",
    "fieldtype": "Select",
+   "in_standard_filter": 1,
    "label": "Status",
    "no_copy": 1,
    "options": "Draft\nPaid\nPartially Paid\nUnpaid\nClaimed\nReturned\nPartly Claimed and Returned\nCancelled\nScheduled",
