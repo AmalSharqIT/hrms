@@ -121,6 +121,11 @@ class EmployeeAdvance(Document):
 			elif flt(self.paid_amount) > 0 and flt(self.advance_amount, precision) == flt(
 				self.paid_amount, precision
 			):
+				if get_employee_advance_return(self.name).get("total_return_scheduled") == flt(
+					self.paid_amount, precision
+				):
+					status = "Scheduled"
+				else:
 				status = "Paid"
 			elif flt(self.paid_amount) > 0:
 				status = "Partially Paid"

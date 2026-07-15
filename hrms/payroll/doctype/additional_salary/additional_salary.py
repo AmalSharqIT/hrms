@@ -278,6 +278,8 @@ class AdditionalSalary(Document):
 		if self.ref_doctype == "Employee Referral":
 			status = "Unpaid" if cancel else "Paid"
 			frappe.db.set_value("Employee Referral", self.ref_docname, "referral_payment_status", status)
+		else:
+			frappe.get_doc("Employee Advance", self.ref_docname).set_status(True)
 
 	def get_amount(self, sal_start_date, sal_end_date):
 		start_date = getdate(sal_start_date)
