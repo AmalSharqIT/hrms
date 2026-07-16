@@ -234,7 +234,7 @@
    "in_standard_filter": 1,
    "label": "Status",
    "no_copy": 1,
-   "options": "\nValid\nInvalid\nManual\nCorrected\nCheckin Request\nInitial Approved",
+   "options": "\nValid\nInvalid\nManual\nCorrected\nCheckin Request\nInitial Approved\nCanceled",
    "read_only": 1
   },
   {
