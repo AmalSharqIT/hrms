@@ -85,6 +85,7 @@ class SalaryStructureAssignment(Document):
 		salary_structure: DF.Link
 		tax_deducted_till_date: DF.Currency
 		taxable_earnings_till_date: DF.Currency
+		transportation_allowance: DF.Currency
 		variable: DF.Currency
 		withholding: DF.Currency
 	# end: auto-generated types
