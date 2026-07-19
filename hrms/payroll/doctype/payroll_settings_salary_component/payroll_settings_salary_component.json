@@ -11,7 +11,7 @@
       "fieldtype": "Select",
       "in_list_view": 1,
       "label": "Type",
-      "options": "Incentive\nLoan Installment\nPenalty\nReward\nRounding\nWithholding\nTransportation Allowance",
+      "options": "Incentive\nLoan Installment\nPenalty\nReward\nRounding\nTransportation Allowance\nWithholding",
       "reqd": 1
     },
     {

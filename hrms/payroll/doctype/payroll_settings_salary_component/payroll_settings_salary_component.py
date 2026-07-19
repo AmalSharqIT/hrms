@@ -21,8 +21,8 @@ class PayrollSettingsSalaryComponent(Document):
 			"Penalty",
 			"Reward",
 			"Rounding",
-			"Withholding",
 			"Transportation Allowance",
+			"Withholding",
 		]
 	# end: auto-generated types
 
