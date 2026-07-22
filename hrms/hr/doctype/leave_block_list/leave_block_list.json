@@ -89,7 +89,7 @@
  "icon": "fa fa-calendar",
  "idx": 1,
  "links": [],
- "modified": "2026-03-26 15:04:08.140416",
+ "modified": "2026-06-14",
  "modified_by": "Administrator",
  "module": "HR",
  "name": "Leave Block List",
@@ -101,17 +101,8 @@
    "email": 1,
    "print": 1,
    "read": 1,
-   "role": "HR User",
-   "share": 1,
-   "write": 1
-  },
-  {
-   "create": 1,
-   "email": 1,
-   "print": 1,
-   "read": 1,
    "report": 1,
-   "role": "HR Manager",
+   "role": "System Manager",
    "share": 1,
    "write": 1
   }
