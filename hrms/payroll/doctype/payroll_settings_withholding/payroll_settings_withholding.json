@@ -23,10 +23,11 @@
       "reqd": 1
     },
     {
-      "description": "If it is left blank, it will be taken from the employee's salary.",
       "fieldname": "maximum_withholding_balance",
       "fieldtype": "Currency",
-      "label": "Maximum Withholding Balance"
+      "in_list_view": 1,
+      "label": "Maximum Withholding Balance",
+      "options": "currency"
     }
   ],
   "grid_page_length": 50,
