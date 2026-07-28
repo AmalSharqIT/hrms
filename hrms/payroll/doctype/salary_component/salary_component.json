@@ -69,7 +69,7 @@
    "fieldtype": "Select",
    "in_standard_filter": 1,
    "label": "Type",
-   "options": "Earning\nDeduction\nEmployer Contribution",
+   "options": "Earning\nDeduction",
    "reqd": 1
   },
   {
@@ -295,7 +295,7 @@
  "icon": "fa fa-flag",
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2026-06-14",
+ "modified": "2026-07-28",
  "modified_by": "Administrator",
  "module": "Payroll",
  "name": "Salary Component",
