@@ -184,7 +184,7 @@ def mark_employee_attendance(
 	half_day_employee_list: list | str | None = None,
 	working_hours: float | None = None,
 ) -> None:
-	if not shift:
+	if status != "On Leave" and not shift:
 		frappe.throw(
 			_("Error: Value missing for {0}: {1}").format(
 				_("Employee Attendance Tool"), _("Shift", context="Employee Attendance Tool")
