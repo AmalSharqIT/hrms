@@ -22,7 +22,7 @@ frappe.query_reports["Shift Attendance"] = {
 			label: __("Employee"),
 			fieldtype: "Link",
 			options: "Employee",
-			default: frappe.boot.user.employee,
+			default: frappe.boot.user.roles.includes("HR User") ? "" : frappe.boot.user.employee,
 		},
 		{
 			fieldname: "branch",
