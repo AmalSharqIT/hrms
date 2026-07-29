@@ -69,7 +69,7 @@ frappe.query_reports["Shift Attendance"] = {
 			fieldname: "include_attendance_without_checkins",
 			label: __("Include Shift Attendance Without Checkins"),
 			fieldtype: "Check",
-			default: 0,
+			default: 1,
 		},
 	],
 	formatter: (value, row, column, data, default_formatter) => {
