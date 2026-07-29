@@ -82,6 +82,7 @@ frappe.query_reports["Monthly Attendance Sheet"] = {
 					},
 				};
 			},
+			default: frappe.boot.user.employee,
 		},
 		{
 			fieldname: "company",
