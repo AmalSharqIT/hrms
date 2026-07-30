@@ -374,6 +374,10 @@ def get_salary_slips(filters, company_currency):
 			.where(Employee.salary_mode == "Bank")
 			.where(Employee.bank_name == filters.get("bank"))
 		)
+	if filters.get("salary_mode"):
+		if not filters.get("employeestatus") and not filters.get("bank"):
+			query = query.join(Employee).on(salary_slip.employee == Employee.name)
+		query = query.where(Employee.salary_mode == filters.get("salary_mode"))
 
 	salary_slips = query.run(as_dict=1)
 
