@@ -366,18 +366,19 @@ def get_salary_slips(filters, company_currency):
 	if filters.get("branch"):
 		query = query.where(salary_slip.branch == filters["branch"])
 
-	if filters.get("bank"):
+	if filters.get("salary_mode"):
 		if not filters.get("employeestatus"):
+			query = query.join(Employee).on(salary_slip.employee == Employee.name)
+		query = query.where(Employee.salary_mode == filters.get("salary_mode"))
+
+	if filters.get("bank"):
+		if not filters.get("employeestatus") and not filters.get("salary_mode"):
 			query = query.join(Employee).on(salary_slip.employee == Employee.name)
 		query = (
 			query.select(Employee.cell_number, Employee.bank_ac_no)
 			.where(Employee.salary_mode == "Bank")
 			.where(Employee.bank_name == filters.get("bank"))
 		)
-	if filters.get("salary_mode"):
-		if not filters.get("employeestatus") and not filters.get("bank"):
-			query = query.join(Employee).on(salary_slip.employee == Employee.name)
-		query = query.where(Employee.salary_mode == filters.get("salary_mode"))
 
 	salary_slips = query.run(as_dict=1)
 
