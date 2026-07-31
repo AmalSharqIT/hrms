@@ -445,18 +445,21 @@ def get_employee_holiday_map(employee_details: dict, filters: Filters) -> dict[s
 
 	employees = list(employee_details.keys())
 	companies = list({d.company for d in employee_details.values() if d.get("company")})
+	branchs = frappe.get_all("Branch", pluck="name")
 
 	assigned_holiday_lists = get_assigned_holiday_lists_to_employee_and_company(
-		employees + companies, start_date, end_date
+		employees + branchs + companies, start_date, end_date
 	)
 
 	# gaps in employee-level assignments are filled with company-level assignments,
 	employee_hl_ranges = {}
 	for employee, details in employee_details.items():
+		branch = frappe.get_value("Employee", employee, "branch")
 		employee_ranges = assigned_holiday_lists.get(employee, [])
+		branch_ranges = assigned_holiday_lists.get(branch, [])
 		company_ranges = assigned_holiday_lists.get(details.get("company"), [])
 		ranges = fill_employee_holiday_list_date_gaps_with_company_holiday_list(
-			employee_ranges, company_ranges, start_date, end_date
+			employee_ranges, branch_ranges or company_ranges, start_date, end_date
 		)
 		if ranges:
 			employee_hl_ranges[employee] = ranges
