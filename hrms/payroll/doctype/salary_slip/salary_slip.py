@@ -788,7 +788,7 @@ class SalarySlip(TransactionBase):
 
 				if leave_type_map[d.leave_type]["is_ppl"]:
 					equivalent_lwp *= (
-						fraction_of_daily_salary_per_leave if fraction_of_daily_salary_per_leave else 1
+						(1 - fraction_of_daily_salary_per_leave) if fraction_of_daily_salary_per_leave else 1
 					)
 				lwp += equivalent_lwp
 
@@ -796,7 +796,7 @@ class SalarySlip(TransactionBase):
 				equivalent_lwp = 1
 				if leave_type_map[d.leave_type]["is_ppl"]:
 					equivalent_lwp *= (
-						fraction_of_daily_salary_per_leave if fraction_of_daily_salary_per_leave else 1
+						(1 - fraction_of_daily_salary_per_leave) if fraction_of_daily_salary_per_leave else 1
 					)
 				lwp += equivalent_lwp
 
