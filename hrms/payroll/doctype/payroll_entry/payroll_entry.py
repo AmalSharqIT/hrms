@@ -1477,7 +1477,7 @@ def remove_payrolled_employees(emp_list, start_date, end_date):
 		frappe.qb.from_(SalarySlip)
 		.select(SalarySlip.employee)
 		.where(
-			(SalarySlip.docstatus == 1)
+			(SalarySlip.docstatus != 2)
 			& (SalarySlip.start_date == start_date)
 			& (SalarySlip.end_date == end_date)
 		)
