@@ -48,8 +48,14 @@ def get_columns() -> list[dict]:
 			"label": _("Employee Name"),
 			"fieldtype": "Dynamic Link",
 			"fieldname": "employee_name",
-			"width": 100,
+			"width": 200,
 			"options": "employee",
+		},
+		{
+			"label": _("Branch"),
+			"fieldtype": "Link",
+			"fieldname": "branch",
+			"options": "Branch",
 		},
 		{
 			"label": _("Opening Balance"),
@@ -108,6 +114,7 @@ def get_data(filters: Filters) -> list:
 
 			row.employee = employee.name
 			row.employee_name = employee.employee_name
+			row.branch = employee.branch
 
 			leaves_taken = (
 				get_leaves_for_period(employee.name, leave_type, filters.from_date, filters.to_date) * -1
@@ -150,9 +157,10 @@ def get_employees(filters: Filters) -> list[dict]:
 		Employee.name,
 		Employee.employee_name,
 		Employee.department,
+		Employee.branch,
 	)
 
-	for field in ["company", "department"]:
+	for field in ["company", "department", "branch"]:
 		if filters.get(field):
 			query = query.where(getattr(Employee, field) == filters.get(field))
 
