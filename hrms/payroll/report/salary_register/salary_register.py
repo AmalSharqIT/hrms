@@ -23,12 +23,14 @@ def execute(filters=None):
 		currency = filters.get("currency")
 	company_currency = erpnext.get_company_currency(filters.get("company"))
 
-	salary_slips = get_salary_slips(filters, company_currency)
+	bank = filters.get("bank") if filters.get("salary_mode") == "Bank" else None
+
+	salary_slips = get_salary_slips(filters, company_currency, bank)
 	if not salary_slips:
 		return [], []
 
 	earning_types, ded_types = get_earning_and_deduction_types(salary_slips)
-	columns = get_columns(earning_types, ded_types, filters.get("bank"))
+	columns = get_columns(earning_types, ded_types, bank)
 
 	ss_earning_map = get_salary_slip_details(salary_slips, currency, company_currency, "earnings")
 	ss_ded_map = get_salary_slip_details(salary_slips, currency, company_currency, "deductions")
@@ -60,7 +62,7 @@ def execute(filters=None):
 			"bank_ac_no": ss.bank_ac_no,
 		}
 
-		if not filters.get("bank"):
+		if not bank:
 			update_column_width(ss, columns)
 
 		for e in earning_types:
@@ -323,7 +325,7 @@ def get_salary_component_type(salary_component):
 	return frappe.db.get_value("Salary Component", salary_component, "type", cache=True)
 
 
-def get_salary_slips(filters, company_currency):
+def get_salary_slips(filters, company_currency, bank):
 	doc_status = {"Draft": 0, "Submitted": 1, "Cancelled": 2}
 
 	query = frappe.qb.from_(salary_slip).select(salary_slip.star)
@@ -366,14 +368,12 @@ def get_salary_slips(filters, company_currency):
 	if filters.get("branch"):
 		query = query.where(salary_slip.branch == filters["branch"])
 
-	if filters.get("bank"):
+	if filters.get("salary_mode"):
 		if not filters.get("employeestatus"):
 			query = query.join(Employee).on(salary_slip.employee == Employee.name)
-		query = (
-			query.select(Employee.cell_number, Employee.bank_ac_no)
-			.where(Employee.salary_mode == "Bank")
-			.where(Employee.bank_name == filters.get("bank"))
-		)
+		query = query.where(Employee.salary_mode == filters["salary_mode"])
+		if bank:
+			query = query.select(Employee.cell_number, Employee.bank_ac_no).where(Employee.bank_name == bank)
 
 	salary_slips = query.run(as_dict=1)
 
