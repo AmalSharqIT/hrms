@@ -354,7 +354,7 @@ def get_salary_slips(filters, company_currency, bank):
 	if filters.get("employee"):
 		query = query.where(salary_slip.employee == filters.get("employee"))
 
-	if filters.get("currency") and filters.get("currency") != company_currency:
+	if filters.get("currency"):
 		query = query.where(salary_slip.currency == filters.get("currency"))
 
 	if filters.get("department"):
