@@ -16,6 +16,7 @@ class PayrollSettingsWithholding(Document):
 		parent: DF.Data
 		parentfield: DF.Data
 		parenttype: DF.Data
+		round_salary: DF.Currency
 	# end: auto-generated types
 
 	pass
