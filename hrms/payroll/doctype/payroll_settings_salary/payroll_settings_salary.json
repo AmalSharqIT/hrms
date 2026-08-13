@@ -47,7 +47,7 @@
   "modified": "2026-08-13",
   "modified_by": "Administrator",
   "module": "Payroll",
-  "name": "Payroll Settings Withholding",
+  "name": "Payroll Settings Salary",
   "owner": "Administrator",
   "permissions": [],
   "row_format": "Dynamic",

@@ -243,7 +243,7 @@
   {
    "fieldname": "salary_settings",
    "fieldtype": "Table",
-   "options": "Payroll Settings Withholding"
+   "options": "Payroll Settings Salary"
   }
  ],
  "icon": "fa fa-cog",
