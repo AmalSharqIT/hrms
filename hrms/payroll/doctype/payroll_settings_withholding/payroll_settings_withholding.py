@@ -12,7 +12,7 @@ class PayrollSettingsWithholding(Document):
 
 		currency: DF.Link
 		maximum_withholding_balance: DF.Currency
-		minimum_amount: DF.Currency
+		minimum_withholding_amount: DF.Currency
 		parent: DF.Data
 		parentfield: DF.Data
 		parenttype: DF.Data

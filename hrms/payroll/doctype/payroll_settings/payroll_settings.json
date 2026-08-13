@@ -38,8 +38,8 @@
   "create_overtime_slip",
   "salary_component_settings_section",
   "default_salary_component",
-  "withholding_settings_section",
-  "withholding"
+  "salary_settings_section",
+  "salary_settings"
  ],
  "fields": [
   {
@@ -236,12 +236,12 @@
    "options": "Payroll Settings Salary Component"
   },
   {
-   "fieldname": "withholding_settings_section",
+   "fieldname": "salary_settings_section",
    "fieldtype": "Section Break",
-   "label": "Withholding Settings"
+   "label": "Salary Settings"
   },
   {
-   "fieldname": "withholding",
+   "fieldname": "salary_settings",
    "fieldtype": "Table",
    "options": "Payroll Settings Withholding"
   }
@@ -250,7 +250,7 @@
  "index_web_pages_for_search": 1,
  "issingle": 1,
  "links": [],
- "modified": "2026-06-14",
+ "modified": "2026-08-13",
  "modified_by": "Administrator",
  "module": "Payroll",
  "name": "Payroll Settings",
