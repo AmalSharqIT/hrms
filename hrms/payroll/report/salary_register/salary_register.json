@@ -7,7 +7,7 @@
  "doctype": "Report",
  "idx": 2,
  "is_standard": "Yes",
- "modified": "2020-05-28 00:07:18.576661",
+ "modified": "2026-07-09",
  "modified_by": "Administrator",
  "module": "Payroll",
  "name": "Salary Register",
@@ -18,10 +18,10 @@
  "report_type": "Script Report",
  "roles": [
   {
-   "role": "HR User"
+   "role": "HR Manager"
   },
   {
-   "role": "HR Manager"
+   "role": "HR Manager - Branch"
   }
  ]
 }

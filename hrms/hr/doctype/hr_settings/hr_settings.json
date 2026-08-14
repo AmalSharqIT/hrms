@@ -380,7 +380,7 @@
  "idx": 1,
  "issingle": 1,
  "links": [],
- "modified": "2025-12-29 16:25:06.271352",
+ "modified": "2026-06-14",
  "modified_by": "Administrator",
  "module": "HR",
  "name": "HR Settings",
@@ -396,19 +396,8 @@
    "write": 1
   },
   {
-   "email": 1,
-   "print": 1,
    "read": 1,
-   "role": "HR Manager",
-   "share": 1,
-   "write": 1
-  },
-  {
-   "email": 1,
-   "print": 1,
-   "read": 1,
-   "role": "HR User",
-   "share": 1
+   "role": "HR User"
   },
   {
    "read": 1,
