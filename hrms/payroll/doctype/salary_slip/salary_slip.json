@@ -844,7 +844,6 @@
    "fieldname": "undertime_hours",
    "fieldtype": "Float",
    "label": "Undertime Hours",
-   "non_negative": 1,
    "read_only": 1
   }
  ],
