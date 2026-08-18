@@ -51,6 +51,7 @@
   "section_break_hours",
   "working_hours",
   "working_hours_salary",
+  "undertime_hours",
   "column_break_overtime",
   "overtime_hours",
   "overtime_salary",
@@ -838,13 +839,20 @@
    "label": "Overtime Salary",
    "options": "currency",
    "read_only": 1
+  },
+  {
+   "fieldname": "undertime_hours",
+   "fieldtype": "Float",
+   "label": "Undertime Hours",
+   "non_negative": 1,
+   "read_only": 1
   }
  ],
  "icon": "fa fa-file-text",
  "idx": 9,
  "is_submittable": 1,
  "links": [],
- "modified": "2026-07-09",
+ "modified": "2026-08-18",
  "modified_by": "Administrator",
  "module": "Payroll",
  "name": "Salary Slip",
