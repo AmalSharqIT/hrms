@@ -1701,14 +1701,8 @@ def submit_salary_slips_for_employees(payroll_entry, salary_slips, publish_progr
 
 		for entry in salary_slips:
 			salary_slip = frappe.get_doc("Salary Slip", entry[0])
-			if salary_slip.net_pay < 0:
-				unsubmitted.append(entry[0])
-			else:
-				try:
-					salary_slip.submit()
-					submitted.append(salary_slip)
-				except frappe.ValidationError:
-					unsubmitted.append(entry[0])
+			salary_slip.submit()
+			submitted.append(salary_slip)
 
 			count += 1
 			if publish_progress:
