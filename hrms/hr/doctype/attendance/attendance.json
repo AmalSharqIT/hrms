@@ -1,5 +1,6 @@
 {
  "actions": [],
+ "allow_bulk_edit": 1,
  "allow_import": 1,
  "autoname": "naming_series:",
  "creation": "2013-01-10 16:34:13",
@@ -182,6 +183,7 @@
    "fieldname": "attendance_request",
    "fieldtype": "Link",
    "label": "Attendance Request",
+   "no_copy": 1,
    "options": "Attendance Request",
    "read_only": 1
   },
