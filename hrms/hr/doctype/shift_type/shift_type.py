@@ -18,6 +18,7 @@ from frappe.utils import (
 	get_time,
 	getdate,
 	time_diff,
+	time_diff_in_hours,
 )
 
 from erpnext.setup.doctype.employee.employee import get_holiday_list_for_employee
@@ -465,3 +466,15 @@ def process_auto_attendance_for_all_shifts():
 	for shift in shift_list:
 		doc = frappe.get_cached_doc("Shift Type", shift)
 		doc.process_auto_attendance()
+
+
+def get_shift_max_hours(shift_type):
+	limit_to_max_hours, max_hours, start_time, end_time = frappe.get_cached_value(
+		"Shift Type", shift_type, ["limit_to_max_hours", "max_hours", "start_time", "end_time"]
+	)
+	if limit_to_max_hours:
+		return max_hours
+	duration = time_diff_in_hours(end_time, start_time)
+	if duration < 0:
+		duration += 24
+	return duration

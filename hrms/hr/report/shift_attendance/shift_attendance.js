@@ -22,6 +22,13 @@ frappe.query_reports["Shift Attendance"] = {
 			label: __("Employee"),
 			fieldtype: "Link",
 			options: "Employee",
+			default: frappe.boot.user.roles.includes("HR User") ? "" : frappe.boot.user.employee,
+		},
+		{
+			fieldname: "branch",
+			label: __("Branch"),
+			fieldtype: "Link",
+			options: "Branch",
 		},
 		{
 			fieldname: "shift",
@@ -63,14 +70,15 @@ frappe.query_reports["Shift Attendance"] = {
 			fieldname: "include_attendance_without_checkins",
 			label: __("Include Shift Attendance Without Checkins"),
 			fieldtype: "Check",
-			default: 0,
+			default: 1,
 		},
 	],
 	formatter: (value, row, column, data, default_formatter) => {
 		value = default_formatter(value, row, column, data);
 		if (
-			(column.fieldname === "in_time" && data.late_entry) ||
-			(column.fieldname === "out_time" && data.early_exit)
+			data &&
+			((column.fieldname === "in_time" && data.late_entry) ||
+				(column.fieldname === "out_time" && data.early_exit))
 		) {
 			value = `<span style='color:red!important'>${value}</span>`;
 		}

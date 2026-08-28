@@ -79,5 +79,25 @@ frappe.query_reports["Salary Register"] = {
 			options: "Branch",
 			width: "100px",
 		},
+		{
+			fieldname: "employeestatus",
+			label: __("Employee Status"),
+			fieldtype: "Select",
+			options: ["", "Active", "Inactive", "Suspended", "Left"],
+			width: "100px",
+		},
+		{
+			fieldname: "salary_mode",
+			label: __("Salary Mode"),
+			fieldtype: "Select",
+			options: ["", "Bank", "Cash"],
+		},
+		{
+			fieldname: "bank",
+			label: __("Bank"),
+			fieldtype: "Link",
+			options: "Bank",
+			depends_on: "eval:doc.salary_mode=='Bank'",
+		},
 	],
 };

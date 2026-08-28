@@ -16,6 +16,7 @@ frappe.ui.form.on("Payment Entry", {
 					"Employee Advance",
 					"Leave Encashment",
 					"Journal Entry",
+					"Employee Loan",
 				];
 			} else {
 				doctypes = ["Journal Entry"];
@@ -55,6 +56,14 @@ frappe.ui.form.on("Payment Entry", {
 				filters["status"] = "Unpaid";
 			}
 
+			if (child.reference_doctype == "Employee Loan") {
+				if (frm.doc.payment_type == "Pay") {
+					filters["status"] = ["in", ["Approved", "Partially Disbursed"]];
+				} else if (frm.doc.payment_type == "Receive") {
+					filters["status"] = ["in", ["Disbursed", "Partially Disbursed"]];
+				}
+			}
+
 			return {
 				filters: filters,
 			};
@@ -86,6 +95,7 @@ frappe.ui.form.on("Payment Entry Reference", {
 							: frm.doc.paid_to_account_currency,
 					party_type: frm.doc.party_type,
 					party: frm.doc.party,
+					payment_type: frm.doc.payment_type,
 				},
 				callback: function (r, rt) {
 					if (r.message) {
