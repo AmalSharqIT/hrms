@@ -9,6 +9,7 @@ from frappe.query_builder import Criterion
 from frappe.utils import cint, flt, format_datetime, format_duration
 
 from erpnext.accounts.utils import build_qb_match_conditions
+from erpnext.setup.doctype.employee.employee import is_holiday
 
 from hrms.hr.doctype.shift_type.shift_type import get_shift_max_hours
 
@@ -338,7 +339,9 @@ def update_data(data, filters):
 		update_late_entry(d, filters.consider_grace_period)
 		update_early_exit(d, filters.consider_grace_period)
 
-		d.undertime_hours = format_float_precision(max(get_shift_max_hours(d.shift) - d.working_hours, 0))
+		d.undertime_hours = None
+		if not is_holiday(d.employee, d.attendance_date, False):
+			d.undertime_hours = format_float_precision(max(get_shift_max_hours(d.shift) - d.working_hours, 0))
 		d.working_hours = format_float_precision(d.working_hours)
 		d.approved_overtime_hours = d.approved_overtime_hours or None
 		d.start_overtime_hours = d.start_overtime_hours or None
