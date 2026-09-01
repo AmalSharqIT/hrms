@@ -19,7 +19,9 @@ from frappe.utils.nestedset import get_descendants_of
 from hrms.utils import date_diff, get_date_range
 from hrms.utils.holiday_list import (
 	fill_employee_holiday_list_date_gaps_with_company_holiday_list,
+	get_assigned_holiday_list,
 	get_assigned_holiday_lists_to_employee_and_company,
+	get_holiday_dates_between,
 )
 
 Filters = frappe._dict
@@ -27,8 +29,7 @@ Filters = frappe._dict
 status_map = {
 	"Present": "P",
 	"Absent": "A",
-	"Half Day/Other Half Absent": "HD/A",
-	"Half Day/Other Half Present": "HD/P",
+	"Half Day": "HD",
 	"Work From Home": "WFH",
 	"On Leave": "L",
 	"Holiday": "H",
@@ -87,7 +88,6 @@ def get_message() -> str:
 		"green",
 		"red",
 		"orange",
-		"#914EE3",
 		"green",
 		"#3187D8",
 		"#878787",
@@ -156,12 +156,6 @@ def get_columns(filters: Filters) -> list[dict]:
 					"fieldname": "total_holidays",
 					"fieldtype": "Float",
 					"width": 120,
-				},
-				{
-					"label": _("Unmarked Days"),
-					"fieldname": "unmarked_days",
-					"fieldtype": "Float",
-					"width": 130,
 				},
 			]
 		)
@@ -324,7 +318,7 @@ def get_attendance_records(filters: Filters) -> list[dict]:
 		frappe.qb.terms.Case()
 		.when(
 			((Attendance.status == "Half Day") & (Attendance.half_day_status == "Present")),
-			"Half Day/Other Half Present",
+			"Half Day",
 		)
 		.when(
 			((Attendance.status == "Half Day") & (Attendance.half_day_status == "Absent")),
@@ -372,6 +366,7 @@ def get_employee_related_details(filters: Filters) -> tuple[dict, list]:
 	Employee = frappe.qb.DocType("Employee")
 
 	joining_date_condition = get_date_condition(Employee.date_of_joining, filters)
+	relieved_date_condition = get_date_condition(Employee.relieving_date, filters)
 
 	query = (
 		frappe.qb.from_(Employee)
@@ -392,6 +387,14 @@ def get_employee_related_details(filters: Filters) -> tuple[dict, list]:
 			)
 			.else_(0)
 			.as_("joined_in_current_period"),
+			Employee.relieving_date,
+			Case()
+			.when(
+				relieved_date_condition,
+				1,
+			)
+			.else_(0)
+			.as_("relieved_in_current_period"),
 		)
 		.where(Employee.company.isin(filters.companies))
 	)
@@ -446,18 +449,21 @@ def get_employee_holiday_map(employee_details: dict, filters: Filters) -> dict[s
 
 	employees = list(employee_details.keys())
 	companies = list({d.company for d in employee_details.values() if d.get("company")})
+	branchs = frappe.get_all("Branch", pluck="name")
 
 	assigned_holiday_lists = get_assigned_holiday_lists_to_employee_and_company(
-		employees + companies, start_date, end_date
+		employees + branchs + companies, start_date, end_date
 	)
 
 	# gaps in employee-level assignments are filled with company-level assignments,
 	employee_hl_ranges = {}
 	for employee, details in employee_details.items():
+		branch = frappe.get_cached_value("Employee", employee, "branch")
 		employee_ranges = assigned_holiday_lists.get(employee, [])
+		branch_ranges = assigned_holiday_lists.get(branch, [])
 		company_ranges = assigned_holiday_lists.get(details.get("company"), [])
 		ranges = fill_employee_holiday_list_date_gaps_with_company_holiday_list(
-			employee_ranges, company_ranges, start_date, end_date
+			employee_ranges, branch_ranges or company_ranges, start_date, end_date
 		)
 		if ranges:
 			employee_hl_ranges[employee] = ranges
@@ -514,7 +520,13 @@ def get_rows(
 
 		if filters.summarized_view:
 			attendance = get_attendance_status_for_summarized_view(
-				employee, filters, holidays, details.joined_in_current_period, details.joined_date
+				employee,
+				filters,
+				holidays,
+				details.joined_in_current_period,
+				details.joined_date,
+				details.relieved_in_current_period,
+				details.relieving_date,
 			)
 			if not attendance:
 				continue
@@ -535,7 +547,14 @@ def get_rows(
 				continue
 
 			attendance_for_employee = get_attendance_status_for_detailed_view(
-				employee, filters, employee_attendance, holidays
+				employee,
+				filters,
+				employee_attendance,
+				holidays,
+				details.joined_in_current_period,
+				details.joined_date,
+				details.relieved_in_current_period,
+				details.relieving_date,
 			)
 			# set employee details in the first row
 			for record in attendance_for_employee:
@@ -553,7 +572,13 @@ def set_defaults_for_summarized_view(filters, row):
 
 
 def get_attendance_status_for_summarized_view(
-	employee: str, filters: Filters, holidays: list, joined_in_current_period: int, joined_date: int
+	employee: str,
+	filters: Filters,
+	holidays: list,
+	joined_in_current_period: int,
+	joined_date,
+	relieved_in_current_period: int,
+	relieving_date,
 ) -> dict:
 	"""Returns dict of attendance status for employee like
 	{'total_present': 1.5, 'total_leaves': 0.5, 'total_absent': 13.5, 'total_holidays': 8, 'unmarked_days': 5}
@@ -567,7 +592,9 @@ def get_attendance_status_for_summarized_view(
 
 	for d in total_days:
 		d = getdate(d)
-		if d in attendance_days or (joined_in_current_period and d < joined_date):
+		is_before_joining = joined_in_current_period and d < joined_date
+		is_after_relieving = relieved_in_current_period and d > relieving_date
+		if d in attendance_days or is_before_joining or is_after_relieving:
 			continue
 
 		status = get_holiday_status(d, holidays)
@@ -581,7 +608,7 @@ def get_attendance_status_for_summarized_view(
 		+ summary.total_half_day_present
 		+ summary.total_half_day_worked,
 		"total_leaves": summary.total_leaves + summary.total_half_day_leave,
-		"total_absent": summary.total_absent + summary.total_half_day_absent,
+		"total_absent": summary.total_absent + summary.total_half_day_absent + total_unmarked_days,
 		"total_holidays": total_holidays,
 		"unmarked_days": total_unmarked_days,
 	}
@@ -674,7 +701,14 @@ def get_attendance_summary_and_days(employee: str, filters: Filters) -> tuple[di
 
 
 def get_attendance_status_for_detailed_view(
-	employee: str, filters: Filters, employee_attendance: dict, holidays: list
+	employee: str,
+	filters: Filters,
+	employee_attendance: dict,
+	holidays: list,
+	joined_in_current_period: int = 0,
+	joined_date=None,
+	relieved_in_current_period: int = 0,
+	relieving_date=None,
 ) -> list[dict]:
 	"""Returns list of shift-wise attendance status for employee
 	[
@@ -696,10 +730,15 @@ def get_attendance_status_for_detailed_view(
 
 			status = status_dict.get(d)
 
-			if status is None and holidays:
-				status = get_holiday_status(d, holidays)
+			if status is None:
+				is_before_joining = joined_in_current_period and d < joined_date
+				is_after_relieving = relieved_in_current_period and d > relieving_date
+				if is_before_joining or is_after_relieving:
+					continue
+				if holidays:
+					status = get_holiday_status(d, holidays)
 
-			abbr = status_map.get(status, "")
+			abbr = status_map.get(status, "A")
 			row[d.strftime("%d-%m-%Y")] = abbr
 
 		attendance_values.append(row)
@@ -802,6 +841,11 @@ def get_chart_data(attendance_map: dict, filters: Filters) -> dict:
 	present = []
 	leave = []
 
+	holiday_list = get_holiday_dates_between(
+		get_assigned_holiday_list(filters.company, getdate(days[0]["fieldname"], True)),
+		getdate(days[0]["fieldname"], True),
+		getdate(days[-1]["fieldname"], True),
+	)
 	for day in days:
 		labels.append(day["label"])
 		total_absent_on_day = total_leaves_on_day = total_present_on_day = 0
@@ -814,7 +858,9 @@ def get_chart_data(attendance_map: dict, filters: Filters) -> dict:
 					# leave should be counted only once for the entire day
 					total_leaves_on_day += 1
 					break
-				elif attendance_on_day == "Absent":
+				elif attendance_on_day == "Absent" or not (
+					attendance_on_day or getdate(day["fieldname"], True) in holiday_list
+				):
 					total_absent_on_day += 1
 				elif attendance_on_day in ["Present", "Work From Home"]:
 					total_present_on_day += 1

@@ -133,28 +133,6 @@ frappe.ui.form.on("Salary Structure", {
 				__("Create"),
 			);
 
-			frm.add_custom_button(
-				__("Bulk Assignments"),
-				() => {
-					const doc = frappe.model.get_new_doc("Bulk Salary Structure Assignment");
-					doc.salary_structure = frm.doc.name;
-					doc.company = frm.doc.company;
-					frappe.set_route("Form", "Bulk Salary Structure Assignment", doc.name);
-				},
-				__("Create"),
-			);
-
-			frm.add_custom_button(
-				__("Income Tax Slab"),
-				() => {
-					frappe.model.with_doctype("Income Tax Slab", () => {
-						const doc = frappe.model.get_new_doc("Income Tax Slab");
-						frappe.set_route("Form", "Income Tax Slab", doc.name);
-					});
-				},
-				__("Create"),
-			);
-
 			frm.page.set_inner_btn_group_as_primary(__("Create"));
 
 			frm.add_custom_button(
