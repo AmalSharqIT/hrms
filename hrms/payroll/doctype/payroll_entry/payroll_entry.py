@@ -694,6 +694,7 @@ class PayrollEntry(Document):
 		if voucher_type == "Journal Entry":
 			journal_entry.title = payroll_payable_account
 
+		frappe.flags.journal_entry_as_dict = journal_entry.as_dict()
 		journal_entry.save(ignore_permissions=True)
 
 		try:
