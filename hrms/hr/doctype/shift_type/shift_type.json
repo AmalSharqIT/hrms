@@ -257,12 +257,13 @@
    "fieldname": "half_day_leave_type",
    "fieldtype": "Link",
    "label": "Half Day Leave Type",
+   "link_filters": "[[\"Leave Type\",\"is_lwp\",\"=\",1]]",
    "mandatory_depends_on": "eval:doc.working_hours_threshold_for_half_day>0",
    "options": "Leave Type"
   }
  ],
  "links": [],
- "modified": "2026-06-14",
+ "modified": "2026-09-05",
  "modified_by": "Administrator",
  "module": "HR",
  "name": "Shift Type",

@@ -195,6 +195,7 @@
    "fieldname": "leave_type",
    "fieldtype": "Link",
    "label": "Leave Type",
+   "link_filters": "[[\"Leave Type\",\"is_lwp\",\"=\",1]]",
    "options": "Leave Type"
   }
  ],
@@ -203,7 +204,7 @@
  "is_virtual": 1,
  "issingle": 1,
  "links": [],
- "modified": "2026-06-14",
+ "modified": "2026-09-05",
  "modified_by": "Administrator",
  "module": "HR",
  "name": "Employee Attendance Tool",
