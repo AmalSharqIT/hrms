@@ -1,5 +1,6 @@
 {
  "actions": [],
+ "allow_import": 1,
  "autoname": "HR-TRF-.YYYY.-.#####",
  "creation": "2022-01-27 13:14:35.935580",
  "doctype": "DocType",
@@ -100,7 +101,7 @@
  ],
  "is_submittable": 1,
  "links": [],
- "modified": "2026-06-14",
+ "modified": "2026-09-01",
  "modified_by": "Administrator",
  "module": "HR",
  "name": "Training Feedback",

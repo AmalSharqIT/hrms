@@ -70,6 +70,8 @@
   "deductions",
   "section_break_jgfy",
   "accrued_benefits",
+  "employer_contributions_section",
+  "employer_contributions",
   "totals",
   "gross_pay",
   "base_gross_pay",
@@ -776,6 +778,19 @@
    "read_only": 1
   },
   {
+   "collapsible": 1,
+   "depends_on": "eval:doc.employer_contributions && doc.employer_contributions.length",
+   "fieldname": "employer_contributions_section",
+   "fieldtype": "Section Break",
+   "label": "Employer Contributions"
+  },
+  {
+   "fieldname": "employer_contributions",
+   "fieldtype": "Table",
+   "options": "Salary Detail",
+   "print_hide": 1
+  },
+  {
    "fieldname": "leave_with_pay",
    "fieldtype": "Float",
    "label": "Leave with Pay",
@@ -851,7 +866,7 @@
  "idx": 9,
  "is_submittable": 1,
  "links": [],
- "modified": "2026-08-18",
+ "modified": "2026-08-25",
  "modified_by": "Administrator",
  "module": "Payroll",
  "name": "Salary Slip",
