@@ -1,0 +1,57 @@
+{
+  "actions": [],
+  "creation": "2026-02-12",
+  "doctype": "DocType",
+  "editable_grid": 1,
+  "engine": "InnoDB",
+  "field_order": [
+    "currency",
+    "minimum_withholding_amount",
+    "maximum_withholding_balance",
+    "round_salary"
+  ],
+  "fields": [
+    {
+      "fieldname": "currency",
+      "fieldtype": "Link",
+      "in_list_view": 1,
+      "label": "Currency",
+      "options": "Currency",
+      "reqd": 1
+    },
+    {
+      "fieldname": "minimum_withholding_amount",
+      "fieldtype": "Currency",
+      "in_list_view": 1,
+      "label": "Minimum Withholding Amount",
+      "options": "currency"
+    },
+    {
+      "fieldname": "maximum_withholding_balance",
+      "fieldtype": "Currency",
+      "in_list_view": 1,
+      "label": "Maximum Withholding Balance",
+      "options": "currency"
+    },
+    {
+      "fieldname": "round_salary",
+      "fieldtype": "Currency",
+      "in_list_view": 1,
+      "label": "Round Salary",
+      "options": "currency"
+    }
+  ],
+  "grid_page_length": 50,
+  "istable": 1,
+  "links": [],
+  "modified": "2026-08-13",
+  "modified_by": "Administrator",
+  "module": "Payroll",
+  "name": "Payroll Settings Salary",
+  "owner": "Administrator",
+  "permissions": [],
+  "row_format": "Dynamic",
+  "sort_field": "modified",
+  "sort_order": "DESC",
+  "states": []
+}

@@ -44,18 +44,10 @@
  "owner": "Administrator",
  "permissions": [
   {
-   "read": 1,
-   "role": "Employee"
-  },
-  {
-   "read": 1,
-   "role": "HR User"
-  },
-  {
    "delete": 1,
    "read": 1,
    "report": 1,
-   "role": "HR Manager"
+   "role": "System Manager"
   }
  ],
  "quick_entry": 1,

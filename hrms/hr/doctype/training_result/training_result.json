@@ -53,7 +53,7 @@
  ],
  "is_submittable": 1,
  "links": [],
- "modified": "2026-09-01 18:39:51.520758",
+ "modified": "2026-09-01",
  "modified_by": "Administrator",
  "module": "HR",
  "name": "Training Result",
@@ -70,16 +70,9 @@
    "print": 1,
    "read": 1,
    "report": 1,
-   "role": "HR Manager",
+   "role": "System Manager",
    "share": 1,
    "submit": 1,
-   "write": 1
-  },
-  {
-   "create": 1,
-   "read": 1,
-   "report": 1,
-   "role": "HR User",
    "write": 1
   }
  ],

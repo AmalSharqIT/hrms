@@ -1,0 +1,49 @@
+{
+  "actions": [],
+  "creation": "2025-11-03",
+  "doctype": "DocType",
+  "editable_grid": 1,
+  "engine": "InnoDB",
+  "field_order": ["currency", "minimum_loan_amount", "maximum_loan_amount"],
+  "fields": [
+    {
+      "columns": 2,
+      "fieldname": "currency",
+      "fieldtype": "Link",
+      "in_list_view": 1,
+      "label": "Currency",
+      "options": "Currency"
+    },
+    {
+      "columns": 4,
+      "fieldname": "minimum_loan_amount",
+      "fieldtype": "Currency",
+      "in_list_view": 1,
+      "label": "Minimum Loan Amount",
+      "non_negative": 1,
+      "options": "currency"
+    },
+    {
+      "columns": 4,
+      "fieldname": "maximum_loan_amount",
+      "fieldtype": "Currency",
+      "in_list_view": 1,
+      "label": "Maximum Loan Amount",
+      "non_negative": 1,
+      "options": "currency"
+    }
+  ],
+  "grid_page_length": 50,
+  "istable": 1,
+  "links": [],
+  "modified": "2026-06-14",
+  "modified_by": "Administrator",
+  "module": "HR",
+  "name": "HR Settings Loan Amounts",
+  "owner": "Administrator",
+  "permissions": [],
+  "row_format": "Dynamic",
+  "sort_field": "modified",
+  "sort_order": "DESC",
+  "states": []
+}

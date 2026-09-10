@@ -86,17 +86,6 @@
    "role": "System Manager",
    "share": 1,
    "write": 1
-  },
-  {
-   "create": 1,
-   "delete": 1,
-   "read": 1,
-   "role": "HR Manager",
-   "write": 1
-  },
-  {
-   "read": 1,
-   "role": "HR User"
   }
  ],
  "row_format": "Dynamic",

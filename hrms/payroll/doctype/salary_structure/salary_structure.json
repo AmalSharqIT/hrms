@@ -105,6 +105,7 @@
    "default": "0",
    "fieldname": "salary_slip_based_on_timesheet",
    "fieldtype": "Check",
+   "hidden": 1,
    "label": "Salary Slip Based on Timesheet",
    "search_index": 1
   },
@@ -129,12 +130,14 @@
    "allow_on_submit": 1,
    "fieldname": "leave_encashment_amount_per_day",
    "fieldtype": "Currency",
+   "hidden": 1,
    "label": "Leave Encashment Amount Per Day",
    "options": "currency"
   },
   {
    "fieldname": "max_benefits",
    "fieldtype": "Currency",
+   "hidden": 1,
    "label": "Max Benefits (Amount)",
    "options": "currency"
   },
@@ -262,7 +265,7 @@
  "idx": 1,
  "is_submittable": 1,
  "links": [],
- "modified": "2026-06-08 17:39:39.847210",
+ "modified": "2026-06-14",
  "modified_by": "Administrator",
  "module": "Payroll",
  "name": "Salary Structure",
@@ -270,18 +273,8 @@
  "owner": "Administrator",
  "permissions": [
   {
-   "amend": 1,
-   "cancel": 1,
-   "create": 1,
-   "delete": 1,
-   "email": 1,
-   "print": 1,
    "read": 1,
-   "report": 1,
-   "role": "HR User",
-   "share": 1,
-   "submit": 1,
-   "write": 1
+   "role": "HR Manager"
   },
   {
    "amend": 1,
@@ -294,7 +287,7 @@
    "print": 1,
    "read": 1,
    "report": 1,
-   "role": "HR Manager",
+   "role": "System Manager",
    "share": 1,
    "submit": 1,
    "write": 1

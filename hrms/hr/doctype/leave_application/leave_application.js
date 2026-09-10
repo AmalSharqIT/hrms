@@ -108,7 +108,6 @@ frappe.ui.form.on("Leave Application", {
 			frm.set_intro(__("Submit this Leave Application to confirm."));
 		}
 
-		frm.trigger("set_employee");
 		if (frm.doc.docstatus === 0) {
 			frm.trigger("make_dashboard");
 		}

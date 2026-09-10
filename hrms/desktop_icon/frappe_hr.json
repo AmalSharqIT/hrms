@@ -3,17 +3,21 @@
  "creation": "2025-11-17 20:33:43.167514",
  "docstatus": 0,
  "doctype": "Desktop Icon",
- "hidden": 0,
+ "hidden": 1,
  "icon_type": "App",
  "idx": 14,
  "label": "Frappe HR",
  "link": "/desk/people",
  "link_type": "External",
  "logo_url": "/assets/hrms/images/frappe-hr-logo.svg",
- "modified": "2026-01-09 17:29:44.070361",
+ "modified": "2026-06-20",
  "modified_by": "Administrator",
  "name": "Frappe HR",
  "owner": "Administrator",
- "roles": [],
+ "roles": [
+  {
+   "role": "System Manager"
+  }
+ ],
  "standard": 1
 }
