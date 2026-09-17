@@ -6,7 +6,7 @@
    "label": "Outgoing Salary"
   }
  ],
- "content": "[{\"id\":\"sN-N90hh44\",\"type\":\"chart\",\"data\":{\"chart_name\":\"Outgoing Salary\",\"col\":12}},{\"id\":\"ORKhwX-uqw\",\"type\":\"spacer\",\"data\":{\"col\":12}},{\"id\":\"gGURwviUAZ\",\"type\":\"header\",\"data\":{\"text\":\"<span class=\\\"h4\\\"><b>Transactions &amp; Reports</b></span>\",\"col\":12}},{\"id\":\"m7ibJXxzpl\",\"type\":\"card\",\"data\":{\"card_name\":\"Masters\",\"col\":4}},{\"id\":\"U-jv2v4nCv\",\"type\":\"card\",\"data\":{\"card_name\":\"Payroll\",\"col\":4}},{\"id\":\"LG69O3ku4y\",\"type\":\"card\",\"data\":{\"card_name\":\"Incentives\",\"col\":4}},{\"id\":\"kOuItimoNm\",\"type\":\"card\",\"data\":{\"card_name\":\"Accounting\",\"col\":4}},{\"id\":\"UJqBhPqNZd\",\"type\":\"card\",\"data\":{\"card_name\":\"Accounting Reports\",\"col\":4}},{\"id\":\"eNZuk6i-jy\",\"type\":\"card\",\"data\":{\"card_name\":\"Payroll Reports\",\"col\":4}},{\"id\":\"ll91Zs2cbx\",\"type\":\"card\",\"data\":{\"card_name\":\"Deduction Reports\",\"col\":4}}]",
+ "content": "[{\"id\":\"sN-N90hh44\",\"type\":\"chart\",\"data\":{\"chart_name\":\"Outgoing Salary\",\"col\":12}},{\"id\":\"ORKhwX-uqw\",\"type\":\"spacer\",\"data\":{\"col\":12}},{\"id\":\"gGURwviUAZ\",\"type\":\"header\",\"data\":{\"text\":\"<span class=\\\"h4\\\"><b>Transactions &amp; Reports</b></span>\",\"col\":12}},{\"id\":\"m7ibJXxzpl\",\"type\":\"card\",\"data\":{\"card_name\":\"Masters\",\"col\":4}},{\"id\":\"U-jv2v4nCv\",\"type\":\"card\",\"data\":{\"card_name\":\"Payroll\",\"col\":4}},{\"id\":\"LG69O3ku4y\",\"type\":\"card\",\"data\":{\"card_name\":\"Incentives\",\"col\":4}},{\"id\":\"kOuItimoNm\",\"type\":\"card\",\"data\":{\"card_name\":\"Accounting\",\"col\":4}},{\"id\":\"KMEEb55j0f\",\"type\":\"card\",\"data\":{\"card_name\":\"Sales Incentive\",\"col\":4}},{\"id\":\"UJqBhPqNZd\",\"type\":\"card\",\"data\":{\"card_name\":\"Accounting Reports\",\"col\":4}},{\"id\":\"eNZuk6i-jy\",\"type\":\"card\",\"data\":{\"card_name\":\"Payroll Reports\",\"col\":4}},{\"id\":\"ll91Zs2cbx\",\"type\":\"card\",\"data\":{\"card_name\":\"Deduction Reports\",\"col\":4}}]",
  "creation": "2022-08-20 16:43:32.769568",
  "custom_blocks": [],
  "docstatus": 0,
@@ -108,7 +108,7 @@
    "hidden": 0,
    "is_query_report": 0,
    "label": "Payroll Reports",
-   "link_count": 5,
+   "link_count": 6,
    "onboard": 0,
    "type": "Card Break"
   },
@@ -164,6 +164,16 @@
   },
   {
    "hidden": 0,
+   "is_query_report": 1,
+   "label": "Employee Salary Assignment",
+   "link_count": 0,
+   "link_to": "Employee Salary Assignment",
+   "link_type": "Report",
+   "onboard": 0,
+   "type": "Link"
+  },
+  {
+   "hidden": 0,
    "is_query_report": 0,
    "label": "Deduction Reports",
    "link_count": 3,
@@ -204,7 +214,7 @@
    "hidden": 0,
    "is_query_report": 0,
    "label": "Accounting",
-   "link_count": 7,
+   "link_count": 6,
    "onboard": 0,
    "type": "Card Break"
   },
@@ -271,10 +281,39 @@
   {
    "hidden": 0,
    "is_query_report": 0,
-   "label": "Currency",
-   "link_count": 0,
-   "link_to": "Currency",
+   "label": "Sales Incentive",
+   "link_count": 3,
    "link_type": "DocType",
+   "onboard": 0,
+   "type": "Card Break"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "Sales Group",
+   "link_count": 0,
+   "link_to": "Sales Group",
+   "link_type": "DocType",
+   "onboard": 0,
+   "type": "Link"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "Sales Entry",
+   "link_count": 0,
+   "link_to": "Sales Entry",
+   "link_type": "DocType",
+   "onboard": 0,
+   "type": "Link"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 1,
+   "label": "Sales Incentive",
+   "link_count": 0,
+   "link_to": "Sales Incentive",
+   "link_type": "Report",
    "onboard": 0,
    "type": "Link"
   },
@@ -376,7 +415,7 @@
    "type": "Link"
   }
  ],
- "modified": "2026-01-09 17:59:39.577284",
+ "modified": "2026-07-15",
  "modified_by": "Administrator",
  "module": "Payroll",
  "name": "Payroll",

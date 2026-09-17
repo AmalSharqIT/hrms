@@ -4,10 +4,11 @@
 
 import frappe
 from frappe import _
-from frappe.utils import flt
+from frappe.utils import floor, flt
 
 import erpnext
 
+Employee = frappe.qb.DocType("Employee")
 salary_slip = frappe.qb.DocType("Salary Slip")
 salary_detail = frappe.qb.DocType("Salary Detail")
 salary_component = frappe.qb.DocType("Salary Component")
@@ -22,12 +23,14 @@ def execute(filters=None):
 		currency = filters.get("currency")
 	company_currency = erpnext.get_company_currency(filters.get("company"))
 
-	salary_slips = get_salary_slips(filters, company_currency)
+	bank = filters.get("bank") if filters.get("salary_mode") == "Bank" else None
+
+	salary_slips = get_salary_slips(filters, company_currency, bank)
 	if not salary_slips:
 		return [], []
 
 	earning_types, ded_types = get_earning_and_deduction_types(salary_slips)
-	columns = get_columns(earning_types, ded_types)
+	columns = get_columns(earning_types, ded_types, bank)
 
 	ss_earning_map = get_salary_slip_details(salary_slips, currency, company_currency, "earnings")
 	ss_ded_map = get_salary_slip_details(salary_slips, currency, company_currency, "deductions")
@@ -48,13 +51,19 @@ def execute(filters=None):
 			"start_date": ss.start_date,
 			"end_date": ss.end_date,
 			"leave_without_pay": ss.leave_without_pay,
+			"leave_with_pay": ss.leave_with_pay,
 			"absent_days": ss.absent_days,
-			"payment_days": ss.payment_days,
+			"present_days": ss.present_days,
+			"working_hours": ss.working_hours,
+			"overtime_hours": ss.overtime_hours,
 			"currency": currency or company_currency,
 			"total_loan_repayment": ss.total_loan_repayment,
+			"cell_number": ss.cell_number,
+			"bank_ac_no": ss.bank_ac_no,
 		}
 
-		update_column_width(ss, columns)
+		if not bank:
+			update_column_width(ss, columns)
 
 		for e in earning_types:
 			row.update({frappe.scrub(e): ss_earning_map.get(ss.name, {}).get(e)})
@@ -69,6 +78,7 @@ def execute(filters=None):
 					"total_deduction": (flt(ss.total_deduction) + flt(ss.total_loan_repayment))
 					* flt(ss.exchange_rate),
 					"net_pay": flt(ss.net_pay) * flt(ss.exchange_rate),
+					"thousands": floor(ss.net_pay % 5000) / 1000,
 				}
 			)
 
@@ -107,7 +117,7 @@ def update_column_width(ss, columns):
 		columns[9].update({"width": 120})
 
 
-def get_columns(earning_types, ded_types):
+def get_columns(earning_types, ded_types, bank):
 	columns = [
 		{
 			"label": _("Salary Slip ID"),
@@ -127,7 +137,7 @@ def get_columns(earning_types, ded_types):
 			"label": _("Employee Name"),
 			"fieldname": "employee_name",
 			"fieldtype": "Data",
-			"width": 140,
+			"width": 300,
 		},
 		{
 			"label": _("Date of Joining"),
@@ -167,7 +177,7 @@ def get_columns(earning_types, ded_types):
 			"label": _("Start Date"),
 			"fieldname": "start_date",
 			"fieldtype": "Data",
-			"width": 80,
+			"width": 120,
 		},
 		{
 			"label": _("End Date"),
@@ -182,16 +192,34 @@ def get_columns(earning_types, ded_types):
 			"width": 50,
 		},
 		{
+			"label": _("Leave with Pay"),
+			"fieldname": "leave_with_pay",
+			"fieldtype": "Float",
+			"width": 50,
+		},
+		{
 			"label": _("Absent Days"),
 			"fieldname": "absent_days",
 			"fieldtype": "Float",
 			"width": 50,
 		},
 		{
-			"label": _("Payment Days"),
-			"fieldname": "payment_days",
+			"label": _("Present Days"),
+			"fieldname": "present_days",
 			"fieldtype": "Float",
-			"width": 120,
+			"width": 50,
+		},
+		{
+			"label": _("Working Hours"),
+			"fieldname": "working_hours",
+			"fieldtype": "Float",
+			"width": 50,
+		},
+		{
+			"label": _("Overtime Hours"),
+			"fieldname": "overtime_hours",
+			"fieldtype": "Float",
+			"width": 50,
 		},
 	]
 
@@ -255,6 +283,24 @@ def get_columns(earning_types, ded_types):
 				"width": 120,
 			},
 			{
+				"label": _("Mobile"),
+				"fieldname": "cell_number",
+				"fieldtype": "Phone",
+				"hidden": 0 if bank else 1,
+			},
+			{
+				"label": _("Bank A/C No"),
+				"fieldname": "bank_ac_no",
+				"fieldtype": "Data",
+				"hidden": 0 if bank else 1,
+			},
+			{
+				"label": _("Thousands"),
+				"fieldname": "thousands",
+				"fieldtype": "Int",
+				"width": 80,
+			},
+			{
 				"label": _("Currency"),
 				"fieldtype": "Data",
 				"fieldname": "currency",
@@ -279,10 +325,19 @@ def get_salary_component_type(salary_component):
 	return frappe.db.get_value("Salary Component", salary_component, "type", cache=True)
 
 
-def get_salary_slips(filters, company_currency):
+def get_salary_slips(filters, company_currency, bank):
 	doc_status = {"Draft": 0, "Submitted": 1, "Cancelled": 2}
 
 	query = frappe.qb.from_(salary_slip).select(salary_slip.star)
+
+	if filters.get("employeestatus"):
+		query = (
+			frappe.qb.from_(salary_slip)
+			.join(Employee)
+			.on(salary_slip.employee == Employee.name)
+			.select(salary_slip.star)
+			.where(Employee.status == filters.get("employeestatus"))
+		)
 
 	if filters.get("docstatus"):
 		query = query.where(salary_slip.docstatus == doc_status[filters.get("docstatus")])
@@ -299,17 +354,26 @@ def get_salary_slips(filters, company_currency):
 	if filters.get("employee"):
 		query = query.where(salary_slip.employee == filters.get("employee"))
 
-	if filters.get("currency") and filters.get("currency") != company_currency:
+	if filters.get("currency"):
 		query = query.where(salary_slip.currency == filters.get("currency"))
 
 	if filters.get("department"):
-		query = query.where(salary_slip.department == filters["department"])
+		departments = [filters["department"]]
+		departments.extend(frappe.db.get_descendants("Department", filters["department"]))
+		query = query.where(salary_slip.department.isin(departments))
 
 	if filters.get("designation"):
 		query = query.where(salary_slip.designation == filters["designation"])
 
 	if filters.get("branch"):
 		query = query.where(salary_slip.branch == filters["branch"])
+
+	if filters.get("salary_mode"):
+		if not filters.get("employeestatus"):
+			query = query.join(Employee).on(salary_slip.employee == Employee.name)
+		query = query.where(Employee.salary_mode == filters["salary_mode"])
+		if bank:
+			query = query.select(Employee.cell_number, Employee.bank_ac_no).where(Employee.bank_name == bank)
 
 	salary_slips = query.run(as_dict=1)
 

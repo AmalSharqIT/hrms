@@ -98,6 +98,11 @@ def get_holiday_list_for_employee(
 ) -> str:
 	as_on = frappe.utils.getdate(as_on)
 	holiday_list = get_assigned_holiday_list(employee, as_on, as_dict)
+
+	if not holiday_list:
+		branch = frappe.db.get_value("Employee", employee, "branch")
+		holiday_list = get_assigned_holiday_list(branch, as_on, as_dict)
+
 	if not holiday_list:
 		company = frappe.db.get_value("Employee", employee, "company")
 		holiday_list = get_assigned_holiday_list(company, as_on, as_dict)
