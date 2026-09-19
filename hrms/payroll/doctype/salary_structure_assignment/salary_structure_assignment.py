@@ -422,15 +422,6 @@ class SalaryStructureAssignment(Document):
 		data.leave_without_pay = 0
 		data.absent_days = 0
 		data.unmarked_days = 0
-		data.holidays = 0
-		data.leave_with_pay = 0
-		data.overtime_hours = 0
-		data.overtime_salary = 0
-		data.payroll_days = 0
-		data.present_days = 0
-		data.weekly_off = 0
-		data.working_hours = 0
-		data.working_hours_salary = 0
 		return data
 
 	def _evaluate_component_table(self, rows, data: frappe._dict) -> list:
