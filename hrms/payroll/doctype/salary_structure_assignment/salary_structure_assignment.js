@@ -173,14 +173,6 @@ frappe.ui.form.on("Salary Structure Assignment", {
 
 	toggle_opening_balances_section: function (frm) {
 		if (!frm.doc.from_date || !frm.doc.employee || !frm.doc.salary_structure) return;
-
-		frm.call("are_opening_entries_required").then((data) => {
-			if (data.message) {
-				frm.set_df_property("opening_balances_section", "hidden", 0);
-			} else {
-				frm.set_df_property("opening_balances_section", "hidden", 1);
-			}
-		});
 	},
 
 	from_date: function (frm) {

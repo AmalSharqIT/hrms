@@ -95,6 +95,27 @@ frappe.query_reports["Salary Register"] = {
 			label: __("Show Employer Contributions"),
 			fieldtype: "Check",
 			default: 0,
+			hidden: 0,
+		},
+		{
+			fieldname: "employeestatus",
+			label: __("Employee Status"),
+			fieldtype: "Select",
+			options: ["", "Active", "Inactive", "Suspended", "Left"],
+			width: "100px",
+		},
+		{
+			fieldname: "salary_mode",
+			label: __("Salary Mode"),
+			fieldtype: "Select",
+			options: ["", "Bank", "Cash"],
+		},
+		{
+			fieldname: "bank",
+			label: __("Bank"),
+			fieldtype: "Link",
+			options: "Bank",
+			depends_on: "eval:doc.salary_mode=='Bank'",
 		},
 	],
 };

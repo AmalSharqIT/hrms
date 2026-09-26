@@ -45,6 +45,42 @@
   {
    "child": 0,
    "collapsible": 1,
+   "icon": "loan",
+   "indent": 0,
+   "keep_closed": 0,
+   "label": "Employee Loan",
+   "link_to": "Employee Loan",
+   "link_type": "DocType",
+   "show_arrow": 0,
+   "type": "Link"
+  },
+  {
+   "child": 0,
+   "collapsible": 1,
+   "icon": "badge-check",
+   "indent": 0,
+   "keep_closed": 0,
+   "label": "Employee Reward",
+   "link_to": "Employee Reward",
+   "link_type": "DocType",
+   "show_arrow": 0,
+   "type": "Link"
+  },
+  {
+   "child": 0,
+   "collapsible": 1,
+   "icon": "badge-alert",
+   "indent": 0,
+   "keep_closed": 0,
+   "label": "Warning and Penalty",
+   "link_to": "Employee Warning and Penalty",
+   "link_type": "DocType",
+   "show_arrow": 0,
+   "type": "Link"
+  },
+  {
+   "child": 0,
+   "collapsible": 1,
    "icon": "arrow-down-from-line",
    "indent": 0,
    "keep_closed": 0,
@@ -221,6 +257,28 @@
   {
    "child": 1,
    "collapsible": 1,
+   "indent": 0,
+   "keep_closed": 0,
+   "label": "Type of Penalty",
+   "link_to": "Type of Penalty",
+   "link_type": "DocType",
+   "show_arrow": 0,
+   "type": "Link"
+  },
+  {
+   "child": 1,
+   "collapsible": 1,
+   "indent": 0,
+   "keep_closed": 0,
+   "label": "Type of Warning",
+   "link_to": "Type of Warning",
+   "link_type": "DocType",
+   "show_arrow": 0,
+   "type": "Link"
+  },
+  {
+   "child": 1,
+   "collapsible": 1,
    "icon": "",
    "indent": 0,
    "keep_closed": 0,
@@ -253,22 +311,9 @@
    "link_type": "DocType",
    "show_arrow": 0,
    "type": "Link"
-  },
-  {
-   "child": 0,
-   "collapsible": 1,
-   "icon": "settings",
-   "indent": 0,
-   "keep_closed": 0,
-   "label": "Settings",
-   "link_to": "HR Settings",
-   "link_type": "DocType",
-   "navigate_to_tab": "expenses_tab",
-   "show_arrow": 0,
-   "type": "Link"
   }
  ],
- "modified": "2026-01-08 14:16:38.878865",
+ "modified": "2026-06-18",
  "modified_by": "Administrator",
  "module": "HR",
  "name": "Expenses",
