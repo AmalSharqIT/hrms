@@ -235,7 +235,7 @@
  "icon": "fa fa-flag",
  "idx": 1,
  "links": [],
- "modified": "2026-05-07 18:26:27.583525",
+ "modified": "2026-08-02",
  "modified_by": "Administrator",
  "module": "HR",
  "name": "Leave Type",
@@ -243,15 +243,8 @@
  "owner": "Administrator",
  "permissions": [
   {
-   "create": 1,
-   "delete": 1,
-   "email": 1,
-   "print": 1,
    "read": 1,
-   "report": 1,
-   "role": "HR User",
-   "share": 1,
-   "write": 1
+   "role": "HR User"
   },
   {
    "create": 1,
@@ -260,7 +253,7 @@
    "print": 1,
    "read": 1,
    "report": 1,
-   "role": "HR Manager",
+   "role": "System Manager",
    "share": 1,
    "write": 1
   },

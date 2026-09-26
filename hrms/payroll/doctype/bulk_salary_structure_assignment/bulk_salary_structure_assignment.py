@@ -6,7 +6,7 @@ from frappe import _
 from frappe.model.document import Document
 from frappe.query_builder.custom import ConstantColumn
 from frappe.query_builder.functions import Coalesce
-from frappe.query_builder.terms import SubQuery
+from frappe.query_builder.terms import SubQuery, ValueWrapper
 from frappe.utils import get_link_to_form
 
 from hrms.hr.utils import validate_bulk_tool_fields
@@ -55,7 +55,11 @@ class BulkSalaryStructureAssignment(Document):
 			.on(Employee.grade == Grade.name)
 			.select(
 				Coalesce(Grade.default_base_pay, 0).as_("base"),
-				ConstantColumn(0).as_("variable"),
+				ValueWrapper(0).as_("monthly_salary"),
+				ValueWrapper(0).as_("hourly_salary"),
+				ValueWrapper(0).as_("withholding"),
+				ValueWrapper(0).as_("round_salary"),
+				ValueWrapper(0).as_("overtime_ratio"),
 			)
 		)
 		return query.run(as_dict=True)
@@ -91,7 +95,12 @@ class BulkSalaryStructureAssignment(Document):
 					payroll_payable_account=self.payroll_payable_account,
 					from_date=self.from_date,
 					base=d["base"],
-					variable=d["variable"],
+					monthly_salary=d["monthly_salary"],
+					hourly_salary=d["hourly_salary"],
+					withholding=d["withholding"],
+					round_salary=d["round_salary"],
+					overtime_ratio=d["overtime_ratio"],
+					cost_center=self.cost_center,
 					income_tax_slab=self.income_tax_slab,
 				)
 			except Exception:
