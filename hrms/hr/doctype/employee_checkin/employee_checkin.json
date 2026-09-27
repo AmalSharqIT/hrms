@@ -302,11 +302,22 @@
    "write": 1
   },
   {
+   "permlevel": 9,
+   "read": 1,
+   "role": "HR User"
+  },
+  {
    "create": 1,
    "read": 1,
    "report": 1,
    "role": "Employee",
    "write": 1
+  },
+  {
+   "delete": 1,
+   "if_owner": 1,
+   "read": 1,
+   "role": "Employee"
   },
   {
    "delete": 1,
@@ -319,17 +330,6 @@
    "role": "System Manager",
    "share": 1,
    "write": 1
-  },
-  {
-   "permlevel": 9,
-   "read": 1,
-   "role": "HR User"
-  },
-  {
-   "delete": 1,
-   "if_owner": 1,
-   "read": 1,
-   "role": "Employee"
   },
   {
    "read": 1,

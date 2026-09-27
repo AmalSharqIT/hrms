@@ -376,17 +376,17 @@
   },
   {
    "read": 1,
+   "role": "Employee",
+   "select": 1
+  },
+  {
+   "read": 1,
    "role": "HR User - Branch"
   },
   {
    "permlevel": 9,
    "read": 1,
    "role": "HR User - Branch"
-  },
-  {
-   "read": 1,
-   "role": "Employee",
-   "select": 1
   }
  ],
  "row_format": "Dynamic",

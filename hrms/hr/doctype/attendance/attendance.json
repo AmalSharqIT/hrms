@@ -389,11 +389,6 @@
    "write": 1
   },
   {
-   "export": 1,
-   "read": 1,
-   "role": "HR Manager"
-  },
-  {
    "cancel": 1,
    "create": 1,
    "print": 1,
@@ -408,6 +403,11 @@
    "read": 1,
    "role": "HR User",
    "write": 1
+  },
+  {
+   "export": 1,
+   "read": 1,
+   "role": "HR Manager"
   },
   {
    "create": 1,
