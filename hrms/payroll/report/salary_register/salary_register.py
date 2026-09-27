@@ -60,7 +60,6 @@ def execute(filters=None):
 			"present_days": ss.present_days,
 			"working_hours": ss.working_hours,
 			"overtime_hours": ss.overtime_hours,
-			"payment_days": ss.payment_days,
 			"currency": currency or company_currency,
 			"total_loan_repayment": ss.total_loan_repayment,
 			"cell_number": ss.cell_number,
@@ -425,7 +424,7 @@ def get_salary_slips(filters, company_currency, bank):
 	if filters.get("employee"):
 		query = query.where(salary_slip.employee == filters.get("employee"))
 
-	if filters.get("currency") and filters.get("currency") != company_currency:
+	if filters.get("currency"):
 		query = query.where(salary_slip.currency == filters.get("currency"))
 
 	if filters.get("department"):
