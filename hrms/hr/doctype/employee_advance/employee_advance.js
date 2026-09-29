@@ -10,6 +10,21 @@ frappe.ui.form.on("Employee Advance", {
 				},
 			};
 		});
+
+		frm.set_query("advance_account", function () {
+			if (!frm.doc.employee) {
+				frappe.msgprint(__("Please select employee first"));
+			}
+			return {
+				filters: {
+					root_type: "Asset",
+					is_group: 0,
+					company: frm.doc.company,
+					account_currency: frm.doc.currency,
+					account_type: "Receivable",
+				},
+			};
+		});
 	},
 
 	refresh: function (frm) {
