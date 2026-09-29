@@ -47,7 +47,10 @@ frappe.ui.form.on("Employee Advance", {
 			frm.doc.docstatus === 1 &&
 			flt(frm.doc.claimed_amount) < flt(frm.doc.paid_amount) - flt(frm.doc.return_amount)
 		) {
-			if (frappe.model.can_create("Journal Entry")) {
+			if (
+				frm.doc.repay_unclaimed_amount_from_salary == 0 &&
+				frappe.model.can_create("Journal Entry")
+			) {
 				frm.add_custom_button(
 					__("Return"),
 					function () {
@@ -55,8 +58,10 @@ frappe.ui.form.on("Employee Advance", {
 					},
 					__("Create"),
 				);
-			}
-			if (frappe.model.can_create("Additional Salary")) {
+			} else if (
+				frm.doc.repay_unclaimed_amount_from_salary == 1 &&
+				frappe.model.can_create("Additional Salary")
+			) {
 				frm.add_custom_button(
 					__("Deduction from Salary"),
 					function () {
