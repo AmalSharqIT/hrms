@@ -71,17 +71,6 @@
    "collapsible": 1,
    "indent": 0,
    "keep_closed": 0,
-   "label": "Company",
-   "link_to": "Company",
-   "link_type": "DocType",
-   "show_arrow": 0,
-   "type": "Link"
-  },
-  {
-   "child": 1,
-   "collapsible": 1,
-   "indent": 0,
-   "keep_closed": 0,
    "label": "Branch",
    "link_to": "Branch",
    "link_type": "DocType",
@@ -133,22 +122,29 @@
    "type": "Link"
   },
   {
-   "child": 0,
+   "child": 1,
    "collapsible": 1,
-   "icon": "settings",
    "indent": 0,
    "keep_closed": 0,
-   "label": "Settings",
-   "link_to": "HR Settings",
+   "label": "Nationality",
+   "link_to": "Nationality",
    "link_type": "DocType",
-   "navigate_to_tab": "employee_tab",
-   "route_options": "",
    "show_arrow": 0,
-   "type": "Link",
-   "url": "/desk/hr-settings#employee_tab"
+   "type": "Link"
+  },
+  {
+   "child": 1,
+   "collapsible": 1,
+   "indent": 0,
+   "keep_closed": 0,
+   "label": "Social Security Location",
+   "link_to": "Social Security Location",
+   "link_type": "DocType",
+   "show_arrow": 0,
+   "type": "Link"
   }
  ],
- "modified": "2026-03-23 15:16:39.465712",
+ "modified": "2026-06-18",
  "modified_by": "Administrator",
  "module": "HR",
  "name": "HR Setup",

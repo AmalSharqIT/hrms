@@ -293,32 +293,10 @@
    "hidden": 0,
    "is_query_report": 0,
    "label": "Settings",
-   "link_count": 3,
+   "link_count": 1,
    "link_type": "DocType",
    "onboard": 0,
    "type": "Card Break"
-  },
-  {
-   "dependencies": "",
-   "hidden": 0,
-   "is_query_report": 0,
-   "label": "HR Settings",
-   "link_count": 0,
-   "link_to": "HR Settings",
-   "link_type": "DocType",
-   "onboard": 0,
-   "type": "Link"
-  },
-  {
-   "dependencies": "",
-   "hidden": 0,
-   "is_query_report": 0,
-   "label": "Payroll Settings",
-   "link_count": 0,
-   "link_to": "Payroll Settings",
-   "link_type": "DocType",
-   "onboard": 0,
-   "type": "Link"
   },
   {
    "dependencies": "",
@@ -386,7 +364,7 @@
    "type": "Link"
   }
  ],
- "modified": "2026-04-06 19:29:59.207478",
+ "modified": "2026-06-18",
  "modified_by": "Administrator",
  "module": "HR",
  "name": "HR Setup",
