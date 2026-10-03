@@ -778,7 +778,7 @@
  "idx": 9,
  "is_submittable": 1,
  "links": [],
- "modified": "2026-08-25 12:22:09.751656",
+ "modified": "2026-08-25",
  "modified_by": "Administrator",
  "module": "Payroll",
  "name": "Salary Slip",
@@ -786,14 +786,17 @@
  "permissions": [
   {
    "create": 1,
-   "email": 1,
    "print": 1,
    "read": 1,
    "report": 1,
-   "role": "HR User",
-   "share": 1,
+   "role": "HR Manager",
    "submit": 1,
    "write": 1
+  },
+  {
+   "permlevel": 9,
+   "read": 1,
+   "role": "HR Manager"
   },
   {
    "amend": 1,
@@ -804,15 +807,20 @@
    "print": 1,
    "read": 1,
    "report": 1,
-   "role": "HR Manager",
+   "role": "System Manager",
    "share": 1,
    "submit": 1,
    "write": 1
   },
   {
-   "print": 1,
    "read": 1,
-   "role": "Employee"
+   "report": 1,
+   "role": "HR Manager - Branch"
+  },
+  {
+   "permlevel": 9,
+   "read": 1,
+   "role": "HR Manager - Branch"
   }
  ],
  "row_format": "Dynamic",
