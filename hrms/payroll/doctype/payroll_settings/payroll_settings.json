@@ -18,6 +18,10 @@
   "disable_rounded_total",
   "column_break_gzpl",
   "show_leave_balances_in_salary_slip",
+  "social_security_section",
+  "employee_contribution_percentage",
+  "social_security_column",
+  "default_employee_salary",
   "email_section",
   "email_salary_slip_to_employee",
   "sender",
@@ -31,7 +35,11 @@
   "process_payroll_accounting_entry_based_on_employee",
   "mandatory_benefit_application",
   "column_break_zi9y",
-  "create_overtime_slip"
+  "create_overtime_slip",
+  "salary_component_settings_section",
+  "default_salary_component",
+  "salary_settings_section",
+  "salary_settings"
  ],
  "fields": [
   {
@@ -196,6 +204,46 @@
    "fieldname": "mandatory_benefit_application",
    "fieldtype": "Check",
    "label": "Mandatory Benefit Application"
+  },
+  {
+   "fieldname": "social_security_section",
+   "fieldtype": "Section Break",
+   "label": "Social Security"
+  },
+  {
+   "default": "5",
+   "fieldname": "employee_contribution_percentage",
+   "fieldtype": "Percent",
+   "label": "Employee Contribution Percentage"
+  },
+  {
+   "fieldname": "social_security_column",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "default_employee_salary",
+   "fieldtype": "Currency",
+   "label": "Default Employee Salary"
+  },
+  {
+   "fieldname": "salary_component_settings_section",
+   "fieldtype": "Section Break",
+   "label": "Salary Component Settings"
+  },
+  {
+   "fieldname": "default_salary_component",
+   "fieldtype": "Table",
+   "options": "Payroll Settings Salary Component"
+  },
+  {
+   "fieldname": "salary_settings_section",
+   "fieldtype": "Section Break",
+   "label": "Salary Settings"
+  },
+  {
+   "fieldname": "salary_settings",
+   "fieldtype": "Table",
+   "options": "Payroll Settings Salary"
   }
  ],
  "icon": "fa fa-cog",

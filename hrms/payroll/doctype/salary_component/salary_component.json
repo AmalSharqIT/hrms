@@ -69,7 +69,7 @@
    "fieldtype": "Select",
    "in_standard_filter": 1,
    "label": "Type",
-   "options": "Earning\nDeduction\nEmployer Contribution",
+   "options": "Earning\nDeduction",
    "reqd": 1
   },
   {
