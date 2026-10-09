@@ -200,7 +200,7 @@
  "icon": "presentation",
  "is_submittable": 1,
  "links": [],
- "modified": "2026-10-05 15:00:00.000000",
+ "modified": "2026-10-05",
  "modified_by": "Administrator",
  "module": "HR",
  "name": "Training Event",
@@ -218,15 +218,9 @@
    "print": 1,
    "read": 1,
    "report": 1,
-   "role": "HR Manager",
+   "role": "System Manager",
    "share": 1,
    "submit": 1,
-   "write": 1
-  },
-  {
-   "read": 1,
-   "report": 1,
-   "role": "HR User",
    "write": 1
   }
  ],

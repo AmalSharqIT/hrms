@@ -1,6 +1,6 @@
 def get_data():
 	return {
 		"fieldname": "shift",
-		"non_standard_fieldnames": {"Shift Request": "shift_type", "Shift Assignment": "shift_type"},
-		"transactions": [{"items": ["Attendance", "Employee Checkin", "Shift Request", "Shift Assignment"]}],
+		"non_standard_fieldnames": {"Employee": "default_shift", "Shift Assignment": "shift_type"},
+		"transactions": [{"items": ["Employee", "Attendance", "Employee Checkin", "Shift Assignment"]}],
 	}

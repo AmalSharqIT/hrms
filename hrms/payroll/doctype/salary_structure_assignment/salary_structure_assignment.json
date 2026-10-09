@@ -21,15 +21,21 @@
   "company",
   "payroll_payable_account",
   "currency",
+  "amended_from",
   "section_break_7",
   "base",
-  "annual_gross_earning",
+  "monthly_salary",
+  "hourly_salary",
   "column_break_9",
   "variable",
-  "ctc",
-  "amended_from",
+  "transportation_allowance",
+  "withholding",
   "column_break_kjvm",
+  "ctc",
+  "annual_gross_earning",
   "leave_encashment_amount_per_day",
+  "round_salary",
+  "overtime_ratio",
   "opening_balances_section",
   "taxable_earnings_till_date",
   "column_break_20",
@@ -108,8 +114,7 @@
   },
   {
    "fieldname": "section_break_7",
-   "fieldtype": "Section Break",
-   "label": "Base, Variable & Leave Encashment"
+   "fieldtype": "Section Break"
   },
   {
    "fetch_from": "grade.default_base_pay",
@@ -118,11 +123,13 @@
    "fieldtype": "Currency",
    "label": "Base",
    "non_negative": 1,
-   "options": "currency"
+   "options": "currency",
+   "permlevel": 1
   },
   {
    "fieldname": "annual_gross_earning",
    "fieldtype": "Currency",
+   "hidden": 1,
    "label": "Annual Gross Earning",
    "options": "currency",
    "read_only": 1
@@ -131,6 +138,7 @@
    "allow_on_submit": 1,
    "fieldname": "ctc",
    "fieldtype": "Currency",
+   "hidden": 1,
    "label": "Total Cost To Company (CTC)",
    "read_only": 1
   },
@@ -141,9 +149,11 @@
   {
    "fieldname": "variable",
    "fieldtype": "Currency",
+   "hidden": 1,
    "label": "Variable",
    "non_negative": 1,
-   "options": "currency"
+   "options": "currency",
+   "permlevel": 1
   },
   {
    "fieldname": "amended_from",
@@ -158,6 +168,7 @@
    "depends_on": "salary_structure",
    "fieldname": "income_tax_slab",
    "fieldtype": "Link",
+   "hidden": 1,
    "label": "Income Tax Slab",
    "options": "Income Tax Slab"
   },
@@ -177,7 +188,8 @@
    "fieldname": "payroll_payable_account",
    "fieldtype": "Link",
    "label": "Payroll Payable Account",
-   "options": "Account"
+   "options": "Account",
+   "read_only": 1
   },
   {
    "collapsible": 1,
@@ -211,7 +223,8 @@
    "fieldtype": "Currency",
    "label": "Tax Deducted Till Date",
    "non_negative": 1,
-   "options": "currency"
+   "options": "currency",
+   "print_hide": 1
   },
   {
    "fieldname": "column_break_20",
@@ -223,7 +236,8 @@
    "fieldtype": "Currency",
    "label": "Taxable Earnings Till Date",
    "non_negative": 1,
-   "options": "currency"
+   "options": "currency",
+   "print_hide": 1
   },
   {
    "collapsible_depends_on": "eval:doc.taxable_earnings_till_date && doc.tax_deducted_till_date",
@@ -236,6 +250,7 @@
   {
    "fieldname": "employee_benefits_section",
    "fieldtype": "Section Break",
+   "hidden": 1,
    "label": "Employee Benefits"
   },
   {
@@ -262,33 +277,70 @@
    "fetch_if_empty": 1,
    "fieldname": "leave_encashment_amount_per_day",
    "fieldtype": "Currency",
+   "hidden": 1,
    "label": "Leave Encashment Amount Per Day",
    "non_negative": 1,
-   "options": "currency"
+   "options": "currency",
+   "permlevel": 1
+  },
+  {
+   "fieldname": "monthly_salary",
+   "fieldtype": "Currency",
+   "label": "Monthly Salary",
+   "non_negative": 1,
+   "options": "currency",
+   "permlevel": 1
+  },
+  {
+   "fieldname": "overtime_ratio",
+   "fieldtype": "Float",
+   "label": "Overtime Ratio",
+   "non_negative": 1,
+   "permlevel": 1
+  },
+  {
+   "fieldname": "hourly_salary",
+   "fieldtype": "Currency",
+   "label": "Hourly Salary",
+   "non_negative": 1,
+   "options": "currency",
+   "permlevel": 1
+  },
+  {
+   "fieldname": "withholding",
+   "fieldtype": "Currency",
+   "label": "Withholding",
+   "non_negative": 1,
+   "options": "currency",
+   "permlevel": 1
+  },
+  {
+   "fieldname": "round_salary",
+   "fieldtype": "Currency",
+   "label": "Round Salary",
+   "non_negative": 1,
+   "options": "currency",
+   "permlevel": 1
+  },
+  {
+   "fieldname": "transportation_allowance",
+   "fieldtype": "Currency",
+   "label": "Transportation Allowance",
+   "non_negative": 1,
+   "options": "currency",
+   "permlevel": 1
   }
  ],
  "icon": "user-check",
  "is_submittable": 1,
  "links": [],
- "modified": "2026-10-05 15:00:00.000000",
+ "modified": "2026-10-05",
  "modified_by": "Administrator",
  "module": "Payroll",
  "name": "Salary Structure Assignment",
  "naming_rule": "Expression",
  "owner": "Administrator",
  "permissions": [
-  {
-   "create": 1,
-   "delete": 1,
-   "email": 1,
-   "export": 1,
-   "print": 1,
-   "read": 1,
-   "report": 1,
-   "role": "System Manager",
-   "share": 1,
-   "write": 1
-  },
   {
    "amend": 1,
    "cancel": 1,
@@ -299,27 +351,49 @@
    "print": 1,
    "read": 1,
    "report": 1,
-   "role": "HR Manager",
+   "role": "System Manager",
    "share": 1,
    "submit": 1,
    "write": 1
   },
   {
+   "cancel": 1,
    "create": 1,
-   "email": 1,
-   "export": 1,
    "print": 1,
    "read": 1,
    "report": 1,
-   "role": "HR User",
-   "share": 1,
+   "role": "HR Manager",
    "submit": 1,
    "write": 1
+  },
+  {
+   "permlevel": 1,
+   "read": 1,
+   "role": "HR Manager",
+   "write": 1
+  },
+  {
+   "read": 1,
+   "role": "HR User"
+  },
+  {
+   "permlevel": 9,
+   "read": 1,
+   "role": "HR User"
   },
   {
    "read": 1,
    "role": "Employee",
    "select": 1
+  },
+  {
+   "read": 1,
+   "role": "HR User - Branch"
+  },
+  {
+   "permlevel": 9,
+   "read": 1,
+   "role": "HR User - Branch"
   }
  ],
  "row_format": "Dynamic",

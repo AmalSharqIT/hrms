@@ -42,6 +42,7 @@ frappe.query_reports["Employee Advance Summary"] = {
 				frappe.query_report.set_filter_value("employee", "");
 				report.refresh();
 			},
+			hidden: 1,
 		},
 		{
 			fieldname: "status",
