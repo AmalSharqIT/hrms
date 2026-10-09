@@ -5,6 +5,7 @@
  "autoname": "naming_series:",
  "creation": "2021-12-05 13:56:36.241690",
  "doctype": "DocType",
+ "documentation": "https://docs.frappe.io/hr/exit-interview",
  "editable_grid": 1,
  "email_append_to": 1,
  "engine": "InnoDB",
@@ -216,6 +217,7 @@
    "label": "Interview Summary"
   }
  ],
+ "icon": "door-open",
  "index_web_pages_for_search": 1,
  "is_submittable": 1,
  "links": [],

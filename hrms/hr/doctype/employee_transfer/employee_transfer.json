@@ -3,6 +3,7 @@
  "autoname": "HR-EMP-TRN-.YYYY.-.#####",
  "creation": "2018-04-13 18:20:01.603830",
  "doctype": "DocType",
+ "documentation": "https://docs.frappe.io/hr/employee-transfer",
  "editable_grid": 1,
  "engine": "InnoDB",
  "field_order": [
@@ -111,6 +112,7 @@
    "read_only": 1
   }
  ],
+ "icon": "arrow-right-left",
  "is_submittable": 1,
  "links": [],
  "modified": "2026-10-05",

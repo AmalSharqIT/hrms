@@ -3,6 +3,7 @@
  "autoname": "HR-EMP-SEP-.YYYY.-.#####",
  "creation": "2018-05-10 02:29:16.740490",
  "doctype": "DocType",
+ "documentation": "https://docs.frappe.io/hr/employee-separation",
  "editable_grid": 1,
  "engine": "InnoDB",
  "field_order": [
@@ -153,6 +154,7 @@
    "reqd": 1
   }
  ],
+ "icon": "user-minus",
  "is_submittable": 1,
  "links": [],
  "modified": "2026-10-05",

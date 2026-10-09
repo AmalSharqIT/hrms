@@ -4,6 +4,7 @@
  "autoname": "HR-INCOME-.######",
  "creation": "2020-03-18 15:04:40.767434",
  "doctype": "DocType",
+ "documentation": "https://docs.frappe.io/hr/employee-other-income",
  "editable_grid": 1,
  "engine": "InnoDB",
  "field_order": [
@@ -61,6 +62,7 @@
    "fieldtype": "Currency",
    "in_list_view": 1,
    "label": "Amount",
+   "non_negative": 1,
    "options": "Company:company:default_currency",
    "reqd": 1
   },
@@ -95,6 +97,7 @@
    "fieldtype": "Column Break"
   }
  ],
+ "icon": "coins",
  "is_submittable": 1,
  "links": [],
  "modified": "2026-10-05",

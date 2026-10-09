@@ -5,6 +5,7 @@
  "autoname": "field:interview_type_name",
  "creation": "2021-04-12 12:57:19.902866",
  "doctype": "DocType",
+ "documentation": "https://docs.frappe.io/hr/interview-type",
  "editable_grid": 1,
  "engine": "InnoDB",
  "field_order": [
@@ -67,6 +68,7 @@
    "unique": 1
   }
  ],
+ "icon": "tag",
  "index_web_pages_for_search": 1,
  "links": [],
  "modified": "2026-10-05",

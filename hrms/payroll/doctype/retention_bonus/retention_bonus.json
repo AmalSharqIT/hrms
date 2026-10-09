@@ -5,6 +5,7 @@
  "autoname": "HR-RTB-.YYYY.-.#####",
  "creation": "2018-05-13 14:59:42.038964",
  "doctype": "DocType",
+ "documentation": "https://docs.frappe.io/hr/retention-bonus",
  "editable_grid": 1,
  "engine": "InnoDB",
  "field_order": [
@@ -50,6 +51,7 @@
    "fieldname": "bonus_amount",
    "fieldtype": "Currency",
    "label": "Bonus Amount",
+   "non_negative": 1,
    "options": "currency",
    "reqd": 1
   },
@@ -120,6 +122,7 @@
    "label": "Bonus"
   }
  ],
+ "icon": "gem",
  "is_submittable": 1,
  "links": [],
  "modified": "2026-10-05",

@@ -4,6 +4,7 @@
  "autoname": "HR-INT-FEED-.####",
  "creation": "2021-04-12 17:03:13.833285",
  "doctype": "DocType",
+ "documentation": "https://docs.frappe.io/hr/interview-feedback",
  "editable_grid": 1,
  "engine": "InnoDB",
  "field_order": [
@@ -121,6 +122,7 @@
    "reqd": 1
   }
  ],
+ "icon": "message-square-text",
  "index_web_pages_for_search": 1,
  "is_submittable": 1,
  "links": [],

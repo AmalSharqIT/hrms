@@ -5,6 +5,7 @@
  "autoname": "field:expense_type",
  "creation": "2012-03-27 14:35:55",
  "doctype": "DocType",
+ "documentation": "https://docs.frappe.io/hr/expense-claim",
  "document_type": "Setup",
  "engine": "InnoDB",
  "field_order": [
@@ -45,7 +46,7 @@
    "label": "Deferred Expense Account"
   }
  ],
- "icon": "fa fa-flag",
+ "icon": "tag",
  "idx": 1,
  "links": [],
  "modified": "2026-10-05",

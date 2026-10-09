@@ -5,6 +5,7 @@
  "autoname": "HR-OT-SLIP-.#####",
  "creation": "2024-10-15 16:19:55.229439",
  "doctype": "DocType",
+ "documentation": "https://docs.frappe.io/hr/overtime",
  "engine": "InnoDB",
  "field_order": [
   "section_break_wdfp",
@@ -144,6 +145,7 @@
    "label": "Submitted via Payroll Entry"
   }
  ],
+ "icon": "timer",
  "index_web_pages_for_search": 1,
  "is_submittable": 1,
  "links": [

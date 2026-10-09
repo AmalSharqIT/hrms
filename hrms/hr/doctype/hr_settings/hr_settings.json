@@ -2,6 +2,7 @@
  "actions": [],
  "creation": "2013-08-02 13:45:23",
  "doctype": "DocType",
+ "documentation": "https://docs.frappe.io/hr/hr-settings",
  "document_type": "Other",
  "editable_grid": 1,
  "engine": "InnoDB",
@@ -93,13 +94,13 @@
    "fieldtype": "Column Break"
   },
   {
-   "default": "1",
+   "default": "0",
    "fieldname": "expense_approver_mandatory_in_expense_claim",
    "fieldtype": "Check",
    "label": "Expense Approver Mandatory In Expense Claim"
   },
   {
-   "default": "1",
+   "default": "0",
    "fieldname": "leave_approver_mandatory_in_leave_application",
    "fieldtype": "Check",
    "label": "Leave Approver Mandatory In Leave Application"
@@ -149,7 +150,8 @@
   {
    "fieldname": "standard_working_hours",
    "fieldtype": "Float",
-   "label": "Standard Working Hours"
+   "label": "Standard Working Hours",
+   "non_negative": 1
   },
   {
    "default": "00:15:00",
@@ -468,7 +470,7 @@
    "options": "HR Settings Loan Amounts"
   }
  ],
- "icon": "fa fa-cog",
+ "icon": "settings",
  "idx": 1,
  "issingle": 1,
  "links": [],

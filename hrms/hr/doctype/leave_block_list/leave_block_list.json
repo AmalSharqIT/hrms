@@ -5,6 +5,7 @@
  "creation": "2013-02-18 17:43:12",
  "description": "Block Holidays on important days.",
  "doctype": "DocType",
+ "documentation": "https://docs.frappe.io/hr/leave-block-list",
  "document_type": "Setup",
  "engine": "InnoDB",
  "field_order": [
@@ -86,7 +87,7 @@
    "label": "Add Day-wise Dates"
   }
  ],
- "icon": "fa fa-calendar",
+ "icon": "calendar-x",
  "idx": 1,
  "links": [],
  "modified": "2026-10-05",

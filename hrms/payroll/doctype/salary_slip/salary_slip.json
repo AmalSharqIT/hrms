@@ -3,6 +3,7 @@
  "allow_import": 1,
  "creation": "2013-01-10 16:34:15",
  "doctype": "DocType",
+ "documentation": "https://docs.frappe.io/hr/salary-slip",
  "document_type": "Setup",
  "engine": "InnoDB",
  "field_order": [
@@ -862,7 +863,7 @@
    "read_only": 1
   }
  ],
- "icon": "fa fa-file-text",
+ "icon": "receipt-text",
  "idx": 9,
  "is_submittable": 1,
  "links": [],

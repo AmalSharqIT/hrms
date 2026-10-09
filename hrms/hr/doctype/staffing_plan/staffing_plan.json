@@ -4,6 +4,7 @@
  "autoname": "prompt",
  "creation": "2018-04-13 18:07:21.582747",
  "doctype": "DocType",
+ "documentation": "https://docs.frappe.io/hr/staffing-plan",
  "editable_grid": 1,
  "engine": "InnoDB",
  "field_order": [
@@ -89,6 +90,7 @@
    "label": "Get Job Requisitions"
   }
  ],
+ "icon": "users",
  "is_submittable": 1,
  "links": [],
  "modified": "2026-10-05",

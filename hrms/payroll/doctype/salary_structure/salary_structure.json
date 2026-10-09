@@ -5,6 +5,7 @@
  "autoname": "Prompt",
  "creation": "2013-03-07 18:50:29",
  "doctype": "DocType",
+ "documentation": "https://docs.frappe.io/hr/salary-structure",
  "document_type": "Document",
  "engine": "InnoDB",
  "field_order": [
@@ -124,6 +125,7 @@
    "fieldname": "hour_rate",
    "fieldtype": "Currency",
    "label": "Hour Rate",
+   "non_negative": 1,
    "options": "currency"
   },
   {
@@ -132,6 +134,7 @@
    "fieldtype": "Currency",
    "hidden": 1,
    "label": "Leave Encashment Amount Per Day",
+   "non_negative": 1,
    "options": "currency"
   },
   {
@@ -139,6 +142,7 @@
    "fieldtype": "Currency",
    "hidden": 1,
    "label": "Max Benefits (Amount)",
+   "non_negative": 1,
    "options": "currency"
   },
   {
@@ -261,7 +265,7 @@
    "fieldtype": "Column Break"
   }
  ],
- "icon": "fa fa-file-text",
+ "icon": "layout-list",
  "idx": 1,
  "is_submittable": 1,
  "links": [],

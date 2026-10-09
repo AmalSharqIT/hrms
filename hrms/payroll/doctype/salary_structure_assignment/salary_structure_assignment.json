@@ -4,6 +4,7 @@
  "autoname": "HR-SSA-.YY.-.MM.-.#####",
  "creation": "2018-04-13 16:38:41.769237",
  "doctype": "DocType",
+ "documentation": "https://docs.frappe.io/hr/salary-structure-assignment",
  "editable_grid": 1,
  "engine": "InnoDB",
  "field_order": [
@@ -150,6 +151,7 @@
    "fieldtype": "Currency",
    "hidden": 1,
    "label": "Variable",
+   "non_negative": 1,
    "options": "currency",
    "permlevel": 1
   },
@@ -220,6 +222,7 @@
    "fieldname": "tax_deducted_till_date",
    "fieldtype": "Currency",
    "label": "Tax Deducted Till Date",
+   "non_negative": 1,
    "options": "currency",
    "print_hide": 1
   },
@@ -232,6 +235,7 @@
    "fieldname": "taxable_earnings_till_date",
    "fieldtype": "Currency",
    "label": "Taxable Earnings Till Date",
+   "non_negative": 1,
    "options": "currency",
    "print_hide": 1
   },
@@ -261,6 +265,7 @@
    "fieldname": "max_benefits",
    "fieldtype": "Currency",
    "label": "Maximum Benefit Amount",
+   "non_negative": 1,
    "options": "currency"
   },
   {
@@ -274,6 +279,7 @@
    "fieldtype": "Currency",
    "hidden": 1,
    "label": "Leave Encashment Amount Per Day",
+   "non_negative": 1,
    "options": "currency",
    "permlevel": 1
   },
@@ -325,6 +331,7 @@
    "permlevel": 1
   }
  ],
+ "icon": "user-check",
  "is_submittable": 1,
  "links": [],
  "modified": "2026-10-05",

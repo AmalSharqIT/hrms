@@ -5,6 +5,7 @@
  "autoname": "field:location_name",
  "creation": "2024-07-04 12:12:26.894513",
  "doctype": "DocType",
+ "documentation": "https://docs.frappe.io/hr/shift-location",
  "engine": "InnoDB",
  "field_order": [
   "location_name",
@@ -29,7 +30,8 @@
    "description": "Radius within which check-in is allowed (in meters)",
    "fieldname": "checkin_radius",
    "fieldtype": "Int",
-   "label": "Checkin Radius"
+   "label": "Checkin Radius",
+   "non_negative": 1
   },
   {
    "fieldname": "column_break_dlgd",
@@ -60,6 +62,7 @@
    "label": "Fetch Geolocation"
   }
  ],
+ "icon": "map-pin",
  "links": [
   {
    "link_doctype": "Shift Assignment",
