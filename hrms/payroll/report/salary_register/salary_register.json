@@ -8,7 +8,7 @@
  "documentation_url": "https://docs.frappe.io/hr/human-resources-reports#2-salary-register",
  "idx": 2,
  "is_standard": "Yes",
- "modified": "2026-10-05 14:00:00.000000",
+ "modified": "2026-10-05",
  "modified_by": "Administrator",
  "module": "Payroll",
  "name": "Salary Register",
