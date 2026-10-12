@@ -38,6 +38,13 @@ frappe.query_reports["Shift Attendance"] = {
 			options: "Branch",
 		},
 		{
+			fieldname: "employment_type",
+			label: __("Employment Type"),
+			fieldtype: "Link",
+			options: "Employment Type",
+			hidden: !frappe.model.can_read("Employment Type"),
+		},
+		{
 			fieldname: "shift",
 			label: __("Shift Type"),
 			fieldtype: "Link",

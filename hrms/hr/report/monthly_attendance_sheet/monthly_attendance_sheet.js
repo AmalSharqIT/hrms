@@ -85,6 +85,12 @@ frappe.query_reports["Monthly Attendance Sheet"] = {
 			default: frappe.boot.user.roles.includes("HR User") ? "" : frappe.boot.user.employee,
 		},
 		{
+			fieldname: "employment_type",
+			label: __("Employment Type"),
+			fieldtype: "Link",
+			options: "Employment Type",
+		},
+		{
 			fieldname: "status",
 			label: __("Status"),
 			fieldtype: "Select",
