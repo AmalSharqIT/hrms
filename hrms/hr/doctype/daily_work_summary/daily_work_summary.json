@@ -37,25 +37,17 @@
  ],
  "in_create": 1,
  "links": [],
- "modified": "2026-09-01 18:39:51.520758",
+ "modified": "2026-09-01",
  "modified_by": "Administrator",
  "module": "HR",
  "name": "Daily Work Summary",
  "owner": "Administrator",
  "permissions": [
   {
-   "read": 1,
-   "role": "Employee"
-  },
-  {
-   "read": 1,
-   "role": "HR User"
-  },
-  {
    "delete": 1,
    "read": 1,
    "report": 1,
-   "role": "HR Manager"
+   "role": "System Manager"
   }
  ],
  "quick_entry": 1,
