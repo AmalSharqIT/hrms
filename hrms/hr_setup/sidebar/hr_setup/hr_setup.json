@@ -133,6 +133,36 @@
    "type": "Link"
   },
   {
+   "added": 0,
+   "child": 1,
+   "collapsible": 1,
+   "hidden": 0,
+   "indent": 0,
+   "is_default_module": 0,
+   "keep_closed": 0,
+   "label": "Nationality",
+   "link_to": "Nationality",
+   "link_type": "DocType",
+   "open_in_new_tab": 1,
+   "show_arrow": 0,
+   "type": "Link"
+  },
+  {
+   "added": 0,
+   "child": 1,
+   "collapsible": 1,
+   "hidden": 0,
+   "indent": 0,
+   "is_default_module": 0,
+   "keep_closed": 0,
+   "label": "Social Security Location",
+   "link_to": "Social Security Location",
+   "link_type": "DocType",
+   "open_in_new_tab": 1,
+   "show_arrow": 0,
+   "type": "Link"
+  },
+  {
    "child": 0,
    "collapsible": 1,
    "icon": "settings",
@@ -148,7 +178,7 @@
    "url": "/desk/hr-settings#employee_tab"
   }
  ],
- "modified": "2026-10-05 12:00:00.000000",
+ "modified": "2026-10-18",
  "modified_by": "Administrator",
  "module": "HR Setup",
  "name": "HR Setup",
