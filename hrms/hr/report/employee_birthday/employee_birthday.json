@@ -8,7 +8,7 @@
  "documentation_url": "https://docs.frappe.io/hr/human-resources-reports#7-employee-birthday", 
  "idx": 3, 
  "is_standard": "Yes", 
- "modified": "2026-10-05 14:00:00.000000", 
+ "modified": "2026-10-05", 
  "modified_by": "Administrator", 
  "module": "HR", 
  "name": "Employee Birthday", 
@@ -18,13 +18,7 @@
  "report_type": "Script Report", 
  "roles": [
   {
-   "role": "Employee"
-  }, 
-  {
-   "role": "HR User"
-  }, 
-  {
-   "role": "HR Manager"
+   "role": "System Manager"
   }
  ]
 }
