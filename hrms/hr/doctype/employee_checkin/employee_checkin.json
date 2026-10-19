@@ -274,9 +274,8 @@
   }
  ],
  "icon": "fingerprint-pattern",
- "in_create": 1,
  "links": [],
- "modified": "2026-10-05",
+ "modified": "2026-10-19",
  "modified_by": "Administrator",
  "module": "HR",
  "name": "Employee Checkin",
