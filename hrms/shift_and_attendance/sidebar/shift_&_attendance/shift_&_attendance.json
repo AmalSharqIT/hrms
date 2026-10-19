@@ -50,6 +50,7 @@
    "label": "Roster",
    "link_type": "URL",
    "open_in_new_tab": 0,
+   "roles": "System Manager",
    "show_arrow": 0,
    "type": "Link",
    "url": "/hr/roster"
@@ -316,6 +317,7 @@
    "link_to": "Shift Type",
    "link_type": "DocType",
    "open_in_new_tab": 0,
+   "roles": "System Manager\nHR User\nHR User - Branch",
    "show_arrow": 0,
    "type": "Link"
   },
@@ -551,11 +553,12 @@
    "link_type": "DocType",
    "navigate_to_tab": "shift_and_attendance_tab",
    "open_in_new_tab": 0,
+   "roles": "System Manager",
    "show_arrow": 0,
    "type": "Link"
   }
  ],
- "modified": "2026-10-18",
+ "modified": "2026-10-19",
  "modified_by": "Administrator",
  "module": "Shift and Attendance",
  "name": "Shift & Attendance",

@@ -445,11 +445,12 @@
    "link_type": "DocType",
    "navigate_to_tab": "expenses_tab",
    "open_in_new_tab": 0,
+   "roles": "System Manager",
    "show_arrow": 0,
    "type": "Link"
   }
  ],
- "modified": "2026-10-18",
+ "modified": "2026-10-19",
  "modified_by": "Administrator",
  "module": "Expenses",
  "name": "Expenses",

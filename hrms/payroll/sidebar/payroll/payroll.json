@@ -67,6 +67,7 @@
    "link_to": "Salary Structure Assignment",
    "link_type": "DocType",
    "open_in_new_tab": 1,
+   "roles": "HR Manager",
    "show_arrow": 0,
    "type": "Link"
   },
@@ -331,6 +332,7 @@
    "link_to": "Salary Component",
    "link_type": "DocType",
    "open_in_new_tab": 1,
+   "roles": "HR Manager",
    "show_arrow": 0,
    "type": "Link"
   },
@@ -363,11 +365,12 @@
    "link_to": "Payroll Settings",
    "link_type": "DocType",
    "open_in_new_tab": 1,
+   "roles": "System Manager",
    "show_arrow": 0,
    "type": "Link"
   }
  ],
- "modified": "2026-10-18",
+ "modified": "2026-10-19",
  "modified_by": "Administrator",
  "module": "Payroll",
  "name": "Payroll",
