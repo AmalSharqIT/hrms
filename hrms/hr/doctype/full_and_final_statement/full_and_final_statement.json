@@ -9,6 +9,7 @@
  "field_order": [
   "employee",
   "employee_name",
+  "currency",
   "transaction_date",
   "column_break_12",
   "company",
@@ -20,6 +21,8 @@
   "column_break_4",
   "designation",
   "department",
+  "exit_formalities_checklist_section",
+  "checklist",
   "section_break_8",
   "payables",
   "section_break_10",
@@ -29,6 +32,7 @@
   "total_asset_recovery_cost",
   "totals_section",
   "total_payable_amount",
+  "employee_balance",
   "column_break_21",
   "total_receivable_amount"
  ],
@@ -166,6 +170,7 @@
    "fieldtype": "Currency",
    "in_list_view": 1,
    "label": "Total Payable Amount",
+   "options": "currency",
    "read_only": 1
   },
   {
@@ -177,12 +182,37 @@
    "fieldtype": "Currency",
    "in_list_view": 1,
    "label": "Total Receivable Amount",
+   "options": "currency",
    "read_only": 1
   },
   {
    "fieldname": "total_asset_recovery_cost",
    "fieldtype": "Currency",
    "label": "Total Asset Recovery Cost",
+   "read_only": 1
+  },
+  {
+   "fieldname": "currency",
+   "fieldtype": "Link",
+   "label": "Currency",
+   "options": "Currency",
+   "read_only": 1
+  },
+  {
+   "fieldname": "exit_formalities_checklist_section",
+   "fieldtype": "Section Break",
+   "label": "Exit Formalities Checklist"
+  },
+  {
+   "fieldname": "checklist",
+   "fieldtype": "Table",
+   "options": "Full and Final Statement Checklist"
+  },
+  {
+   "fieldname": "employee_balance",
+   "fieldtype": "Currency",
+   "label": "Employee Balance",
+   "options": "currency",
    "read_only": 1
   }
  ],
@@ -198,37 +228,13 @@
    "table_fieldname": "accounts"
   }
  ],
- "modified": "2026-10-05 15:00:00.000000",
+ "modified": "2026-10-05",
  "modified_by": "Administrator",
  "module": "HR",
  "name": "Full and Final Statement",
  "naming_rule": "Expression (old style)",
  "owner": "Administrator",
  "permissions": [
-  {
-   "create": 1,
-   "delete": 1,
-   "email": 1,
-   "export": 1,
-   "print": 1,
-   "read": 1,
-   "report": 1,
-   "role": "System Manager",
-   "share": 1,
-   "write": 1
-  },
-  {
-   "create": 1,
-   "delete": 1,
-   "email": 1,
-   "export": 1,
-   "print": 1,
-   "read": 1,
-   "report": 1,
-   "role": "HR User",
-   "share": 1,
-   "write": 1
-  },
   {
    "cancel": 1,
    "create": 1,
@@ -238,8 +244,15 @@
    "print": 1,
    "read": 1,
    "report": 1,
-   "role": "HR Manager",
+   "role": "System Manager",
    "share": 1,
+   "submit": 1,
+   "write": 1
+  },
+  {
+   "create": 1,
+   "read": 1,
+   "role": "HR Manager",
    "submit": 1,
    "write": 1
   }

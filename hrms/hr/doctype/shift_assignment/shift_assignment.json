@@ -32,6 +32,7 @@
    "fieldtype": "Link",
    "in_standard_filter": 1,
    "label": "Employee",
+   "link_filters": "[[\"Employee\",\"status\",\"=\",\"Active\"]]",
    "options": "Employee",
    "reqd": 1,
    "search_index": 1
@@ -142,6 +143,7 @@
    "fetch_if_empty": 1,
    "fieldname": "overtime_type",
    "fieldtype": "Link",
+   "hidden": 1,
    "label": "Overtime Type",
    "options": "Overtime Type"
   }
@@ -149,22 +151,13 @@
  "icon": "user-check",
  "is_submittable": 1,
  "links": [],
- "modified": "2026-10-05 15:00:00.000000",
+ "modified": "2026-10-05",
  "modified_by": "Administrator",
  "module": "HR",
  "name": "Shift Assignment",
  "naming_rule": "Expression (old style)",
  "owner": "Administrator",
  "permissions": [
-  {
-   "email": 1,
-   "export": 1,
-   "print": 1,
-   "read": 1,
-   "report": 1,
-   "role": "Employee",
-   "share": 1
-  },
   {
    "amend": 1,
    "cancel": 1,
@@ -175,20 +168,23 @@
    "print": 1,
    "read": 1,
    "report": 1,
-   "role": "HR Manager",
+   "role": "System Manager",
    "share": 1,
    "submit": 1,
    "write": 1
   },
   {
    "create": 1,
-   "email": 1,
-   "export": 1,
-   "print": 1,
    "read": 1,
-   "report": 1,
    "role": "HR User",
-   "share": 1,
+   "submit": 1,
+   "write": 1
+  },
+  {
+   "cancel": 1,
+   "create": 1,
+   "read": 1,
+   "role": "HR Manager",
    "submit": 1,
    "write": 1
   }

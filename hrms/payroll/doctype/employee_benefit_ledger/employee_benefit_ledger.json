@@ -140,7 +140,7 @@
  "icon": "book-open",
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2026-10-05 15:00:00.000000",
+ "modified": "2026-10-05",
  "modified_by": "Administrator",
  "module": "Payroll",
  "name": "Employee Benefit Ledger",
@@ -161,31 +161,8 @@
    "print": 1,
    "read": 1,
    "report": 1,
-   "role": "Employee",
-   "share": 1
-  },
-  {
-   "email": 1,
-   "export": 1,
-   "print": 1,
-   "read": 1,
-   "report": 1,
-   "role": "HR Manager",
-   "share": 1
-  },
-  {
-   "email": 1,
-   "export": 1,
-   "print": 1,
-   "read": 1,
-   "report": 1,
    "role": "Administrator",
    "share": 1
-  },
-  {
-   "read": 1,
-   "report": 1,
-   "role": "HR User"
   }
  ],
  "row_format": "Dynamic",

@@ -43,6 +43,7 @@
    "label": "Reference Document",
    "mandatory_depends_on": "reference_document_type",
    "options": "reference_document_type",
+   "read_only": 1,
    "search_index": 1
   },
   {
@@ -51,6 +52,7 @@
    "fieldtype": "Data",
    "in_list_view": 1,
    "label": "Component",
+   "read_only": 1,
    "reqd": 1
   },
   {
@@ -59,7 +61,8 @@
    "fieldtype": "Link",
    "in_list_view": 1,
    "label": "Account",
-   "options": "Account"
+   "options": "Account",
+   "read_only": 1
   },
   {
    "columns": 2,
@@ -67,7 +70,9 @@
    "fieldtype": "Currency",
    "in_list_view": 1,
    "label": "Amount",
-   "non_negative": 1
+   "non_negative": 1,
+   "options": "currency",
+   "read_only": 1
   },
   {
    "columns": 2,
@@ -75,19 +80,21 @@
    "fieldtype": "Link",
    "in_list_view": 1,
    "label": "Reference Document Type",
-   "options": "DocType"
+   "options": "DocType",
+   "read_only": 1
   },
   {
    "default": "0",
    "fieldname": "paid_via_salary_slip",
    "fieldtype": "Check",
+   "hidden": 1,
    "label": "Paid via Salary Slip"
   }
  ],
  "index_web_pages_for_search": 1,
  "istable": 1,
  "links": [],
- "modified": "2026-08-06 13:01:43.187327",
+ "modified": "2026-08-06",
  "modified_by": "Administrator",
  "module": "HR",
  "name": "Full and Final Outstanding Statement",

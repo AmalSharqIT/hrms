@@ -15,7 +15,7 @@
  "is_public": 1,
  "is_standard": 1,
  "last_synced_on": "2026-04-16 17:14:16.020107",
- "modified": "2026-04-16 17:18:58.677457",
+ "modified": "2026-10-19",
  "modified_by": "Administrator",
  "module": "HR",
  "name": "Timesheet Activity Breakup",
@@ -25,15 +25,6 @@
  "roles": [
   {
    "role": "System Manager"
-  },
-  {
-   "role": "HR Manager"
-  },
-  {
-   "role": "HR User"
-  },
-  {
-   "role": "Employee"
   }
  ],
  "show_values_over_chart": 0,
