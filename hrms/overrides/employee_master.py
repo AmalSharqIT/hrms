@@ -188,6 +188,7 @@ def get_assignable_masters(company: str) -> dict[str, bool]:
 	masters = {
 		"Leave Policy": {"docstatus": 1},
 		"Salary Structure": {"docstatus": 1, "is_active": "Yes", "company": company},
+		"Shift Schedule": {"docstatus": 1},
 	}
 
 	return {
