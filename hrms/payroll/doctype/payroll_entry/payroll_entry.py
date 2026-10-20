@@ -1838,6 +1838,7 @@ def submit_salary_slips_for_employees(payroll_entry, salary_slips, publish_progr
 		unsubmitted = []
 		frappe.flags.via_payroll_entry = True
 		count = 0
+		savepoint = "before_salary_slip_submission"
 
 		for entry in salary_slips:
 			salary_slip = frappe.get_doc("Salary Slip", entry[0])
