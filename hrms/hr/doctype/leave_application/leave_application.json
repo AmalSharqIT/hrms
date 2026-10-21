@@ -256,7 +256,7 @@
  "is_submittable": 1,
  "links": [],
  "max_attachments": 3,
- "modified": "2026-10-05 15:00:00.000000",
+ "modified": "2026-10-05",
  "modified_by": "Administrator",
  "module": "HR",
  "name": "Leave Application",
@@ -265,13 +265,14 @@
  "permissions": [
   {
    "create": 1,
-   "email": 1,
-   "print": 1,
    "read": 1,
-   "report": 1,
    "role": "Employee",
-   "share": 1,
    "write": 1
+  },
+  {
+   "permlevel": 1,
+   "read": 1,
+   "role": "Employee"
   },
   {
    "amend": 1,
@@ -283,39 +284,22 @@
    "print": 1,
    "read": 1,
    "report": 1,
-   "role": "HR Manager",
+   "role": "System Manager",
    "share": 1,
    "submit": 1,
    "write": 1
   },
   {
-   "permlevel": 1,
-   "read": 1,
-   "role": "All"
-  },
-  {
-   "amend": 1,
    "cancel": 1,
    "create": 1,
-   "delete": 1,
-   "email": 1,
-   "print": 1,
    "read": 1,
-   "report": 1,
    "role": "HR User",
-   "share": 1,
    "submit": 1,
    "write": 1
   },
   {
-   "cancel": 1,
-   "delete": 1,
-   "email": 1,
-   "print": 1,
    "read": 1,
-   "report": 1,
    "role": "Leave Approver",
-   "share": 1,
    "submit": 1,
    "write": 1
   },
@@ -340,7 +324,7 @@
    "print": 1,
    "read": 1,
    "report": 1,
-   "role": "HR Manager",
+   "role": "System Manager",
    "share": 1,
    "write": 1
   }
