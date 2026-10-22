@@ -8,7 +8,7 @@
  "documentation_url": "https://docs.frappe.io/hr/human-resources-reports#3-monthly-attendance-sheet", 
  "idx": 3, 
  "is_standard": "Yes", 
- "modified": "2026-10-05 14:00:00.000000", 
+ "modified": "2026-10-05", 
  "modified_by": "Administrator", 
  "module": "HR", 
  "name": "Monthly Attendance Sheet", 
@@ -25,6 +25,9 @@
   }, 
   {
    "role": "HR Manager"
+  },
+  {
+   "role": "Employee"
   }
  ]
 }
