@@ -69,7 +69,7 @@
    "reqd": 1
   },
   {
-   "default": "1",
+   "default": "0",
    "fieldname": "overwrite_salary_structure_amount",
    "fieldtype": "Check",
    "label": "Overwrite Salary Structure Amount"
@@ -78,6 +78,7 @@
    "default": "0",
    "fieldname": "deduct_full_tax_on_selected_payroll_date",
    "fieldtype": "Check",
+   "hidden": 1,
    "label": "Deduct Full Tax on Selected Payroll Date"
   },
   {
