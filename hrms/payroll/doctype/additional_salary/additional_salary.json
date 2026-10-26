@@ -34,6 +34,7 @@
  ],
  "fields": [
   {
+   "depends_on": "false",
    "fieldname": "naming_series",
    "fieldtype": "Select",
    "label": "Series",
