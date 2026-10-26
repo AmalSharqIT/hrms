@@ -34,6 +34,7 @@
  ],
  "fields": [
   {
+   "depends_on": "false",
    "fieldname": "naming_series",
    "fieldtype": "Select",
    "label": "Series",
@@ -72,6 +73,7 @@
    "default": "0",
    "fieldname": "overwrite_salary_structure_amount",
    "fieldtype": "Check",
+   "hidden": 1,
    "label": "Overwrite Salary Structure Amount"
   },
   {
@@ -138,6 +140,7 @@
    "default": "0",
    "fieldname": "is_recurring",
    "fieldtype": "Check",
+   "hidden": 1,
    "label": "Is Recurring"
   },
   {
@@ -206,7 +209,7 @@
  "icon": "circle-plus",
  "is_submittable": 1,
  "links": [],
- "modified": "2026-10-05",
+ "modified": "2026-10-26",
  "modified_by": "Administrator",
  "module": "Payroll",
  "name": "Additional Salary",
