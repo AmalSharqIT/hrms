@@ -167,10 +167,6 @@ frappe.ui.form.on("Payroll Entry", {
 			(frm.doc.__onload && frm.doc.__onload.submitted_ss)
 		) {
 			frm.events.add_bank_entry_button(frm);
-		} else if (frm.doc.salary_slips_created && frm.doc.status !== "Queued") {
-			frm.add_custom_button(__("Submit Salary Slip"), function () {
-				submit_salary_slip(frm);
-			}).addClass("btn-primary");
 		} else if (!frm.doc.salary_slips_created && frm.doc.status === "Failed") {
 			frm.add_custom_button(__("Create Salary Slips"), function () {
 				frm.trigger("create_salary_slip");
@@ -323,6 +319,14 @@ frappe.ui.form.on("Payroll Entry", {
 				frm.set_df_property("exchange_rate", "description", "");
 			}
 		}
+		erpriva.get_account_by_currency(
+			frm.doc.company,
+			frm.doc.currency,
+			"default_payroll_payable_account",
+			(r) => {
+				frm.set_value("payroll_payable_account", r);
+			}
+		);
 	},
 
 	department: function (frm) {
