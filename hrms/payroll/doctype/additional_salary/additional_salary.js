@@ -13,7 +13,7 @@ frappe.ui.form.on("Additional Salary", {
 			return {
 				filters: {
 					company: frm.doc.company,
-					status: ["!=", "Inactive"],
+					status: ["=", "Active"],
 				},
 			};
 		});
