@@ -235,7 +235,7 @@
    "in_standard_filter": 1,
    "label": "Status",
    "no_copy": 1,
-   "options": "\nValid\nInvalid\nManual\nCorrected\nCheckin Request\nInitial Approved\nCanceled",
+   "options": "\nValid\nInvalid\nManual\nCorrected\nCheckin Request\nInitial Approved\nCancelled",
    "read_only": 1
   },
   {
@@ -275,7 +275,7 @@
  ],
  "icon": "fingerprint-pattern",
  "links": [],
- "modified": "2026-10-19",
+ "modified": "2026-10-31",
  "modified_by": "Administrator",
  "module": "HR",
  "name": "Employee Checkin",
