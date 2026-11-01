@@ -21,7 +21,7 @@
   "show_leave_balances_in_salary_slip",
   "social_security_section",
   "employee_contribution_percentage",
-  "number_permitted_absences",
+  "allowed_absence_days",
   "social_security_column",
   "default_employee_salary",
   "email_section",
@@ -250,9 +250,9 @@
    "options": "Payroll Settings Salary"
   },
   {
-   "fieldname": "number_permitted_absences",
+   "fieldname": "allowed_absence_days",
    "fieldtype": "Int",
-   "label": "Number Permitted Absences",
+   "label": "Allowed Absence Days",
    "non_negative": 1
   }
  ],
