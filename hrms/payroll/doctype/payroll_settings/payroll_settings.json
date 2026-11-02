@@ -21,6 +21,7 @@
   "show_leave_balances_in_salary_slip",
   "social_security_section",
   "employee_contribution_percentage",
+  "allowed_absence_days",
   "social_security_column",
   "default_employee_salary",
   "email_section",
@@ -247,13 +248,19 @@
    "fieldname": "salary_settings",
    "fieldtype": "Table",
    "options": "Payroll Settings Salary"
+  },
+  {
+   "fieldname": "allowed_absence_days",
+   "fieldtype": "Int",
+   "label": "Allowed Absence Days",
+   "non_negative": 1
   }
  ],
  "icon": "settings",
  "index_web_pages_for_search": 1,
  "issingle": 1,
  "links": [],
- "modified": "2026-10-05",
+ "modified": "2026-11-01",
  "modified_by": "Administrator",
  "module": "Payroll",
  "name": "Payroll Settings",
