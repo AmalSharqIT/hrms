@@ -51,7 +51,7 @@
    "default": "0",
    "fieldname": "read",
    "fieldtype": "Check",
-   "label": "Read"
+   "label": "Seen"
   },
   {
    "fieldname": "section_break_xdby",
