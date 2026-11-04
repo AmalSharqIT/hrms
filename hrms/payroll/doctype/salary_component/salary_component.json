@@ -70,7 +70,7 @@
    "fieldtype": "Select",
    "in_standard_filter": 1,
    "label": "Type",
-   "options": "Earning\nDeduction\nEmployer Contribution",
+   "options": "Earning\nDeduction",
    "reqd": 1
   },
   {
@@ -298,7 +298,7 @@
  "icon": "puzzle",
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2026-10-05 15:00:00.000000",
+ "modified": "2026-10-05",
  "modified_by": "Administrator",
  "module": "Payroll",
  "name": "Salary Component",
@@ -306,19 +306,8 @@
  "owner": "Administrator",
  "permissions": [
   {
-   "create": 1,
-   "email": 1,
-   "export": 1,
-   "print": 1,
    "read": 1,
-   "report": 1,
-   "role": "HR User",
-   "share": 1,
-   "write": 1
-  },
-  {
-   "read": 1,
-   "role": "Employee"
+   "role": "HR User"
   },
   {
    "create": 1,
@@ -328,7 +317,7 @@
    "print": 1,
    "read": 1,
    "report": 1,
-   "role": "HR Manager",
+   "role": "System Manager",
    "share": 1,
    "write": 1
   }
