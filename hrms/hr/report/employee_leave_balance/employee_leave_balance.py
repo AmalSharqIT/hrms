@@ -48,8 +48,14 @@ def get_columns() -> list[dict]:
 			"label": _("Employee Name"),
 			"fieldtype": "Dynamic Link",
 			"fieldname": "employee_name",
-			"width": 100,
+			"width": 200,
 			"options": "employee",
+		},
+		{
+			"label": _("Branch"),
+			"fieldtype": "Link",
+			"fieldname": "branch",
+			"options": "Branch",
 		},
 		{
 			"label": _("Opening Balance"),
@@ -106,6 +112,7 @@ def get_data(filters: Filters) -> list:
 				continue
 
 			row = frappe._dict() if consolidate_leave_types else frappe._dict({"leave_type": leave_type})
+			row.branch = employee.branch
 			row.update(employee=employee.name, employee_name=employee.employee_name, **balance, indent=1)
 			rows.append(row)
 
@@ -173,7 +180,7 @@ def get_leave_types() -> list[str]:
 def get_employees(filters: Filters) -> list[dict]:
 	conditions = {}
 
-	for field in ["company", "department"]:
+	for field in ["company", "department", "branch"]:
 		if filters.get(field):
 			conditions[field] = filters.get(field)
 
@@ -186,7 +193,7 @@ def get_employees(filters: Filters) -> list[dict]:
 	return frappe.get_list(
 		"Employee",
 		filters=conditions,
-		fields=["name", "employee_name", "department"],
+		fields=["name", "employee_name", "department", "branch"],
 	)
 
 
