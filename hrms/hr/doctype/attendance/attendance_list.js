@@ -12,7 +12,10 @@ frappe.listview_settings["Attendance"] = {
 	},
 	onload: function (list_view) {
 		let me = this;
-		if (frappe.perm.has_perm("Attendance", 0, "create")) {
+		if (
+			frappe.perm.has_perm("Attendance", 0, "submit") &&
+			frappe.perm.has_perm("Attendance", 1, "write")
+		) {
 			list_view.page.add_inner_button(__("Mark Attendance"), function () {
 				let first_day_of_month = moment().startOf("month");
 
@@ -57,6 +60,11 @@ frappe.listview_settings["Attendance"] = {
 							reqd: 1,
 						},
 						{
+							label: __("Working Hours"),
+							fieldtype: "Float",
+							fieldname: "working_hours",
+						},
+						{
 							fieldtype: "Column Break",
 							fieldname: "time_period_column",
 						},
@@ -73,6 +81,7 @@ frappe.listview_settings["Attendance"] = {
 							fieldtype: "Link",
 							fieldname: "shift",
 							options: "Shift Type",
+							reqd: 1,
 						},
 
 						{
@@ -136,7 +145,7 @@ frappe.listview_settings["Attendance"] = {
 		dialog.set_df_property("days_section", "hidden", 1);
 		dialog.set_df_property("unmarked_days", "options", []);
 		dialog.no_unmarked_days_left = false;
-		fields.exclude_holidays.value = false;
+		fields.exclude_holidays.value = true;
 
 		fields.to_date.datepicker.update({
 			maxDate: moment().toDate(),
