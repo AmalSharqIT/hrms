@@ -191,6 +191,7 @@
    "link_to": "Leave Type",
    "link_type": "DocType",
    "open_in_new_tab": 0,
+   "roles": "System Manager\nHR User\nHR User - Branch",
    "show_arrow": 0,
    "type": "Link"
   },
@@ -319,11 +320,12 @@
    "link_type": "DocType",
    "navigate_to_tab": "leaves_tab",
    "open_in_new_tab": 0,
+   "roles": "System Manager",
    "show_arrow": 0,
    "type": "Link"
   }
  ],
- "modified": "2026-10-02 12:00:00.000000",
+ "modified": "2026-10-19",
  "modified_by": "Administrator",
  "module": "Leaves",
  "name": "Leaves",
