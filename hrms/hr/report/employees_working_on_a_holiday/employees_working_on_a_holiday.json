@@ -8,7 +8,7 @@
  "documentation_url": "https://docs.frappe.io/hr/human-resources-reports#8-employee-working-on-a-holiday", 
  "idx": 2, 
  "is_standard": "Yes", 
- "modified": "2026-10-05 14:00:00.000000", 
+ "modified": "2026-10-05", 
  "modified_by": "Administrator", 
  "module": "HR", 
  "name": "Employees working on a holiday", 
@@ -19,12 +19,6 @@
  "roles": [
   {
    "role": "System Manager"
-  }, 
-  {
-   "role": "HR User"
-  }, 
-  {
-   "role": "HR Manager"
   }
  ]
 }
