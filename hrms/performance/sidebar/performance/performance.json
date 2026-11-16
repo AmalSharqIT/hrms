@@ -148,11 +148,12 @@
    "type": "Link"
   }
  ],
- "modified": "2026-10-01 23:00:00.000000",
+ "modified": "2026-10-19",
  "modified_by": "Administrator",
  "module": "Performance",
  "name": "Performance",
  "owner": "Administrator",
+ "roles": "System Manager",
  "standard": 1,
  "title": "Performance"
 }
