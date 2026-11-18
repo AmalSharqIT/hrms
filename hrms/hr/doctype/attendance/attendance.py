@@ -502,11 +502,8 @@ def get_employee_shift(employee: str, for_date: str | date | None = None) -> str
 			"status": "Active",
 			"start_date": ("<=", for_date),
 		},
+		or_filters=[["end_date", ">=", for_date], ["end_date", "is", "not set"]],
 		fields=["shift_type", "start_date"],
-		or_filters=[
-			["end_date", ">=", for_date],
-			["end_date", "is", "not set"],
-		],
 		order_by="start_date desc",
 		limit=1,
 	)
