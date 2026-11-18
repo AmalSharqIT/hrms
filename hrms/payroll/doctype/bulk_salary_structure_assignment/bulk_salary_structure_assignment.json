@@ -9,6 +9,7 @@
   "set_assignment_details_section",
   "salary_structure",
   "from_date",
+  "cost_center",
   "income_tax_slab",
   "column_break_rsep",
   "company",
@@ -51,6 +52,7 @@
    "depends_on": "salary_structure",
    "fieldname": "income_tax_slab",
    "fieldtype": "Link",
+   "hidden": 1,
    "label": "Income Tax Slab",
    "options": "Income Tax Slab"
   },
@@ -63,7 +65,8 @@
    "fieldname": "payroll_payable_account",
    "fieldtype": "Link",
    "label": "Payroll Payable Account",
-   "options": "Account"
+   "options": "Account",
+   "read_only": 1
   },
   {
    "fieldname": "branch",
@@ -126,6 +129,7 @@
   {
    "fieldname": "grade",
    "fieldtype": "Link",
+   "hidden": 1,
    "label": "Employee Grade",
    "options": "Employee Grade"
   },
@@ -143,13 +147,19 @@
    "label": "Currency",
    "options": "Currency",
    "read_only": 1
+  },
+  {
+   "fieldname": "cost_center",
+   "fieldtype": "Link",
+   "label": "Cost Center",
+   "options": "Cost Center"
   }
  ],
  "hide_toolbar": 1,
  "icon": "users",
  "issingle": 1,
  "links": [],
- "modified": "2026-10-05 15:00:00.000000",
+ "modified": "2026-10-05",
  "modified_by": "Administrator",
  "module": "Payroll",
  "name": "Bulk Salary Structure Assignment",
@@ -160,17 +170,13 @@
    "email": 1,
    "print": 1,
    "read": 1,
-   "role": "HR User",
+   "role": "System Manager",
    "share": 1,
    "write": 1
   },
   {
-   "create": 1,
-   "email": 1,
-   "print": 1,
    "read": 1,
    "role": "HR Manager",
-   "share": 1,
    "write": 1
   }
  ],

@@ -135,7 +135,7 @@
  "icon": "tag",
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2026-10-05 15:00:00.000000",
+ "modified": "2026-10-05",
  "modified_by": "Administrator",
  "module": "HR",
  "name": "Overtime Type",
@@ -153,17 +153,6 @@
    "role": "System Manager",
    "share": 1,
    "write": 1
-  },
-  {
-   "create": 1,
-   "delete": 1,
-   "read": 1,
-   "role": "HR Manager",
-   "write": 1
-  },
-  {
-   "role": "HR User",
-   "select": 1
   }
  ],
  "row_format": "Dynamic",

@@ -155,17 +155,21 @@ def get_holiday_list_ranges_for_employees(
 	start_date = getdate(start_date)
 	end_date = getdate(end_date)
 	companies = list({company for company in employee_company_map.values() if company})
+	branchs = frappe.get_all("Branch", pluck="name")
 
-	assignments = get_holiday_list_assignments(list(employee_company_map) + companies)
+	assignments = get_holiday_list_assignments(list(employee_company_map) + branchs + companies)
 	effective_ranges = build_effective_date_ranges_for_holiday_assignments(assignments, start_date, end_date)
 
 	employee_holiday_list_ranges = {}
 	for employee, company in employee_company_map.items():
+		employee_or_branch = effective_ranges.get(employee, []) or effective_ranges.get(
+			frappe.get_cached_value("Employee", employee, "branch"), []
+		)
 		ranges = fill_employee_holiday_list_date_gaps_with_company_holiday_list(
-			effective_ranges.get(employee, []), effective_ranges.get(company, []), start_date, end_date
+			employee_or_branch, effective_ranges.get(company, []), start_date, end_date
 		)
 		ranges = fill_uncovered_dates_with_assigned_holiday_list(
-			ranges, assignments.get(employee, []), assignments.get(company, []), start_date, end_date
+			ranges, employee_or_branch, assignments.get(company, []), start_date, end_date
 		)
 
 		if ranges:
@@ -261,10 +265,10 @@ def get_holiday_list_for_employee(
 	employee: str, raise_exception: bool = True, as_on: date | str | None = None, as_dict: bool = False
 ) -> str:
 	as_on = getdate(as_on)
-	company = frappe.db.get_value("Employee", employee, "company")
-	assignments = get_holiday_list_assignments([employee, company])
+	company, branch = frappe.db.get_value("Employee", employee, ["company", "branch"])
+	assignments = get_holiday_list_assignments([employee, branch, company])
 	assignment = resolve_holiday_list_assignment(
-		assignments.get(employee, []), assignments.get(company, []), as_on
+		assignments.get(employee, []) or assignments.get(branch, []), assignments.get(company, []), as_on
 	)
 
 	if not assignment:

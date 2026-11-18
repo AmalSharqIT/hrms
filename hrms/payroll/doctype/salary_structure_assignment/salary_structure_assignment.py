@@ -74,15 +74,21 @@ class SalaryStructureAssignment(Document):
 		employee_name: DF.Data | None
 		from_date: DF.Date
 		grade: DF.Link | None
+		hourly_salary: DF.Currency
 		income_tax_slab: DF.Link | None
 		leave_encashment_amount_per_day: DF.Currency
 		max_benefits: DF.Currency
+		monthly_salary: DF.Currency
+		overtime_ratio: DF.Float
 		payroll_cost_centers: DF.Table[EmployeeCostCenter]
 		payroll_payable_account: DF.Link | None
+		round_salary: DF.Currency
 		salary_structure: DF.Link
 		tax_deducted_till_date: DF.Currency
 		taxable_earnings_till_date: DF.Currency
+		transportation_allowance: DF.Currency
 		variable: DF.Currency
+		withholding: DF.Currency
 	# end: auto-generated types
 
 	def validate(self):
