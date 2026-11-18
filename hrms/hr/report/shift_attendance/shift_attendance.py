@@ -164,7 +164,8 @@ def get_data(filters):
 	if filters.include_attendance_without_checkins:
 		data.extend(get_attendance_without_checkins(filters))
 	data = update_data(data, filters)
-	return sorted(data, key=lambda a: a["attendance_date"])
+	data.sort(key=lambda row: row.attendance_date)
+	return data
 
 
 def get_report_summary(data):
