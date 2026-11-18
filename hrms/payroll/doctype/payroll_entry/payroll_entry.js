@@ -66,9 +66,14 @@ frappe.ui.form.on("Payroll Entry", {
 
 		if (frm.doc.docstatus === 0 && !frm.is_new()) {
 			frm.page.clear_primary_action();
-			frm.add_custom_button(__("Get Employees"), function () {
-				frm.events.get_employee_details(frm);
-			}).toggleClass("btn-primary", !(frm.doc.employees || []).length);
+			frm.add_custom_button(
+				__("Get Employees"),
+				function () {
+					frm.events.get_employee_details(frm);
+				},
+				null,
+				!(frm.doc.employees || []).length ? "primary" : null,
+			);
 		}
 
 		if (
