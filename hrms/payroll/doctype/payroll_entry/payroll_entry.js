@@ -72,7 +72,7 @@ frappe.ui.form.on("Payroll Entry", {
 					frm.events.get_employee_details(frm);
 				},
 				null,
-				!(frm.doc.employees || []).length ? "primary" : null,
+				(frm.doc.employees || []).length ? "default" : "primary",
 			);
 		}
 
@@ -173,22 +173,37 @@ frappe.ui.form.on("Payroll Entry", {
 		) {
 			frm.events.add_bank_entry_button(frm);
 		} else if (!frm.doc.salary_slips_created && frm.doc.status === "Failed") {
-			frm.add_custom_button(__("Create Salary Slips"), function () {
-				frm.trigger("create_salary_slip");
-			}).addClass("btn-primary");
+			frm.add_custom_button(
+				__("Create Salary Slips"),
+				function () {
+					frm.trigger("create_salary_slip");
+				},
+				null,
+				"primary",
+			);
 		}
 	},
 
 	add_bank_entry_button: function (frm) {
 		frm.call("has_bank_entries").then((r) => {
 			if (!r.message.has_bank_entries) {
-				frm.add_custom_button(__("Make Bank Entry"), function () {
-					make_bank_entry(frm);
-				}).addClass("btn-primary");
+				frm.add_custom_button(
+					__("Make Bank Entry"),
+					function () {
+						make_bank_entry(frm);
+					},
+					null,
+					"primary",
+				);
 			} else if (!r.message.has_bank_entries_for_withheld_salaries) {
-				frm.add_custom_button(__("Release Withheld Salaries"), function () {
-					make_bank_entry(frm, (for_withheld_salaries = 1));
-				}).addClass("btn-primary");
+				frm.add_custom_button(
+					__("Release Withheld Salaries"),
+					function () {
+						make_bank_entry(frm, (for_withheld_salaries = 1));
+					},
+					null,
+					"primary",
+				);
 			}
 		});
 	},
