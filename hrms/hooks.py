@@ -13,7 +13,7 @@ add_to_apps_screen = [
 	{
 		"name": "hrms",
 		"logo": "/assets/hrms/images/frappe-hr-logo.svg",
-		"title": "Frappe HR",
+		"title": "HR",
 		"route": app_home,
 		"setup_wizard_text": "Let's build a workplace your team will love.",
 		"has_permission": "hrms.hr.utils.check_app_permission",
@@ -259,8 +259,6 @@ scheduler_events = {
 		"hrms.hr.doctype.interview.interview.send_interview_reminder",
 	],
 	"hourly_long": [
-		"hrms.hr.doctype.shift_type.shift_type.update_last_sync_of_checkin",
-		"hrms.hr.doctype.shift_type.shift_type.process_auto_attendance_for_all_shifts",
 		"hrms.hr.doctype.shift_schedule_assignment.shift_schedule_assignment.process_auto_shift_creation",
 	],
 	"daily": [

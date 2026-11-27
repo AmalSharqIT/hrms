@@ -8,6 +8,10 @@
  "is_standard": 1,
  "mappings": [
   {
+   "setting_field": "default_employment_type",
+   "settings_doctype": "HR Settings"
+  },
+  {
    "setting_field": "retirement_age",
    "settings_doctype": "HR Settings"
   },
@@ -16,7 +20,7 @@
    "settings_doctype": "HR Settings"
   }
  ],
- "modified": "2026-07-16 00:00:00.000000",
+ "modified": "2026-10-25",
  "modified_by": "Administrator",
  "module": "HR",
  "name": "Employee - HR",

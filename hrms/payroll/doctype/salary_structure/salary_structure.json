@@ -106,6 +106,7 @@
    "default": "0",
    "fieldname": "salary_slip_based_on_timesheet",
    "fieldtype": "Check",
+   "hidden": 1,
    "label": "Salary Slip Based on Timesheet",
    "search_index": 1
   },
@@ -131,6 +132,7 @@
    "allow_on_submit": 1,
    "fieldname": "leave_encashment_amount_per_day",
    "fieldtype": "Currency",
+   "hidden": 1,
    "label": "Leave Encashment Amount Per Day",
    "non_negative": 1,
    "options": "currency"
@@ -138,6 +140,7 @@
   {
    "fieldname": "max_benefits",
    "fieldtype": "Currency",
+   "hidden": 1,
    "label": "Max Benefits (Amount)",
    "non_negative": 1,
    "options": "currency"
