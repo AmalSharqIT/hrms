@@ -71,7 +71,7 @@
  ],
  "icon": "clipboard-list",
  "links": [],
- "modified": "2026-10-05 15:00:00.000000",
+ "modified": "2026-10-05",
  "modified_by": "Administrator",
  "module": "HR",
  "name": "Employee Separation Template",
@@ -88,17 +88,6 @@
    "role": "System Manager",
    "share": 1,
    "write": 1
-  },
-  {
-   "create": 1,
-   "delete": 1,
-   "read": 1,
-   "role": "HR Manager",
-   "write": 1
-  },
-  {
-   "read": 1,
-   "role": "HR User"
   }
  ],
  "row_format": "Dynamic",
