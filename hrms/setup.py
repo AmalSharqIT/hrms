@@ -306,6 +306,7 @@ def get_custom_fields():
 				"fieldname": "profile",
 				"fieldtype": "Tab Break",
 				"label": _("Profile"),
+				"hidden": 1,
 			},
 			{
 				"fieldname": "employee_profile",
